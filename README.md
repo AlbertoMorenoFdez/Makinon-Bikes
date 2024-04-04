@@ -5,4 +5,4 @@
 - [Alberto Moreno Fernandez](https://github.com/AlbertoMorenoFdez)
 
 ## Recursos adicionales
-- [Página de Notion del proyecto](https://www.notion.so/08bf3759f4da4889bc67f455a68aeddf)
+- [Página de Notion del proyecto](https://messy-sovereign-e65.notion.site/Anteproyecto-Makinon-Bikes-11a74f6f479342049f4cd17ddec853e3?pvs=4)
