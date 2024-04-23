@@ -1,0 +1,79 @@
+
+.contenedorformularioPre {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 700px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: solid 1px black;
+    box-shadow: 1px 1px 0px rgb(230, 230, 230),
+        2px 2px 0px rgb(200, 200, 200),
+        3px 3px 0px rgb(180, 180, 180),
+        4px 4px 0px rgb(160, 160, 160),
+        5px 5px 0px rgb(0, 0, 0),
+        8px 8px 20px rgb(0, 0, 0);
+}
+
+.contenedorizquierdaFormPre {
+    width: 50%;
+    height: 498px;
+    overflow: hidden;
+}
+
+.contenedorizquierdaformPre img {
+    width: 100%;
+    height: 400px;
+    
+    object-fit: cover;
+}
+
+#imgContenedorizquierdaformPre{
+    width: 100%;
+    height: 498px;
+    object-fit: cover;
+}
+
+.contenedorderechaformPre {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}
+
+h2 {
+
+    font-size: 50px;
+    color: black;
+    text-align: center;
+}
+
+a.boton-acceso {
+    text-decoration: none;
+    width: 75%;
+    height: 50px;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.boton-acceso:hover {
+    background-color: rgb(251, 98, 0);
+}
+
+

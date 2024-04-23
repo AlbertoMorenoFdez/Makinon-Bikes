@@ -1,0 +1,98 @@
+.containerProducto {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.card-body-top-producto,
+.card-body-bottom-producto {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.card-body-top-producto h4,
+.card-body-bottom-producto h6,
+.card-body-bottom-producto h5 {
+    margin-bottom: 15px;
+}
+
+.card-body-bottom-producto {
+    height: auto;
+    overflow-y: scroll;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.cantidad {
+    margin-right: 10px;
+}
+
+.custom-button,
+.custom-input {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.675rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+.custom-input {
+    text-align: center;
+}
+
+.btn {
+    background-color: black;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 10px;
+    display: inline-block;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: rgb(251, 98, 0);
+}
+
+.card-text-producto {
+    height: auto;
+    min-height: 400px;
+    overflow: visible;
+    white-space: pre-wrap;
+}
+
+#button-addon {
+    background-color: black;
+    color: white;
+    border: 1px solid #ced4da;
+    color: #6c757d;
+    transition: background-color 0.3s ease;
+}
+
+#button-addon:hover {
+    background-color: rgb(251, 98, 0);
+}
+
+.zoom {
+    transition: transform 0.2s;
+    position:relative;
+    z-index: 3;
+}
+
+.zoom:hover {
+    transform: scale(2);
+    border: 1px solid #dee2e6;
+    background-color: white;
+    z-index: 3;
+    transform-origin: left center;
+}

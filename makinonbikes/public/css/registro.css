@@ -1,0 +1,101 @@
+
+.formularioRegistro {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    border: solid 1px black;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 30px;
+    color: black;
+    display: inline-block;
+}
+
+#textoformulario {
+    text-align: justify;
+}
+
+#contraseña {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start
+}
+
+#nombreApellidos {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start
+}
+
+#direccionCiudad {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start
+}
+
+.registro-input {
+    width: 300px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+}
+
+#condiciones {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#check {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+#check input {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.boton-registro {
+    width: 50%;
+    height: 50px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-registro:hover {
+    background-color: rgb(251, 98, 0);
+}
+
+#registro {
+    cursor: pointer;
+}
+

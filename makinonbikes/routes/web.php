@@ -1,0 +1,130 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\IdiomaController;
+use App\Livewire\BuscadorProductos;
+use App\Livewire\BuscadorProductosAdministracion;
+use App\Models\Marca;
+use App\Http\Controllers\MarcaController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Rutas para Livewire
+Route::get('/buscador-productos', BuscadorProductos::class)->name('buscador-productos');
+
+
+// Ruta que redirige al usuario a la vista de inicio
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
+// Ruta para cambiar el idioma
+Route::get('cambiarIdioma/{idioma}', [IdiomaController::class, 'cambiarIdioma'])->name('cambiarIdioma');
+
+Route::get('/perfil', [UsuarioController::class, 'usuarioAutentificado'])->name('usuario.perfil');
+Route::get('/modificarUsuario', [UsuarioController::class, 'editarUsuario'])->name('usuario.modificarUsuario');
+Route::post('/modificarUsuario', [UsuarioController::class, 'updateUsuario'])->name('updateUsuario');
+
+Route::delete('deleteUsuario', [UsuarioController::class, 'deleteUsuario'])->name('deleteUsuario')->middleware('auth'); //Eliminar usuario por parte del propio usuario
+Route::get('cambiarPassword', [UsuarioController::class, 'cambiarPassword'])->name('cambiarPassword')->middleware('auth');
+Route::post('cambiarPassword', [UsuarioController::class, 'actualizarPassword'])->name('updatePassword')->middleware('auth');
+
+/*
+Rutas de los usuarios relacionadas con el administrador
+*/
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('/panelAdmin', [UsuarioController::class, 'panelAdmin'])->name('usuario.panelAdmin');
+    Route::get('listadoUsuarios', [UsuarioController::class, 'listarUsuarios'])->name('listadoUsuarios');
+    Route::get('añadirUsuario', [UsuarioController::class, 'nuevoUsuarioAdmin'])->name('añadirUsuario');
+    Route::post('agregarUsuarioAdmin', [UsuarioController::class, 'agregarUsuarioAdmin'])->name('agregarUsuarioAdmin');
+    Route::get('buscarUsuario', [UsuarioController::class, 'buscarUsuario'])->name('buscarUsuario');
+    Route::get('fichaUsuarioAdmin/{id}', [UsuarioController::class, 'fichaUsuario'])->name('fichaUsuarioAdmin');
+    Route::get('modificarUsuarioAdmin/{id}', [UsuarioController::class, 'editarUsuarioAdmin'])->name('modificarUsuarioAdmin');
+    Route::post('modificarUsuarioAdmin/{id}', [UsuarioController::class, 'updateUsuarioAdmin'])->name('updateUsuarioAdmin');
+    Route::delete('eliminarUsuario/{id}', [UsuarioController::class, 'eliminarUsuario'])->name('eliminarUsuario'); //Eliminar usuario por parte de la administracion pasando su id
+});
+
+/*
+Rutas para los proveedores
+*/
+
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('/listadoProveedores', [ProveedorController::class, 'datosProveedores'])->name('listadoProveedores');
+    Route::get('/fichaProveedor/{id}', [ProveedorController::class, 'fichaProveedor'])->name('fichaProveedor');
+    Route::get('/añadirProveedor', [ProveedorController::class, 'nuevoProveedor'])->name('añadirProveedor');
+    Route::post('/agregarProveedor', [ProveedorController::class, 'agregarProveedor'])->name('agregarProveedor');
+    Route::get('modificarProveedor/{id}', [ProveedorController::class, 'editarProveedor'])->name('modificarProveedor');
+    Route::post('modificarProveedor/{id}', [ProveedorController::class, 'updateProveedor'])->name('updateProveedor');
+    Route::delete('eliminarProveedor/{id}', [ProveedorController::class, 'eliminarProveedor'])->name('eliminarProveedor');
+    Route::get('buscarProveedor', [ProveedorController::class, 'buscarProveedor'])->name('buscarProveedor');
+});
+
+/*
+Rutas para los productos
+*/
+Route::get('productos/{tipo}', [ProductoController::class, 'vistasAllProductos'])->name('productos.tipo');
+Route::get('/productos/marca/{nombreMarca}', [ProductoController::class, 'vistasPorMarca'])->name('productos.marca');
+Route::get('vistaProducto/{id}', [ProductoController::class, 'vistaProducto'])->name('vistaProducto');
+Route::get('/componentes', function () {
+    $marcas = Marca::all();
+    return view('producto.componentes', ['marcas' => $marcas]);
+})->name('componentes');
+Route::get('/accesorios', function () {
+    $marcas = Marca::all();
+    return view('producto.accesorios',[ 'marcas' => $marcas]);
+})->name('accesorios');
+Route::get('/alimentacion', function () {
+    $marcas = Marca::all();
+    return view('producto.alimentacion',[ 'marcas' => $marcas]);
+})->name('alimentacion');
+
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('listadoProductos', [ProductoController::class, 'listarProductos'])->name('listadoProductos');
+    Route::get('fichaProducto/{id}', [ProductoController::class, 'fichaProducto'])->name('fichaProducto');
+    Route::get('añadirProducto', [ProductoController::class, 'nuevoProducto'])->name('añadirProducto');
+    Route::post('agregarProducto', [ProductoController::class, 'agregarProducto'])->name('agregarProducto');
+    Route::get('modificarProducto/{id}', [ProductoController::class, 'editarProducto'])->name('modificarProducto');
+    Route::post('modificarProducto/{id}', [ProductoController::class, 'updateProducto'])->name('updateProducto');
+    Route::delete('eliminarProducto/{id}', [ProductoController::class, 'eliminarProducto'])->name('eliminarProducto');
+    Route::get('buscarProducto', [ProductoController::class, 'buscarProducto'])->name('buscarProducto');
+    Route::get('/listadoProductosProveedor/{id}', [ProductoController::class, 'listarProductosProveedor'])->name('listadoProductosProveedor');
+});
+
+/*
+Ruta para las Marcas
+*/
+Route::post('nuevaMarca', [MarcaController::class, 'nuevaMarca'])->name('nuevaMarca');
+
+
+/*
+Ruta para la página en construcción
+*/
+Route::get('/paginaEnConstruccion', function () {
+    return view('paginaEnConstruccion');
+})->name('paginaEnConstruccion');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
