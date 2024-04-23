@@ -1,0 +1,197 @@
+@import "../recursos/variables";
+
+// Estilos del contenedor terciario
+.contenedorTerciario {
+  width: 100%;
+  height: 99vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  // Estilos de la fila dentro del contenedor terciario
+  &__row {
+    width: 90%;
+    height: 72vh;
+    margin-top: 130px;
+    display: flex;
+    align-items: center;
+    background-color: $color4;
+    overflow: hidden;
+  }
+
+  // Estilos de la columna dentro de la fila del contenedor terciario
+  &__col {
+    flex: 1;
+  }
+
+  // Estilos de la subcolumna dentro de la columna del contenedor terciario
+  &__sub-column {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // Estilos de la subcolumna dentro de la columna del contenedor terciario
+  &__sub-col {
+    margin: 5px;
+    // Estilos del título dentro de la subcolumna del contenedor terciario
+    h2 {
+      text-align: center;
+      font-family: 'Port', sans-serif;
+      font-size: 25px;
+      margin-top: 20px;
+    }
+  }
+
+  // Estilos de la imagen dentro de la subcolumna del contenedor terciario
+  &__sub-img {
+    width: 150px;
+    height: 420px;
+    transform: skew(-15deg);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      transform: skew(-15deg) rotateX(10deg);
+      box-shadow: 0 0 60px rgba(213, 110, 6, 0.8);
+    }
+  }
+
+  // Estilos de margen dentro del contenedor terciario
+  &__margin {
+    margin-top: 50px;
+  }
+
+  // Estilos específicos para el primer texto
+  #primerTexto {
+    margin-left: 140px;
+  }
+
+  // Estilos específicos para el segundo texto
+  #segundoTexto {
+    margin-left: -140px;
+  }
+
+  // Estilos específicos para el tercer texto
+  #tercerTexto {
+    margin-left: 140px;
+  }
+
+  // Estilos específicos para el cuarto texto
+  #cuartoTexto {
+    margin-left: -140px;
+  }
+
+  // Estilos de la imagen
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Estilos para la tarjeta de volteo
+  .flip-card {
+    background-color: transparent;
+    width: 150px;
+    height: 420px;
+    perspective: 1000px;
+
+    &-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    &:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    &-front,
+    &-back {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+    }
+
+    &-front {
+      background-color: $color3;
+    }
+
+    &-back {
+      background-color: $color1;
+      transform: rotateY(180deg);
+    }
+  }
+
+  // Estilos para el video dentro del contenedor terciario
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // Estilos para el elemento de video
+  video {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 1200px) {
+    &__sub-col {
+      h2 {
+        font-size: 20px;
+      }
+    }
+    &__sub-img {
+      width: 120px;
+      height: 400px;
+      
+    }
+    
+    .flip-card {
+      width: 120px;
+      height: 400px;
+    }
+  }
+  @media (max-width: 1000px) {
+    &__sub-col {
+      h2 {
+        font-size: 17px;
+      }
+    }
+    &__sub-img {
+      width: 90px;
+      height: 370px;
+      
+    }
+    
+    .flip-card {
+      width: 90px;
+      height: 370px;
+    }
+  }
+  @media (max-width: 768px) {
+    &__sub-col {
+      h2 {
+        font-size: 25px;
+      }
+    }
+    &__sub-img {
+      width: 150px;
+      height: 420px;
+      
+    }
+    
+    .flip-card {
+      width: 150px;
+      height: 420px;
+    }
+    #conImgVideoRes{
+      display: none;
+    }
+  }
+}

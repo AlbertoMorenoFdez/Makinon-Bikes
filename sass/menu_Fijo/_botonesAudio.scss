@@ -1,0 +1,48 @@
+#play {
+    font-size: 45px;
+}
+
+#pause {
+    font-size: 45px;
+    display: none;
+
+}
+
+
+@media (max-width: 1200px) {
+    #play {
+        font-size: 35px;
+    }
+
+    #pause {
+        font-size: 35px;
+        display: none;
+
+    }
+}
+
+@media (max-width: 990px) {
+    #play {
+        font-size: 30px;
+    }
+
+    #pause {
+        font-size: 30px;
+        display: none;
+
+    }
+
+    @media (max-width: 870px) {
+        #play {
+            font-size: 25px;
+        }
+
+        #pause {
+            font-size: 25px;
+            display: none;
+
+        }
+
+      
+    }
+}

@@ -1,0 +1,51 @@
+@import "../recursos/variables";
+
+.header__navbar {
+    display: flex;
+    align-items: center;
+
+    a {
+        font-size: 32px;
+        color: $color2;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: 45px;
+        border: 1px solid #fff;
+
+        &:hover {
+            color: $color1;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        a {
+          font-size: 24px; 
+        }
+      }
+      @media (max-width: 990px) {
+        a {
+          font-size: 20px; 
+        }
+      }
+
+      @media (max-width: 870px) {
+        a {
+            font-size: 16px; 
+          }
+      }
+
+    @media (max-width: 768px) {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+
+        a {
+            margin: 10px 0; 
+            margin-left: 0; 
+            font-size: 24px; 
+        }
+        &__navbar {
+            display: none; // Oculta el menú en pantallas pequeñas
+          }
+    }
+}

@@ -1,0 +1,31 @@
+@use './recursos/fuentes';
+@use './menu_Fijo/header';
+@use './menu_Fijo/navbar';
+@use './menu_Fijo/botonesAudio';
+@use './section1/plegadoSvg';
+@use './section2/cardsHover';
+@use './section2/texto';
+@use './section3/cardsFlip';
+@use './section4/canvas';
+@use './section4/grafica';
+@use './section5/contacto';
+@use './section5/section5';
+@use './section5/svg';
+
+@import "./recursos/variables";
+body {
+    background: $color2;
+    font-family: 'Coach', sans-serif;
+}
+
+.parallax{
+  background:  fixed no-repeat 50% 50%;
+  background-size: cover;
+}
+#section3{
+  background-image: url("../multimedia/fondobici2.jpeg");
+}
+#section5{
+  background-image: url("../multimedia/fondoCiente.jpg");
+ 
+}

@@ -1,0 +1,528 @@
+@font-face {
+    font-family: 'Coach';
+    src: url('../multimedia/Coach-normal-400-100.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Port';
+    src: url('../multimedia/Port\ Condensed-normal-400-100.otf') format('opentype');
+}
+
+body {
+    background: black;
+    font-family: 'Coach', sans-serif;
+}
+
+.parallax{
+  background:  fixed no-repeat 50% 50%;
+  background-size: cover;
+}
+#section3{
+  background-image: url("../multimedia/fondobici2.jpeg");
+}
+#section5{
+  background-image: url("../multimedia/fondoCiente.jpg");
+ 
+}
+/*-------------------------------------ZONA DEL HEADER--------------------------------------------*/
+.header {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px ;
+    background: transparent;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    
+}
+
+.header__fondo {
+    width: 10%;
+    height: 10%;
+   
+}
+
+.header__logo-img{
+    width: 100%;
+    height: 100%;
+}
+
+/*-------------------------------------ZONA DEL MENÚ NAVBAR--------------------------------------------*/
+
+
+.header__navbar {
+    display: flex;
+    align-items: center;
+}
+
+.header__navbar a {
+    font-size: 32px;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 45px;
+    border: 1px solid #fff;
+}
+
+.header__navbar a:hover {
+    color: orange;
+}
+
+
+
+/*------------------------------------------BOTONES DE AUDIO---------------------------*/
+
+#play {
+    font-size: 45px;  
+}
+
+#pause {
+    font-size: 45px;
+    display: none;
+   
+}
+
+/*-------------------------------------------PLAGADO DE 1 PAGINA SVG----------------------*/
+    .contenedorPrincipal {
+    background-color: rgb(245, 245, 220);
+    width: 100%;
+    height: 99vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+  }
+
+
+  .contenedorPrincipal__plegable {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index:2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: transform 2s;
+  }
+
+  .contenedorPrincipal__boton {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: opacity 2s;
+  }
+  .contenedorPrincipal__boton-play {
+    position: absolute;
+    
+
+  }
+
+  .contenedorPrincipal__boton text {
+    transition: opacity 2s;
+  }
+  
+
+  /*------------------------------------------CONTENEDOR DEL MUNÚ HOVER------------------------------*/
+
+  .contenedorSecundario {
+    
+    width: 100%;
+    height: 99vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+  }
+
+  .contenedorSecundario__split {
+    display: flex;
+}
+
+.split__left, .split__right {
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.grid__item {
+    position: relative;
+    width: 250px;
+    transition: all 0.3s ease;
+  }
+  
+  .grid__item img:first-child {
+    box-shadow: 0 60px 60px -60px rgba(0, 30, 255, 0.5);
+    border-radius: 4px;
+    object-fit: cover;
+    width: 100%;
+  }
+  
+  .grid__item img:last-child {
+    position: absolute;
+    width: 250px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: translateY(25%);
+    transition: 0.3s ease;
+    opacity: 0;
+  }
+  
+  .grid__item:hover {
+    transform: perspective(250px) rotateX(10deg) translateY(-5%) translateZ(0);
+  }
+  
+  .grid__item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 165, 0, 0.5);
+    background-image: linear-gradient(to bottom, transparent 10%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.95));
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+  }
+  
+  .grid__item:hover::before {
+    opacity: 1;
+  }
+  
+  .grid__item:hover img:last-child {
+    opacity: 1;
+    transform: translateY(10%);
+  }
+  .grid__item__bottom{
+    top: 50px;
+  }
+  
+/*---------------------------------------Contenedor del texto -------------------------------------------------*/
+.split__right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    font-family: 'Port', sans-serif;
+    font-size: 20px;
+    color:gray;
+
+}
+p{
+    font-size: 20px;
+    font-family: 'Port', sans-serif;
+    color:gray;
+}
+
+/*--------------------------------------------PAGINA 3-----------------------------------------------------*/
+.contenedorTerciario {
+    width: 100%;
+    height: 99vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    overflow: hidden;
+  }
+  
+  .contenedorTerciario__row {
+    width: 90%;
+    height: 72vh;
+    margin-top: 130px;
+    display: flex;
+    align-items: center; 
+    background-color: white;
+    overflow: hidden;
+  }
+  
+  .contenedorTerciario__col {
+    flex: 1;
+  }
+  
+  .contenedorTerciario__sub-column {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contenedorTerciario__sub-col {
+    margin: 5px;
+  }
+  
+  .contenedorTerciario__sub-col h2 {
+
+    text-align: center;
+    font-family: 'Port', sans-serif;
+    font-size: 25px;
+    margin-top: 20px;
+  }
+  
+  .contenedorTerciario__sub-img {
+    width: 150px;
+    height: 420px;
+    transform: skew(-15deg);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.contenedorTerciario__sub-img:hover {
+    transform: skew(-15deg) rotateX(10deg);
+    box-shadow: 0 0 60px rgba(213, 110, 6, 0.8);
+}
+
+  .contenedorTerciario__margin{
+    margin-top: 50px;
+  
+  }
+ #primerTexto{
+    margin-left:140px;
+ } 
+ #segundoTexto{
+    margin-left:-140px;
+ } 
+ #tercerTexto{
+    margin-left:140px;
+ } 
+ #cuartoTexto{
+    margin-left:-140px;
+ } 
+  img{
+    width: 100%;
+    height: 100%;
+  }
+
+  .flip-card {
+    background-color: transparent;
+    width: 150px;
+    height: 420px;
+    perspective: 1000px;
+  }
+  
+  .flip-card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front,
+  .flip-card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: #bbb;
+  }
+  
+  .flip-card-back {
+    background-color: #2980b9;
+    transform: rotateY(180deg);
+  }
+  
+  .contenedorTerciario__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+  video {
+    width: 100%;
+    height: 100%;
+  }
+  
+
+  /*----------------------------------------PAGINA 4 GRAFICA-----------------------------------*/
+  .contenedorCuaternario {
+    width: 100%;
+    height: 99vh;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    overflow: hidden;
+  }
+  .contenedorCuaternario__canvas{
+   display: grid;
+   justify-items: center;
+   margin-top: 150px;
+   
+  }
+  .contenedorCuaternario__canvas-clientes{
+    display: flex;
+    border-radius: 50%;
+  }
+  .contenedorCuaternario__canvas-texto{
+    display: flex;
+    margin-top: 20px;
+    
+  }
+  .contenedorCuaternario__seguidores{
+    display: grid;
+    margin-top: 150px;
+    
+  }
+  .contenedorCuaternario__seguidores-textos{
+    visibility: hidden;
+    display: flex;
+    
+
+    
+  }
+  .contenedorCuaternario__title{
+    display: flex;
+    justify-content: center;
+    color:gray;
+    
+  }
+  .contenedorCuaternario__seguidores-grafica{
+    display: flex;
+    
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 40px;
+    margin-bottom: 30px;
+  }
+
+  /*---------------------------------------------MENU 5 CONTACTO-----------------------------------------------------*/
+  .contenedorQuinario {
+    width: 100%;
+    height: 99vh;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    overflow: hidden;
+    
+  }
+  .contenedorQuinario__contacto{
+    width: 90%;
+    height: 72vh;
+    margin-top: 130px;
+    display: flex;
+    align-items: center; 
+    
+    overflow: hidden;
+  }
+ 
+  /*---------------------------------------------FORMULARIO---------------------------------------------------------------*/
+
+  .formulario {
+   width: 400px;
+    margin: 0 auto;
+    padding: 55px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  .formulario__titulo {
+    text-align: center;
+  }
+  
+  .formulario__campo {
+    margin-bottom: 20px;
+  }
+  
+  .campo__label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .campo__input,
+  .campo__textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .campo__input:valid,
+  .campo__textarea:valid {
+    border-color: green;
+  }
+  
+  .campo__input:invalid,
+  .campo__textarea:invalid {
+    border-color: red;
+  }
+  
+  .campo__error {
+    display: none;
+    color: red;
+    font-size: 12px;
+  }
+  
+  .campo__input:focus:invalid + .campo__error {
+    display: block;
+  }
+  
+  .formulario__boton {
+    width: 100%;
+    padding: 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .formulario__boton:hover {
+    background-color: #0056b3;
+  }
+  
+
+  /*---------------------------------------------SVG---------------------------------------------------------------*/
+   .contenedorQuinario__contacto-contenedorLogo {
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    z-index: 2;
+    top: 430%;
+    left: 170px;
+    transform: translateY(-50%);
+} 
+
+ .contenedorQuinario__contacto-containerBielas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.contenedorQuinario__contacto-contenedorTexto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    position: absolute;
+} 
+

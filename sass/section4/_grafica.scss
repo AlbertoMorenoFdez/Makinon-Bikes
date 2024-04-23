@@ -1,0 +1,56 @@
+@import "../recursos/variables";
+// Estilos específicos para el contenedor de seguidores
+.contenedorCuaternario{
+  &__seguidores {
+    display: grid;
+    margin-top: 150px;
+  
+    // Estilos específicos para el texto dentro del contenedor de seguidores
+    &__seguidores-textos {
+      visibility: hidden;
+      display: flex;
+      // Agrega aquí los estilos específicos si es necesario
+    }
+  
+    // Estilos específicos para el título del contenedor de seguidores
+    h2 {
+      display: flex;
+      justify-content: center;
+      color: $color3;
+      // Agrega aquí los estilos específicos si es necesario
+    }
+    
+  
+    // Estilos específicos para la gráfica dentro del contenedor de seguidores
+    svg{
+      width: 600px;
+      height: 400px;
+    }
+    &__seguidores-grafica {
+      
+      display: flex;
+      margin-top: 20px;
+      margin-right: 20px;
+      margin-left: 40px;
+      margin-bottom: 30px;
+      // Agrega aquí los estilos específicos si es necesario
+    }
+    @media (max-width: 1200px){
+       svg{
+        width: 500px;
+        height: 350px;
+      }
+    }
+      @media (max-width: 768px){
+        svg{
+         width: 430px;
+         height: 288px;
+         margin-bottom: 0;
+       }
+      
+       h2{
+          font-size: 1.4rem;
+       }
+    }
+  }
+}

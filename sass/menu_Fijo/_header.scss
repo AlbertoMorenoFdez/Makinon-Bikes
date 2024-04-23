@@ -1,0 +1,97 @@
+@import "../recursos/variables";
+
+.header {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  display: flex;
+  justify-content: space-around;
+  background-color: $color4;
+
+  &__hamburguerMenu-container {
+    display: none;
+
+  }
+ 
+
+  &__fondo {
+    width: 10%;
+    height: 10%;
+  }
+
+  &__logo-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  
+
+  @media (max-width: 768px) {
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+
+
+    &__hamburguerMenu-container {
+
+      position: relative;
+      display: inline-block;
+    }
+
+    &__hamburguerMenu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+  &__hamburguerMenu-line {
+      display: block;
+      width: 30px;
+      height: 3px;
+      margin: 5px;
+      background-color: $color2;
+    }
+
+    &__dropdown-menu {
+      display: none;
+      /* Por defecto, oculto */
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: $color4;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          padding: 10px;
+        }
+      }
+    }
+
+    /* Mostrar el menú cuando se pasa el ratón sobre el botón */
+    &__hamburguerMenu-container:hover &__dropdown-menu {
+      display: block;
+    }
+    
+
+    &__fondo {
+      width: 50%;
+      height: auto;
+    }
+
+    &__logo-img {
+      width: 100px;
+      height: auto;
+      display: block;
+    }
+  }
+}
