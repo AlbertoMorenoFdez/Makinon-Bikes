@@ -24,11 +24,11 @@
 
                     <p style="color:grey">@lang('makinon.colores')</p>
                     <div class="border-bottom border-top d-flex align-items-center">
-                        @if (isset($producto->color) && $producto->color)
-                            @foreach ($producto->color as $color)
+                        @if (isset($producto->producto_color_talla) && $producto->producto_color_talla)
+                            @foreach ($producto->producto_color_talla as $productoColorTalla)
                                 <div class="mt-2 mb-2 me-2"
-                                    style="width: 30px; height: 30px; background-color: {{ trim($color) }}; border: 1px solid black; border-radius: 50%;"
-                                    title="{{ trim($color) }}">
+                                    style="width: 30px; height: 30px; background-color: {{ trim($productoColorTalla->color->color) }}; border: 1px solid black; border-radius: 50%;"
+                                    title="{{ trim($productoColorTalla->color->color) }}">
                                 </div>
                             @endforeach
                         @else
@@ -39,15 +39,18 @@
                     <br>
                     <p style="color:grey">@lang('makinon.tallas')</p>
                     <div class="border-bottom border-top d-flex align-items-center">
-                        @php
-                            $tallas = explode(',', $producto->talla);
-                        @endphp
-                        <select name="talla" id="talla" class="mt-2 mb-2 rounded w-40">
-                            @foreach ($tallas as $talla)
-                                <option value="{{ trim($talla) }}">{{ trim($talla) }}</option>
-                            @endforeach
-                        </select>
+                        @if (isset($producto->producto_color_talla) && $producto->producto_color_talla)
+                            <select name="talla" id="talla" class="mt-2 mb-2 rounded w-40">
+                                @foreach ($producto->producto_color_talla as $productoColorTalla)
+                                    <option value="{{ trim($productoColorTalla->talla->talla) }}">
+                                        {{ trim($productoColorTalla->talla->talla) }}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <p class="mt-2 mb-2">Talla no especificada</p>
+                        @endif
                     </div>
+
 
                     {{-- <form method="POST" action="{{ route('carrito.agregar') }}">
                         @csrf
@@ -93,9 +96,9 @@
                     </div>
 
                     <div>
-                        @if ($producto->stock >= 2)
+                        @if ($productoColorTalla->stock >= 2)
                             <p style="color:rgb(21, 219, 31)">@lang('makinon.disponible')</p>
-                        @elseif ($producto->stock >= 1)
+                        @elseif ($productoColorTalla->stock >= 1)
                             <p style="color:rgb(255, 145, 0)">@lang('makinon.ultUnid')</p>
                         @else 
                             <p style="color:red">@lang('makinon.sinStock')</p>
@@ -126,3 +129,5 @@
         </div>
     </div>
 @endsection
+
+

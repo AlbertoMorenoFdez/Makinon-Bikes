@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Marca;
+use App\Models\ProductoColorTalla;
 use Illuminate\Http\Exceptions\PostTooLargeException;
+use App\Models\Color;
 
 class ProductoController extends Controller
 {
@@ -24,6 +26,11 @@ class ProductoController extends Controller
                 $query->orWhere('tipo', 'like', '%' . $tipo . '%');
             }
         })->get();
+
+        // Pasamos el total del stock de los productos
+        foreach ($productos as $producto) {
+            $producto->stockTotal = $producto->producto_color_talla->sum('stock');
+        }
 
         return view('producto.productos', ['productos' => $productos, 'marcas' => $marcas]);
     }
@@ -74,9 +81,10 @@ class ProductoController extends Controller
 
     public function vistaProducto($id)
     {
-        $producto = Producto::find($id);
+        $producto = Producto::with('producto_color_talla.color', 'producto_color_talla.talla')->find($id);
         return view('producto.vistaProducto', ['producto' => $producto]);
     }
+
 
     /**
      * Funcion que nos devuelve la vista para añadir un nuevo producto
@@ -132,6 +140,16 @@ class ProductoController extends Controller
             }
 
             $producto->save();
+
+            /* // Agregar los valores a la tabla producto_color_talla
+        foreach ($request->color as $color) {
+            $productoColorTalla = new ProductoColorTalla();
+            $productoColorTalla->id_producto = $producto->id;
+            $productoColorTalla->id_color = $color;
+            $productoColorTalla->id_talla = $request->talla;
+            $productoColorTalla->stock = $request->stock;
+            $productoColorTalla->save(); 
+        }*/
 
             return redirect()->route('fichaProducto', ['id' => $producto->id_producto])->with('success', 'Producto añadido con éxito');
         } catch (PostTooLargeException $e) {
@@ -243,6 +261,16 @@ class ProductoController extends Controller
         $proveedor = Proveedor::find($id);
         $productos = Producto::where('id_proveedor', $id)->paginate(10);
         return view('producto.listadoProductosProveedor', ['productos' => $productos, 'proveedor' => $proveedor]);
+    }
+
+    /**
+     * Funcion que nos permite extraer los colores disponibles de la tabla Color
+     */
+
+    public function listarColores()
+    {
+        $colores = Color::all();
+        return view('producto.añadirProducto', ['colores' => $colores]);
     }
 
 

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             productoTableSeeder::class,
             colorTableSeeder::class,
             tallaTableSeeder::class,
+            productoColorTallaTableSeeder::class,
             
         ]);
     }

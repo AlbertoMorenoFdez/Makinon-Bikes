@@ -110,7 +110,7 @@
         <footer>
             <div class="bottom">
                 <div id="columna1">
-                    <div>SOPORTE</div>
+                    <div>SOPORTE prueba</div>
                     <li>Contacto</li>
                     <li>Nuestra tienda</li>
                     <li>Mapa de la web</li>

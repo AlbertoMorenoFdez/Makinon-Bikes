@@ -48,6 +48,13 @@ class Producto extends Model
     }
 
     /**
+     * Funcion que devuelve los colores y las tallas del producto
+     */
+    public function producto_color_talla(){
+        return $this->hasMany(ProductoColorTalla::class, 'id_producto', 'id_producto');
+    }
+
+    /**
      * Accesor que nos permite una descripción mas corta del producto
      */
 
