@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('main')
-
     <form method="POST" action="{{ route('agregarProducto') }}" enctype="multipart/form-data">
         @csrf
         <div class="row d-flex justify-center">
@@ -9,7 +8,6 @@
                 <h1>Añadir producto</h1>
             </div>
             <div class="col-md-5">
-
 
                 <!-- Nombre -->
                 <div class="mt-4">
@@ -74,7 +72,6 @@
                 <div class="mt-4">
                     <label for="marca">@lang('makinon.marca'):</label>
                     <select class="form-control" id="marca" name="id_marca" required onchange="checkForNewMarca(this)">
-
                         @foreach ($marcas as $marca)
                             <option value="{{ $marca->id_marca }}">{{ $marca->nombre }}</option>
                         @endforeach
@@ -102,52 +99,28 @@
 
                 <!--Color-->
                 <div class="mt-4">
-                    <label for="color">@lang('makinon.color'): (Pulsa Ctrl + click para seleccionar mas de uno)</label>
-                    <select class="form-control" id="color" name="color[]" multiple>
-                        <option value="">Sin color</option>
-                        @php
-                            $colores = [
-                                'blue',
-                                'black',
-                                'grey',
-                                'white',
-                                'red',
-                                'lightblue',
-                                'lightgrey',
-                                'lightgreen',
-                                'green',
-                                'yellow',
-                                'orange',
-                                'purple',
-                                'pink',
-                                'brown',
-                                'beige',
-                                'gold',
-                                'silver',
-                                'lightyellow',
-                                'lightorange',
-                                'lightpurple',
-                                'lightpink',
-                                'lightbrown',
-                                'lightbeige',
-                            ];
-                            sort($colores);
-                        @endphp
+                    <label for="color">@lang('makinon.color'):</label>
+                    <select class="form-control" id="color" name="color" onchange="checkForNewColor(this)">
                         @foreach ($colores as $color)
-                            <option value="{{ $color }}">{{ ucfirst($color) }}</option>
+                            <option value="{{ $color->id_color }}">{{ $color->color }}</option>
                         @endforeach
+                        <option value="new">Añadir nuevo color...</option>
                     </select>
                     <x-input-error :messages="$errors->get('color')" class="mt-2" />
                 </div>
-
             </div>
+
             <div class="col-md-5">
 
                 <!--Talla-->
                 <div class="mt-4">
                     <label for="talla">@lang('makinon.talla'):</label>
-                    <input type="text" class="form-control" id="talla" name="talla" :value="old('talla')"
-                        required>
+                    <select class="form-control" id="talla" name="talla" onchange="checkForNewTalla(this)">
+                        @foreach ($tallas as $talla)
+                            <option value="{{ $talla->id_talla }}">{{ $talla->talla }}</option>
+                        @endforeach
+                        <option value="new">Añadir nueva talla...</option>
+                    </select>
                     <x-input-error :messages="$errors->get('talla')" class="mt-2" />
                 </div>
 
@@ -169,7 +142,7 @@
                 <!--Descripción larga-->
                 <div class="mt-4">
                     <label for="descripcion_larga">@lang('makinon.descripLarga'):</label>
-                    <textarea class="form-control" style="height:155px" id="descripcion_larga" name="descripcion_larga"
+                    <textarea class="form-control" style="height:188px" id="descripcion_larga" name="descripcion_larga"
                         :value="old('descripcion_larga')" required></textarea>
                 </div>
 
@@ -205,14 +178,47 @@
             @csrf
             <div class="modal-content">
                 <span class="close" style="text-align: right; cursor:pointer"><i
-                        class="fa-solid fa-circle-xmark"></i></span>                
+                        class="fa-solid fa-circle-xmark"></i></span>
                 <div class="form-group">
                     <label for="nombreMarca">Nombre de la marca</label>
                     <input type="text" class="form-control" id="nombreMarca" name="nombre"
                         placeholder="Introduce el nombre de la marca">
                 </div>
                 <x-makinon-primary-button type="submit">Guardar</x-makinon-primary-button>
+            </div>
+        </form>
+    </div>
 
+    <!-- Ventana modal para añadir un nuevo color-->
+    <div id="miModalColor" class="modal">
+        <form id="addColorForm" method="POST" action="{{ route('nuevoColor') }}">
+            @csrf
+            <div class="modal-content">
+                <span class="close" style="text-align: right; cursor:pointer"><i
+                        class="fa-solid fa-circle-xmark"></i></span>
+                <div class="form-group">
+                    <label for="nombreColor">Nombre del color</label>
+                    <input type="text" class="form-control" id="nombreColor" name="color"
+                        placeholder="Introduce el nombre del color">
+                </div>
+                <x-makinon-primary-button type="submit">Guardar</x-makinon-primary-button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Ventana modal para añadir una nueva talla-->
+    <div id="miModalTalla" class="modal">
+        <form id="addTallaForm" method="POST" action="{{ route('nuevaTalla') }}">
+            @csrf
+            <div class="modal-content">
+                <span class="close" style="text-align: right; cursor:pointer"><i
+                        class="fa-solid fa-circle-xmark"></i></span>
+                <div class="form-group">
+                    <label for="nombreTalla">Nombre de la talla</label>
+                    <input type="text" class="form-control" id="nombreTalla" name="talla"
+                        placeholder="Introduce el nombre de la talla">
+                </div>
+                <x-makinon-primary-button type="submit">Guardar</x-makinon-primary-button>
             </div>
         </form>
     </div>
@@ -221,23 +227,44 @@
     <script>
         function checkForNewMarca(select) {
             if (select.value == "new") {
-                // Abrir el modal
                 var modal = document.getElementById("miModal");
                 modal.style.display = "block";
             }
         }
 
+        function checkForNewColor(select) {
+            if (select.value == "new") {
+                var modal = document.getElementById("miModalColor");
+                modal.style.display = "block";
+            }
+        }
+
+        function checkForNewTalla(select) {
+            if (select.value == "new") {
+                var modal = document.getElementById("miModalTalla");
+                modal.style.display = "block";
+            }
+        }
+
         // Cerrar el modal
-        var span = document.getElementsByClassName("close")[0];
-        span.onclick = function() {
-            var modal = document.getElementById("miModal");
-            modal.style.display = "none";
+        var spans = document.getElementsByClassName("close");
+        for (var i = 0; i < spans.length; i++) {
+            spans[i].onclick = function() {
+                var modals = document.getElementsByClassName("modal");
+                for (var j = 0; j < modals.length; j++) {
+                    modals[j].style.display = "none";
+                }
+            }
         }
 
         window.onclick = function(event) {
             var modal = document.getElementById("miModal");
-            if (event.target == modal) {
+            var modalColor = document.getElementById("miModalColor");
+            var modalTalla = document.getElementById("miModalTalla");
+            if (event.target == modal || event.target == modalColor || event.target == modalTalla) {
                 modal.style.display = "none";
+                modalColor.style.display = "none";
+                modalTalla.style.display = "none";
             }
         }
     </script>

@@ -10,6 +10,8 @@ use App\Livewire\BuscadorProductos;
 use App\Livewire\BuscadorProductosAdministracion;
 use App\Models\Marca;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\TallaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,6 +110,22 @@ Ruta para las Marcas
 */
 Route::post('nuevaMarca', [MarcaController::class, 'nuevaMarca'])->name('nuevaMarca');
 
+/*
+Ruta para los Colores
+*/
+Route::post('nuevoColor', [ColorController::class, 'nuevoColor'])->name('nuevoColor');
+
+/*
+Ruta para las Tallas
+*/
+Route::post('nuevaTalla', [TallaController::class, 'nuevaTalla'])->name('nuevaTalla');
+
+/*
+Ruta para la página del taller
+*/
+Route::get('/taller', function () {
+    return view('taller');
+})->name('taller');
 
 /*
 Ruta para la página en construcción

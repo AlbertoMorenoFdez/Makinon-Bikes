@@ -29,6 +29,7 @@
     <link href="{{ asset('css/formArticulo.css') }}" rel="stylesheet">
     <link href="{{ asset('css/formEditar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/infoProducto.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/taller.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -95,7 +96,7 @@
                         <a href="{{ route('alimentacion') }}">@lang('makinon.alimentacion')</a>
                     </div>
                     <div>
-                        <a href="{{ route('paginaEnConstruccion') }}">@lang('makinon.taller')</a>
+                        <a href="{{ route('taller') }}">@lang('makinon.taller')</a>
                     </div>
                 </div>
             </div>

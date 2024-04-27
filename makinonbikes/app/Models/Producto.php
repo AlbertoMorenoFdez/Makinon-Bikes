@@ -55,6 +55,14 @@ class Producto extends Model
     }
 
     /**
+     * Accesor que nos permite recuperar el stock total de un producto
+     */
+
+    public function getStockTotalAttribute(){
+        return $this->producto_color_talla->sum('stock');
+    }
+
+    /**
      * Accesor que nos permite una descripción mas corta del producto
      */
 

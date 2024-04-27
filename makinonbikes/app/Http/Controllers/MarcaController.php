@@ -10,7 +10,6 @@ class MarcaController extends Controller
   /**
    * Funcion para añadir una marca
    */
-
     public function nuevaMarca(Request $request){
         $marca = new Marca();
         $marca->nombre = $request->nombre;

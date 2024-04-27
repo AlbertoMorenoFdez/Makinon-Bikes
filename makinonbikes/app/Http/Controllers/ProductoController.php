@@ -9,6 +9,7 @@ use App\Models\Marca;
 use App\Models\ProductoColorTalla;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use App\Models\Color;
+use App\Models\Talla;
 
 class ProductoController extends Controller
 {
@@ -54,6 +55,11 @@ class ProductoController extends Controller
     public function listarProductos()
     {
         $productos = Producto::paginate(10);
+
+        // Pasamos el total del stock de los productos
+        foreach ($productos as $producto) {
+            $producto->stockTotal = $producto->producto_color_talla->sum('stock');
+        }
         return view('producto.listadoProductos', ['productos' => $productos]);
     }
 
@@ -62,7 +68,8 @@ class ProductoController extends Controller
      */
     public function buscarProducto(Request $request)
     {
-        $productos = Producto::where('nombre', 'like', '%' . $request->busqueda . '%')->paginate(10);
+        $productos = Producto::where('nombre', 'like', '%' . $request->busqueda . '%')->paginate(15);
+
         return view('producto.listadoProductos', ['productos' => $productos]);
     }
 
@@ -78,7 +85,6 @@ class ProductoController extends Controller
     /**
      * Funcion que nos devuelve la vista del producto para el usuario
      */
-
     public function vistaProducto($id)
     {
         $producto = Producto::with('producto_color_talla.color', 'producto_color_talla.talla')->find($id);
@@ -89,18 +95,18 @@ class ProductoController extends Controller
     /**
      * Funcion que nos devuelve la vista para añadir un nuevo producto
      */
-
     public function nuevoProducto()
     {
         $marcas = Marca::orderBy('nombre')->get();
         $proveedores = Proveedor::orderBy('nombre')->get();
-        return view('producto.añadirProducto', ['marcas' => $marcas, 'proveedores' => $proveedores]);
+        $colores = Color::all();
+        $tallas = Talla::all();
+        return view('producto.añadirProducto', ['marcas' => $marcas, 'proveedores' => $proveedores, 'colores' => $colores, 'tallas' => $tallas]);
     }
 
     /**
      * Funcion para añadir un nuevo producto
      */
-
     public function agregarProducto(Request $request)
     {
         try {
@@ -110,9 +116,8 @@ class ProductoController extends Controller
                 'id_marca' => 'required',
                 'id_proveedor' => 'required',
                 'stock' => 'required|string|max:5',
-                'color' => 'nullable|array',
-                'color.*' => 'string|max:50',
-                'talla' => 'required|string|max:50',
+                'color' => 'nullable|string|max:50',
+                'talla' => 'nullable|string|max:50',
                 'precio' => 'required|string|max:10',
                 'descripcion_corta' => 'required|string|max:1000',
                 'descripcion_larga' => 'required|string|max:10000',
@@ -124,9 +129,6 @@ class ProductoController extends Controller
             $producto->tipo = $request->tipo;
             $producto->id_marca = $request->id_marca;
             $producto->id_proveedor = $request->id_proveedor;
-            $producto->stock = $request->stock;
-            $producto->color = $request->color;
-            $producto->talla = $request->talla;
             $producto->precio = $request->precio;
             $producto->descripcion_corta = $request->descripcion_corta;
             $producto->descripcion_larga = $request->descripcion_larga;
@@ -138,18 +140,15 @@ class ProductoController extends Controller
                 $imagen->move($destinoPath, $nombreImagen);
                 $producto->imagen = $nombreImagen;
             }
-
             $producto->save();
 
-            /* // Agregar los valores a la tabla producto_color_talla
-        foreach ($request->color as $color) {
+            // Crear una nueva entrada en la tabla producto_color_talla
             $productoColorTalla = new ProductoColorTalla();
-            $productoColorTalla->id_producto = $producto->id;
-            $productoColorTalla->id_color = $color;
+            $productoColorTalla->id_producto = $producto->id_producto;
+            $productoColorTalla->id_color = $request->color;
             $productoColorTalla->id_talla = $request->talla;
             $productoColorTalla->stock = $request->stock;
-            $productoColorTalla->save(); 
-        }*/
+            $productoColorTalla->save();
 
             return redirect()->route('fichaProducto', ['id' => $producto->id_producto])->with('success', 'Producto añadido con éxito');
         } catch (PostTooLargeException $e) {
@@ -168,7 +167,9 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         $marcas = Marca::orderBy('nombre')->get();
         $proveedores = Proveedor::orderBy('nombre')->get();
-        return view('producto.modificarProducto', ['producto' => $producto, 'marcas' => $marcas,  'proveedores' => $proveedores]);
+        $colores = Color::All();
+        $tallas = Talla::All();
+        return view('producto.modificarProducto', ['producto' => $producto, 'marcas' => $marcas,  'proveedores' => $proveedores, 'colores' => $colores, 'tallas' => $tallas]);
     }
 
     /**
@@ -193,9 +194,8 @@ class ProductoController extends Controller
                 'id_marca' => 'required',
                 'id_proveedor' => 'required',
                 'stock' => 'required|string|max:5',
-                'color' => 'nullable|array',
-                'color.*' => 'string|max:50',
-                'talla' => 'required|string|max:50',
+                'color' => 'nullable|string|max:50',
+                'talla' => 'nullable|string|max:50',
                 'precio' => 'required|string|max:10',
                 'descripcion_corta' => 'required|string|max:1000',
                 'descripcion_larga' => 'required|string|max:10000',
@@ -204,16 +204,10 @@ class ProductoController extends Controller
 
             $producto = Producto::find($request->id);
 
-            if ($request->has('color')) {
-                $producto->color = $request->color;
-            }
-
             $producto->nombre = $request->nombre;
             $producto->tipo = $request->tipo;
             $producto->id_marca = $request->id_marca;
             $producto->id_proveedor = $request->id_proveedor;
-            $producto->stock = $request->stock;
-            $producto->talla = $request->talla;
             $producto->precio = $request->precio;
             $producto->descripcion_corta = $request->descripcion_corta;
             $producto->descripcion_larga = $request->descripcion_larga;
@@ -225,8 +219,25 @@ class ProductoController extends Controller
                 $imagen->move($destinoPath, $nombreImagen);
                 $producto->imagen = $nombreImagen;
             }
-
             $producto->save();
+            // Buscar la entrada existente en la tabla producto_color_talla
+            $productoColorTalla = ProductoColorTalla::where('id_producto', $producto->id_producto)->first();
+
+            if ($productoColorTalla) {
+                // Si la entrada existe la actualizamos
+                $productoColorTalla->id_color = $request->color;
+                $productoColorTalla->id_talla = $request->talla;
+                $productoColorTalla->stock = $request->stock;
+                $productoColorTalla->save();
+            } else {
+                // Si la entrada no existe cfreamos una nueva
+                $productoColorTalla = new ProductoColorTalla();
+                $productoColorTalla->id_producto = $producto->id_producto;
+                $productoColorTalla->id_color = $request->color;
+                $productoColorTalla->id_talla = $request->talla;
+                $productoColorTalla->stock = $request->stock;
+                $productoColorTalla->save();
+            }
 
             return redirect()->route('fichaProducto', ['id' => $producto->id_producto])->with('success', 'Producto modificado con éxito');
         } catch (PostTooLargeException $e) {

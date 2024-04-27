@@ -1,0 +1,23 @@
+.contenedor-taller{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background-image: url('../images/tallerimagen.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: grayscale(100%);
+    margin-right: 40px;
+}
+
+h1{
+    text-align: center;
+}
+
+#texto {
+    grid-column: 2;
+    text-align: justify;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    font-size: large;
+}

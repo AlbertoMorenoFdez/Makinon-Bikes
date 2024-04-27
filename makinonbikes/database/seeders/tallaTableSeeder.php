@@ -14,6 +14,7 @@ class tallaTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('talla')->insert([
+            ['talla'=>'Sin talla'],
             ['talla' => 'XS'],
             ['talla' => 'S'],
             ['talla' => 'M'],

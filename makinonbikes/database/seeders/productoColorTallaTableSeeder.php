@@ -13,11 +13,7 @@ class productoColorTallaTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('producto_color_talla')->insert([
-            'id_producto' => 1,
-            'id_color' => 1,
-            'id_talla' => 3,
-            'stock' => 1,
-        ]);
+        DB::table('producto_color_talla')->insert(
+            ['id_producto' => 1, 'id_color' => 2, 'id_talla' => 3,'stock' => 1]);
     }
 }

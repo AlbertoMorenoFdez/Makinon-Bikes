@@ -79,7 +79,7 @@
                                     <option value="{{ $marca->id_marca }}">{{ $marca->nombre }}</option>
                                 @endforeach
                             </select>
-                            
+
                         </div>
 
                         <div class="mt-4">
@@ -101,80 +101,56 @@
                         </div>
 
                         <div class="mt-4">
-                            <label for="color">@lang('makinon.color'): (Pulsa Ctrl + click para seleccionar mas de
-                                uno)</label>
-                            <select class="form-control" id="color" name="color[]" multiple>
-                                <option value="">Sin color</option>
-                                @php
-                                    $colores = [
-                                        'blue',
-                                        'black',
-                                        'grey',
-                                        'white',
-                                        'red',
-                                        'lightblue',
-                                        'lightgrey',
-                                        'lightgreen',
-                                        'green',
-                                        'yellow',
-                                        'orange',
-                                        'purple',
-                                        'pink',
-                                        'brown',
-                                        'beige',
-                                        'gold',
-                                        'silver',
-                                        'lightyellow',
-                                        'lightorange',
-                                        'lightpurple',
-                                        'lightpink',
-                                        'lightbrown',
-                                        'lightbeige',
-                                    ];
-                                    sort($colores);
-                                @endphp
-                                @foreach ($colores as $color)
-                                    <option value="{{ $color }}">{{ ucfirst($color) }}</option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('color')" class="mt-2" />
+                            <div class="mt-4">
+                                <label for="color">@lang('makinon.color'):</label>
+                                <select class="form-control" id="color" name="color">
+                                    @foreach ($colores as $color)
+                                        <option value="{{ $color->id_color }}">{{ $color->color }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('color')" class="mt-2" />
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="mt-4">
-                            <label for="talla" class="form-label">@lang('makinon.talla')</label>
-                            <input type="text" class="form-control" id="talla" name="talla"
-                                value="{{ $producto->talla }}">
-                        </div>
+                        <div class="col-md-6">
+                            <div class="mt-4">
+                                <label for="talla">@lang('makinon.talla'):</label>
+                                <select class="form-control" id="talla" name="talla">
+                                    @foreach ($tallas as $talla)
+                                        <option value="{{ $talla->id_talla }}">{{ $talla->talla }}</option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('talla')" class="mt-2" />
+                            </div>
 
-                        <div class="mt-4">
-                            <label for="precio" class="form-label">@lang('makinon.precio')</label>
-                            <input type="text" class="form-control" id="precio" name="precio"
-                                value="{{ $producto->precio }}">
-                        </div>
+                            <div class="mt-4">
+                                <label for="precio" class="form-label">@lang('makinon.precio')</label>
+                                <input type="text" class="form-control" id="precio" name="precio"
+                                    value="{{ $producto->precio }}">
+                            </div>
 
-                        <div class="mt-4">
-                            <label for="descripcion_corta" class="form-label">@lang('makinon.descripCorta')</label>
-                            <textarea class="form-control" style="height:100px" id="descripcion_corta" name="descripcion_corta">{{ $producto->descripcion_corta }}</textarea>
-                        </div>
+                            <div class="mt-4">
+                                <label for="descripcion_corta" class="form-label">@lang('makinon.descripCorta')</label>
+                                <textarea class="form-control" style="height:132px" id="descripcion_corta" name="descripcion_corta">{{ $producto->descripcion_corta }}</textarea>
+                            </div>
 
-                        <div class="mt-4">
-                            <label for="descripcion_larga" class="form-label">@lang('makinon.descripLarga')</label>
-                            <textarea class="form-control" style="height:130px" id="descripcion_larga" name="descripcion_larga">{{ $producto->descripcion_larga }}</textarea>
-                        </div>
+                            <div class="mt-4">
+                                <label for="descripcion_larga" class="form-label">@lang('makinon.descripLarga')</label>
+                                <textarea class="form-control" style="height:132px" id="descripcion_larga" name="descripcion_larga">{{ $producto->descripcion_larga }}</textarea>
+                            </div>
 
-                        <div class="mt-4">
-                            <label for="imagen">@lang('makinon.imagen'):</label>
-                            <input type="file" class="form-control " id="imagen" name="imagen">
-                            <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
+                            <div class="mt-4">
+                                <label for="imagen">@lang('makinon.imagen'):</label>
+                                <input type="file" class="form-control " id="imagen" name="imagen">
+                                <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <x-makinon-primary-button type="submit">@lang('makinon.guardar')</x-makinon-primary-button>
-            </div>
+                <div>
+                    <x-makinon-primary-button type="submit">@lang('makinon.guardar')</x-makinon-primary-button>
+                </div>
         </form>
 
         <form method="POST" action="{{ route('eliminarProducto', $producto->id_producto) }}">
