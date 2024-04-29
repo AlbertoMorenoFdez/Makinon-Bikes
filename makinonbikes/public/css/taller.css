@@ -10,10 +10,6 @@
     margin-right: 40px;
 }
 
-h1{
-    text-align: center;
-}
-
 #texto {
     grid-column: 2;
     text-align: justify;

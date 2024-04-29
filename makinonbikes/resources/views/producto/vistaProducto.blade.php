@@ -51,66 +51,40 @@
                         @endif
                     </div>
 
-
-                    {{-- <form method="POST" action="{{ route('carrito.agregar') }}">
+                    <form method="POST" action="{{ route('añadirAlCarrito', $producto->id_producto) }}">
                         @csrf
-                        <p style="color:grey">@lang('makinon.colores')</p>
-                        <div class="border-bottom border-top d-flex align-items-center">
-                            @if (isset($producto->color) && $producto->color)
-                                @php
-                                    $colores = explode(',', $producto->color);
-                                @endphp
-                                <select name="color_seleccionado" id="color_seleccionado" class="form-control mt-2 mb-2">
-                                    @foreach ($colores as $color)
-                                        <option value="{{ trim($color) }}" style="background-color: {{ trim($color) }};">{{ trim($color) }}</option>
-                                    @endforeach
-                                </select>
+                        <input type="hidden" name="id_producto" value="{{ $producto->id_producto }}">
+                        <input type="hidden" name="marca" value="{{ $producto->marca->nombre }}">
+                        <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
+                        <input type="hidden" name="imagen" value="{{ $producto->imagen }}">
+                        <input type="hidden" name="cantidad" value="1">
+                        <input type="hidden" name="precio" value="{{ $producto->precio }}">
+                        <div class="d-flex align-items-center mt-4 mb-10" id="cantidad" style="color:grey">
+                            <p class="mb-0">@lang('makinon.cantidad')</p>
+                            <div class="input-group input-group-sm justify-content-evenly">
+                                <span class="material-symbols-outlined"> add_box </span>
+                                <input class="h-6 w-20" type="number" name="cantidad" id="cantidad" min="1"
+                                    max="10" value="1">
+                                <span class="material-symbols-outlined"> indeterminate_check_box </span>
+                            </div>
+                        </div>
+                        <div>
+                            @if ($productoColorTalla->stock >= 2)
+                                <p style="color:rgb(21, 219, 31)">@lang('makinon.disponible')</p>
+                            @elseif ($productoColorTalla->stock >= 1)
+                                <p style="color:rgb(255, 145, 0)">@lang('makinon.ultUnid')</p>
                             @else
-                                <p class="mt-2 mb-2">Color no especificado</p>
+                                <p style="color:red">@lang('makinon.sinStock')</p>
                             @endif
                         </div>
-                    
-                        <br>
-                        <p style="color:grey">@lang('makinon.tallas')</p>
-                        <div class="border-bottom border-top d-flex align-items-center">
-                            @php
-                                $tallas = explode(',', $producto->talla);
-                            @endphp
-                            <select name="talla_seleccionada" id="talla_seleccionada" class="mt-2 mb-2 rounded w-40">
-                                @foreach ($tallas as $talla)
-                                    <option value="{{ trim($talla) }}">{{ trim($talla) }}</option>
-                                @endforeach
-                            </select>
+
+                        <p class="fs-4">P.V.P. {{ $producto->precio }} €</p>
+
+                        <div class="d-flex justify-content-center col-9 mx-auto">
+                            <x-makinon-primary-button type="submit"
+                                style="width:80%">@lang('makinon.anadirCarro')</x-makinon-primary-button>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Agregar al carrito</button>
-                    </form> --}}
-
-                    <div class="d-flex align-items-center mt-4 mb-10" id="cantidad" style="color:grey">
-                        <p class="mb-0">@lang('makinon.cantidad')</p>
-                        <div class="input-group input-group-sm justify-content-evenly">
-                            <span class="material-symbols-outlined"> add_box </span>
-                            <input class="h-6 w-20" type="text" name="cantidad" id="cantidad" min="1"
-                                max="10" value="1">
-                            <span class="material-symbols-outlined"> indeterminate_check_box </span>
-                        </div>
-                    </div>
-
-                    <div>
-                        @if ($productoColorTalla->stock >= 2)
-                            <p style="color:rgb(21, 219, 31)">@lang('makinon.disponible')</p>
-                        @elseif ($productoColorTalla->stock >= 1)
-                            <p style="color:rgb(255, 145, 0)">@lang('makinon.ultUnid')</p>
-                        @else 
-                            <p style="color:red">@lang('makinon.sinStock')</p>
-                        @endif
-                    </div>
-
-                    <p class="fs-4">P.V.P. {{ $producto->precio }} €</p>
-
-                    <div class="d-flex justify-content-center col-9 mx-auto">
-                        <x-makinon-primary-button type="submit"
-                            style="width:80%">@lang('makinon.anadirCarro')</x-makinon-primary-button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -129,5 +103,3 @@
         </div>
     </div>
 @endsection
-
-

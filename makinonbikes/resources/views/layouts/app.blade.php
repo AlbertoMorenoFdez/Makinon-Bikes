@@ -30,6 +30,7 @@
     <link href="{{ asset('css/formEditar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/infoProducto.css') }}" rel="stylesheet">
     <link href="{{ asset('css/taller.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/carrito.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -62,13 +63,15 @@
                 </div>
 
                 <div class="content-div">
-                    <i class="fas fa-cart-shopping"></i>
+                    <a href="{{ route('carrito') }}">
+                        <i class="fas fa-cart-shopping" style="color:grey"></i>
+                    </a>
                 </div>
 
-                <x-makinon-login-dropdown/>
+                <x-makinon-login-dropdown />
 
-                <x-makinon-idioma-dropdown/>
-                
+                <x-makinon-idioma-dropdown />
+
             </div>
 
             <div class="menubanner">

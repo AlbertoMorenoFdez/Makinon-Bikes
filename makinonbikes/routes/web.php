@@ -12,6 +12,7 @@ use App\Models\Marca;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\TallaController;
+use App\Http\Controllers\CarritoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +127,13 @@ Ruta para la página del taller
 Route::get('/taller', function () {
     return view('taller');
 })->name('taller');
+
+/*
+Ruta para el carrito de la compra
+*/
+Route::get('/carrito', [CarritoController::class, 'mostrarCarrito'])->name('carrito');
+Route::delete('eliminarDelCarrito', [CarritoController::class, 'eliminarDelCarrito'])->name('eliminarDelCarrito');
+Route::post('añadirAlCarrito', [CarritoController::class, 'añadirAlCarrito'])->name('añadirAlCarrito');
 
 /*
 Ruta para la página en construcción
