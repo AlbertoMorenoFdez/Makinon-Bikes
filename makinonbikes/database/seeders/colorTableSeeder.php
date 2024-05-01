@@ -14,7 +14,7 @@ class colorTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('color')->insert([
-            ['color'=> 'Sin color'],
+            ['color' => 'Sin color'],
             ['color' => 'White'],
             ['color' => 'Black'],
             ['color' => 'Red'],
@@ -33,7 +33,8 @@ class colorTableSeeder extends Seeder
             ['color' => 'Lightblue'],
             ['color' => 'Darkgrey'],
             ['color' => 'Titanium'],
-            
+            ['color' => 'Olive'],
+
         ]);
     }
 }

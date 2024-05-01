@@ -64,7 +64,11 @@
 
                 <div class="content-div">
                     <a href="{{ route('carrito') }}">
-                        <i class="fas fa-cart-shopping" style="color:grey"></i>
+                        @if(session('carrito') && count(session('carrito')) > 0)
+                            <i class="fas fa-cart-shopping" style="color:rgb(251,98,0)"></i>
+                        @else
+                            <i class="fas fa-cart-shopping" style="color:grey"></i>
+                        @endif
                     </a>
                 </div>
 

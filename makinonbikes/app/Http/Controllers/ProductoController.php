@@ -230,7 +230,7 @@ class ProductoController extends Controller
                 $productoColorTalla->stock = $request->stock;
                 $productoColorTalla->save();
             } else {
-                // Si la entrada no existe cfreamos una nueva
+                // Si la entrada no existe creamos una nueva
                 $productoColorTalla = new ProductoColorTalla();
                 $productoColorTalla->id_producto = $producto->id_producto;
                 $productoColorTalla->id_color = $request->color;

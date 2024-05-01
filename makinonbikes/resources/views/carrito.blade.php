@@ -17,7 +17,7 @@
                     {{-- @if (isset($item['id_producto']))
                         <p>Producto ID: {{ $item['id_producto'] }}</p>
                     @endif --}}
-                    @if (isset($item['imagen']))
+                    {{-- @if (isset($item['imagen']))
                         <img src="{{ asset('images/productos/' . $item['imagen']) }}" alt="Imagen del producto">
                     @endif
                     @if (isset($item['nombre']))
@@ -28,7 +28,15 @@
                     @endif
                     @if (isset($item['precio']))
                         <p>{{ $item['precio'] }} €</p>
-                    @endif
+                    @endif --}}
+                    <img src="{{ asset('images/productos/' . $item['imagen']) }}" alt="Imagen del producto">
+                    <div class="ml-2">
+                        <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }}</p>
+                        <p class="mb-2">Talla: {{ $item['talla'] }}</p>
+                        <p class="mb-2">Color: {{ isset($item['color']) ? $item['color'] : 'No especificado' }}</p>
+                    </div>
+                    <p>{{ $item['cantidad'] }}</p>
+                    <p>{{ $item['precio'] }} €</p>
                     <p>{{ $item['cantidad'] * $item['precio'] }} €</p>
 
                     <form method="POST" action="{{ route('eliminarDelCarrito') }}">
@@ -65,7 +73,8 @@
             </div>
 
             <div class="botones-pago">
-                <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%">Seguir comprando</x-makinon-primary-link-button>
+                <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%">Seguir
+                    comprando</x-makinon-primary-link-button>
                 <x-makinon-primary-button type="submit" style="width:60%">Realizar Pago</x-makinon-primary-button>
             </div>
         </div>

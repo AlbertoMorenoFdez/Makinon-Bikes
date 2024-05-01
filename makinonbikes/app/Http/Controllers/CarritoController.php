@@ -13,48 +13,49 @@ class CarritoController extends Controller
     {
         $carrito = $request->session()->get('carrito', []);
 
-        //Calculamos el total de todos los productos del carrito
-        $total=0;
+        //Calculo del total de todos los productos del carrito
+        $total = 0;
         foreach ($carrito as $producto) {
             $total += $producto['precio_total'];
         }
 
-// Calculamos los gastos de envío
-$gastosEnvio = $total < 100 ? 20 : 0;
+        // Calculo de los gastos de envío
+        $gastosEnvio = $total < 100 ? 20 : 0;
 
         return view('carrito', ['carrito' => $carrito, 'total' => $total, 'gastosEnvio' => $gastosEnvio]);
     }
 
 
-public function añadirAlCarrito(Request $request)
-{
-    $carrito = $request->session()->get('carrito', []);
+    public function añadirAlCarrito(Request $request)
+    {
+        $carrito = $request->session()->get('carrito', []);
 
-    $producto = [
-        'id_producto' => $request->id_producto,
-        'marca' => $request->marca,
-        'nombre' => $request->nombre,
-        'imagen' => $request->imagen,
-        'cantidad' => $request->cantidad,
-        'precio' => $request->precio,
-        'precio_total' => $request->cantidad * $request->precio
-    ];
+        //dd($request->all());
+        $producto = [
+            'id_producto' => $request->id_producto,
+            'marca' => $request->marca,
+            'nombre' => $request->nombre,
+            'imagen' => $request->imagen,
+            'color' => $request->color,
+            'talla' => $request->talla,
+            'cantidad' => $request->cantidad,
+            'precio' => $request->precio,
+            'precio_total' => $request->cantidad * $request->precio
+        ];
 
-    //dd($producto);
+        array_push($carrito, $producto);
 
-    array_push($carrito, $producto);
+        $request->session()->put('carrito', $carrito);
 
-    $request->session()->put('carrito', $carrito);
+        // Añade el mensaje a la sesión
+        $request->session()->put('mensaje', 'Producto añadido al carrito');
 
-    // Añade el mensaje a la sesión
-    $request->session()->put('mensaje', 'Producto añadido al carrito');
+        return redirect()->back();
 
-    return redirect()->back();
-    
-    /* return response()->json([
+        /* return response()->json([
         'mensaje' => 'Producto añadido al carrito'
     ]); */
-}
+    }
 
 
     public function eliminarDelCarrito(Request $request)
@@ -73,5 +74,4 @@ public function añadirAlCarrito(Request $request)
             'mensaje' => 'Producto eliminado del carrito'
         ]); */
     }
-
 }

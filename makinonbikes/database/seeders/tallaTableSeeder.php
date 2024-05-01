@@ -37,6 +37,9 @@ class tallaTableSeeder extends Seeder
             ['talla'=>'27.2mm'],
             ['talla'=>'30.9mm'],
             ['talla'=>'31.6mm'],
+            ['talla'=>'52-36'],
+            ['talla'=>'50-34'],
+            ['talla'=>'140mm'],
         ]);
     }
 }
