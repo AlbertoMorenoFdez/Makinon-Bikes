@@ -3,7 +3,7 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CommonModule } from '@angular/common';
-import { ApiFestivoService } from '../../core/services/api-festivo.service';
+import { ApiFestivoService } from '../../core/services/api-festivo/api-festivo.service';
 
 
 @Component({

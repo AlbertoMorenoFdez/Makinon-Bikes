@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {DatePickerComponent} from '../app/components/date-picker/date-picker.component';
 import {TimepickerComponent} from '../app/components/timepicker/timepicker.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { SubirArchivoComponent } from './components/subir-archivo/subir-archivo.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { CalendarioComponent } from './components/calendario/calendario.componen
             CommonModule, 
             TimepickerComponent, 
             CalendarioComponent,
+            SubirArchivoComponent,
             ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
