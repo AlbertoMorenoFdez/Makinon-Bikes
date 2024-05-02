@@ -1,0 +1,22 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {DatePickerComponent} from '../app/components/date-picker/date-picker.component';
+import {TimepickerComponent} from '../app/components/timepicker/timepicker.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet,
+            DatePickerComponent, 
+            CommonModule, 
+            TimepickerComponent, 
+            CalendarioComponent,
+            ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'angular-bike';
+}
