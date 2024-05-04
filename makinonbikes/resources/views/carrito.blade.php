@@ -14,21 +14,6 @@
             </div>
             @foreach ($carrito as $item)
                 <div id="lineas-productos">
-                    {{-- @if (isset($item['id_producto']))
-                        <p>Producto ID: {{ $item['id_producto'] }}</p>
-                    @endif --}}
-                    {{-- @if (isset($item['imagen']))
-                        <img src="{{ asset('images/productos/' . $item['imagen']) }}" alt="Imagen del producto">
-                    @endif
-                    @if (isset($item['nombre']))
-                        <p>{{ $item['marca'] }} {{ $item['nombre'] }}</p>
-                    @endif
-                    @if (isset($item['cantidad']))
-                        <p>{{ $item['cantidad'] }}</p>
-                    @endif
-                    @if (isset($item['precio']))
-                        <p>{{ $item['precio'] }} €</p>
-                    @endif --}}
                     <img src="{{ asset('images/productos/' . $item['imagen']) }}" alt="Imagen del producto">
                     <div class="ml-2">
                         <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }}</p>
@@ -51,7 +36,16 @@
                     </form>
                 </div>
             @endforeach
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
         </div>
+
+
 
         <div class="resumen-pago">
             <h2 id="titulo-resumen">RESUMEN DEL PEDIDO</h2>
@@ -75,7 +69,10 @@
             <div class="botones-pago">
                 <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%">Seguir
                     comprando</x-makinon-primary-link-button>
-                <x-makinon-primary-button type="submit" style="width:60%">Realizar Pago</x-makinon-primary-button>
+                <form action="{{ route('realizar-pedido') }}" method="GET" style="width:100%; display:flex; justify-content:center">
+                    @csrf
+                    <x-makinon-primary-button type="submit" style="width:60%">Realizar Pedido</x-makinon-primary-button>
+                </form>
             </div>
         </div>
     </div>

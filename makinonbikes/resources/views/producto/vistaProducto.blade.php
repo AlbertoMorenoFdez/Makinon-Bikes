@@ -124,8 +124,14 @@
                         <p class="fs-4">P.V.P. {{ $producto->precio }} €</p>
                         <x-makinon-primary-button id="add-to-cart-button" type="submit"
                             style="width:80%">@lang('makinon.anadirCarro')</x-makinon-primary-button>
-
                     </form>
+
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    
                 </div>
             </div>
         </div>

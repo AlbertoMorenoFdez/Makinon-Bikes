@@ -13,6 +13,8 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\TallaController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,8 @@ Route::post('/modificarUsuario', [UsuarioController::class, 'updateUsuario'])->n
 Route::delete('deleteUsuario', [UsuarioController::class, 'deleteUsuario'])->name('deleteUsuario')->middleware('auth'); //Eliminar usuario por parte del propio usuario
 Route::get('cambiarPassword', [UsuarioController::class, 'cambiarPassword'])->name('cambiarPassword')->middleware('auth');
 Route::post('cambiarPassword', [UsuarioController::class, 'actualizarPassword'])->name('updatePassword')->middleware('auth');
+
+Route::get('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
 
 /*
 Rutas de los usuarios relacionadas con el administrador
@@ -134,6 +138,11 @@ Ruta para el carrito de la compra
 Route::get('/carrito', [CarritoController::class, 'mostrarCarrito'])->name('carrito');
 Route::delete('eliminarDelCarrito', [CarritoController::class, 'eliminarDelCarrito'])->name('eliminarDelCarrito');
 Route::post('añadirAlCarrito', [CarritoController::class, 'añadirAlCarrito'])->name('añadirAlCarrito');
+
+/*
+Ruta para el enviar el email
+*/
+Route::get('/sendMail', [MailController::class, 'sendMail'])->name('sendMail');
 
 /*
 Ruta para la página en construcción

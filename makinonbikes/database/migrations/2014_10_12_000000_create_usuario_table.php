@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('cp');
             $table->string('ciudad');
             $table->string("rol", 10)->default("user");
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });

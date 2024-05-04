@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
 class RegisteredUserController extends Controller
 {
@@ -52,6 +54,9 @@ class RegisteredUserController extends Controller
             'rol' => 'user',  // Asignamos por refecto el rol de usuario para la tabla y luego lo cambiamos alli
 
         ]);
+
+        // Enviamos el correo de bienvenida
+        Mail::to($user->email)->send(new WelcomeMail($user));
 
         event(new Registered($user));
 
