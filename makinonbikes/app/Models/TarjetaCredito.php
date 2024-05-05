@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pedido extends Model
+class TarjetaCredito extends Model
 {
     use HasFactory;
 
-    protected $table = 'pedido';
-
-    protected $fillable = ['id_usuario', 'fecha', 'estado', 'comentario', 'total'];
+    protected $table = 'tarjeta_credito';
 }

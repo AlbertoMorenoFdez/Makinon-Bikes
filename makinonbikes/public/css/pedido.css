@@ -132,12 +132,11 @@
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 80%;
+    height: 50%;
 }
 
 .contenedor-tarjeta, .contenedor-paypal, .contenedor-transferencia{
     border: solid 1px lightgrey;
-    min-height: 50px;
     padding: 10px;
 }
 
@@ -154,6 +153,12 @@
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "a b c" "d e f";
     grid-row-gap: 10px;
+}
+
+.tarjeta.mostrar{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
 }
 
 .paypal.mostrar{
@@ -176,13 +181,29 @@
     margin-right: 20px;
 }
 
+.tarjeta p{
+    margin-right: 20px;
+}
+
+.button-disabled {
+    background-color: lightgrey !important;
+    color: white !important;
+}
+
 .contenedor-confirmar-pedido{
     width: 100%;
     grid-column:3;
     padding: 20px;
 }
 
-.button-disabled {
-    background-color: lightgrey !important;
-    color: white !important;
+.paypal-elegido{
+    display: none;
+}
+
+.transferencia-elegido{
+    display: none;
+}
+
+.tarjeta-elegido{
+    display: none;
 }

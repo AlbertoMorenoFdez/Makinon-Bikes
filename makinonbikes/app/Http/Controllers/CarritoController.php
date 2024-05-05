@@ -52,14 +52,7 @@ class CarritoController extends Controller
 
         $request->session()->put('carrito', $carrito);
 
-        // Añade el mensaje a la sesión
-        //$request->session()->put('mensaje', 'Producto añadido al carrito');
-
         return redirect()->back()->with('success', 'Producto añadido al carrito correctamente');
-
-        /* return response()->json([
-        'mensaje' => 'Producto añadido al carrito'
-    ]); */
     }
 
     /**
@@ -76,9 +69,5 @@ class CarritoController extends Controller
         $request->session()->put('carrito', $carrito);
 
         return redirect()->back()->with('success', 'Producto eliminado correctamente');
-
-        /* return response()->json([
-            'mensaje' => 'Producto eliminado del carrito'
-        ]); */
     }
 }

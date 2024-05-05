@@ -13,6 +13,7 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\TallaController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\TarjetaCreditoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MailController;
 
@@ -48,6 +49,13 @@ Route::get('cambiarPassword', [UsuarioController::class, 'cambiarPassword'])->na
 Route::post('cambiarPassword', [UsuarioController::class, 'actualizarPassword'])->name('updatePassword')->middleware('auth');
 
 Route::post('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
+Route::get('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
+Route::post('confirmar-pedido', [PedidoController::class, 'confirmarPedido'])->name('confirmar-pedido')->middleware('auth');
+Route::delete('confirmar-pedido', [PedidoController::class, 'confirmarPedido'])->name('confirmar-pedido')->middleware('auth');
+Route::get('pedido-confirmado', function () {
+    return view('pedido-confirmado');
+})->name('pedido-confirmado')->middleware('auth');
+Route::post('registrarTarjeta', [TarjetaCreditoController::class, 'registrarTarjeta'])->name('registrarTarjeta')->middleware('auth');
 
 /*
 Rutas de los usuarios relacionadas con el administrador
@@ -91,11 +99,11 @@ Route::get('/componentes', function () {
 })->name('componentes');
 Route::get('/accesorios', function () {
     $marcas = Marca::all();
-    return view('producto.accesorios',[ 'marcas' => $marcas]);
+    return view('producto.accesorios', ['marcas' => $marcas]);
 })->name('accesorios');
 Route::get('/alimentacion', function () {
     $marcas = Marca::all();
-    return view('producto.alimentacion',[ 'marcas' => $marcas]);
+    return view('producto.alimentacion', ['marcas' => $marcas]);
 })->name('alimentacion');
 
 Route::middleware(['auth', 'rol:admin'])->group(function () {

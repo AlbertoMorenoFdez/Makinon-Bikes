@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use App\Models\TarjetaCredito;
 
 class UsuarioController extends Controller
 {
@@ -299,5 +300,13 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         $usuario->delete();
         return redirect()->route('listadoUsuarios')->with('success', 'Usuario eliminado con éxito');
+    }
+
+    /**
+     * Funcion que nos relaciona el usuario con la tarjeta de crédito
+     */
+
+    public function tarjetaCredito(){
+        return $this->hasOne(TarjetaCredito::class, 'id_tarjeta');
     }
 }

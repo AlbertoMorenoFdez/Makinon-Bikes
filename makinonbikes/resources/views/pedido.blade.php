@@ -2,210 +2,269 @@
 
 @section('main')
     <div class="compra">
-
-        <div class="progreso-compra">
-            <button class="paso--clickeable">
-                <div class="paso_texto">
-                    <span>Mis Datos</span>
+        <form method="POST" action="{{ route('confirmar-pedido') }}">
+            @csrf
+            <div class="progreso-compra">
+                <div class="paso--clickeable">
+                    <div class="paso_texto">
+                        <span>Mis Datos</span>
+                    </div>
                 </div>
-            </button>
-            <button class="paso--clickeable">
-                <div class="paso_texto">
-                    <span>Forma de Pago</span>
+                <div class="paso--clickeable">
+                    <div class="paso_texto">
+                        <span>Forma de Pago</span>
+                    </div>
                 </div>
-            </button>
-            <button class="paso--clickeable">
-                <div class="paso_texto">
-                    <span>Confirmar Datos</span>
+                <div class="paso--clickeable" disabled>
+                    <div class="paso_texto">
+                        <span>Confirmar Datos</span>
+                    </div>
                 </div>
-            </button>
-        </div>
+            </div>
 
-        <div class="contenedor-slide">
-            <div class="contenedor-pedido">
-                <div class="datospersonales">
-                    <div class="titulo-datos-personales">DATOS PERSONALES</div>
-                    <div class="emailpedido">
-                        <label>Email</label>
-                        <p>{{ $usuario->email }}</p>
-                    </div>
-                    <div class="telefonopedido">
-                        <label>Teléfono</label>
-                        <p>{{ $usuario->telefono }}</p>
-                    </div>
-                    <div class="direccion-envio">DIRECCION DE ENVIO</div>
-                    <div class="nombrepedido">
-                        <label>Nombre</label>
-                        <p>{{ $usuario->nombre }}</p>
-                    </div>
-                    <div class="apellidospedido">
-                        <label>Apellidos</label>
-                        <p>{{ $usuario->apellidos }}</p>
-                    </div>
-                    <div class="direccionpedido">
-                        <label>Dirección</label>
-                        <p>{{ $usuario->direccion }}</p>
-                    </div>
-                    <div class="cp-ciudad">
-                        <label>Código Postal</label>
-                        <p>{{ $usuario->cp }}</p>
-                    </div>
-                    <div class="ciudadpedido">
-                        <label>Ciudad</label>
-                        <p>{{ $usuario->ciudad }}</p>
+            <div class="contenedor-slide">
+                <div class="contenedor-pedido">
+                    <div class="datospersonales">
+                        <div class="titulo-datos-personales">DATOS PERSONALES</div>
+                        <div class="emailpedido">
+                            <label>Email</label>
+                            <p>{{ $usuario->email }}</p>
+                        </div>
+                        <div class="telefonopedido">
+                            <label>Teléfono</label>
+                            <p>{{ $usuario->telefono }}</p>
+                        </div>
+                        <div class="direccion-envio">DIRECCION DE ENVIO</div>
+                        <div class="nombrepedido">
+                            <label>Nombre</label>
+                            <p>{{ $usuario->nombre }}</p>
+                        </div>
+                        <div class="apellidospedido">
+                            <label>Apellidos</label>
+                            <p>{{ $usuario->apellidos }}</p>
+                        </div>
+                        <div class="direccionpedido">
+                            <label>Dirección</label>
+                            <p>{{ $usuario->direccion }}</p>
+                        </div>
+                        <div class="cp-ciudad">
+                            <label>Código Postal</label>
+                            <p>{{ $usuario->cp }}</p>
+                        </div>
+                        <div class="ciudadpedido">
+                            <label>Ciudad</label>
+                            <p>{{ $usuario->ciudad }}</p>
+                        </div>
+
                     </div>
 
+                    <div class="resumen-pedido ">
+                        <h2 id="titulo-resumen">TU PEDIDO</h2>
+                        <div id="importe-gastos">
+                            <div class="d-flex justify-content-between">
+                                <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
+                                <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
+                            </div>
+                            <div class="d-flex justify-content-between tex">
+                                <p class="text-secondary mb-0">Gastos de envío</p>
+                                <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
+                            </div>
+                        </div>
+                        <div id="total">
+                            <div class="d-flex justify-content-between mt-3 mb-10">
+                                <p class="text-secondary mb-0">Total del pedido</p>
+                                <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-center">
+                            <x-makinon-primary-button class="paso--clickeable"
+                                style="width:60%">Continuar</x-makinon-primary-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="contenedor-forma-pago">
+                    <h2>FORMA DE PAGO</h2>
+                    <div class="selector-forma-pago">
+
+                        <div class="contenedor-tarjeta">
+                            <div class="d-flex flex-row align-items-center">
+                                <x-makinon-radio-button id="elegida-tarjeta" name="forma-pago"
+                                    value="tarjeta"></x-makinon-radio-button>
+                                <label class="mb-0 ml-5">Tarjeta de crédito</label>
+                            </div>
+                            <div class="tarjeta">
+                                <p>Si seleccionas esta opción en el siguiente paso te pediremos los datos de tu tarjeta de
+                                    crédito, asi que tenlos a mano.
+                                </p>
+                                <div class="d-flex align-items-end ">
+                                    <x-makinon-primary-button class="paso--clickeable"
+                                        style="margin-left:0;">Continuar</x-makinon-primary-button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contenedor-paypal">
+                            <div class="d-flex flex-row align-items-center">
+                                <x-makinon-radio-button id="elegido-paypal" name="forma-pago"
+                                    value="paypal"></x-makinon-radio-button>
+                                <label class="mb-0 ml-5">Paypal</label>
+                            </div>
+                            <div class="paypal">
+                                <p>Al seleccionar esta opción le redirigiremos a la página de Paypal para que pueda realizar
+                                    el
+                                    pago.
+                                </p>
+                                <div class="d-flex align-items-end ">
+                                    <x-makinon-primary-button class="paso--clickeable"
+                                        style="margin-left:0;">Continuar</x-makinon-primary-button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="contenedor-transferencia">
+                            <div class="d-flex flex-row align-items-center">
+                                <x-makinon-radio-button id="elegida-transferencia" name="forma-pago"
+                                    value="transferencia"></x-makinon-radio-button>
+                                <label class="mb-0 ml-5">Transferencia bancaria</label>
+                            </div>
+                            <div class="transferencia">
+                                <p>Al seleccionar esta opción le enviaremos los datos bancarios donde debe
+                                    realizar la
+                                    transferencia.
+                                </p>
+                                <div class="d-flex align-items-end ">
+                                    <x-makinon-primary-button class="paso--clickeable"
+                                        style="margin-left:0;">Continuar</x-makinon-primary-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="resumen-pedido ">
-                    <h2 id="titulo-resumen">TU PEDIDO</h2>
+
+
+                <div class="contenedor-confirmar-pedido">
+
+                    <h2>COMPRUEBA TU PEDIDO</h2>
+
+                    <div class="metodo-pago">
+                        <h3>FORMA DE PAGO</h3>
+
+                        <div class="paypal-elegido">
+                            <p>Ha elegido pagar mediante Paypal</p>
+                        </div>
+
+                        <div class="transferencia-elegido">
+                            <p>Ha elegido pagar mediante Transferencia bancaria</p>
+                        </div>
+
+                        <div class="tarjeta-elegido">
+
+                            <div class="contenedor-tarjeta-input">
+                                <div>
+                                    <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
+                                    <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
+                                        placeholder="0000 0000 0000 0000" />
+                                    {{-- <x-input-error :messages="$errors->get('numero_tarjeta')" class="mt-2" /> --}}
+                                </div>
+
+                                <div>
+                                    <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
+                                    <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
+                                        placeholder="MM/AA" />
+                                    {{-- <x-input-error :messages="$errors->get('fecha_vencimiento')" class="mt-2" /> --}}
+                                </div>
+                                <div>
+                                    <x-input-label for="cvv">CVV</x-input-label>
+                                    <x-text-input type="text" id="cvv" name="cvv" placeholder="000" />
+                                    {{-- <x-input-error :messages="$errors->get('cvv')" class="mt-2" /> --}}
+                                </div>
+                                <div>
+                                    <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
+                                    <x-text-input type="text" id="nombre_titular" name="nombre_titular"
+                                        placeholder="Nombre del titular" />
+                                    {{-- <x-input-error :messages="$errors->get('nombre_titular')" class="mt-2" /> --}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="direccion-entrega">
+                        <h3>DIRECCIÓN DE ENTREGA</h3>
+                        <div class="ml-5">
+                            <p>{{ $usuario->nombre }} {{ $usuario->apellidos }}</p>
+                            <p>{{ $usuario->direccion }}</p>
+                            <p>{{ $usuario->cp }} {{ $usuario->ciudad }}</p>
+                            <p>{{ $usuario->email }}</p>
+                            <p>{{ $usuario->telefono }}</p>
+                        </div>
+                    </div>
+
+                    <div class="resumen-cesta">
+                        <h3>RESUMEN DE LA CESTA</h3>
+                        @foreach ($carrito as $item)
+                            <div id="lineas-productos">
+                                <div class="ml-5">
+                                    <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }} | Talla:
+                                        {{ $item['talla'] }} | Color:
+                                        {{ isset($item['color']) ? $item['color'] : 'No especificado' }}</p>
+                                </div>
+                                <p>{{ $item['cantidad'] }}</p>
+                                <p>Precio unitario: {{ $item['precio'] }} €</p>
+                                <p>Precio total: {{ $item['cantidad'] * $item['precio'] }} €</p>
+
+                                <form method="POST" action="{{ route('eliminarDelCarrito') }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    @if (isset($item['id_producto']))
+                                        <input type="hidden" name="id_producto" value="{{ $item['id_producto'] }}">
+                                    @endif
+                                    <button type="submit"><span class="material-symbols-outlined">
+                                            delete
+                                        </span></button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+
                     <div id="importe-gastos">
-                        <div class="d-flex justify-content-between">
+                        <h3>RESUMEN DEL IMPORTE DEL PEDIDO</h3>
+                        <div class="d-flex justify-content-between ml-5">
                             <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
                             <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
                         </div>
-                        <div class="d-flex justify-content-between tex">
+                        <div class="d-flex justify-content-between ml-5">
                             <p class="text-secondary mb-0">Gastos de envío</p>
                             <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
                         </div>
                     </div>
+
                     <div id="total">
-                        <div class="d-flex justify-content-between mt-3 mb-10">
+                        <div class="d-flex justify-content-between mt-3 mb-10 ml-5">
                             <p class="text-secondary mb-0">Total del pedido</p>
                             <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
                         </div>
                     </div>
-                    <div class="d-flex justify-center">
-                        <x-makinon-primary-button class="paso--clickeable"
-                            style="width:60%">Continuar</x-makinon-primary-button>
+
+                    <div class="form-check">
+                        <x-makinon-checkbox id="aceptarCondiciones" name="aceptarCondiciones"
+                            class="form-check-input"></x-makinon-checkbox>
+                        <label class="form-check-label" for="aceptarCondiciones">
+                            He leído y acepto los términos y condiciones de compra.
+                        </label>
+                    </div>
+                    <div>
+                        <x-makinon-primary-button id="realizarPedido" type="submit" style="width:20%">Realizar
+                            Pedido</x-makinon-primary-button>
                     </div>
 
-                    {{-- <div class="botones-pago">
-                    <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%">Seguir
-                        comprando</x-makinon-primary-link-button>
-                    <form action="{{ route('realizar-pedido') }}" method="GET">
-                        @csrf
-                        <x-makinon-primary-button type="submit" style="width:60%">Realizar Pedido</x-makinon-primary-button>
-                    </form>
-                    </div> --}}
                 </div>
             </div>
-            <div class="contenedor-forma-pago">
-                <h2>FORMA DE PAGO</h2>
-                <div class="selector-forma-pago">
-
-                    <div class="contenedor-tarjeta">
-                        <div class="d-flex flex-row align-items-center">
-                            <x-makinon-radio-button name="forma-pago" value="tarjeta"></x-makinon-radio-button>
-                            <label class="mb-0 ml-5">Tarjeta de crédito</label>
-                        </div>
-
-                        <div class="tarjeta">
-                            <div class="contenedor-tarjeta-input">
-                                <div><label for="numero-tarjeta">Número de tarjeta</label>
-                                    <input type="text" id="numero-tarjeta" name="numero-tarjeta"
-                                        placeholder="0000 0000 0000 0000">
-                                </div>
-
-                                <div><label for="fecha-caducidad">Fecha de caducidad</label>
-                                    <input type="text" id="fecha-caducidad" name="fecha-caducidad" placeholder="MM/AA">
-                                </div>
-                                <div><label for="cvv">CVV</label>
-                                    <input type="text" id="cvv" name="cvv" placeholder="000">
-                                </div>
-                                <div><label for="nombre-titular">Nombre del titular</label>
-                                    <input type="text" id="nombre-titular" name="nombre-titular"
-                                        placeholder="Nombre del titular">
-                                </div>
-                                <div></div>
-                                <div class="d-flex align-items-end ">
-                                    <x-makinon-primary-button class="paso--clickeable"
-                                        style="width:41%; margin-left:0;">Continuar</x-makinon-primary-button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="contenedor-paypal">
-                        <div class="d-flex flex-row align-items-center">
-                            <x-makinon-radio-button name="forma-pago" value="paypal"></x-makinon-radio-button>
-                            <label class="mb-0 ml-5">Paypal</label>
-                        </div>
-                        <div class="paypal">
-                            <p>Al seleccionar esta opción le redirigiremos a la página de Paypal para que pueda realizar el
-                                pago.
-                            </p>
-                            <div class="d-flex align-items-end ">
-                                <x-makinon-primary-button class="paso--clickeable"
-                                    style="margin-left:0;">Continuar</x-makinon-primary-button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="contenedor-transferencia">
-                        <div class="d-flex flex-row align-items-center">
-                            <x-makinon-radio-button name="forma-pago" value="transferencia"></x-makinon-radio-button>
-                            <label class="mb-0 ml-5">Transferencia bancaria</label>
-                        </div>
-                        <div class="transferencia">
-                            <p class="mr-5">Al seleccionar esta opción le enviaremos los datos bancarios donde debe
-                                realizar la
-                                transferencia.
-                            </p>
-                            <div class="d-flex align-items-end ">
-                                <x-makinon-primary-button class="paso--clickeable"
-                                    style="margin-left:0;">Continuar</x-makinon-primary-button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contenedor-confirmar-pedido">
-                <h2>RESUMEN DEL PEDIDO</h2>
-                <div id="importe-gastos">
-                    <div class="d-flex justify-content-between">
-                        <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
-                        <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
-                    </div>
-                    <div class="d-flex justify-content-between tex">
-                        <p class="text-secondary mb-0">Gastos de envío</p>
-                        <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
-                    </div>
-                </div>
-                <div id="total">
-                    <div class="d-flex justify-content-between mt-3 mb-10">
-                        <p class="text-secondary mb-0">Total del pedido</p>
-                        <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
-                    </div>
-                </div>
-                <h2>FORMA DE PAGO</h2>
-                <div class="d-flex justify-content-between">
-                    <p class="text-secondary mb-0">Tarjeta de crédito</p>
-                    <p class="text-end mb-2">**** **** **** 1234</p>
-                </div>
-                <div>
-
-                </div>
-                <div class="form-check">
-                    <x-makinon-checkbox id="aceptarCondiciones" name="aceptarCondiciones"
-                        class="form-check-input"></x-makinon-checkbox>
-                    <label class="form-check-label" for="aceptarCondiciones">
-                        He leído y acepto los términos y condiciones de compra.
-                    </label>
-                </div>
-                <div>
-                    <x-makinon-primary-button id="realizarPedido" type="submit" style="width:20%">Realizar
-                        Pedido</x-makinon-primary-button>
-                </div>
-
-
-            </div>
-        </div>
+        </form>
     </div>
+
     <script>
         document.querySelectorAll('.paso--clickeable').forEach(function(paso, index) {
             paso.addEventListener('click', function() {
@@ -227,11 +286,18 @@
         document.querySelectorAll('input[name="forma-pago"]').forEach(function(radio) {
             radio.addEventListener('change', function() {
                 document.querySelector('.tarjeta').style.display = this.value === 'tarjeta' ?
-                    'block' : 'none';
+                    'flex' : 'none';
                 document.querySelector('.transferencia').style.display = this.value ===
                     'transferencia' ? 'flex' : 'none';
                 document.querySelector('.paypal').style.display = this.value === 'paypal' ?
                     'flex' : 'none';
+                document.querySelector('.paypal-elegido').style.display = this.value === 'paypal' ?
+                    'block' : 'none';
+                document.querySelector('.transferencia-elegido').style.display = this.value ===
+                    'transferencia' ?
+                    'block' : 'none';
+                document.querySelector('.tarjeta-elegido').style.display = this.value === 'tarjeta' ?
+                    'block' : 'none';
             });
         });
 
