@@ -38,7 +38,7 @@
             @endforeach
 
             @if (session('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success mt-2">
                     {{ session('success') }}
                 </div>
             @endif
@@ -67,11 +67,19 @@
             </div>
 
             <div class="botones-pago">
-                <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%">Seguir
+                <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%; margin-bottom:10px">Seguir
                     comprando</x-makinon-primary-link-button>
-                <form action="{{ route('realizar-pedido') }}" method="GET" style="width:100%; display:flex; justify-content:center">
+                <form action="{{ route('realizar-pedido') }}" method="POST"
+                    style="width:100%; display:flex; justify-content:center">
                     @csrf
-                    <x-makinon-primary-button type="submit" style="width:60%">Realizar Pedido</x-makinon-primary-button>
+
+                    @if (count($carrito) > 0)
+                        <x-makinon-primary-button type="submit" style="width:60%">Realizar
+                            Pedido</x-makinon-primary-button>
+                    @else
+                        <x-makinon-primary-button type="submit" style="width:60%; background-color:lightgrey" disabled>Realizar
+                            Pedido</x-makinon-primary-button>
+                    @endif
                 </form>
             </div>
         </div>

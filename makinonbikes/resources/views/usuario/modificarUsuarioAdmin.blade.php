@@ -78,19 +78,19 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <x-makinon-primary-button type="submit">@lang('makinon.guardar')</x-makinon-primary-button>
+            <div class="mt-2">
+                <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.guardar')</x-makinon-primary-button>
             </div>
         </form>
 
         <form method="POST" action="{{ route('eliminarUsuario', $usuario->id_usuario) }}">
             @csrf
             @method('DELETE')
-            <x-makinon-primary-button type="submit">@lang('makinon.elimUsu')</x-makinon-primary-button>
+            <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.elimUsu')</x-makinon-primary-button>
 
         </form>
         <div>
-            <x-makinon-primary-link-button href="{{ route('listadoUsuarios') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
+            <x-makinon-primary-link-button href="{{ route('listadoUsuarios') }}" style="margin-left:16px; width:25%">@lang('makinon.volver')</x-makinon-primary-link-button>
         </div>
 
     </div>

@@ -47,7 +47,7 @@ Route::delete('deleteUsuario', [UsuarioController::class, 'deleteUsuario'])->nam
 Route::get('cambiarPassword', [UsuarioController::class, 'cambiarPassword'])->name('cambiarPassword')->middleware('auth');
 Route::post('cambiarPassword', [UsuarioController::class, 'actualizarPassword'])->name('updatePassword')->middleware('auth');
 
-Route::get('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
+Route::post('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
 
 /*
 Rutas de los usuarios relacionadas con el administrador

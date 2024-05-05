@@ -58,9 +58,9 @@
         </table>
         {{ $productos->links() }}
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt-5">
 
-        <x-makinon-primary-link-button href="{{ route('añadirProducto') }}">@lang('makinon.añadirProd')
+        <x-makinon-primary-link-button href="{{ route('añadirProducto') }}" style="margin-right: 10px">@lang('makinon.añadirProd')
         </x-makinon-primary-link-button>
         <x-makinon-primary-link-button
             href="{{ route('usuario.panelAdmin') }}">@lang('makinon.volver')</x-makinon-primary-link-button>

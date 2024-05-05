@@ -57,19 +57,19 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <x-makinon-primary-button type="submit">@lang('makinon.guardar')</x-makinon-primary-button>
+            <div class="mt-2">
+                <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.guardar')</x-makinon-primary-button>
             </div>
         </form>
 
         <form method="POST" action="{{ route('eliminarProveedor', $proveedor->id_proveedor) }}">
             @csrf
             @method('DELETE')
-            <x-makinon-primary-button type="submit">@lang('makinon.elimProv')</x-makinon-primary-button>
+            <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.elimProv')</x-makinon-primary-button>
             
         </form>
         <div>
-            <x-makinon-primary-link-button href="{{ route('listadoProveedores') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
+            <x-makinon-primary-link-button href="{{ route('listadoProveedores') }}" style="margin-left:16px; width:25%">@lang('makinon.volver')</x-makinon-primary-link-button>
         </div>
 
     </div>

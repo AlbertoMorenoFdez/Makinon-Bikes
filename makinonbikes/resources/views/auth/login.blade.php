@@ -57,7 +57,7 @@
                             </a>
                         @endif
 
-                        <x-makinon-primary-button type="submit">
+                        <x-makinon-primary-button type="submit" style="margin-left: 10px">
                             {{ __('Log in') }}
                         </x-makinon-primary-button>
                     </div>

@@ -26,13 +26,13 @@
             <p><strong>Fecha de alta:</strong> {{ $usuario->created_at }}</p>
         </div>
         <div class="card-footer perfilbotones d-flex justify-center">
-            <x-makinon-primary-link-button href="{{ route('usuario.modificarUsuario') }}">@lang('makinon.modifPerfil')</x-makinon-primary-link-button>
+            <x-makinon-primary-link-button href="{{ route('usuario.modificarUsuario') }}" style="margin-right:10px">@lang('makinon.modifPerfil')</x-makinon-primary-link-button>
             <form method="POST" action="{{ route('deleteUsuario') }}">
                 @csrf
                 @method('DELETE')
-                <x-makinon-primary-button type="submit">@lang('makinon.elimPerfil')</x-makinon-primary-button>
+                <x-makinon-primary-button type="submit" style="margin-right:10px">@lang('makinon.elimPerfil')</x-makinon-primary-button>
             </form>
-            <x-makinon-primary-link-button href="{{ route('cambiarPassword') }}">@lang('makinon.cambioContra')</x-makinon-primary-link-button>
+            <x-makinon-primary-link-button href="{{ route('cambiarPassword') }}" style="margin-right:10px">@lang('makinon.cambioContra')</x-makinon-primary-link-button>
             <x-makinon-primary-link-button href="{{ route('home') }}">@lang('makinon.salir')</x-makinon-primary-link-button>
         </div>
     </div>

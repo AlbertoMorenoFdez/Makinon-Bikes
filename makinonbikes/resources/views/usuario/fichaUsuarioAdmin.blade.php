@@ -19,12 +19,12 @@
             <p><strong>Fecha de alta:</strong> {{ $usuario->created_at }}</p>
         </div>
         <div class="card-footer perfilbotones d-flex justify-center">
-            <x-makinon-primary-link-button href="{{ route('modificarUsuarioAdmin', $usuario->id_usuario) }}">@lang('makinon.modifUsu')</x-makinon-primary-link-button>
+            <x-makinon-primary-link-button href="{{ route('modificarUsuarioAdmin', $usuario->id_usuario) }}" style="margin-right: 10px">@lang('makinon.modifUsu')</x-makinon-primary-link-button>
             
             <form method="POST" action="{{ route('eliminarUsuario',$usuario->id_usuario) }}">
                 @csrf
                 @method('DELETE')
-                <x-makinon-primary-button type="submit">@lang('makinon.elimUsu')</x-makinon-primary-button>
+                <x-makinon-primary-button type="submit" style="margin-right: 10px">@lang('makinon.elimUsu')</x-makinon-primary-button>
             </form>
             <x-makinon-primary-link-button href="{{ route('listadoUsuarios') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
             

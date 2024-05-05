@@ -32,12 +32,12 @@
 
         </div>
         <div class="card-footer perfilbotones d-flex justify-center">
-            <x-makinon-primary-link-button href="{{ route('modificarProducto', $producto->id_producto) }}">
+            <x-makinon-primary-link-button href="{{ route('modificarProducto', $producto->id_producto) }}" style="margin-right: 10px">
                 @lang('makinon.modifProd')</x-makinon-primary-link-button>
             <form method="POST" action="{{ route('eliminarProducto', $producto->id_producto) }}">
                 @csrf
                 @method('DELETE')
-                <x-makinon-primary-button type="submit">@lang('makinon.elimProd')</x-makinon-primary-button>
+                <x-makinon-primary-button type="submit" style="margin-right: 10px">@lang('makinon.elimProd')</x-makinon-primary-button>
             </form>
             <x-makinon-primary-link-button href="{{ route('listadoProductos') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
         </div>

@@ -122,12 +122,14 @@
                         </div> --}}
                         <br>
                         <p class="fs-4">P.V.P. {{ $producto->precio }} €</p>
+                        <div class="d-flex justify-center">
                         <x-makinon-primary-button id="add-to-cart-button" type="submit"
                             style="width:80%">@lang('makinon.anadirCarro')</x-makinon-primary-button>
+                        </div>
                     </form>
 
                     @if (session('success'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success mt-2">
                             {{ session('success') }}
                         </div>
                     @endif

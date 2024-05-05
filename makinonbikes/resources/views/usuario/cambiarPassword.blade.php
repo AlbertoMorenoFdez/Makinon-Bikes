@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-center">
-                <x-makinon-primary-button type="submit">@lang('makinon.cambioContra')</x-makinon-primary-button>
+                <x-makinon-primary-button type="submit" style="margin-right:10px">@lang('makinon.cambioContra')</x-makinon-primary-button>
                 <x-makinon-primary-link-button href="{{ route('usuario.perfil') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
                 
             </div>

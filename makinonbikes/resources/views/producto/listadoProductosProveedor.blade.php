@@ -76,7 +76,7 @@
             </div>
             <div class="d-flex justify-content-center">
 
-                <x-makinon-primary-link-button href="{{ route('añadirProducto') }}">@lang('makinon.añadirProd')
+                <x-makinon-primary-link-button href="{{ route('añadirProducto') }}" style="margin-right: 10px">@lang('makinon.añadirProd')
                 </x-makinon-primary-link-button>
 
                 <x-makinon-primary-link-button

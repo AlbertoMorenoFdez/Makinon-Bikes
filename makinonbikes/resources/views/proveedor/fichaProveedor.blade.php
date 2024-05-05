@@ -16,14 +16,14 @@
             <p><strong>Comentario:</strong> {{ $proveedor->comentario }}</p>
         </div>
         <div class="card-footer perfilbotones d-flex justify-center">
-            <x-makinon-primary-link-button href="{{ route('listadoProductosProveedor', $proveedor->id_proveedor) }}">@lang('makinon.productosProv')
+            <x-makinon-primary-link-button href="{{ route('listadoProductosProveedor', $proveedor->id_proveedor) }}" style="margin-right: 10px">@lang('makinon.productosProv')
                 </x-makinon-primary-link-button>
-            <x-makinon-primary-link-button href="{{ route('modificarProveedor', $proveedor->id_proveedor) }}">@lang('makinon.modificar')
+            <x-makinon-primary-link-button href="{{ route('modificarProveedor', $proveedor->id_proveedor) }}" style="margin-right: 10px">@lang('makinon.modificar')
                 </x-makinon-primary-link-button>
             <form method="POST" action="{{ route('eliminarProveedor', $proveedor->id_proveedor) }}">
                 @csrf
                 @method('DELETE')
-                <x-makinon-primary-button type="submit" >@lang('makinon.elimProv')</x-makinon-primary-button>
+                <x-makinon-primary-button type="submit" style="margin-right: 10px">@lang('makinon.elimProv')</x-makinon-primary-button>
             </form>
             <x-makinon-primary-link-button href="{{ route('listadoProveedores') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
             
