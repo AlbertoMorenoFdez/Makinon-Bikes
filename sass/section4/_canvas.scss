@@ -1,44 +1,53 @@
 // Estilos del contenedor cuaternario
 .contenedorCuaternario {
-    width: 100%;
-    height: 99vh;
-    margin: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    overflow: hidden;
-  
-    // Estilos del contenedor de canvas
-    &__canvas {
-      display: grid;
-      justify-items: center;
-      margin-top: 150px;
-  
-      // Estilos específicos para el contenedor de clientes
-      &-clientes {
-        display: flex;
-        border-radius: 50%;
-      }
-  
-      // Estilos específicos para el texto dentro del contenedor de canvas
-      &-texto {
-        display: flex;
-        margin-top: 20px;
-        // Agrega aquí los estilos específicos si es necesario
-      }
-      @media (max-width: 1200px){
-        
+  width: 100%;
+  height: 99vh;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+
+  // Estilos del contenedor de canvas
+  &__canvas {
+    display: grid;
+    justify-items: center;
+    margin-top: 150px;
+
+    // Estilos específicos para el contenedor de clientes
+    &-clientes {
+      display: flex;
+      border-radius: 50%;
     }
-   
+
+    // Estilos específicos para el texto dentro del contenedor de canvas
+    &-texto {
+      display: flex;
+      margin-top: 20px;
+      // Agrega aquí los estilos específicos si es necesario
+    }
+
+
   }
-  @media (max-width: 768px){
+
+  @media screen and (max-width: 768px) {
     flex-direction: column-reverse;
+
     &__canvas {
       margin-top: 30px;
+
       &-clientes {
         width: 200px;
         height: 200px;
       }
     }
-}
+  }
+  @media screen and (max-width: 450px){
+    &__canvas-texto{
+     width: 415px;
+     height: 160px;
+    }
+
+  }
+  
 }

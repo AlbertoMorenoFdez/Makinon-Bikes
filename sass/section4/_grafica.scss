@@ -41,7 +41,8 @@
         height: 350px;
       }
     }
-      @media (max-width: 768px){
+      @media screen and (max-width: 768px){
+        margin-top: 80px;
         svg{
          width: 430px;
          height: 288px;

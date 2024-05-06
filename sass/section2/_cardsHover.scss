@@ -10,6 +10,7 @@
 
   &__split {
     display: flex;
+    align-items: center;
   }
 }
 
@@ -98,7 +99,7 @@
   }
   
 }
-@media (max-width: 768px){
+@media screen and (max-width: 768px){
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   &__item {
@@ -111,5 +112,6 @@
   #imgRes{
     display: none;
   }
+  
 }
 }

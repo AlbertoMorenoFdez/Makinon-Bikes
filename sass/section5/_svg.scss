@@ -34,10 +34,16 @@
             
         }
     }
-    @media (max-width: 768px) {
+    @media screen and (max-width: 768px) {
         &__contacto-contenedorLogo {
             margin-top: 58px;
             width: 100px;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        &__contacto-contenedorLogo {
+            margin-top: 109px;
+          
         }
     }
 }

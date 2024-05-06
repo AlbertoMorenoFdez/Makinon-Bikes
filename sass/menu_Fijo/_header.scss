@@ -30,10 +30,10 @@
 
   
 
-  @media (max-width: 768px) {
-    align-items: center;
+  @media screen and (max-width: 768px) {
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
 
 
     &__hamburguerMenu-container {
@@ -84,7 +84,7 @@
     
 
     &__fondo {
-      width: 50%;
+      width: 20%;
       height: auto;
     }
 
@@ -92,6 +92,11 @@
       width: 100px;
       height: auto;
       display: block;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    &__fondo{
+      width: 28%;
     }
   }
 }

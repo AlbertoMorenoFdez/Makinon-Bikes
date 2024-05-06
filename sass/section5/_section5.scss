@@ -16,11 +16,14 @@
     align-items: center; 
     overflow: hidden;
 
-    @media (max-width: 768px) {
+    @media screen and (max-width: 768px) {
       flex-direction: column;
       margin-top: 15px;
       height: 75vh;
       overflow: visible;
+    }
+    @media screen and (max-width: 450px) {
+      height: 87vh;
     }
   }
   

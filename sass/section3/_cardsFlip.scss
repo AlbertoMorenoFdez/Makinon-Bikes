@@ -37,6 +37,7 @@
   // Estilos de la subcolumna dentro de la columna del contenedor terciario
   &__sub-col {
     margin: 5px;
+
     // Estilos del título dentro de la subcolumna del contenedor terciario
     h2 {
       text-align: center;
@@ -146,52 +147,84 @@
         font-size: 20px;
       }
     }
+
     &__sub-img {
       width: 120px;
       height: 400px;
-      
+
     }
-    
+
     .flip-card {
       width: 120px;
       height: 400px;
     }
   }
+
   @media (max-width: 1000px) {
     &__sub-col {
       h2 {
         font-size: 17px;
       }
     }
+
     &__sub-img {
       width: 90px;
       height: 370px;
-      
+
     }
-    
+
     .flip-card {
       width: 90px;
       height: 370px;
     }
   }
-  @media (max-width: 768px) {
+
+  @media screen and (max-width: 768px) {
+    &__col {
+      width: 52%;
+      height: 100%;
+    }
+
     &__sub-col {
+      width: 100px;
+
       h2 {
         font-size: 25px;
       }
     }
+
     &__sub-img {
-      width: 150px;
+      width: 122px;
       height: 420px;
-      
+
     }
-    
+
+    &__row {
+      width: 95%;
+      height: 75%;
+    }
+
     .flip-card {
-      width: 150px;
+      width: 122px;
       height: 420px;
     }
-    #conImgVideoRes{
+
+    #conImgVideoRes {
       display: none;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    &__row{
+      height: 60%;
+    }
+    &__sub-img{
+      width: 96px;
+      height: 350px;
+    }
+    .flip-card-inner{
+      width: 78%;
+      height: 83%;
     }
   }
 }
