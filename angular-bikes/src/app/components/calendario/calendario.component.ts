@@ -42,6 +42,8 @@ export class CalendarioComponent implements OnInit {
     });
   }
 
+
+
   festivosEventosCalendario() {
     // Asignar los eventos festivos a la propiedad events de calendarOptions
     this.calendarOptions.events = this.eventosFestivos;
@@ -49,7 +51,7 @@ export class CalendarioComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
-    initialView: 'dayGridMonth',
+    initialView: 'dayGridMonth', 
     weekends: false,
     events: [] // Inicialmente vacío, se llenará con los eventos festivos
   };

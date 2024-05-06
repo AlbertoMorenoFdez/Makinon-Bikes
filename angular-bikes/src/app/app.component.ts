@@ -5,7 +5,7 @@ import {DatePickerComponent} from '../app/components/date-picker/date-picker.com
 import {TimepickerComponent} from '../app/components/timepicker/timepicker.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { SubirArchivoComponent } from './components/subir-archivo/subir-archivo.component';
-
+import { TraerNombreComponent } from './components/traer-nombre/traer-nombre.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,6 +15,7 @@ import { SubirArchivoComponent } from './components/subir-archivo/subir-archivo.
             TimepickerComponent, 
             CalendarioComponent,
             SubirArchivoComponent,
+            TraerNombreComponent,
             ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
