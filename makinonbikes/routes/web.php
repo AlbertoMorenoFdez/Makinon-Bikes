@@ -16,6 +16,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\TarjetaCreditoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\AngularController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,6 +159,8 @@ Ruta para la página en construcción
 Route::get('/paginaEnConstruccion', function () {
     return view('paginaEnConstruccion');
 })->name('paginaEnConstruccion');
+
+Route::get('/citaTaller', [AngularController::class, 'connectToAngular'])->name('citaTaller')->middleware('auth');
 
 
 Route::get('/dashboard', function () {
