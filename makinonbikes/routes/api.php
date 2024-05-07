@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CitaTallerController;
-use App\Http\Controllers\AngularController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * Rutas para la gestión de las citas en el taller
  */
 
-Route::post('/citaTaller', [CitaTallerController::class, 'crearCita']);
-Route::middleware('auth:sanctum')->get('/citaTaller', [CitaTallerController::class, 'obtenerCitas']);
-Route::put('/citaTaller', [CitaTallerController::class, 'editarCita']);
-Route::delete('/citaTaller', [CitaTallerController::class, 'eliminarCita']);
-
+Route::post('/cita_taller', [CitaTallerController::class, 'crearCita']);
+Route::middleware('auth:sanctum')->get('/cita_taller', [CitaTallerController::class, 'obtenerCitas']);
+Route::put('/cita_taller', [CitaTallerController::class, 'editarCita']);
+Route::delete('/cita_taller', [CitaTallerController::class, 'eliminarCita']);

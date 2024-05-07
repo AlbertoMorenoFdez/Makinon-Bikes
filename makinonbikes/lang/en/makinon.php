@@ -132,4 +132,8 @@ return [
     "contraAct" => "Current password",
     "repiteContra" => "Repeat password",
 
+    // Sales
+    "buscarPed" => "Search order",
+    "misPed" => "My orders",
+
 ];

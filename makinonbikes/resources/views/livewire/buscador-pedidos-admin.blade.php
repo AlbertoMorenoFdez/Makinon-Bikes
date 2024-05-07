@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{ $pedido->id_pedido }}</td>
                         <td>{{ $pedido->fecha }}</td>
-                        <td>{{ $pedido->usuario->nombre }} {{ $pedido->usuario->apellidos }}</td>
+                        <td>{{ $pedido->usuario ? $pedido->usuario->nombre . ' ' . $pedido->usuario->apellidos : 'Usuario no encontrado' }}</td>
                         <td>{{ $pedido->total }} €</td>
                         <td>
                             <form action="{{ route('modificarEstadoPedido', $pedido->id_pedido) }}" method="POST">

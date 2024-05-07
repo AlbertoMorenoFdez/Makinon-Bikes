@@ -45,7 +45,7 @@
                 </div>
                 <div class="card-body">
                     <p>Desde aquí podrás gestionar las ventas de la tienda.</p>
-                    <x-makinon-primary-link-button href="{{ route('paginaEnConstruccion') }}">@lang('makinon.gestVent')
+                    <x-makinon-primary-link-button href="{{ route('listadoPedidos') }}">@lang('makinon.gestVent')
                     </x-makinon-primary-link-button>
                 </div>
             </div>

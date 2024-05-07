@@ -3,7 +3,7 @@
 @section('main')
     {{-- Muestra el perfil del usuario --}}
 
-    <div class="card" style="width:55%">
+    <div class="card" class="w-4/6">
         <div class="card-header">
             <h2>@lang('makinon.perfilUsu')</h2>
         </div>
@@ -26,6 +26,7 @@
             <p><strong>Fecha de alta:</strong> {{ $usuario->created_at }}</p>
         </div>
         <div class="card-footer perfilbotones d-flex justify-center">
+            <x-makinon-primary-link-button href="{{ route('mis-pedidos') }}" style="margin-right:10px">@lang('makinon.misPed')</x-makinon-primary-link-button>
             <x-makinon-primary-link-button href="{{ route('usuario.modificarUsuario') }}" style="margin-right:10px">@lang('makinon.modifPerfil')</x-makinon-primary-link-button>
             <form method="POST" action="{{ route('deleteUsuario') }}">
                 @csrf

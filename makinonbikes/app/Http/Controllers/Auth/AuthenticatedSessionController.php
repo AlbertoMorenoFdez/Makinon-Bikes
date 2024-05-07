@@ -53,7 +53,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->put('api_token', $token->plainTextToken);
 
         // Generar el enlace a la aplicación Angular con el token incluido
-        $angularAppUrl = 'localhost:4200';
+        $angularAppUrl = 'http://your-angular-app.com/login';
         $angularAppLink = $angularAppUrl . '?token=' . $token->plainTextToken;
 
         // Almacenar el enlace en la sesión

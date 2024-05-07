@@ -15,11 +15,15 @@
     height: 50px;
 }
 
-.paso--clickeable{
-    border: solid 1px black;
+.paso-clickeable{
+    border: solid 1px black;display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.paso--clickeable.visitado .paso_texto::after {
+
+
+.paso-clickeable.visitado .paso_texto::after {
     content: "✔";
     color: green;
     margin-left: 5px;

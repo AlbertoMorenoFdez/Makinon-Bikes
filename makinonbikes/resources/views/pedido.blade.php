@@ -5,17 +5,17 @@
         <form method="POST" action="{{ route('confirmar-pedido') }}">
             @csrf
             <div class="progreso-compra">
-                <div class="paso--clickeable">
+                <div class="paso-clickeable">
                     <div class="paso_texto">
                         <span>Mis Datos</span>
                     </div>
                 </div>
-                <div class="paso--clickeable">
+                <div class="paso-clickeable">
                     <div class="paso_texto">
                         <span>Forma de Pago</span>
                     </div>
                 </div>
-                <div class="paso--clickeable" disabled>
+                <div class="paso-clickeable" disabled>
                     <div class="paso_texto">
                         <span>Confirmar Datos</span>
                     </div>
@@ -207,11 +207,16 @@
                         @foreach ($carrito as $item)
                             <div id="lineas-productos">
                                 <div class="ml-5">
-                                    <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }} | Talla:
-                                        {{ $item['talla'] }} | Color:
-                                        {{ isset($item['color']) ? $item['color'] : 'No especificado' }}</p>
+                                    <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }} |
+                                        @if ($item['talla'] != 'Sin talla')
+                                            | Talla: {{ $item['talla'] }}
+                                        @endif
+                                        @if (isset($item['color']) && $item['color'] != 'Sin color')
+                                            | Color: {{ $item['color'] }}
+                                        @endif
+                                    </p>
                                 </div>
-                                <p>{{ $item['cantidad'] }}</p>
+                                <p>Cantidad {{ $item['cantidad'] }}</p>
                                 <p>Precio unitario: {{ $item['precio'] }} €</p>
                                 <p>Precio total: {{ $item['cantidad'] * $item['precio'] }} €</p>
 
@@ -221,9 +226,9 @@
                                     @if (isset($item['id_producto']))
                                         <input type="hidden" name="id_producto" value="{{ $item['id_producto'] }}">
                                     @endif
-                                    <button type="submit"><span class="material-symbols-outlined">
+                                    {{-- <button type="submit"><span class="material-symbols-outlined">
                                             delete
-                                        </span></button>
+                                        </span></button> --}}
                                 </form>
                             </div>
                         @endforeach
@@ -268,17 +273,12 @@
     <script>
         document.querySelectorAll('.paso--clickeable').forEach(function(paso, index) {
             paso.addEventListener('click', function() {
-                if (index < 3) {
-                    var contenedorSlide = document.querySelector('.contenedor-slide');
-                    contenedorSlide.style.transform = 'translateX(' + (-33.33 * index) + '%)';
-                } else if (index == 3) {
-                    var contenedorSlide = document.querySelector('.contenedor-slide');
+                var contenedorSlide = document.querySelector('.contenedor-slide');
+                if (index === 0) {
                     contenedorSlide.style.transform = 'translateX(' + (-33.33) + '%)';
                 } else {
-                    var contenedorSlide = document.querySelector('.contenedor-slide');
                     contenedorSlide.style.transform = 'translateX(' + (-66.66) + '%)';
                 }
-
                 this.classList.add('visitado');
             });
         });

@@ -122,7 +122,6 @@ return [
     // Añadir y Modificar Usuario
     "rol" => "Rol",
     
-
     // Perfil Usuario
     "perfilUsu" => "Perfil del usuario",
     "modifPerfil" => "Modificar perfil",
@@ -134,4 +133,8 @@ return [
     "contraAct" => "Contraseña actual",
     "nuevaContra" => "Nueva contraseña",
     "repiteContra" => "Confirmar la nueva contraseña",
+
+    // Pedidos
+    "buscarPed" => "Buscar pedido",
+    "misPed" => "Mis pedidos",
 ];

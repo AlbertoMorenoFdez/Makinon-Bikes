@@ -16,7 +16,6 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\TarjetaCreditoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\AngularController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,14 +48,7 @@ Route::delete('deleteUsuario', [UsuarioController::class, 'deleteUsuario'])->nam
 Route::get('cambiarPassword', [UsuarioController::class, 'cambiarPassword'])->name('cambiarPassword')->middleware('auth');
 Route::post('cambiarPassword', [UsuarioController::class, 'actualizarPassword'])->name('updatePassword')->middleware('auth');
 
-Route::post('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
-Route::get('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
-Route::post('confirmar-pedido', [PedidoController::class, 'confirmarPedido'])->name('confirmar-pedido')->middleware('auth');
-Route::delete('confirmar-pedido', [PedidoController::class, 'confirmarPedido'])->name('confirmar-pedido')->middleware('auth');
-Route::get('pedido-confirmado', function () {
-    return view('pedido-confirmado');
-})->name('pedido-confirmado')->middleware('auth');
-Route::post('registrarTarjeta', [TarjetaCreditoController::class, 'registrarTarjeta'])->name('registrarTarjeta')->middleware('auth');
+
 
 /*
 Rutas de los usuarios relacionadas con el administrador
@@ -149,6 +141,21 @@ Route::delete('eliminarDelCarrito', [CarritoController::class, 'eliminarDelCarri
 Route::post('añadirAlCarrito', [CarritoController::class, 'añadirAlCarrito'])->name('añadirAlCarrito');
 
 /*
+Rutas para los pedidos
+*/
+Route::post('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
+Route::get('realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar-pedido')->middleware('auth');
+Route::post('confirmar-pedido', [PedidoController::class, 'confirmarPedido'])->name('confirmar-pedido')->middleware('auth');
+Route::delete('confirmar-pedido', [PedidoController::class, 'confirmarPedido'])->name('confirmar-pedido')->middleware('auth');
+Route::get('pedido-confirmado', [PedidoController::class, 'pedidoConfirmado'])->name('pedido-confirmado')->middleware('auth');
+Route::post('registrarTarjeta', [TarjetaCreditoController::class, 'registrarTarjeta'])->name('registrarTarjeta')->middleware('auth');
+Route::get('mis-pedidos', [PedidoController::class, 'misPedidos'])->name('mis-pedidos')->middleware('auth');
+Route::get('pedido-detalle/{id}', [PedidoController::class, 'pedidoDetalle'])->name('pedido-detalle')->middleware('auth');
+
+Route::get('listadoPedidos', [PedidoController::class, 'listarPedidos'])->name('listadoPedidos')->middleware('auth', 'rol:admin');
+Route::put('modificarEstadoPedido/{id}', [PedidoController::class, 'modificarEstadoPedido'])->name('modificarEstadoPedido')->middleware('auth', 'rol:admin');
+
+/*
 Ruta para el enviar el email
 */
 Route::get('/sendMail', [MailController::class, 'sendMail'])->name('sendMail');
@@ -159,8 +166,6 @@ Ruta para la página en construcción
 Route::get('/paginaEnConstruccion', function () {
     return view('paginaEnConstruccion');
 })->name('paginaEnConstruccion');
-
-Route::get('/citaTaller', [AngularController::class, 'connectToAngular'])->name('citaTaller')->middleware('auth');
 
 
 Route::get('/dashboard', function () {
