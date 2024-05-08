@@ -13,6 +13,7 @@
     justify-content: space-around;
     width: 100%;
     height: 50px;
+    margin-bottom: 20px;
 }
 
 .paso-clickeable{
@@ -50,7 +51,7 @@
     display: grid;
     column-gap: 20px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 10%);
     grid-template-areas: 
         'datos datos'
         'email telefono'
@@ -130,13 +131,14 @@
 .contenedor-forma-pago{
     width: 100%;
     padding: 20PX;
+    height: 60%;
 }
 
 .selector-forma-pago{
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 50%;
+    row-gap: 10px;
 }
 
 .contenedor-tarjeta, .contenedor-paypal, .contenedor-transferencia{
@@ -210,4 +212,19 @@
 
 .tarjeta-elegido{
     display: none;
+}
+
+.resumen-final{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-area: 10px;
+}
+
+.direccion-entrega p{
+    display: flex;
+    align-items: center;
+}
+
+.direccion-entrega span{
+    margin-right: 10px;
 }

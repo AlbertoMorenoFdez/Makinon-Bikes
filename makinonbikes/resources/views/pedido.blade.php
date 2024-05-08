@@ -147,124 +147,137 @@
                 <div class="contenedor-confirmar-pedido">
 
                     <h2>COMPRUEBA TU PEDIDO</h2>
+                    <div class="resumen-final">
 
-                    <div class="metodo-pago">
-                        <h3>FORMA DE PAGO</h3>
+                        <div class="metodo-pago">
+                            <h3>FORMA DE PAGO</h3>
 
-                        <div class="paypal-elegido">
-                            <p>Ha elegido pagar mediante Paypal</p>
-                        </div>
-
-                        <div class="transferencia-elegido">
-                            <p>Ha elegido pagar mediante Transferencia bancaria</p>
-                        </div>
-
-                        <div class="tarjeta-elegido">
-
-                            <div class="contenedor-tarjeta-input">
-                                <div>
-                                    <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
-                                    <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
-                                        placeholder="0000 0000 0000 0000" />
-                                    {{-- <x-input-error :messages="$errors->get('numero_tarjeta')" class="mt-2" /> --}}
-                                </div>
-
-                                <div>
-                                    <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
-                                    <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
-                                        placeholder="MM/AA" />
-                                    {{-- <x-input-error :messages="$errors->get('fecha_vencimiento')" class="mt-2" /> --}}
-                                </div>
-                                <div>
-                                    <x-input-label for="cvv">CVV</x-input-label>
-                                    <x-text-input type="text" id="cvv" name="cvv" placeholder="000" />
-                                    {{-- <x-input-error :messages="$errors->get('cvv')" class="mt-2" /> --}}
-                                </div>
-                                <div>
-                                    <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
-                                    <x-text-input type="text" id="nombre_titular" name="nombre_titular"
-                                        placeholder="Nombre del titular" />
-                                    {{-- <x-input-error :messages="$errors->get('nombre_titular')" class="mt-2" /> --}}
-                                </div>
+                            <div class="paypal-elegido">
+                                <p>Ha elegido pagar mediante Paypal</p>
                             </div>
 
-                        </div>
-                    </div>
+                            <div class="transferencia-elegido">
+                                <p>Ha elegido pagar mediante Transferencia bancaria</p>
+                            </div>
 
-                    <div class="direccion-entrega">
-                        <h3>DIRECCIÓN DE ENTREGA</h3>
-                        <div class="ml-5">
-                            <p>{{ $usuario->nombre }} {{ $usuario->apellidos }}</p>
-                            <p>{{ $usuario->direccion }}</p>
-                            <p>{{ $usuario->cp }} {{ $usuario->ciudad }}</p>
-                            <p>{{ $usuario->email }}</p>
-                            <p>{{ $usuario->telefono }}</p>
-                        </div>
-                    </div>
+                            <div class="tarjeta-elegido">
+                                <p>Ha elegido pagar mediante Tarjeta de crédito</p>
+                                <div class="contenedor-tarjeta-input">
+                                    <div>
+                                        <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
+                                        <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
+                                            placeholder="0000 0000 0000 0000" />
+                                        {{-- <x-input-error :messages="$errors->get('numero_tarjeta')" class="mt-2" /> --}}
+                                    </div>
 
-                    <div class="resumen-cesta">
-                        <h3>RESUMEN DE LA CESTA</h3>
-                        @foreach ($carrito as $item)
-                            <div id="lineas-productos">
-                                <div class="ml-5">
-                                    <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }} |
-                                        @if ($item['talla'] != 'Sin talla')
-                                            | Talla: {{ $item['talla'] }}
-                                        @endif
-                                        @if (isset($item['color']) && $item['color'] != 'Sin color')
-                                            | Color: {{ $item['color'] }}
-                                        @endif
-                                    </p>
+                                    <div>
+                                        <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
+                                        <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
+                                            placeholder="MM/AA" />
+                                        {{-- <x-input-error :messages="$errors->get('fecha_vencimiento')" class="mt-2" /> --}}
+                                    </div>
+                                    <div>
+                                        <x-input-label for="cvv">CVV</x-input-label>
+                                        <x-text-input type="text" id="cvv" name="cvv" placeholder="000" />
+                                        {{-- <x-input-error :messages="$errors->get('cvv')" class="mt-2" /> --}}
+                                    </div>
+                                    <div>
+                                        <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
+                                        <x-text-input type="text" id="nombre_titular" name="nombre_titular"
+                                            placeholder="Nombre del titular" />
+                                        {{-- <x-input-error :messages="$errors->get('nombre_titular')" class="mt-2" /> --}}
+                                    </div>
                                 </div>
-                                <p>Cantidad {{ $item['cantidad'] }}</p>
-                                <p>Precio unitario: {{ $item['precio'] }} €</p>
-                                <p>Precio total: {{ $item['cantidad'] * $item['precio'] }} €</p>
 
-                                <form method="POST" action="{{ route('eliminarDelCarrito') }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    @if (isset($item['id_producto']))
-                                        <input type="hidden" name="id_producto" value="{{ $item['id_producto'] }}">
-                                    @endif
-                                    {{-- <button type="submit"><span class="material-symbols-outlined">
+                            </div>
+                        </div>
+
+                        <div class="direccion-entrega">
+                            <h3>DIRECCIÓN DE ENTREGA</h3>
+                            <div class="ml-5">
+                                <p><span class="material-symbols-outlined">
+                                    account_circle
+                                    </span> {{ $usuario->nombre }} {{ $usuario->apellidos }}</p>
+                                <p><span class="material-symbols-outlined">
+                                    home_pin
+                                    </span> {{ $usuario->direccion }}</p>
+                                <p><span class="material-symbols-outlined">
+                                    location_city
+                                    </span> {{ $usuario->cp }}, {{ $usuario->ciudad }}</p>
+                                <p><span class="material-symbols-outlined">
+                                    alternate_email
+                                    </span> {{ $usuario->email }}</p>
+                                <p><span class="material-symbols-outlined">
+                                    call
+                                    </span> {{ $usuario->telefono }}</p>
+                            </div>
+                        </div>
+
+                        <div class="resumen-cesta">
+                            <h3>RESUMEN DE LA CESTA</h3>
+                            @foreach ($carrito as $item)
+                                <div id="lineas-productos">
+                                    <div class="ml-5">
+                                        <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }} 
+                                            @if ($item['talla'] != 'Sin talla')
+                                                | Talla: {{ $item['talla'] }}
+                                            @endif
+                                            @if (isset($item['color']) && $item['color'] != 'Sin color')
+                                                | Color: {{ $item['color'] }}
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <p>Cantidad {{ $item['cantidad'] }}</p>
+                                    <p>Precio unitario: {{ $item['precio'] }} €</p>
+                                    <p>Precio total: {{ $item['cantidad'] * $item['precio'] }} €</p>
+
+                                    <form method="POST" action="{{ route('eliminarDelCarrito') }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        @if (isset($item['id_producto']))
+                                            <input type="hidden" name="id_producto" value="{{ $item['id_producto'] }}">
+                                        @endif
+                                        {{-- <button type="submit"><span class="material-symbols-outlined">
                                             delete
                                         </span></button> --}}
-                                </form>
+                                    </form>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <div class="resumen-pago">
+                            <div id="importe-gastos">
+                                <h3>RESUMEN DEL IMPORTE DEL PEDIDO</h3>
+                                <div class="d-flex justify-content-between ml-5">
+                                    <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
+                                    <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
+                                </div>
+                                <div class="d-flex justify-content-between ml-5">
+                                    <p class="text-secondary mb-0">Gastos de envío</p>
+                                    <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
+                                </div>
                             </div>
-                        @endforeach
-                    </div>
 
-                    <div id="importe-gastos">
-                        <h3>RESUMEN DEL IMPORTE DEL PEDIDO</h3>
-                        <div class="d-flex justify-content-between ml-5">
-                            <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
-                            <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
+                            <div id="total">
+                                <div class="d-flex justify-content-between mt-3 mb-10 ml-5">
+                                    <p class="text-secondary mb-0">Total del pedido</p>
+                                    <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
+                                </div>
+                            </div>
+
+                            <div class="form-check">
+                                <x-makinon-checkbox id="aceptarCondiciones" name="aceptarCondiciones"
+                                    class="form-check-input"></x-makinon-checkbox>
+                                <label class="form-check-label" for="aceptarCondiciones">
+                                    He leído y acepto los términos y condiciones de compra.
+                                </label>
+                            </div>
+                            
+                                <x-makinon-primary-button id="realizarPedido" type="submit" style="width:50%">Realizar
+                                    Pedido</x-makinon-primary-button>
+                            
                         </div>
-                        <div class="d-flex justify-content-between ml-5">
-                            <p class="text-secondary mb-0">Gastos de envío</p>
-                            <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
-                        </div>
                     </div>
-
-                    <div id="total">
-                        <div class="d-flex justify-content-between mt-3 mb-10 ml-5">
-                            <p class="text-secondary mb-0">Total del pedido</p>
-                            <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
-                        </div>
-                    </div>
-
-                    <div class="form-check">
-                        <x-makinon-checkbox id="aceptarCondiciones" name="aceptarCondiciones"
-                            class="form-check-input"></x-makinon-checkbox>
-                        <label class="form-check-label" for="aceptarCondiciones">
-                            He leído y acepto los términos y condiciones de compra.
-                        </label>
-                    </div>
-                    <div>
-                        <x-makinon-primary-button id="realizarPedido" type="submit" style="width:20%">Realizar
-                            Pedido</x-makinon-primary-button>
-                    </div>
-
                 </div>
             </div>
         </form>
