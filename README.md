@@ -39,7 +39,7 @@ Hemos implementado ademas un sistema de citas para el taller, en el cual, el cli
 </br>
 <div style="display: flex; flex-direction: row; justify-content: center;">
     <img src="/imagenesReadMe/laravel.jpeg" width="100">
-    <img src="/imagenesReadMe/angularlogo.jpeg" width="100">
+    <img src="/imagenesReadMe/angularlogo.png" width="100">
     <img src="/imagenesReadMe/mysqllogo.png" width="100">
     <img src="/imagenesReadMe/bootstraplogo.jpeg" width="100">
     <img src="/imagenesReadMe/tailwindlogo.png" width="100">
