@@ -23,10 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * Rutas para la gestión de las citas en el taller
  */
 
-Route::post('/cita_taller', [CitaTallerController::class, 'crearCita']);
+Route::middleware('auth:sanctum')->post('/cita_taller', [CitaTallerController::class, 'crearCita']);
 Route::middleware('auth:sanctum')->get('/cita_taller', [CitaTallerController::class, 'obtenerCitas']);
-Route::put('/cita_taller', [CitaTallerController::class, 'editarCita']);
-Route::delete('/cita_taller', [CitaTallerController::class, 'eliminarCita']);
+Route::middleware('auth: sanctum')-> put('/cita_taller', [CitaTallerController::class, 'editarCita']);
+Route::middleware('auth: sanctum')->delete('/cita_taller', [CitaTallerController::class, 'eliminarCita']);
 
 /* Route::post('/citaTaller', [CitaTallerController::class, 'crearCita']);
 Route::middleware('auth:sanctum')->get('/citaTaller', [CitaTallerController::class, 'obtenerCitas']);
