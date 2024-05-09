@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,EventEmitter,Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,7 +17,14 @@ export class SubirArchivoComponent implements OnInit {
   fileInfos?: Observable<any>;
 
   constructor(private subirServicio: SubirArchivoService) { }
+  @Output() almacenarFichero = new EventEmitter<File>();
 
+  enviarFichero(event: any) {
+    const fichero = (event.target as HTMLInputElement).files?.[0];
+  if (fichero) {
+    this.almacenarFichero.emit(fichero);
+  }
+  }
   ngOnInit(): void {
     this.fileInfos = this.subirServicio.getFiles();
   }

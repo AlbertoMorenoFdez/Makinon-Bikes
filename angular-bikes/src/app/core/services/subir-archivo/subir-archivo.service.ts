@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class SubirArchivoService {
 
-  private baseUrl = 'http://localhost:4200'; //Cambiar a nuestro dominio o puerto localhost
+  private baseUrl = 'http://localhost:8000/api'; //Cambiar a nuestro dominio o puerto localhost
 
   constructor(private http: HttpClient) {}
 
