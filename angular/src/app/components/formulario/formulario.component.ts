@@ -24,7 +24,7 @@ export class FormularioComponent {
   // Inicializar los datos del formulario con la interfaz
   datosFormulario: FormularioDatos = {
     fecha: new Date(),
-    tiempo: '',
+    tiempo: new Date(),
     texto: '',
     archivo: null
   };
@@ -54,7 +54,7 @@ export class FormularioComponent {
   }*/
 
   actualizarTiempo(tiempo: Date) {
-    this.datosFormulario.tiempo = tiempo.toDateString();
+    this.datosFormulario.tiempo = tiempo;
   }
 
   textoCambiado(texto: string) {
