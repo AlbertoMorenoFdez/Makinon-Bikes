@@ -22,9 +22,14 @@ export class TimepickerComponent {
     this.almacenarHora.emit(date);
   }
   
-  onTimeChange() {
-    console.log('Hora seleccionada:', this.time);
+  /* onTimeChange() {
+    console.log('Hora seleccionada con onTimeChange:', this.time);
     localStorage.setItem('hora', this.time.toTimeString());
+  } */
+
+  onTimeChange() {
+    console.log('Hora seleccionada con onTimeChange:', this.time);
+    localStorage.setItem('hora', this.time.toISOString());  // Almacena la hora seleccionada en el localStorage en formato ISO
   }
   
 

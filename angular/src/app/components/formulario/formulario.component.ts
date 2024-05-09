@@ -42,7 +42,6 @@ export class FormularioComponent {
   } 
 
   // Asumiendo que tienes métodos para actualizar cada parte de los datos del formulario
-
   actualizarFecha(fecha: Date) {
     console.log('Fecha recibida:', fecha);
     this.datosFormulario.fecha = fecha;

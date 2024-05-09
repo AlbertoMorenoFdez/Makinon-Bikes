@@ -10,4 +10,7 @@ class CitaTaller extends Model
     use HasFactory;
 
     protected $table = 'cita_taller';
+
+    protected $primaryKey = 'id_cita_taller';
+    
 }

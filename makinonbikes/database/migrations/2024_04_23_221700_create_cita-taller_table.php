@@ -22,6 +22,7 @@ return new class extends Migration
             $table->time('hora');
             $table->string('estado', 100);
             $table->string('comentario', 1000)->nullable();
+            $table->string('imagen', 100)->nullable();
             $table->timestamps();
         });
     }

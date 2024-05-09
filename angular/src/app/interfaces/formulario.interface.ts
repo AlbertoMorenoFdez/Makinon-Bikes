@@ -1,5 +1,4 @@
 
-
 export interface FormularioDatos {
   fecha: Date;
   tiempo: Date;

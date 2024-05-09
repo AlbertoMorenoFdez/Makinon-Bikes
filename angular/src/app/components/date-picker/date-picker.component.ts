@@ -37,12 +37,23 @@ export class DatePickerComponent {
     console.log(date);
     this.almacenarFecha.emit(date);
   }
+
+  /* onDateChange(event: MatDatepickerInputEvent<Date>) {
+    this.selected = event.value;
+    if (this.selected) {
+      console.log("fecha seleccionada con onDateChange",this.selected);  // Imprime la fecha seleccionada en la consola
+      // console.log(this.selected.toDateString());  // Imprime la fecha seleccionada en la consola
+      localStorage.setItem('cita', this.selected.toDateString());  // Almacena la fecha seleccionada en el localStorage
+      this.almacenarFecha.emit(this.selected);
+      console.log('Evento almacenarFecha emitido con:', this.selected);
+    }
+  } */
+
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     this.selected = event.value;
     if (this.selected) {
-      console.log(this.selected);  // Imprime la fecha seleccionada en la consola
-      // console.log(this.selected.toDateString());  // Imprime la fecha seleccionada en la consola
-      localStorage.setItem('cita', this.selected.toDateString());  // Almacena la fecha seleccionada en el localStorage
+      console.log("fecha seleccionada con onDateChange",this.selected);
+      localStorage.setItem('cita', this.selected.toISOString());  // Almacena la fecha seleccionada en el localStorage en formato ISO
       this.almacenarFecha.emit(this.selected);
       console.log('Evento almacenarFecha emitido con:', this.selected);
     }
