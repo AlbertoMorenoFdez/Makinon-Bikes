@@ -5,20 +5,14 @@
         <form method="POST" action="{{ route('confirmar-pedido') }}">
             @csrf
             <div class="progreso-compra">
-                <div class="paso-clickeable">
-                    <div class="paso_texto">
-                        <span>Mis Datos</span>
-                    </div>
+                <div class="paso-clickeable-datos">
+                        <span>Mis Datos</span> 
                 </div>
-                <div class="paso-clickeable">
-                    <div class="paso_texto">
+                <div class="paso-clickeable-pago">
                         <span>Forma de Pago</span>
-                    </div>
                 </div>
-                <div class="paso-clickeable" disabled>
-                    <div class="paso_texto">
+                <div class="paso-clickeable-confirm" disabled>
                         <span>Confirmar Datos</span>
-                    </div>
                 </div>
             </div>
 
@@ -196,19 +190,19 @@
                             <h3>DIRECCIÓN DE ENTREGA</h3>
                             <div class="ml-5">
                                 <p><span class="material-symbols-outlined">
-                                    account_circle
+                                        account_circle
                                     </span> {{ $usuario->nombre }} {{ $usuario->apellidos }}</p>
                                 <p><span class="material-symbols-outlined">
-                                    home_pin
+                                        home_pin
                                     </span> {{ $usuario->direccion }}</p>
                                 <p><span class="material-symbols-outlined">
-                                    location_city
+                                        location_city
                                     </span> {{ $usuario->cp }}, {{ $usuario->ciudad }}</p>
                                 <p><span class="material-symbols-outlined">
-                                    alternate_email
+                                        alternate_email
                                     </span> {{ $usuario->email }}</p>
                                 <p><span class="material-symbols-outlined">
-                                    call
+                                        call
                                     </span> {{ $usuario->telefono }}</p>
                             </div>
                         </div>
@@ -216,9 +210,9 @@
                         <div class="resumen-cesta">
                             <h3>RESUMEN DE LA CESTA</h3>
                             @foreach ($carrito as $item)
-                                <div id="lineas-productos">
-                                    <div class="ml-5">
-                                        <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }} 
+                                <div id="lineas-productos-pedido">
+                                    <div >
+                                        <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }}
                                             @if ($item['talla'] != 'Sin talla')
                                                 | Talla: {{ $item['talla'] }}
                                             @endif
@@ -272,10 +266,10 @@
                                     He leído y acepto los términos y condiciones de compra.
                                 </label>
                             </div>
-                            
-                                <x-makinon-primary-button id="realizarPedido" type="submit" style="width:50%">Realizar
-                                    Pedido</x-makinon-primary-button>
-                            
+
+                            <x-makinon-primary-button id="realizarPedido" type="submit" style="width:50%">Realizar
+                                Pedido</x-makinon-primary-button>
+
                         </div>
                     </div>
                 </div>

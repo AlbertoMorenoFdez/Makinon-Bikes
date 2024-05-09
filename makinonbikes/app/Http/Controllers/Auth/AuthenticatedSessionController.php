@@ -63,7 +63,7 @@ class AuthenticatedSessionController extends Controller
     }
 
     // Funcion para hacer el login, crear el token y devolverlo en la respuesta a modo de Json
-    /* public function store(LoginRequest $request): JsonResponse
+     /* public function store(LoginRequest $request): JsonResponse
      {
         $request->authenticate();
 
