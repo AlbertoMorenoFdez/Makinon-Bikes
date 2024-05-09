@@ -8,7 +8,10 @@ import { SubirArchivoComponent } from './components/subir-archivo/subir-archivo.
 import { TraerNombreComponent } from './components/traer-nombre/traer-nombre.component';
 import {TokenComponent} from './components/token/token.component';
 import {RouterLink} from '@angular/router';
+import { FormularioComponent } from './components/formulario/formulario.component';
+import {HttpClientModule} from '@angular/common/http';//importar el modulo de http como modelo Singleton
 
+import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.component';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -21,6 +24,9 @@ import {RouterLink} from '@angular/router';
             SubirArchivoComponent,
             TraerNombreComponent,
             TokenComponent,
+            FormularioComponent,
+            HttpClientModule,
+            ObtenerCitaComponent
             ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

@@ -5,22 +5,17 @@ import { CalendarioComponent } from './components/calendario/calendario.componen
 import { SubirArchivoComponent } from './components/subir-archivo/subir-archivo.component';
 import { TraerNombreComponent } from './components/traer-nombre/traer-nombre.component';
 import { TokenComponent } from './components/token/token.component';
-import { AppComponent } from './app.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
 
 
 export const routes: Routes = [
     { 
         path: 'citaTaller', 
-        component: DatePickerComponent, // Componente principal
-        children: [
-            { path: 'timePicker', component: TimepickerComponent },
-            { path: 'subir-archivo', component: SubirArchivoComponent },
-            { path: 'traer-nombre', component: TraerNombreComponent },
-            { path: 'token', component: DatePickerComponent }
-        ]
+        component: FormularioComponent, // Componente principal
+        
     },
     { 
-        path: 'agenda', 
+        path: 'calendario', 
         component: CalendarioComponent,
         children: [
             { path: 'token', component: TokenComponent }
