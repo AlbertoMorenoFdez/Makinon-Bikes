@@ -1,6 +1,7 @@
+
 export interface FormularioDatos {
-  fecha: string;
-  tiempo: string;
+  fecha: String;
+  tiempo: String;
   texto: string;
   archivo?: File | null; // ? significa que es opcional
 }
