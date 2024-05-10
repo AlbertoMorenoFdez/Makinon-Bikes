@@ -11,8 +11,10 @@ export class BddService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post<any>('http://localhost:8000/api/', credentials);
+  traerDatosUsuario(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>('http://localhost:8000/api/traerDatos', { headers });
   }
   
   

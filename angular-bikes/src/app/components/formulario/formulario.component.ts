@@ -82,9 +82,9 @@ export class FormularioComponent {
       return;
     }
     console.log('Datos del formulario:', this.datosFormulario);
-    this.bddService.enviarDatos(this.datosFormulario).subscribe(
-      respuesta => console.log('Datos enviados con éxito', respuesta),
-      error => console.log('Error al enviar datos', error)
-    );
+    // this.bddService.crearCita(this.datosFormulario).subscribe(
+    //   respuesta => console.log('Datos enviados con éxito', respuesta),
+    //   error => console.log('Error al enviar datos', error)
+    // );
   }
 }
