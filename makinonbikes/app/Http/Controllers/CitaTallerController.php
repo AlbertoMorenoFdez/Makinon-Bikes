@@ -9,6 +9,29 @@ use Illuminate\Support\Facades\Log;
 
 class CitaTallerController extends Controller
 {
+
+    /**
+     * Función que permite obtener los datos del usuario autenticado
+     */
+    public function traerDatosUsuario(Request $request)
+    {
+        
+        // Obtener el usuario autenticado
+        $user = $request->user();
+
+        // Asegúrate de que el usuario esté autenticado
+        if (!$user) {
+            return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
+        }
+
+
+        return response()->json([
+            'nombre' => $request->user()->nombre,
+            'email' => $request->user()->email
+        ]);
+    }
+
+
     /**
      * Función que permite crear una cita en el taller a través de la API
      *
@@ -63,6 +86,7 @@ class CitaTallerController extends Controller
 
     public function obtenerCitas(Request $request)
     {
+       
         // Obtener el usuario autenticado
         $user = $request->user();
 
