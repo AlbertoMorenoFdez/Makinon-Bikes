@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Carrito;
 use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductoColorTallaController;
 
 class CarritoController extends Controller
 {
@@ -31,13 +32,26 @@ class CarritoController extends Controller
 
     /**
      * Función que añade un producto al carrito
+     * 
+     * @param Request $request
+     * 
      */
     public function añadirAlCarrito(Request $request)
     {
         $carrito = $request->session()->get('carrito', []);
 
+        //Comprobamos si hay stock suficiente
+        $productoColorTallaController = new ProductoColorTallaController();
+        $stockSuficiente = $productoColorTallaController->comprobarStock($request->id_producto, $request->id_color, $request->id_talla, $request->cantidad);
+
+        if (!$stockSuficiente) {
+            return redirect()->back()->with('error', 'No hay suficiente stock');
+        }
+
         $producto = [
             'id_producto' => $request->id_producto,
+            'id_color' => $request->id_color,
+            'id_talla' => $request->id_talla,
             'marca' => $request->marca,
             'nombre' => $request->nombre,
             'imagen' => $request->imagen,
@@ -47,6 +61,8 @@ class CarritoController extends Controller
             'precio' => $request->precio,
             'precio_total' => $request->cantidad * $request->precio
         ];
+
+        //dd($producto);
 
         array_push($carrito, $producto);
 

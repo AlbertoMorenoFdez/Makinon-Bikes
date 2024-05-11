@@ -22,14 +22,9 @@
     align-items: center;
 }
 
-
-
-/* .paso-clickeable.visitado .paso_texto::after {
-    content: "✔";
-    color: green;
-    margin-left: 5px;
-} */
-
+.paso-clickeable-datos{
+    background-color: rgb(211,211,211);
+}
 .contenedor-slide{
     width: 300%;
     display: grid;
