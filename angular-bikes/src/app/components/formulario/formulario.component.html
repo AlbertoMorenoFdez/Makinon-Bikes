@@ -1,5 +1,6 @@
 <app-date-picker (almacenarFecha)="actualizarFecha($event)"></app-date-picker>
-
 <app-timepicker (almacenarHora)="actualizarTiempo($event)"></app-timepicker>
-<textarea [(ngModel)]="datosFormulario.texto" placeholder="Escriba sus anotaciones"></textarea>
+<textarea [(ngModel)]="datosFormulario.comentario" placeholder="Escriba sus anotaciones"></textarea>
 <app-subir-archivo (almacenarFichero)="archivoSeleccionado($event)"></app-subir-archivo>
+
+<button mat-raised-button color="primary" (click)="enviarFormulario()">Enviar Formulario</button>

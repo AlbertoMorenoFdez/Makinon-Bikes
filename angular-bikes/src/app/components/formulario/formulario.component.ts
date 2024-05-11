@@ -1,61 +1,67 @@
 import { Component } from '@angular/core';
-import { DatePickerComponent } from '../date-picker/date-picker.component';
-import { TimepickerComponent } from '../timepicker/timepicker.component';
-import { SubirArchivoComponent } from '../subir-archivo/subir-archivo.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
+import { TimepickerComponent } from './timepicker/timepicker.component';
+import { SubirArchivoComponent } from './subir-archivo/subir-archivo.component';
 import { FormsModule } from '@angular/forms';
 import { FormularioDatos } from '../../interfaces/formulario.interface';
 import { BddService } from '../../core/services/bdd/bdd.service';
-
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
   imports: [
-            DatePickerComponent,
-            TimepickerComponent,
-            SubirArchivoComponent,
-            FormsModule,
-            
+    DatePickerComponent,
+    TimepickerComponent,
+    SubirArchivoComponent,
+    FormsModule,
   ],
   templateUrl: './formulario.component.html',
-  styleUrl: './formulario.component.css'
+  styleUrls: ['./formulario.component.css']  // Asegúrate de que sea styleUrls en lugar de styleUrl
 })
 export class FormularioComponent {
-  // Inicializar los datos del formulario con la interfaz
   datosFormulario: FormularioDatos = {
     fecha: '',
-    tiempo: '',
-    texto: '',
+    hora: '',
+    comentario: '',
     archivo: null
   };
 
-  constructor(private bddService: BddService) {}
-  nombre: string='';
+  constructor(private bddService: BddService) { }
 
-
-  enviarFormulario() {
-    this.bddService.enviarDatos(this.datosFormulario).subscribe(
-      respuesta => console.log('Datos enviados con éxito', respuesta),
-      error => console.log('Error al enviar datos', error)
-    );
-  }
-
-  // Asumiendo que tienes métodos para actualizar cada parte de los datos del formulario
   actualizarFecha(fecha: Date) {
-    console.log('Fecha actualizada');
-    this.datosFormulario.fecha = fecha.toDateString();
-
+    // Formatear la fecha usando formatDate
+    this.datosFormulario.fecha = formatDate(fecha, 'yyyy-MM-dd', 'en-US');
+    console.log('Fecha formateada y actualizada:', this.datosFormulario.fecha);
   }
 
   actualizarTiempo(tiempo: Date) {
-    this.datosFormulario.tiempo = tiempo.toDateString();
+    // Formatear la hora usando formatDate
+    this.datosFormulario.hora = formatDate(tiempo, 'HH:mm:ss', 'en-US');
+    console.log('Hora formateada y actualizada:', this.datosFormulario.hora);
   }
 
-  textoCambiado(texto: string) {
-    this.datosFormulario.texto = texto;
+  textoCambiado(comentario: string) {
+    this.datosFormulario.comentario = comentario;
   }
 
   archivoSeleccionado(archivo: File) {
     this.datosFormulario.archivo = archivo;
+  }
+
+  enviarFormulario() {
+    if (!this.datosFormulario.fecha || !this.datosFormulario.hora || !this.datosFormulario.comentario) {
+      console.log('Por favor complete todos los campos requeridos.');
+      return;
+    }
+    if (this.datosFormulario.comentario.length < 10) {
+      console.log('El comentario debe tener al menos 10 caracteres.');
+      return;
+    }
+    // console.log('Datos del formulario:', this.datosFormulario);
+    this.bddService.crearCita(this.datosFormulario).subscribe(
+      respuesta => console.log('Datos enviados con éxito', respuesta),
+      error => console.log('Error al enviar datos', error)
+    );
   }
 }
