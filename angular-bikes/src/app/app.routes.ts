@@ -21,5 +21,12 @@ export const routes: Routes = [
             { path: 'token', component: TokenComponent }
         ]
     },
+    { 
+        path: 'citaAnterior', 
+        component: CalendarioComponent,
+        children: [
+            { path: 'token', component: TokenComponent }
+        ]
+    },
     
 ];

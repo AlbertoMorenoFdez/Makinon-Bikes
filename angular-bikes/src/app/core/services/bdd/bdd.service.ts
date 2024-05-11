@@ -17,12 +17,10 @@ export class BddService {
     return this.http.get<any>('http://localhost:8000/api/traerDatos', { headers });
   }
   
-  
-  crearCita(credentials: { id: number }): Observable<any> {
-    console.log('Credentials:', credentials);
+  crearCita(formularioDatos: any): Observable<any> { 
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>('http://localhost:8000/api/cita_taller', credentials, { headers });
+    return this.http.post<any>('http://localhost:8000/api/cita_taller',formularioDatos, { headers });
   }
 
   //Obtiene todas las citas de un usuario de la bbdd

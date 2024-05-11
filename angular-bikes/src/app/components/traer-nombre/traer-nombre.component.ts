@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./traer-nombre.component.css']
 })
 export class TraerNombreComponent implements OnInit {
+  id: number = 0;
   nombre: string = '';
   email: string = '';
   token: string = '';
@@ -30,9 +31,10 @@ export class TraerNombreComponent implements OnInit {
   traerNombre(): void {
     this.bddService.traerDatosUsuario().subscribe(
       response => {
-        console.log('Respuesta del servidor:', response);
+        // console.log('Respuesta del servidor:', response);
         this.nombre = response.nombre;
         this.email = response.email;
+        this.id= response.id_usuario;
       },
       error => {
         console.error('Error al obtener los datos:', error);
