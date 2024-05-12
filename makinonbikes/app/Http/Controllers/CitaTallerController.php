@@ -13,9 +13,9 @@ class CitaTallerController extends Controller
     /**
      * Función que permite obtener los datos del usuario autenticado
      */
+    
     public function traerDatosUsuario(Request $request)
-    {
-        
+    {    
         // Obtener el usuario autenticado
         $user = $request->user();
 
@@ -23,7 +23,6 @@ class CitaTallerController extends Controller
         if (!$user) {
             return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
         }
-
 
         return response()->json([
             'nombre' => $request->user()->nombre,
@@ -38,7 +37,6 @@ class CitaTallerController extends Controller
      * @param Request $request
      * @return void
      */
-
 
     public function crearCita(Request $request)
     {

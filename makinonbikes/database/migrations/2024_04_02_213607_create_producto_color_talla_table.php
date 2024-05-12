@@ -38,6 +38,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('producto_color');
+        Schema::table('producto_color_talla', function (Blueprint $table) {
+            $table->dropForeign(['id_talla']);
+            $table->dropForeign(['id_color']);
+            $table->dropForeign(['id_producto']);
+        });
+
+        Schema::dropIfExists('producto_color_talla');
     }
 };

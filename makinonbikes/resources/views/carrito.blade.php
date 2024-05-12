@@ -29,6 +29,10 @@
                         @method('DELETE')
                         @if (isset($item['id_producto']))
                             <input type="hidden" name="id_producto" value="{{ $item['id_producto'] }}">
+                            <input type="hidden" name="id_color" value="{{ $item['id_color'] }}">
+                            <input type="hidden" name="id_talla" value="{{ $item['id_talla'] }}">
+                            <input type="hidden" name="color" value="{{ $item['color'] }}">
+                            <input type="hidden" name="talla" value="{{ $item['talla'] }}">
                         @endif
                         <button type="submit"><span class="material-symbols-outlined">
                                 delete
@@ -77,7 +81,8 @@
                         <x-makinon-primary-button type="submit" style="width:60%">Realizar
                             Pedido</x-makinon-primary-button>
                     @else
-                        <x-makinon-primary-button type="submit" style="width:60%; background-color:lightgrey" disabled>Realizar
+                        <x-makinon-primary-button type="submit" style="width:60%; background-color:lightgrey"
+                            disabled>Realizar
                             Pedido</x-makinon-primary-button>
                     @endif
                 </form>
