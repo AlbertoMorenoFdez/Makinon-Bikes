@@ -9,6 +9,9 @@ use App\Models\Pedido;
 use App\Models\PedidoDetalle;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PedidoConfirmado;
+use App\Http\Controllers\ProductoColorTallaController;
 
 class PedidoController extends Controller
 {
@@ -45,6 +48,7 @@ class PedidoController extends Controller
 
     public function confirmarPedido(Request $request)
     {
+        $productoColorTallaController = new ProductoColorTallaController;
         //dd($request->session()->get('carrito'));
         //dd($request->all());
         try {
@@ -68,6 +72,11 @@ class PedidoController extends Controller
                 $detalle->cantidad = $producto['cantidad'];
                 $detalle->precio = $producto['precio'];
                 $detalle->save();
+                $color = $producto['color'];
+                $talla = $producto['talla'];
+
+                // Actualizar el stock del producto
+                $productoColorTallaController->actualizarStock($producto['id_producto'], $producto['id_color'], $producto['id_talla'], $producto['cantidad']);
             }
 
             // Actualizar el total del pedido
@@ -86,7 +95,16 @@ class PedidoController extends Controller
             // Eliminamos el carrito de la sesión
             $request->session()->forget('carrito');
 
-            // Redirigir al usuario a una página de confirmación
+            //Envio de correo de confirmación
+            $user = Auth::user();
+            try {
+                Mail::to($user->email)->send(new PedidoConfirmado($pedido));
+                Log::info('Correo de confirmación de pedido enviado');
+            } catch (\Exception $e) {
+                Log::error('Error al enviar correo de confirmación de pedido: ' . $e->getMessage());
+            }
+
+            // Redirección al usuario a una página de confirmación
             return redirect()->route('pedido-confirmado')->with('success', 'Pedido realizado con éxito');
         } catch (\Exception $e) {
             Log::error('Error al crear el pedido: ' . $e->getMessage());

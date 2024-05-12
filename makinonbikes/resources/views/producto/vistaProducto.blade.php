@@ -30,7 +30,8 @@
                                         class="mt-2 mb-2 me-2 color-button"
                                         style="width: 30px; height: 30px; background-color: {{ trim($productoColorTalla->color->color) }}; border: 1px solid black; border-radius: 50%;"
                                         title="{{ trim($productoColorTalla->color->color) }}"
-                                        data-color="{{ trim($productoColorTalla->color->color) }}">
+                                        data-color="{{ trim($productoColorTalla->color->color) }}"
+                                        data-id-color="{{ $productoColorTalla->color->id_color }}">
                                     </button>
                                 @endforeach
                                 <input type="hidden" name="color" id="color">
@@ -59,7 +60,8 @@
                                 <select name="talla" id="talla" class="mt-2 mb-2 rounded w-40">
                                     @foreach ($producto->producto_color_talla as $productoColorTalla)
                                         <option value="{{ trim($productoColorTalla->talla->talla) }}"
-                                            data-stock="{{ $productoColorTalla->stock }}">
+                                            data-stock="{{ $productoColorTalla->stock }}"
+                                            data-id-talla="{{ $productoColorTalla->talla->id_talla }}">
                                             {{ trim($productoColorTalla->talla->talla) }} -
                                             @if ($productoColorTalla->stock >= 2)
                                                 @lang('makinon.disponible')
@@ -101,14 +103,18 @@
                         <input type="hidden" name="imagen" value="{{ $producto->imagen }}">
                         <input type="hidden" name="cantidad" value="1">
                         <input type="hidden" name="precio" value="{{ $producto->precio }}">
+                        <input type="hidden" name="id_color" id="id_color">
+                        <input type="hidden" name="id_talla" id="id_talla">
 
-                        <div class="d-flex align-items-center mt-4 mb-10" id="cantidad" style="color:grey">
+                        <div class="d-flex align-items-center mt-4 mb-10" style="color:grey">
                             <p class="mb-0">@lang('makinon.cantidad')</p>
                             <div class="input-group input-group-sm justify-content-evenly">
-                                <span class="material-symbols-outlined"> add_box </span>
-                                <input class="h-6 w-20" type="number" name="cantidad" id="cantidad" min="1"
-                                    max="10" value="1">
-                                <span class="material-symbols-outlined"> indeterminate_check_box </span>
+                                <span class="material-symbols-outlined cursor-pointer" onclick="incrementar()"> add_box
+                                </span>
+                                <input class="h-6 w-20 text-center" type="text" name="cantidad" id="cantidad"
+                                    min="1" max="10" value="1">
+                                <span class="material-symbols-outlined cursor-pointer" onclick="decrementar()">
+                                    indeterminate_check_box </span>
                             </div>
                         </div>
                         {{-- <div>
@@ -123,8 +129,8 @@
                         <br>
                         <p class="fs-4">P.V.P. {{ $producto->precio }} €</p>
                         <div class="d-flex justify-center">
-                        <x-makinon-primary-button id="add-to-cart-button" type="submit"
-                            style="width:80%">@lang('makinon.anadirCarro')</x-makinon-primary-button>
+                            <x-makinon-primary-button id="add-to-cart-button" type="submit"
+                                style="width:80%">@lang('makinon.anadirCarro')</x-makinon-primary-button>
                         </div>
                     </form>
 
@@ -132,8 +138,12 @@
                         <div class="alert alert-success mt-2">
                             {{ session('success') }}
                         </div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger mt-2">
+                            {{ session('error') }}
+                        </div>
                     @endif
-                    
+
                 </div>
             </div>
         </div>
@@ -205,6 +215,40 @@
             } else {
                 button.setAttribute('disabled', '');
             }
+        });
+
+        //Scripts para incrementar y decrementar la cantidad de productos a añadir
+        function incrementar() {
+            var input = document.getElementById('cantidad');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrementar() {
+            var input = document.getElementById('cantidad');
+            if (input.value > 1) { // para evitar que el valor sea menor a 1
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Selecciona todos los botones de color
+        let colorButtons = document.querySelectorAll('.color-button');
+
+        // Añade un evento de clic a cada botón de color
+        colorButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Cuando se hace clic en un botón, establece el valor del campo oculto "color" al color del botón
+                document.getElementById('color').value = this.getAttribute('data-color');
+                document.getElementById('id_color').value = this.getAttribute('data-id-color');
+            });
+        });
+
+        // Selecciona el menú desplegable de tallas y agrega un evento de cambio
+        let tallaSelect = document.getElementById('talla');
+        tallaSelect.addEventListener('change', function() {
+            // Encuentra la opción seleccionada
+            let selectedOption = this.options[this.selectedIndex];
+            // Actualiza el campo oculto 'id_talla' con el id_talla seleccionado
+            document.getElementById('id_talla').value = selectedOption.getAttribute('data-id-talla');
         });
     </script>
 @endsection

@@ -21,7 +21,6 @@ class MailController extends Controller
             
         ];
 
-        
         Mail::to($user->email)->send(new WelcomeMail($user, $mailData));
     }
 

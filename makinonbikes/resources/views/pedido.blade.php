@@ -6,13 +6,13 @@
             @csrf
             <div class="progreso-compra">
                 <div class="paso-clickeable-datos">
-                        <span>Mis Datos</span> 
+                    <span>Mis Datos</span>
                 </div>
                 <div class="paso-clickeable-pago">
-                        <span>Forma de Pago</span>
+                    <span>Forma de Pago</span>
                 </div>
                 <div class="paso-clickeable-confirm" disabled>
-                        <span>Confirmar Datos</span>
+                    <span>Confirmar Datos</span>
                 </div>
             </div>
 
@@ -211,14 +211,19 @@
                             <h3>RESUMEN DE LA CESTA</h3>
                             @foreach ($carrito as $item)
                                 <div id="lineas-productos-pedido">
-                                    <div >
+                                    <div class="d-flex flex-col">
                                         <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }}
-                                            @if ($item['talla'] != 'Sin talla')
-                                                | Talla: {{ $item['talla'] }}
+                                        <p class="mb-2">
+                                            @if ($item['talla'] != '' && $item['talla'] != 'Sin talla')
+                                                Talla: {{ $item['talla'] }}
                                             @endif
-                                            @if (isset($item['color']) && $item['color'] != 'Sin color')
-                                                | Color: {{ $item['color'] }}
+                                        </p>
+                                        <p>
+                                            @if (isset($item['color']) && $item['color'] != '' && $item['color'] != 'Sin color')
+                                                Color: {{ $item['color'] }}
                                             @endif
+                                        </p>
+
                                         </p>
                                     </div>
                                     <p>Cantidad {{ $item['cantidad'] }}</p>
@@ -283,12 +288,32 @@
                 var contenedorSlide = document.querySelector('.contenedor-slide');
                 if (index === 0) {
                     contenedorSlide.style.transform = 'translateX(' + (-33.33) + '%)';
+                    document.querySelector('.paso-clickeable-pago').style.backgroundColor = 'rgb(211,211,211)';
                 } else {
                     contenedorSlide.style.transform = 'translateX(' + (-66.66) + '%)';
+                    document.querySelector('.paso-clickeable-confirm').style.backgroundColor = 'rgb(211,211,211)';
                 }
-                this.classList.add('visitado');
             });
         });
+
+        document.querySelectorAll('.paso-clickeable-datos').forEach(function(paso, index) {
+            paso.addEventListener('click', function() {
+                var contenedorSlide = document.querySelector('.contenedor-slide');
+                contenedorSlide.style.transform = 'translateX(' + 0 + '%)';
+                document.querySelector('.paso-clickeable-pago').style.backgroundColor = 'white';
+                document.querySelector('.paso-clickeable-confirm').style.backgroundColor = 'white';
+            });
+        });
+
+        document.querySelectorAll('.paso-clickeable-pago').forEach(function(paso, index) {
+            paso.addEventListener('click', function() {
+                var contenedorSlide = document.querySelector('.contenedor-slide');
+                contenedorSlide.style.transform = 'translateX(' + (-33.33) + '%)';
+                document.querySelector('.paso-clickeable-confirm').style.backgroundColor = 'white';
+            });
+        });
+
+
 
         document.querySelectorAll('input[name="forma-pago"]').forEach(function(radio) {
             radio.addEventListener('change', function() {

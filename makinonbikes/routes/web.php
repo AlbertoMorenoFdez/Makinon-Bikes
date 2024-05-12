@@ -17,6 +17,7 @@ use App\Http\Controllers\TarjetaCreditoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\AngularController;
+use App\Http\Controllers\ProductoColorTallaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -155,6 +156,7 @@ Route::get('pedido-detalle/{id}', [PedidoController::class, 'pedidoDetalle'])->n
 
 Route::get('listadoPedidos', [PedidoController::class, 'listarPedidos'])->name('listadoPedidos')->middleware('auth', 'rol:admin');
 Route::put('modificarEstadoPedido/{id}', [PedidoController::class, 'modificarEstadoPedido'])->name('modificarEstadoPedido')->middleware('auth', 'rol:admin');
+Route::post('/actualizarStock', [ProductoColorTallaController::class, 'actualizarStock']);
 
 /*
 Ruta para el enviar el email
