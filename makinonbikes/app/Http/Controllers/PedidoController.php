@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PedidoConfirmado;
 use App\Http\Controllers\ProductoColorTallaController;
+use App\Models\Factura;
 
 class PedidoController extends Controller
 {
@@ -85,12 +86,20 @@ class PedidoController extends Controller
             // Guardar el total del pedido
             $pedido->save();
 
-            // Si se han registrado tarejtas de credito
+            // Si se han registrado tarjetas de credito
             if ($request->input('forma-pago') == 'tarjeta') {
                 // Si se han registrado tarjetas de credito
                 $tarjetaCreditoController = new TarjetaCreditoController;
                 $tarjetaCreditoController->registrarTarjeta($request);
             }
+
+            //Creamos la nueva factura
+            $factura = new Factura;
+            $factura->id_usuario = Auth::id();
+            $factura->id_pedido = $pedido->id_pedido;
+            $factura->fecha = date('Y-m-d');
+            $factura->total = $pedido->total;
+            $factura->save();
 
             // Eliminamos el carrito de la sesión
             $request->session()->forget('carrito');
