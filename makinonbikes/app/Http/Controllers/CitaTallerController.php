@@ -26,7 +26,8 @@ class CitaTallerController extends Controller
 
         return response()->json([
             'nombre' => $request->user()->nombre,
-            'email' => $request->user()->email
+            'email' => $request->user()->email,
+            'id_usuario' => $request->user()->id_usuario
         ]);
     }
 
@@ -42,6 +43,7 @@ class CitaTallerController extends Controller
     {
         // Obtener el usuario autenticado
         $user = $request->user();
+        
 
         // Asegúrate de que el usuario esté autenticado
         if (!$user) {
@@ -52,29 +54,14 @@ class CitaTallerController extends Controller
 
         $cita = new CitaTaller;
         $cita->id_usuario = $user->id_usuario;
+        $cita->titulo = $request->titulo;
         $cita->fecha = $request->fecha;
         $cita->hora = $request->hora;
-        $cita->estado = $request->estado;
+        $cita->estado = $request->estado==null ? 'pendiente' : $request->estado;
         $cita->comentario = $request->comentario;
         $cita->save();
-
         return response()->json($cita, 201);
     }
-
-    /* public function crearCita(Request $request)
-    {
-        Log::info('Datos recibidos:', ['request' => $request->all()]);
-
-        $cita = new CitaTaller;
-        $cita->id_usuario = $request->id;
-        $cita->fecha = $request->fecha;
-        $cita->hora = $request->hora;
-        $cita->estado = $request->estado;
-        $cita->comentario = $request->comentario;
-        $cita->save();
-
-        return response()->json($cita, 201);
-    } */
 
     /**
      * Función que permite obtener todas las citas del taller de un cliente
@@ -116,7 +103,7 @@ class CitaTallerController extends Controller
 
     public function eliminarCita(Request $request)
     {
-        $cita = CitaTaller::find($request->id_cita);
+        $cita = CitaTaller::find($request->id_cita_taller);
         $cita->delete();
 
         return response()->json(null, 204);

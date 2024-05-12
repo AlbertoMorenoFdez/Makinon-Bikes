@@ -18,6 +18,7 @@ export class BddService {
   }
   
   crearCita(formularioDatos: any): Observable<any> { 
+    console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<any>('http://localhost:8000/api/cita_taller',formularioDatos, { headers });
@@ -41,7 +42,7 @@ editarCita(credentials: { id: number }): Observable<any> {
 eliminarCita(id: number): Observable<any> {
   const token = localStorage.getItem('token');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.delete<any>('http://localhost:8000/api/cita_taller', { headers, params: { id: id.toString() } });
+  return this.http.delete<any>('http://localhost:8000/api/cita_taller', { headers, params: { id_cita_taller: id } });
 }
 
 

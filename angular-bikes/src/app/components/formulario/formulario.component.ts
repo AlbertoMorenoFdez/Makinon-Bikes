@@ -23,8 +23,9 @@ export class FormularioComponent {
   datosFormulario: FormularioDatos = {
     fecha: '',
     hora: '',
+    titulo: '',
     comentario: '',
-    archivo: null
+    imagen: null
   };
 
   constructor(private bddService: BddService) { }
@@ -41,21 +42,25 @@ export class FormularioComponent {
     console.log('Hora formateada y actualizada:', this.datosFormulario.hora);
   }
 
+  tituloCambiado(titulo: string) {
+    this.datosFormulario.comentario = titulo;
+  }
+
   textoCambiado(comentario: string) {
     this.datosFormulario.comentario = comentario;
   }
 
-  archivoSeleccionado(archivo: File) {
-    this.datosFormulario.archivo = archivo;
+  archivoSeleccionado(imagen: File) {
+    this.datosFormulario.imagen = imagen;
   }
 
   enviarFormulario() {
-    if (!this.datosFormulario.fecha || !this.datosFormulario.hora || !this.datosFormulario.comentario) {
+    if (!this.datosFormulario.fecha || !this.datosFormulario.hora || !this.datosFormulario.comentario || !this.datosFormulario.titulo) {
       console.log('Por favor complete todos los campos requeridos.');
       return;
     }
-    if (this.datosFormulario.comentario.length < 10) {
-      console.log('El comentario debe tener al menos 10 caracteres.');
+    if (this.datosFormulario.comentario.length < 5 || this.datosFormulario.titulo.length < 5) {
+      console.log('El comentario y el titulo deben tener al menos 5 caracteres.');
       return;
     }
     // console.log('Datos del formulario:', this.datosFormulario);

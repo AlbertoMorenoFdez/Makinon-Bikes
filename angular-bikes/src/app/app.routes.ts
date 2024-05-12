@@ -6,7 +6,7 @@ import { SubirArchivoComponent } from './components/formulario/subir-archivo/sub
 import { TraerNombreComponent } from './components/traer-nombre/traer-nombre.component';
 import { TokenComponent } from './components/token/token.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
-
+import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.component';
 
 export const routes: Routes = [
     { 
@@ -23,9 +23,12 @@ export const routes: Routes = [
     },
     { 
         path: 'citaAnterior', 
-        component: CalendarioComponent,
+        component: ObtenerCitaComponent,
         children: [
-            { path: 'token', component: TokenComponent }
+            {
+                // path: 'token', component: TokenComponent,
+                path: 'id/editarCita', component: FormularioComponent
+            }
         ]
     },
     

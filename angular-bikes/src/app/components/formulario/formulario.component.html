@@ -1,5 +1,6 @@
 <app-date-picker (almacenarFecha)="actualizarFecha($event)"></app-date-picker>
 <app-timepicker (almacenarHora)="actualizarTiempo($event)"></app-timepicker>
+<input [(ngModel)]="datosFormulario.titulo" placeholder="Escriba algún titulo" />
 <textarea [(ngModel)]="datosFormulario.comentario" placeholder="Escriba sus anotaciones"></textarea>
 <app-subir-archivo (almacenarFichero)="archivoSeleccionado($event)"></app-subir-archivo>
 
