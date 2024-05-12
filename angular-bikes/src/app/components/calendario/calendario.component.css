@@ -1,5 +1,17 @@
-.calendario{
-    width: 70%;
-    height: 80%;
-    background-color: black;
+
+/* calendario.component.css */
+.fc {
+    max-width: 1450px; /* Limita el ancho máximo del calendario */
+    margin: 0 auto; /* Centra el calendario horizontalmente */
+    padding: 20px;
+    font-size: 0.85em; /* Ajusta el tamaño de la fuente para los elementos del calendario */
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.2em; /* Tamaño de la fuente para el título del calendario */
+}
+
+.fc .fc-button {
+    padding: 5px 10px; /* Ajusta el padding de los botones para que sean más pequeños */
+    font-size: 0.8em; /* Tamaño de la fuente para los botones */
 }

@@ -6,7 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { FormularioDatos } from '../../interfaces/formulario.interface';
 import { BddService } from '../../core/services/bdd/bdd.service';
 import { formatDate } from '@angular/common';
-
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatStepperModule} from '@angular/material/stepper';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { CalendarioComponent } from '../calendario/calendario.component';
 @Component({
   selector: 'app-formulario',
   standalone: true,
@@ -15,6 +19,10 @@ import { formatDate } from '@angular/common';
     TimepickerComponent,
     SubirArchivoComponent,
     FormsModule,
+    MatGridListModule,
+    MatStepperModule,
+    ReactiveFormsModule,
+    CalendarioComponent
   ],
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']  // Asegúrate de que sea styleUrls en lugar de styleUrl
@@ -27,8 +35,20 @@ export class FormularioComponent {
     comentario: '',
     imagen: null
   };
+  firstFormGroup!: FormGroup ;
+  secondFormGroup!: FormGroup;
+  constructor(private _formBuilder: FormBuilder, private bddService: BddService) { }
 
-  constructor(private bddService: BddService) { }
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      fecha: ['d', Validators.required],
+      hora: ['d', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      titulo: ['', Validators.required],
+      comentario: ['', Validators.required]
+    });
+  }
 
   actualizarFecha(fecha: Date) {
     // Formatear la fecha usando formatDate
@@ -55,6 +75,7 @@ export class FormularioComponent {
   }
 
   enviarFormulario() {
+    console.log('Datos del formulario:', this.datosFormulario);
     if (!this.datosFormulario.fecha || !this.datosFormulario.hora || !this.datosFormulario.comentario || !this.datosFormulario.titulo) {
       console.log('Por favor complete todos los campos requeridos.');
       return;

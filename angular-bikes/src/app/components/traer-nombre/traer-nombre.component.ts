@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { BddService } from '../../core/services/bdd/bdd.service';
 import { CapturarTokenService } from '../../core/services/capturar-token/capturar-token.service';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,6 @@ export class TraerNombreComponent implements OnInit {
   nombre: string = '';
   email: string = '';
   token: string = '';
-
   constructor(private bddService: BddService, private tokenService: CapturarTokenService) {
     
    }
@@ -25,6 +24,7 @@ export class TraerNombreComponent implements OnInit {
     this.token = this.tokenService.getToken() as string;
     if (this.token) {
       this.traerNombre();
+      
     }
   }
 

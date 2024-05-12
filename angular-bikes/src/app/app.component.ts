@@ -34,5 +34,11 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angular-bike';
+ 
+  nombreDesdeHijo: string='';
+
+  recibirNombre(nombre: string): void {
+    this.nombreDesdeHijo = nombre;
+  }
+
 }

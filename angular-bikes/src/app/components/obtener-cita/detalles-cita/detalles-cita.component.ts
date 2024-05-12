@@ -31,6 +31,6 @@ export class DetallesCitaComponent {
   }
   editarCita(citaId: number) {
     // Suponiendo que deseas pasar el id como parámetro a la ruta hija
-    this.router.navigate(['citaAnterior', citaId, 'editar']); // Ajusta la ruta según tu necesidad
+    this.router.navigate(['citaAnterior','editarCita', citaId ]); // Ajusta la ruta según tu necesidad
   }
 }

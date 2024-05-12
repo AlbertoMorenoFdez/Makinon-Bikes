@@ -27,7 +27,7 @@ export const routes: Routes = [
         children: [
             {
                 // path: 'token', component: TokenComponent,
-                path: 'id/editarCita', component: FormularioComponent
+                path: 'editarCita/:id', component: FormularioComponent
             }
         ]
     },

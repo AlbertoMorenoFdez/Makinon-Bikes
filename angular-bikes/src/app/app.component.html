@@ -1,26 +1,34 @@
-<nav>
-    <ul>
-        <li>
-            <a routerLink="/citaTaller">Pedir cita</a>
-            
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand logo-link" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/citaTaller">Pedir cita </a>
         </li>
-        <li>
-            <a routerLink="/calendario">Calendario</a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/calendario">Calendario</a>
         </li>
-        <li>
-            <a routerLink="/citaAnterior">Citas Anteriores</a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/citaAnterior">Citas Anteriores</a>
         </li>
-        <li>
-            <app-traer-nombre></app-traer-nombre>
+      </ul>
+      <ul class="navbar-nav ml-auto"> <!-- Alinea a la derecha -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-person-circle"></i>  
+          </a>
         </li>
-    </ul>
-</nav>
+      </ul>
+     
+        <app-traer-nombre></app-traer-nombre>
+      
+    </div>
+  </nav>
+  <main >
 <router-outlet></router-outlet>
-<!-- <app-date-picker></app-date-picker>
-<app-timepicker></app-timepicker>
-<app-calendario></app-calendario> 
-<app-subir-archivo></app-subir-archivo> 
-<app-traer-nombre></app-traer-nombre>
-<app-token></app-token> -->
 <app-token></app-token> 
-<!-- <app-obtener-cita></app-obtener-cita> -->
+</main>
+

@@ -37,18 +37,6 @@ export class DatePickerComponent {
     console.log(date);
     this.almacenarFecha.emit(date);
   }
-
-  // onDateChange(event: MatDatepickerInputEvent<Date>) {
-  //   if (event.value) {
-  //     this.selected = event.value;
-  //     console.log("Fecha seleccionada con onDateChange:", this.selected);
-  //     localStorage.setItem('cita', this.selected.toISOString());
-  //     this.almacenarFecha.emit(this.selected);
-  //     console.log('Evento almacenarFecha emitido con:', this.selected);
-  //   } else {
-  //     console.log("No se seleccionó una fecha válida.");
-  //   }
-  // }
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     if (event.value) {
       this.almacenarFecha.emit(event.value); // Asegúrate de que event.value es un Date
