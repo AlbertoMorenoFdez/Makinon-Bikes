@@ -31,7 +31,7 @@ export class TraerNombreComponent implements OnInit {
   traerNombre(): void {
     this.bddService.traerDatosUsuario().subscribe(
       response => {
-        // console.log('Respuesta del servidor:', response);
+         console.log('Respuesta del servidor:', response);
         this.nombre = response.nombre;
         this.email = response.email;
         this.id= response.id_usuario;

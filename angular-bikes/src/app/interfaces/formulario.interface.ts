@@ -2,7 +2,8 @@
 export interface FormularioDatos {
   fecha: String;
   hora: String;
+  titulo: string;
   comentario: string;
-  archivo?: File | null; // ? significa que es opcional
+  imagen?: File | null; // ? significa que es opcional
   
 }

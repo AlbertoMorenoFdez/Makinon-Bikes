@@ -1,5 +1,27 @@
-<!-- obtener-cita.component.html -->
-<!-- obtener-cita.component.html -->
-<button (click)="obtenerDatosDeCita()">Obtener Nombre</button>
-<p>Nombre obtenido: {{ idUsuario }}</p>
 
+<div class="container">
+<mat-progress-spinner *ngIf="cargando" mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="!cargando">
+  <div class="card" *ngIf="citas.length > 0; else noCitas">
+    <ul>
+      @for (cita of citas; track cita.id) {
+        <li>
+          <div><strong>Título de la cita:</strong> {{cita.titulo}}</div>
+          <div><strong>Estado:</strong> {{cita.estado}}</div>
+          <!-- <button  mat-raised-button color="accent" (click)="detalles(cita.id_cita_taller)">+Info</button> -->
+          <button mat-icon-button (click)="detalles(cita.id_cita_taller)" aria-label="Más información sobre la cita">
+            <mat-icon>info_outline</mat-icon>
+          </button>
+          
+          
+        </li>
+      }
+    </ul>
+    <!-- arrglar paginador<mat-paginator [length]="100"[pageSize]="2" [pageSizeOptions]="[1, 2, 5]" aria-label="Select page"></mat-paginator> -->
+    <app-detalles-cita *ngIf="mostrarDetalles" [cita]="citaSeleccionada"></app-detalles-cita>
+  </div>
+  <ng-template #noCitas>
+    <p>No hay citas disponibles.</p>
+  </ng-template>
+</div>

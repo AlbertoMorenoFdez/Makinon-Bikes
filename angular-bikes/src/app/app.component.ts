@@ -10,8 +10,8 @@ import {TokenComponent} from './components/token/token.component';
 import {RouterLink} from '@angular/router';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import {HttpClientModule} from '@angular/common/http';//importar el modulo de http como modelo Singleton
-
 import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.component';
+import { MatCardModule } from '@angular/material/card';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -26,7 +26,9 @@ import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.com
             TokenComponent,
             FormularioComponent,
             HttpClientModule,
-            ObtenerCitaComponent
+            ObtenerCitaComponent,
+            ObtenerCitaComponent,
+            MatCardModule
             ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
