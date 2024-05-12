@@ -3,6 +3,10 @@
     text-align: justify;
 }
 
+/* #contenedorCards{
+    gap:1rem;
+} */
+
 .aspect-ratio-container {
     position: relative;
     left: 50%;

@@ -309,6 +309,7 @@
             paso.addEventListener('click', function() {
                 var contenedorSlide = document.querySelector('.contenedor-slide');
                 contenedorSlide.style.transform = 'translateX(' + (-33.33) + '%)';
+                document.querySelector('.paso-clickeable-pago').style.backgroundColor = 'rgb(211,211,211)';
                 document.querySelector('.paso-clickeable-confirm').style.backgroundColor = 'white';
             });
         });

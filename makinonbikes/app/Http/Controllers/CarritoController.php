@@ -7,6 +7,7 @@ use App\Models\Carrito;
 use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProductoColorTallaController;
+use Illuminate\Support\Facades\Log;
 
 class CarritoController extends Controller
 {
@@ -40,12 +41,35 @@ class CarritoController extends Controller
     {
         $carrito = $request->session()->get('carrito', []);
 
-        //Comprobamos si hay stock suficiente
-        $productoColorTallaController = new ProductoColorTallaController();
-        $stockSuficiente = $productoColorTallaController->comprobarStock($request->id_producto, $request->id_color, $request->id_talla, $request->cantidad);
+        // Buscamos si el producto ya está en el carrito
+        foreach ($carrito as &$item) {
+            if ($item['id_producto'] == $request->id_producto && $item['id_color'] == $request->id_color && $item['id_talla'] == $request->id_talla) {
+                // Si el producto ya está en el carrito, incrementamos la cantidad
+                $item['cantidad'] += $request->cantidad;
+                $item['precio_total'] = $item['cantidad'] * $item['precio'];
 
-        if (!$stockSuficiente) {
-            return redirect()->back()->with('error', 'No hay suficiente stock');
+                // Comprobamos si hay stock suficiente
+                $productoColorTallaController = new ProductoColorTallaController();
+                $stockDisponible = $productoColorTallaController->comprobarStock($request->id_producto, $request->id_color, $request->id_talla, $item['cantidad']);
+
+                if ($item['cantidad'] > $stockDisponible) {
+                    // Si no hay suficiente stock, revertimos la última adición y mostramos un mensaje de error
+                    $item['cantidad'] -= $request->cantidad;
+                    $item['precio_total'] = $item['cantidad'] * $item['precio'];
+                    return redirect()->back()->with('error', 'No puedes añadir más unidades de este producto. No hay suficiente stock.');
+                }
+
+                $request->session()->put('carrito', $carrito);
+                return redirect()->back()->with('success', 'Producto añadido al carrito correctamente!');
+            }
+        }
+
+        // Si el producto no está en el carrito, comprobamos si podemos añadirlo
+        $productoColorTallaController = new ProductoColorTallaController();
+        $stockDisponible = $productoColorTallaController->comprobarStock($request->id_producto, $request->id_color, $request->id_talla, $request->cantidad);
+
+        if ($request->cantidad > $stockDisponible) {
+            return redirect()->back()->with('error', 'No puedes añadir más unidades de este producto. No hay suficiente stock.');
         }
 
         $producto = [
@@ -62,8 +86,6 @@ class CarritoController extends Controller
             'precio_total' => $request->cantidad * $request->precio
         ];
 
-        //dd($producto);
-
         array_push($carrito, $producto);
 
         $request->session()->put('carrito', $carrito);
@@ -71,15 +93,21 @@ class CarritoController extends Controller
         return redirect()->back()->with('success', 'Producto añadido al carrito correctamente');
     }
 
+
+
     /**
-     * Función que elimina un producto del carrito
+     * Función que elimina un producto del carrito en función del id_producto, color y talla
      */
     public function eliminarDelCarrito(Request $request)
     {
         $carrito = $request->session()->get('carrito', []);
 
         $carrito = array_filter($carrito, function ($producto) use ($request) {
-            return isset($producto['id_producto']) && $producto['id_producto'] != $request->id_producto;
+            return !(
+                isset($producto['id_producto']) && $producto['id_producto'] == $request->id_producto &&
+                isset($producto['id_talla']) && $producto['id_talla'] == $request->id_talla &&
+                isset($producto['id_color']) && $producto['id_color'] == $request->id_color
+            );
         });
 
         $request->session()->put('carrito', $carrito);

@@ -18,6 +18,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\AngularController;
 use App\Http\Controllers\ProductoColorTallaController;
+use App\Http\Controllers\FacturaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,6 +136,12 @@ Route::get('/taller', function () {
     return view('taller');
 })->name('taller');
 
+
+/*
+Ruta para la factura de muestra
+*/
+Route::get('/factura', [FacturaController::class, 'muestraFactura'])->name('factura');
+
 /*
 Ruta para el carrito de la compra
 */
@@ -157,6 +164,11 @@ Route::get('pedido-detalle/{id}', [PedidoController::class, 'pedidoDetalle'])->n
 Route::get('listadoPedidos', [PedidoController::class, 'listarPedidos'])->name('listadoPedidos')->middleware('auth', 'rol:admin');
 Route::put('modificarEstadoPedido/{id}', [PedidoController::class, 'modificarEstadoPedido'])->name('modificarEstadoPedido')->middleware('auth', 'rol:admin');
 Route::post('/actualizarStock', [ProductoColorTallaController::class, 'actualizarStock']);
+
+/*
+Ruta para la factura
+*/
+Route::get('/factura/{id_factura}', [FacturaController::class, 'generarFactura'])->name('factura')->middleware('auth');
 
 /*
 Ruta para el enviar el email

@@ -108,13 +108,13 @@
 
                         <div class="d-flex align-items-center mt-4 mb-10" style="color:grey">
                             <p class="mb-0">@lang('makinon.cantidad')</p>
-                            <div class="input-group input-group-sm justify-content-evenly">
-                                <span class="material-symbols-outlined cursor-pointer" onclick="incrementar()"> add_box
-                                </span>
-                                <input class="h-6 w-20 text-center" type="text" name="cantidad" id="cantidad"
-                                    min="1" max="10" value="1">
+                            <div class="input-group input-group-sm justify-content-center">
                                 <span class="material-symbols-outlined cursor-pointer" onclick="decrementar()">
                                     indeterminate_check_box </span>
+                                <input class="h-6 w-20 text-center" style="margin-left: 1rem; margin-right:1rem " type="text" name="cantidad" id="cantidad"
+                                    value="1">
+                                <span class="material-symbols-outlined cursor-pointer" onclick="incrementar()"> add_box
+                                </span>
                             </div>
                         </div>
                         {{-- <div>

@@ -237,6 +237,7 @@ main {
     align-items: flex-start;
     margin-bottom: 20px;
     margin-left:40px;
+    /* margin-right: 40px; */
     height: auto;
     width: auto;
     position:relative;
@@ -264,7 +265,7 @@ main {
 
 #contenedorProductos{
     display:flex;
-    width:80%;
+    width:100%;
     justify-content: center;
     margin-left:51px;
 }
