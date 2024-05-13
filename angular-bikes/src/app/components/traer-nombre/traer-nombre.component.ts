@@ -3,7 +3,7 @@ import { BddService } from '../../core/services/bdd/bdd.service';
 import { CapturarTokenService } from '../../core/services/capturar-token/capturar-token.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { RolesService } from '../../core/services/roles/roles.service';
 @Component({
   selector: 'app-traer-nombre',
   standalone: true,
@@ -16,9 +16,11 @@ export class TraerNombreComponent implements OnInit {
   nombre: string = '';
   email: string = '';
   token: string = '';
-  constructor(private bddService: BddService, private tokenService: CapturarTokenService) {
-    
-   }
+
+  constructor(private bddService: BddService, 
+              private tokenService: CapturarTokenService,
+              private rolesService: RolesService
+             ) { }
 
   ngOnInit(): void {
     this.token = this.tokenService.getToken() as string;
@@ -35,6 +37,8 @@ export class TraerNombreComponent implements OnInit {
         this.nombre = response.nombre;
         this.email = response.email;
         this.id= response.id_usuario;
+        this.rolesService.setUserRole(response.rol);
+       
       },
       error => {
         console.error('Error al obtener los datos:', error);

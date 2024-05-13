@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {DatePickerComponent} from './components/formulario/date-picker/date-picker.component';
@@ -12,6 +12,12 @@ import { FormularioComponent } from './components/formulario/formulario.componen
 import {HttpClientModule} from '@angular/common/http';//importar el modulo de http como modelo Singleton
 import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.component';
 import { MatCardModule } from '@angular/material/card';
+import { EditarFormularioComponent } from './components/obtener-cita/editar-formulario/editar-formulario.component';
+import { RolesService } from './core/services/roles/roles.service';
+import { CapturarTokenService } from './core/services/capturar-token/capturar-token.service';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -28,17 +34,40 @@ import { MatCardModule } from '@angular/material/card';
             HttpClientModule,
             ObtenerCitaComponent,
             ObtenerCitaComponent,
-            MatCardModule
+            MatCardModule,
+            EditarFormularioComponent,
+          
+            
             ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
- 
+export class AppComponent implements OnInit {
+  isAdmin: boolean = false;
+  isUser: boolean = false;
   nombreDesdeHijo: string='';
+  // isAuthenticated = false;
+
+  constructor(private rolesService: RolesService,
+              private capturarTokenService: CapturarTokenService,
+              private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.rolesService.getUserRole().subscribe((role:string) => {      
+      this.isAdmin = role === 'admin';
+      this.isUser = role === 'user';
+    });
+   
+  }
 
   recibirNombre(nombre: string): void {
     this.nombreDesdeHijo = nombre;
+  }
+  salir(): void {
+    this.capturarTokenService.limpiarToken();
+    this.rolesService.logout();
+    this.router.navigate(['localhost:8000']);
   }
 
 }

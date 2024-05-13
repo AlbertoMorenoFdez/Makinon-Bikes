@@ -11,6 +11,9 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { CalendarioComponent } from '../calendario/calendario.component';
+import { RouterOutlet } from '@angular/router';
+import { TokenComponent } from '../token/token.component';
+
 @Component({
   selector: 'app-formulario',
   standalone: true,
@@ -22,7 +25,10 @@ import { CalendarioComponent } from '../calendario/calendario.component';
     MatGridListModule,
     MatStepperModule,
     ReactiveFormsModule,
-    CalendarioComponent
+    CalendarioComponent,
+    RouterOutlet,
+    TokenComponent
+    
   ],
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']  // Asegúrate de que sea styleUrls en lugar de styleUrl
@@ -48,6 +54,7 @@ export class FormularioComponent {
       titulo: ['', Validators.required],
       comentario: ['', Validators.required]
     });
+    
   }
 
   actualizarFecha(fecha: Date) {

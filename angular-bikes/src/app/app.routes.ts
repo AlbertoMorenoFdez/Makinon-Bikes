@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { DatePickerComponent } from './components/formulario/date-picker/date-picker.component';
 import { TimepickerComponent } from './components/formulario/timepicker/timepicker.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
@@ -7,29 +7,51 @@ import { TraerNombreComponent } from './components/traer-nombre/traer-nombre.com
 import { TokenComponent } from './components/token/token.component';
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.component';
-
+import { NgModule } from '@angular/core';
+import { EditarFormularioComponent } from './components/obtener-cita/editar-formulario/editar-formulario.component';
+import { AutenticacionGuard } from '../app/autenticacion.guard';
 export const routes: Routes = [
-    { 
-        path: 'citaTaller', 
+    // { 
+    //     path: 'citaTaller',
+    //      component: FormularioComponent 
+    //     },
+   
+    {
+        path: 'citaTaller',
+        //  canActivate: [AutenticacionGuard],
         component: FormularioComponent, // Componente principal
-        
+
     },
-    { 
-        path: 'calendario', 
+    {
+        path: 'calendario',
+        // canActivate: [AuthGuard],
         component: CalendarioComponent,
         children: [
             { path: 'token', component: TokenComponent }
         ]
     },
-    { 
-        path: 'citaAnterior', 
+    {
+        path: 'citaAnterior',
+        // canActivate: [AuthGuard],
         component: ObtenerCitaComponent,
         children: [
             {
                 // path: 'token', component: TokenComponent,
-                path: 'editarCita/:id', component: FormularioComponent
+                path: 'editarCita/:id',
+                // canActivate: [AuthGuard],
+                component: EditarFormularioComponent
             }
         ]
     },
-    
+    { 
+        path: '',         
+        redirectTo: '/citaTaller', 
+        pathMatch: 'full' 
+    },
+
 ];
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule { }

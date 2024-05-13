@@ -1,17 +1,3 @@
-<!-- <mat-grid-list cols="2" rowHeight="1:1">
-<mat-grid-tile id="primero">1</mat-grid-tile>
-<mat-grid-tile>
-    <app-date-picker (almacenarFecha)="actualizarFecha($event)"></app-date-picker>
-    <app-timepicker (almacenarHora)="actualizarTiempo($event)"></app-timepicker>
-    <input [(ngModel)]="datosFormulario.titulo" placeholder="Escriba algún titulo" />
-    <textarea [(ngModel)]="datosFormulario.comentario" placeholder="Escriba sus anotaciones"></textarea>
-    <app-subir-archivo (almacenarFichero)="archivoSeleccionado($event)"></app-subir-archivo>
-
-    <button mat-raised-button color="primary" (click)="enviarFormulario()">Enviar Formulario</button>
-</mat-grid-tile>
-
-</mat-grid-list> -->
-
 <mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
@@ -40,4 +26,4 @@
     </mat-step>
   </mat-horizontal-stepper>
 
-
+ 

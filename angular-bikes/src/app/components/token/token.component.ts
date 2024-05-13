@@ -13,8 +13,11 @@ export class TokenComponent implements OnInit {
   constructor(private capturarTokenService: CapturarTokenService) {}
   
   ngOnInit() {
-    this.capturarTokenService.capturarToken();
-    this.existeToken = this.capturarTokenService.getToken() !== null;
+    this.capturarTokenService.capturarToken();   
+    this.capturarTokenService.getTokenObservable().subscribe(token => {
+      this.existeToken = token !== null;
+      console.log("Token existe:", this.existeToken); // Debug: Muestra si existe el token
+    });
   }
 
 }
