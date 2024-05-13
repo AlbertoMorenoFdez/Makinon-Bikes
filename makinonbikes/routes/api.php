@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CitaTallerController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,6 +29,8 @@ Route::middleware('auth:sanctum')->post('/cita_taller', [CitaTallerController::c
 Route::middleware('auth:sanctum')->get('/cita_taller', [CitaTallerController::class, 'obtenerCitas']);
 Route::middleware('auth: sanctum')-> put('/cita_taller', [CitaTallerController::class, 'editarCita']);
 Route::middleware('auth: sanctum')->delete('/cita_taller', [CitaTallerController::class, 'eliminarCita']);
+
+Route::middleware('auth:sanctum', 'rol:admin')->get('/cita_taller', [CitaTallerController::class, 'obtenerCitasAdmin']);
 
 /* Route::post('/citaTaller', [CitaTallerController::class, 'crearCita']);
 Route::middleware('auth:sanctum')->get('/citaTaller', [CitaTallerController::class, 'obtenerCitas']);

@@ -108,4 +108,15 @@ class CitaTallerController extends Controller
 
         return response()->json(null, 204);
     }
+
+    /**
+     * Función que permite al administrador recuperar todas las citas de la tabla cita_taller
+     */
+
+     public function obtenerCitasAdmin(Request $request)
+     {
+         $citas = CitaTaller::all();
+         
+         return response()->json($citas);
+     }
 }

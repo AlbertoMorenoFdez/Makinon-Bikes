@@ -15,6 +15,8 @@
                         <th scope="col">Estado</th>
                         <th scope="col">Comentario</th>
                         <th scope="col" style="text-align:center">Detalle</th>
+                        <th scope="col" style="text-align:center">Factura</th>
+                        <th scope="col" style="text-align:center">Descargar</th>
                     </tr>
                 </thead>
 
@@ -33,6 +35,16 @@
                             <td style="text-align:center">
                                 <a href="{{ route('pedido-detalle', $pedido->id_pedido) }}"><span class="material-symbols-outlined">
                                     quick_reference
+                                    </span></a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="{{ route('factura-pedido', $pedido->id_pedido) }}"><span class="material-symbols-outlined">
+                                    print
+                                    </span></a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="{{ route('factura/descargar', $pedido->id_pedido) }}"><span class="material-symbols-outlined">
+                                    download
                                     </span></a>
                             </td>
                         </tr>

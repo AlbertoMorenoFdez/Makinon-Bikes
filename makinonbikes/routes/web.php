@@ -166,9 +166,12 @@ Route::put('modificarEstadoPedido/{id}', [PedidoController::class, 'modificarEst
 Route::post('/actualizarStock', [ProductoColorTallaController::class, 'actualizarStock']);
 
 /*
-Ruta para la factura
+Ruta para la factura una asociada la numero de pedido y la otra asociada al numero de factura
 */
 Route::get('/factura/{id_factura}', [FacturaController::class, 'generarFactura'])->name('factura')->middleware('auth');
+Route::get('/factura-pedido/{id_pedido}', [FacturaController::class, 'generarFacturaPorPedido'])->name('factura-pedido')->middleware('auth');
+Route::get('/factura/descargar/{id_pedido}', [FacturaController::class, 'descargarFacturaPorPedido'])->name('factura/descargar')->middleware('auth');
+
 
 /*
 Ruta para el enviar el email
