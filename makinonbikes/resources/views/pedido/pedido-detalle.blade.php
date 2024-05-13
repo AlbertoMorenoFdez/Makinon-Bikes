@@ -28,7 +28,7 @@
             </tbody>
         </table>
         <div class="card-footer perfilbotones d-flex justify-center">
-            <a href="{{ route('mis-pedidos') }}" class="btn btn-primary" style="margin-right:10px">Volver</a>
+            <x-makinon-primary-link-button href="{{ route('mis-pedidos') }}">Volver</x-makinon-primary-link-button>"
         </div>
     </div>
 </div>

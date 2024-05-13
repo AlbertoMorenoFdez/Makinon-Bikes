@@ -186,7 +186,7 @@ return array(
          * Used if no suitable fonts can be found. This must exist in the font folder.
          * @var string
          */
-        "default_font" => "serif",
+        "default_font" => 'Port Condensed', 'sans-serif',
 
         /**
          * Image DPI setting
