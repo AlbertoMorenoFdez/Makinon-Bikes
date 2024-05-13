@@ -10,11 +10,10 @@ import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.com
 import { NgModule } from '@angular/core';
 import { EditarFormularioComponent } from './components/obtener-cita/editar-formulario/editar-formulario.component';
 import { AutenticacionGuard } from '../app/autenticacion.guard';
+
+
 export const routes: Routes = [
-    // { 
-    //     path: 'citaTaller',
-    //      component: FormularioComponent 
-    //     },
+  
    
     {
         path: 'citaTaller',
@@ -34,14 +33,20 @@ export const routes: Routes = [
         path: 'citaAnterior',
         // canActivate: [AuthGuard],
         component: ObtenerCitaComponent,
-        children: [
-            {
-                // path: 'token', component: TokenComponent,
-                path: 'editarCita/:id',
-                // canActivate: [AuthGuard],
-                component: EditarFormularioComponent
-            }
-        ]
+        // children: [
+        //     {
+        //         // path: 'token', component: TokenComponent,
+        //         path: 'editarCita/:id',
+        //         // canActivate: [AuthGuard],
+        //         component: EditarFormularioComponent
+        //     }
+        // ]
+    },
+    {
+        path: 'editarCita/:id',
+        // canActivate: [AuthGuard],
+        component: EditarFormularioComponent,
+        
     },
     { 
         path: '',         

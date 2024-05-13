@@ -37,9 +37,10 @@ export class FormularioComponent {
   datosFormulario: FormularioDatos = {
     fecha: '',
     hora: '',
-    titulo: '',
+    
     comentario: '',
-    imagen: null
+    imagen: null,
+    opcion: ''
   };
   firstFormGroup!: FormGroup ;
   secondFormGroup!: FormGroup;
@@ -51,8 +52,9 @@ export class FormularioComponent {
       hora: ['d', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      titulo: ['', Validators.required],
-      comentario: ['', Validators.required]
+      
+      comentario: ['', Validators.required],
+      opcion: ['', Validators.required]
     });
     
   }
@@ -83,11 +85,11 @@ export class FormularioComponent {
 
   enviarFormulario() {
     console.log('Datos del formulario:', this.datosFormulario);
-    if (!this.datosFormulario.fecha || !this.datosFormulario.hora || !this.datosFormulario.comentario || !this.datosFormulario.titulo) {
+    if (!this.datosFormulario.fecha || !this.datosFormulario.hora || !this.datosFormulario.comentario || !this.datosFormulario.opcion) {
       console.log('Por favor complete todos los campos requeridos.');
       return;
     }
-    if (this.datosFormulario.comentario.length < 5 || this.datosFormulario.titulo.length < 5) {
+    if (this.datosFormulario.comentario.length < 5 || this.datosFormulario.opcion.length < 5) {
       console.log('El comentario y el titulo deben tener al menos 5 caracteres.');
       return;
     }
@@ -95,6 +97,6 @@ export class FormularioComponent {
     this.bddService.crearCita(this.datosFormulario).subscribe(
       respuesta => console.log('Datos enviados con éxito', respuesta),
       error => console.log('Error al enviar datos', error)
-    );
-  }
+    );
+  }
 }

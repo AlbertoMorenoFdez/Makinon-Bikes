@@ -10,9 +10,10 @@
    <button mat-icon-button (click)="eliminarCita(cita.id_cita_taller)">
     <mat-icon>delete</mat-icon>
   </button>
-  <button mat-icon-button (click)="editarCita(cita.id_cita_taller)">
+  <!-- <button mat-icon-button [routerLink]="['/citaAnterior/editarCita', cita.id_cita_taller]">
     <mat-icon>edit</mat-icon>
   </button>
-   
+    -->
+    <a [routerLink]="['/editarCita', (cita.id_cita_taller)]">asdfs</a>
   </div>
 </mat-card>
