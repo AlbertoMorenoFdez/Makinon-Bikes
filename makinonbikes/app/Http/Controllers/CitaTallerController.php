@@ -13,9 +13,9 @@ class CitaTallerController extends Controller
     /**
      * Función que permite obtener los datos del usuario autenticado
      */
-    
+
     public function traerDatosUsuario(Request $request)
-    {    
+    {
         // Obtener el usuario autenticado
         $user = $request->user();
 
@@ -43,7 +43,7 @@ class CitaTallerController extends Controller
     {
         // Obtener el usuario autenticado
         $user = $request->user();
-        
+
 
         // Asegúrate de que el usuario esté autenticado
         if (!$user) {
@@ -54,10 +54,10 @@ class CitaTallerController extends Controller
 
         $cita = new CitaTaller;
         $cita->id_usuario = $user->id_usuario;
-        $cita->titulo = $request->titulo;
+        $cita->opcion = $request->opcion;
         $cita->fecha = $request->fecha;
         $cita->hora = $request->hora;
-        $cita->estado = $request->estado==null ? 'pendiente' : $request->estado;
+        $cita->estado = $request->estado == null ? 'pendiente' : $request->estado;
         $cita->comentario = $request->comentario;
         $cita->save();
         return response()->json($cita, 201);
@@ -71,7 +71,7 @@ class CitaTallerController extends Controller
 
     public function obtenerCitas(Request $request)
     {
-       
+
         // Obtener el usuario autenticado
         $user = $request->user();
 
@@ -113,10 +113,9 @@ class CitaTallerController extends Controller
      * Función que permite al administrador recuperar todas las citas de la tabla cita_taller
      */
 
-     public function obtenerCitasAdmin(Request $request)
-     {
-         $citas = CitaTaller::all();
-         
-         return response()->json($citas);
-     }
+    public function calendarioCitas()
+    {
+        $citas = CitaTaller::all();
+        return response()->json($citas);
+    }
 }

@@ -8,125 +8,125 @@
 
     <style>
         @font-face {
-    font-family: 'Port Condensed';
-    src: local('Port Condensed'), local('Port Condensed'), url("../fonts/Port Condensed-normal-400-100.otf") format('opentype');
-}  
+            font-family: 'Port Condensed';
+            src: local('Port Condensed'), local('Port Condensed'), url("../fonts/Port Condensed-normal-400-100.otf") format('opentype');
+        }
 
-.contenedor-factura{
-    font-family: 'Port Condensed', sans-serif;
-    width: 70%;
-    height:100%;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    padding: 3rem;
-    display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
-    background-color: #f5f5f5;
-}
+        .contenedor-factura {
+            font-family: 'Port Condensed', sans-serif;
+            width: 70%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 3rem;
+            display: grid;
+            grid-template-rows: 1fr 2fr 1fr;
+            background-color: #f5f5f5;
+        }
 
-.cabecera-factura{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid black;
-}
+        .cabecera-factura {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid black;
+        }
 
-.cabecera-factura img{
-    width: 250px;
-    height: 150px;
-}
+        .cabecera-factura img {
+            width: 250px;
+            height: 150px;
+        }
 
-.web-factura{
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-}
+        .web-factura {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
 
 
-#datos-factura{
-    display:flex;
-    flex-direction: row;
-    width: 50%;
-}
+        #datos-factura {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+        }
 
-#datos-factura p{
-    margin-top:0;
-    margin-bottom: 5px;
-    margin-right: 10px;
-}
+        #datos-factura p {
+            margin-top: 0;
+            margin-bottom: 5px;
+            margin-right: 10px;
+        }
 
-.datos-cliente-factura{
-    display:flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-bottom: 2rem;
-}
+        .datos-cliente-factura {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+        }
 
-.datos-cliente-factura p{
-    margin-top:0;
-    margin-bottom: 5px;
-}
+        .datos-cliente-factura p {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
 
-.cuerpo-factura{
-    display: grid;
-    grid-template-rows: 15% auto;
-}
+        .cuerpo-factura {
+            display: grid;
+            grid-template-rows: 15% auto;
+        }
 
-.titulo-cuerpo-factura{
-    display:grid;
-   grid-template-columns: 2fr 1fr 1fr 1fr; 
-    border-bottom: 1px solid black;
-}
+        .titulo-cuerpo-factura {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 1px solid black;
+        }
 
-.titulo-cuerpo-factura p{
-    margin-bottom: 0;
-    font-weight: bold;
-    
-}
+        .titulo-cuerpo-factura p {
+            margin-bottom: 0;
+            font-weight: bold;
 
-.productos-cuerpo-factura{
-    display:grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr; 
-}
+        }
 
-.total-factura{
-    display:flex;
-    flex-direction:column;
-    align-items: flex-end;
-}
+        .productos-cuerpo-factura {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
 
-.total-factura p{
-    width: 20%;
-}
+        .total-factura {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
 
-.total-factura p:nth-child(2){
-    border-top: solid 1px black;
-    margin-bottom:0;
-}
+        .total-factura p {
+            width: 20%;
+        }
 
-.total-factura p:nth-child(1){
-    margin-bottom:0;}
+        .total-factura p:nth-child(2) {
+            border-top: solid 1px black;
+            margin-bottom: 0;
+        }
 
-.total-factura p:nth-child(3){
-    font-size: 1.5rem;
-}
+        .total-factura p:nth-child(1) {
+            margin-bottom: 0;
+        }
 
-.datos-empresa{
-    display:flex;
-    flex-direction: column;
-    justify-content:center;
-    border-top: 1px solid black;
-}
+        .total-factura p:nth-child(3) {
+            font-size: 1.5rem;
+        }
 
-.datos-empresa p{
-    margin-bottom: 0;
-    text-align: center;
-}
+        .datos-empresa {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-top: 1px solid black;
+        }
 
-</style>
+        .datos-empresa p {
+            margin-bottom: 0;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>

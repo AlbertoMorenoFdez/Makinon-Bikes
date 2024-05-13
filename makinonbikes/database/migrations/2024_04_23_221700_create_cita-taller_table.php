@@ -20,8 +20,9 @@ return new class extends Migration
                 ->onUpdate('cascade');
             $table->date('fecha');
             $table->time('hora');
-            $table->string('estado', 100);
+            $table->string('opcion', 100);
             $table->string('comentario', 1000)->nullable();
+            $table->string('estado', 100);
             $table->string('imagen', 100)->nullable();
             $table->timestamps();
         });

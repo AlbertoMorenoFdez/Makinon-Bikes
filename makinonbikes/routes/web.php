@@ -17,6 +17,7 @@ use App\Http\Controllers\TarjetaCreditoController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\AngularController;
+use App\Http\Controllers\CitaTallerController;
 use App\Http\Controllers\ProductoColorTallaController;
 use App\Http\Controllers\FacturaController;
 
@@ -189,6 +190,7 @@ Route::get('/paginaEnConstruccion', function () {
 Ruta para la página del taller
 */
 Route::get('/citaTaller', [AngularController::class, 'connectToAngular'])->name('citaTaller')->middleware('auth');
+//Route::get('/traer_todas_citas', [CitaTallerController::class, 'calendarioCitas'])->name('traer_todas_citas')->middleware('auth');
 
 
 Route::get('/dashboard', function () {
