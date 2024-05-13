@@ -23,7 +23,7 @@ import { EditarFormularioComponent } from '../obtener-cita/editar-formulario/edi
 export class CalendarioComponent implements OnInit {
   data: any[] = [];
   eventosFestivos: any[] = []; // Declara un array para almacenar los eventos festivos
- 
+  rol:string='user';
   constructor(private apiFestivoService: ApiFestivoService,
               private bddService: BddService,
               private rolesService: RolesService) { }
@@ -32,7 +32,7 @@ export class CalendarioComponent implements OnInit {
     this.llenarDatos();
     
   }
-
+  
   
 
   llenarDatos() {
@@ -51,75 +51,33 @@ export class CalendarioComponent implements OnInit {
       // Actualizar los eventos del calendario con los eventos festivos
       this.festivosEventosCalendario();
     });
+    let role = this.rolesService.getUserRole().subscribe((role:string) => {
+      this.rol = role;
+    });
     
-    this.bddService.obtenerCitas().subscribe(data => {
+    this.bddService.obtenerTodasCitas().subscribe(data => {
       this.data = data;
       this.data.forEach(evento => {
         // Agregar eventos festivos al array eventosFestivos
+        console.log(this.rol);
+        if(this.rol==='user'){
         this.eventosFestivos.push({
           title: "Ocupado",
           start: `${evento.fecha}T${evento.hora}` 
           
         });
+        }else if(this.rol==='admin'){
+          this.eventosFestivos.push({
+            title: evento.opcion,
+            start: `${evento.fecha}T${evento.hora}` 
+          });
+        }
       });
       // Actualizar los eventos del calendario con los eventos festivos
       this.festivosEventosCalendario();
     }
     );
   }
-  // llenarDatos() {
-  //   // Primero obtenemos los datos festivos que son comunes para todos los usuarios.
-  //   this.apiFestivoService.getData().subscribe(data => {
-  //     this.data = data;
-  //     this.data.forEach(evento => {
-  //       if (evento.counties === null || evento.counties.includes('ES-AN')) {
-  //         this.eventosFestivos.push({
-  //           title: evento.localName,
-  //           start: evento.date
-  //         });
-  //       }
-  //     });
-  //     // Actualizar los eventos del calendario con los eventos festivos
-  //     this.festivosEventosCalendario();
-  //   });
-  
-  //   // A continuación, decidimos qué datos de citas cargar basado en el rol del usuario.
-  //   this.rolesService.getUserRole().subscribe(role => {
-  //     if (role === 'admin') {
-  //       this.cargarDatosAdmin();
-  //     } else if (role === 'user') {
-  //       this.cargarDatosUsuario();
-  //     }
-  //   });
-  // }
-  
-  // cargarDatosAdmin() {
-  //   // Para el admin, cargar todas las citas con detalles
-  //   this.bddService.obtenerTodasLasCitas().subscribe(data => {
-  //     data.forEach(evento => {
-  //       this.eventosFestivos.push({
-  //         title: evento.titulo,
-  //         start: `${evento.fecha}T${evento.hora}`,
-  //         color: 'red'  // Colores para distinguir administrador
-  //       });
-  //     });
-  //     this.festivosEventosCalendario();
-  //   });
-  // }
-  
-  // cargarDatosUsuario() {
-  //   // Para el usuario, cargar solo las citas marcadas como 'Ocupado'
-  //   this.bddService.obtenerCitas().subscribe(data => {
-  //     data.forEach(evento => {
-  //       this.eventosFestivos.push({
-  //         title: "Ocupado",
-  //         start: `${evento.fecha}T${evento.hora}`
-  //       });
-  //     });
-  //     this.festivosEventosCalendario();
-  //   });
-  // }
-
 
   festivosEventosCalendario() {
     // Asignar los eventos festivos a la propiedad events de calendarOptions

@@ -34,7 +34,7 @@ export class DatePickerComponent {
   enviarFecha(event: any) {
     console.log('Metodo enviarFecha llamado')
     const date = new Date(event.target.value); // Convierte la cadena a Date
-    console.log(date);
+    // console.log(date);
     this.almacenarFecha.emit(date);
   }
   onDateChange(event: MatDatepickerInputEvent<Date>) {

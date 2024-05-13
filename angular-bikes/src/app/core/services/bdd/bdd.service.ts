@@ -16,40 +16,40 @@ export class BddService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>('http://localhost:8000/api/traerDatos', { headers });
   }
-  
-  crearCita(formularioDatos: any): Observable<any> { 
+
+  obtenerTodasCitas(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>('http://localhost:8000/api/calendario', { headers });
+  }
+  crearCita(formularioDatos: any): Observable<any> {
     console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>('http://localhost:8000/api/cita_taller',formularioDatos, { headers });
+    return this.http.post<any>('http://localhost:8000/api/cita_taller', formularioDatos, { headers });
   }
 
   //Obtiene todas las citas de un usuario de la bbdd
-obtenerCitas(): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.get<any>('http://localhost:8000/api/cita_taller', { headers });
-}
+  obtenerCitas(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>('http://localhost:8000/api/cita_taller', { headers });
+  }
 
-//Edita una cita en la bbdd
-editarCita(credentials: { id: number }): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.put<any>('http://localhost:8000/api/cita_taller', credentials, { headers });
-}
+  //Edita una cita en la bbdd
+  editarCita(credentials: { id: number }): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<any>('http://localhost:8000/api/cita_taller', credentials, { headers });
+  }
 
-//Elimina una cita de la bbdd
-eliminarCita(id: number): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.delete<any>('http://localhost:8000/api/cita_taller', { headers, params: { id_cita_taller: id } });
-}
+  //Elimina una cita de la bbdd
+  eliminarCita(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete<any>('http://localhost:8000/api/cita_taller', { headers, params: { id_cita_taller: id } });
+  }
 
-obtenerCitasUsuario(): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  return this.http.get<any>('http://localhost:8000/api/cita_taller_usuario', { headers });
-}
 
 
   enviarDatos(datos: any): Observable<any> {

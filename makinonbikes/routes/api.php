@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/cita_taller', [CitaTallerController::cl
 Route::middleware('auth:sanctum')->put('/cita_taller', [CitaTallerController::class, 'editarCita']);
 Route::middleware('auth:sanctum')->delete('/cita_taller', [CitaTallerController::class, 'eliminarCita']);
 
-Route::middleware('auth:sanctum')->get('/citas-calendario', [CitaTallerController::class, 'calendarioCitas']);
+Route::middleware('auth:sanctum')->get('/calendario', [CitaTallerController::class, 'calendarioCitas']);
 
 
 /* Route::post('/citaTaller', [CitaTallerController::class, 'crearCita']);
