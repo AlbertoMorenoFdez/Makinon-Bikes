@@ -137,4 +137,10 @@ return [
     // Pedidos
     "buscarPed" => "Buscar pedido",
     "misPed" => "Mis pedidos",
+
+    // Taller
+    "citas" => "Citas",
+    "buscarCita" => "Buscar cita",
+    "misCitas" => "Mis citas",
+    "listaCitas" => "Listado de citas",
 ];

@@ -22,13 +22,14 @@
                         <td>{{ $detalle->producto->nombre}}</td>
                         <td>{{ $detalle->cantidad }}</td>
                         <td>{{ $detalle->precio }} €</td>
-                        <td>{{ $detalle->subtotal }} €</td>
+                        <td>{{ $detalle->cantidad * $detalle->precio }} €</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <div class="card-footer perfilbotones d-flex justify-center">
-            <x-makinon-primary-link-button href="{{ route('mis-pedidos') }}">Volver</x-makinon-primary-link-button>"
+        <div class="d-flex justify-content-center mt-5">
+            <x-makinon-primary-link-button href="{{ url()->previous() }}" style="margin-right: 10px">Volver</x-makinon-primary-link-button>
+            <x-makinon-primary-link-button href="{{ route('factura-pedido', $pedido->id_pedido) }}">Ver factura</x-makinon-primary-link-button>
         </div>
     </div>
 </div>

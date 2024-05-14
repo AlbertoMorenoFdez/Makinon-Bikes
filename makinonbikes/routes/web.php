@@ -131,11 +131,14 @@ Ruta para las Tallas
 Route::post('nuevaTalla', [TallaController::class, 'nuevaTalla'])->name('nuevaTalla');
 
 /*
-Ruta para la página del taller
+Rutas para la página del taller
 */
-Route::get('/taller', function () {
-    return view('taller');
-})->name('taller');
+Route::get('/taller', function () {return view('taller');})->name('taller');
+Route::get('/citaTaller', [AngularController::class, 'connectToAngular'])->name('citaTaller')->middleware('auth');
+//Route::get('/traer_todas_citas', [CitaTallerController::class, 'calendarioCitas'])->name('traer_todas_citas')->middleware('auth');
+
+Route::get('/listadoCitasTaller', [CitaTallerController::class, 'listadoCitas'])->name('listadoCitas')->middleware('auth', 'rol:admin');
+Route::put('modificarEstadoCita/{id}', [CitaTallerController::class, 'modificarEstadoCita'])->name('modificarEstadoCita')->middleware('auth', 'rol:admin');
 
 
 /*
@@ -185,12 +188,6 @@ Ruta para la página en construcción
 Route::get('/paginaEnConstruccion', function () {
     return view('paginaEnConstruccion');
 })->name('paginaEnConstruccion');
-
-/*
-Ruta para la página del taller
-*/
-Route::get('/citaTaller', [AngularController::class, 'connectToAngular'])->name('citaTaller')->middleware('auth');
-//Route::get('/traer_todas_citas', [CitaTallerController::class, 'calendarioCitas'])->name('traer_todas_citas')->middleware('auth');
 
 
 Route::get('/dashboard', function () {

@@ -29,20 +29,26 @@
                     <tr>
                         <td>{{ $pedido->id_pedido }}</td>
                         <td>{{ $pedido->fecha }}</td>
-                        <td>{{ $pedido->usuario ? $pedido->usuario->nombre . ' ' . $pedido->usuario->apellidos : 'Usuario no encontrado' }}</td>
+                        <td>{{ $pedido->usuario ? $pedido->usuario->nombre . ' ' . $pedido->usuario->apellidos : 'Usuario no encontrado' }}
+                        </td>
                         <td>{{ $pedido->total }} €</td>
                         <td>
                             <form action="{{ route('modificarEstadoPedido', $pedido->id_pedido) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <select name="estado" onchange="this.form.submit()" style="height: 35px; margin-bottom:0px">
-                                    <option style="color:black;" value="finalizado" {{ $pedido->estado == 'finalizado' ? 'selected' : '' }}>
+                                <select name="estado" onchange="this.form.submit()"
+                                    style="height: 35px; margin-bottom:0px">
+                                    <option style="color:black;" value="finalizado"
+                                        {{ $pedido->estado == 'finalizado' ? 'selected' : '' }}>
                                         Finalizado</option>
-                                    <option style="color:green;" value="enviado" {{ $pedido->estado == 'enviado' ? 'selected' : '' }}>Enviado
+                                    <option style="color:green;" value="enviado"
+                                        {{ $pedido->estado == 'enviado' ? 'selected' : '' }}>Enviado
                                     </option>
-                                    <option style="color:orange;" value="pendiente" {{ $pedido->estado == 'pendiente' ? 'selected' : '' }}>
+                                    <option style="color:orange;" value="pendiente"
+                                        {{ $pedido->estado == 'pendiente' ? 'selected' : '' }}>
                                         Pendiente</option>
-                                    <option style="color:red;" value="cancelado" {{ $pedido->estado == 'cancelado' ? 'selected' : '' }}>
+                                    <option style="color:red;" value="cancelado"
+                                        {{ $pedido->estado == 'cancelado' ? 'selected' : '' }}>
                                         Cancelado</option>
                                 </select>
                             </form>
@@ -62,5 +68,9 @@
             </tbody>
         </table>
         {{ $pedidos->links() }}
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+        <x-makinon-primary-link-button
+            href="{{ route('usuario.panelAdmin') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
     </div>
 </div>

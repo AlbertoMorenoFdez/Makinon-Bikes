@@ -1,0 +1,45 @@
+/* Estilo para la lista de citas */
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card
+{
+  display: flex;
+  justify-content: space-between;
+
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 30px;
+  }
+ 
+  
+  li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #da741b;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Añade transformación y transición */
+  }
+  li:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumenta la sombra para un efecto más profundo */
+    transform: translateX(15px); /* Mueve la card ligeramente hacia arriba */
+  }
+  button{
+    width: 10px;
+    height: 30px;
+  }
+  
+  strong {
+    color: #333;
+  }
+  
+  div {
+    margin-top: 5px;
+  }
+  

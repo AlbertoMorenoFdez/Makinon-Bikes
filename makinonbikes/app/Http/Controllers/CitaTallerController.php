@@ -27,7 +27,8 @@ class CitaTallerController extends Controller
         return response()->json([
             'nombre' => $request->user()->nombre,
             'email' => $request->user()->email,
-            'id_usuario' => $request->user()->id_usuario
+            'id_usuario' => $request->user()->id_usuario,
+            'rol' => $request->user()->rol,
         ]);
     }
 
@@ -110,12 +111,34 @@ class CitaTallerController extends Controller
     }
 
     /**
-     * Función que permite al administrador recuperar todas las citas de la tabla cita_taller
+     * Función que permite al administrador recuperar todas las citas de la tabla cita_taller en Angular
      */
 
     public function calendarioCitas()
     {
         $citas = CitaTaller::all();
         return response()->json($citas);
+    }
+
+    /**
+     * Función que permite al administrador recuperar el listado de citas para Laravel
+     */
+
+    public function listadoCitas()
+    {
+        $citas = CitaTaller::paginate(10);
+        return view('taller.listadoCitasTaller', ['citas' => $citas]);
+    }
+
+    /**
+     * Función que permite al adminitrador modificar el estado de una cita
+     */
+    public function modificarEstadoCita(Request $request, $id)
+    {
+        $cita = CitaTaller::find($id);
+        $cita->estado = $request->estado;
+        $cita->save();
+
+        return redirect()->route('listadoCitas')->with('success', 'Estado de la cita actualizado con éxito');
     }
 }

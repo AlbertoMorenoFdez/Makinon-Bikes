@@ -128,7 +128,8 @@
                                 data-bs-parent="#accordionTijas">
                                 <div class="accordion-body">
                                     <p><a href="{{ route('productos.tipo', 'tija') }}">Tijas</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'tija telescopica') }}">Tijas telescópicas</a></p>
+                                    <p><a href="{{ route('productos.tipo', 'tija telescopica') }}">Tijas
+                                            telescópicas</a></p>
                                 </div>
                             </div>
                         </div>
@@ -174,8 +175,8 @@
             </h2>
             <div id="zapatillas" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{route ('productos.tipo','zapatillas de carretera')}}">De carretera</a> </p>
-                    <p><a href="{{route ('productos.tipo','zapatillas de montaña')}}">De montaña</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'zapatillas de carretera') }}">De carretera</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'zapatillas de montaña') }}">De montaña</a> </p>
                 </div>
             </div>
         </div>
@@ -188,8 +189,8 @@
             </h2>
             <div id="maillots" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{route ('productos.tipo','maillot corto')}}">De manga corta</a></p>
-                    <p><a href="{{route ('productos.tipo','maillot largo')}}">De manga larga</a></p>
+                    <p><a href="{{ route('productos.tipo', 'maillot corto') }}">De manga corta</a></p>
+                    <p><a href="{{ route('productos.tipo', 'maillot largo') }}">De manga larga</a></p>
                 </div>
             </div>
         </div>
@@ -202,8 +203,8 @@
             </h2>
             <div id="culottes" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{route ('productos.tipo','culotte corto')}}">Cortos</a></p>
-                    <p><a href="{{route ('productos.tipo','culotte largo')}}">Largos</a></p>
+                    <p><a href="{{ route('productos.tipo', 'culotte corto') }}">Cortos</a></p>
+                    <p><a href="{{ route('productos.tipo', 'culotte largo') }}">Largos</a></p>
                 </div>
             </div>
         </div>
@@ -216,8 +217,8 @@
             </h2>
             <div id="guantes" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{route ('productos.tipo','guantes cortos')}}">Cortos</a></p>
-                    <p><a href="{{route ('productos.tipo','guantes largo')}}">Largos</a></p>
+                    <p><a href="{{ route('productos.tipo', 'guantes cortos') }}">Cortos</a></p>
+                    <p><a href="{{ route('productos.tipo', 'guantes largo') }}">Largos</a></p>
                 </div>
             </div>
         </div>
@@ -231,7 +232,7 @@
             </h2>
             <div id="alimentacion" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'barrita') }}">Barritas</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'barrita') }}">Barritas</a></p>
                     <p><a href="{{ route('productos.tipo', 'gel') }}">Geles</a> </p>
                     <p><a href="{{ route('productos.tipo', 'hidratacion') }}">Hidratación</a> </p>
                 </div>
@@ -246,8 +247,8 @@
             </h2>
             <div id="taller" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p>Sobre nuestro taller</p>
-                    <p>Pide cita</p>
+                    <p><a href="{{route('taller')}}">Nuestro taller</a></p>
+                    <p><a href="{{route('citaTaller')}}">Pide cita</a></p>
                 </div>
             </div>
         </div>

@@ -136,4 +136,10 @@ return [
     "buscarPed" => "Search order",
     "misPed" => "My orders",
 
+    // Workshop
+    "cita" => "Appointment",
+    "buscarCita" => "Search appointment",
+    "misCitas" => "My appointments",
+    "listaCitas" => "Appointments List",
+
 ];
