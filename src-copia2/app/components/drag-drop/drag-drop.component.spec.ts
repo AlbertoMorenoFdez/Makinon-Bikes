@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubirArchivoComponent } from './subir-archivo.component';
+import { DragDropComponent } from './drag-drop.component';
 
-describe('SubirArchivoComponent', () => {
-  let component: SubirArchivoComponent;
-  let fixture: ComponentFixture<SubirArchivoComponent>;
+describe('DragDropComponent', () => {
+  let component: DragDropComponent;
+  let fixture: ComponentFixture<DragDropComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubirArchivoComponent]
+      imports: [DragDropComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SubirArchivoComponent);
+    fixture = TestBed.createComponent(DragDropComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

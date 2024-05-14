@@ -10,6 +10,7 @@ import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.com
 import { NgModule } from '@angular/core';
 import { EditarFormularioComponent } from './components/obtener-cita/editar-formulario/editar-formulario.component';
 import { AutenticacionGuard } from '../app/autenticacion.guard';
+import { DragDropComponent } from './components/drag-drop/drag-drop.component';
 
 
 export const routes: Routes = [
@@ -48,12 +49,18 @@ export const routes: Routes = [
         component: EditarFormularioComponent,
         
     },
+    {
+        path: 'citaPendiente',
+        // canActivate: [AuthGuard],
+         component: DragDropComponent,
+
+    },
     { 
         path: '',         
         redirectTo: '/citaTaller', 
         pathMatch: 'full' 
     },
-
+    
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

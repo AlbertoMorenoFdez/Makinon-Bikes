@@ -27,9 +27,14 @@ Route::middleware('auth:sanctum')->get('/traerDatos', [CitaTallerController::cla
 Route::middleware('auth:sanctum')->post('/cita_taller', [CitaTallerController::class, 'crearCita']);
 Route::middleware('auth:sanctum')->get('/cita_taller', [CitaTallerController::class, 'obtenerCitas']);
 Route::middleware('auth:sanctum')->put('/cita_taller', [CitaTallerController::class, 'editarCita']);
+Route::middleware('auth:sanctum')->put('/citaPendiente', [CitaTallerController::class, 'editarEstadoCita']);
 Route::middleware('auth:sanctum')->delete('/cita_taller', [CitaTallerController::class, 'eliminarCita']);
+Route::middleware('auth:sanctum')->post('/subir_imagen', [CitaTallerController::class, 'subirImagen']);
 
 Route::middleware('auth:sanctum')->get('/calendario', [CitaTallerController::class, 'calendarioCitas']);
+
+Route::middleware('auth:sanctum')->get('files', [CitaTallerController::class, 'subirImagen']);
+
 
 
 /* Route::post('/citaTaller', [CitaTallerController::class, 'crearCita']);
