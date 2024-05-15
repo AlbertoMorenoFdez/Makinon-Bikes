@@ -57,8 +57,11 @@ export class AppComponent implements OnInit {
     this.rolesService.getUserRole().subscribe((role:string) => {      
       this.isAdmin = role === 'admin';
       this.isUser = role === 'user';
+  
+      // Agregar código de depuración
+      // console.log('isAdmin:', this.isAdmin);
+      // console.log('isUser:', this.isUser);
     });
-   
   }
 
   recibirNombre(nombre: string): void {

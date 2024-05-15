@@ -7,23 +7,24 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SubirArchivoService {
+  private baseUrl = 'http://localhost:8000/api/crearCita';
 
-  private baseUrl = 'http://localhost:8000/api'; //Cambiar a nuestro dominio o puerto localhost
+  constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) {}
-
-  upload(file: File): Observable<HttpEvent<any>> {
+  /* upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
-    formData.append('file', file);
 
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
-      responseType: 'json',
+    formData.append('imagen', file);
+
+    const req = new HttpRequest('POST', this.baseUrl, formData, {
+      reportProgress: true,
+      responseType: 'json'
     });
 
     return this.http.request(req);
   }
-
-  getFiles(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/files`);
-  }
+ */
+  // getFiles(): Observable<any> {
+  //   return this.http.get(`${this.baseUrl}/files`);
+  // }
 }

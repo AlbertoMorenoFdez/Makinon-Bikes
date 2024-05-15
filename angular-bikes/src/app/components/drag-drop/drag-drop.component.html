@@ -1,0 +1,48 @@
+<div class="example-container">
+    <h2>Pendientes</h2>
+    <div cdkDropList #pendienteList="cdkDropList" [cdkDropListData]="pendiente"
+        [cdkDropListConnectedTo]="[confirmadaList, canceladaList]" (cdkDropListDropped)="drop($event)">
+        @for (item of pendiente; track $index) {
+        <div class="example-box" cdkDrag>
+            Fecha: {{ item.Fecha }}<br>
+            Hora: {{ item.Hora }}<br>
+            Estado: {{ item.Estado }}<br>
+            Opción: {{ item.Opcion }}
+        </div>
+        }
+    </div>
+</div>
+
+<div class="example-container">
+    <h2>Confirmadas</h2>
+    <div cdkDropList #confirmadaList="cdkDropList" [cdkDropListData]="confirmada"
+        [cdkDropListConnectedTo]="[pendienteList, canceladaList]" (cdkDropListDropped)="drop($event)">
+        @for (item of confirmada; track $index) {
+        <div class="example-box" cdkDrag>
+            Fecha: {{ item.Fecha }}<br>
+            Hora: {{ item.Hora }}<br>
+            Estado: {{ item.Estado }}<br>
+            Opción: {{ item.Opcion }}
+        </div>
+        }
+    </div>
+</div>
+
+<div class="example-container">
+    <h2>Canceladas</h2>
+
+    <div cdkDropList #canceladaList="cdkDropList" [cdkDropListData]="cancelada"
+        [cdkDropListConnectedTo]="[pendienteList, confirmadaList]" (cdkDropListDropped)="drop($event)">
+        @for (item of cancelada; track $index) {
+        <div class="example-box" cdkDrag>
+            Fecha: {{ item.Fecha }}<br>
+            Hora: {{ item.Hora }}<br>
+            Estado: {{ item.Estado }}<br>
+            Opción: {{ item.Opcion }}
+        </div>
+        }
+    </div>
+</div>
+
+
+<button (click)="actualizar()">Actualizar</button>

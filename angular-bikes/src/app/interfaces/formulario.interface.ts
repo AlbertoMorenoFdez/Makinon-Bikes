@@ -1,8 +1,15 @@
-
 export interface FormularioDatos {
   fecha: String;
   hora: String;
-  comentario: string;
+  comentario: String;
   imagen?: File | null; // ? significa que es opcional
-  opcion: string;
+  opcion: String;
+}
+
+export interface dragDrop {
+  Fecha: string;
+  Hora: string;
+  Estado: string;
+  Opcion: string;
+  id_cita_taller?: number;
 }

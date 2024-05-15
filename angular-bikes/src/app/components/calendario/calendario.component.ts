@@ -23,20 +23,19 @@ import { EditarFormularioComponent } from '../obtener-cita/editar-formulario/edi
 export class CalendarioComponent implements OnInit {
   data: any[] = [];
   eventosFestivos: any[] = []; // Declara un array para almacenar los eventos festivos
-  rol:string='user';
+  rol: string = 'user';
   constructor(private apiFestivoService: ApiFestivoService,
-              private bddService: BddService,
-              private rolesService: RolesService) { }
+    private bddService: BddService,
+    private rolesService: RolesService) { }
 
   ngOnInit(): void {
     this.llenarDatos();
-    
+
   }
-  
-  
+
+
 
   llenarDatos() {
-  
     this.apiFestivoService.getData().subscribe(data => {
       this.data = data;
       this.data.forEach(evento => {
@@ -51,32 +50,30 @@ export class CalendarioComponent implements OnInit {
       // Actualizar los eventos del calendario con los eventos festivos
       this.festivosEventosCalendario();
     });
-    let role = this.rolesService.getUserRole().subscribe((role:string) => {
+    let role = this.rolesService.getUserRole().subscribe((role: string) => {
       this.rol = role;
     });
-    
-    this.bddService.obtenerTodasCitas().subscribe(data => {
+
+    this.bddService.obtenerTodasCitas().subscribe((data: any[]) => {
       this.data = data;
-      this.data.forEach(evento => {
-        // Agregar eventos festivos al array eventosFestivos
-        console.log(this.rol);
-        if(this.rol==='user'){
-        this.eventosFestivos.push({
-          title: "Ocupado",
-          start: `${evento.fecha}T${evento.hora}` 
-          
-        });
-        }else if(this.rol==='admin'){
+      this.data.forEach((evento: any) => {
+        // console.log(`Fecha: ${evento.fecha}, Hora: ${evento.hora}`);
+        if (this.rol === 'user') {
+          this.eventosFestivos.push({
+            title: "Ocupado",
+            start: `${evento.fecha}T${evento.hora}`
+          });
+        } else if (this.rol === 'admin') {
           this.eventosFestivos.push({
             title: evento.opcion,
-            start: `${evento.fecha}T${evento.hora}` 
+            start: `${evento.fecha}T${evento.hora}`
           });
         }
-      });
-      // Actualizar los eventos del calendario con los eventos festivos
+        // Actualizar los eventos del calendario con los eventos festivos
       this.festivosEventosCalendario();
-    }
-    );
+      });
+      
+    });
   }
 
   festivosEventosCalendario() {

@@ -1,0 +1,13 @@
+canvas {
+    width: 80% !important;
+    height: auto !important;
+  }
+ div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+ #opcion{
+   width: 100%;
+   height: 100%;
+ }

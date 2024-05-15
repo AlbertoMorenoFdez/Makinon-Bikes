@@ -1,0 +1,16 @@
+<div class="contenedor__google">
+    <div class="contenedor__google-maps">
+        <h1>Ubicación</h1>
+        <google-map height="400px" width="400px" [center]="center" [zoom]="zoom">
+            <map-marker [position]="markerPosition" [options]="markerOptions"></map-marker>
+        </google-map>
+    </div>
+    <div class="contenedor__google-direccion">
+        <h2>Dirección:</h2>
+        <p>Av. de la Constitución 1, 29006 Malaga</p>
+        <h2>Horario</h2>
+        <p>Lunes a Viernes: 9:00 - 14:00 y 16:00 - 20:00</p>
+        <p>Sábado: 9:00 - 14:00</p>
+        <h2>Teléfono</h2>
+        <p>+34 954 21 21 21</p>
+    </div>

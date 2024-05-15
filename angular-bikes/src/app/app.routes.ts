@@ -10,7 +10,9 @@ import { ObtenerCitaComponent } from './components/obtener-cita/obtener-cita.com
 import { NgModule } from '@angular/core';
 import { EditarFormularioComponent } from './components/obtener-cita/editar-formulario/editar-formulario.component';
 import { AutenticacionGuard } from '../app/autenticacion.guard';
-
+import { DragDropComponent } from './components/drag-drop/drag-drop.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { GraficaComponent } from './components/grafica/grafica.component';
 
 export const routes: Routes = [
   
@@ -48,12 +50,30 @@ export const routes: Routes = [
         component: EditarFormularioComponent,
         
     },
+    {
+        path: 'citaPendiente',
+        // canActivate: [AuthGuard],
+         component: DragDropComponent,
+
+    },
+    {
+        path: 'direccion',
+        // canActivate: [AuthGuard],
+         component: GoogleMapsComponent,
+
+    },
+    {
+        path: 'grafica',
+        // canActivate: [AuthGuard],
+         component: GraficaComponent,
+
+    },
     { 
         path: '',         
         redirectTo: '/citaTaller', 
         pathMatch: 'full' 
     },
-
+    
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

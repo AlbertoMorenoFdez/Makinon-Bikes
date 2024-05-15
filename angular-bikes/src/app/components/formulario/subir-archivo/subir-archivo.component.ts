@@ -26,20 +26,25 @@ export class SubirArchivoComponent implements OnInit {
   }
   }
   ngOnInit(): void {
-    this.fileInfos = this.subirServicio.getFiles();
+    //this.fileInfos = this.subirServicio.getFiles();
   }
 
   selectFile(event: any): void {
-    this.currentFile = event.target.files.item(0);
+    if (event.target.files && event.target.files.length > 0) {
+      this.currentFile = event.target.files.item(0);
+      this.almacenarFichero.emit(this.currentFile);
+      console.log(this.currentFile);
+      console.log(this.almacenarFichero);
+    }
   }
 
-  upload(): void {
+  /* upload(): void {
     if (this.currentFile) {
       this.subirServicio.upload(this.currentFile).subscribe({
         next: (event: any) => {
           if (event instanceof HttpResponse) {
             this.message = event.body.message;
-            this.fileInfos = this.subirServicio.getFiles();
+            //this.fileInfos = this.subirServicio.getFiles();
           }
         },
         error: (err: any) => {
@@ -55,7 +60,7 @@ export class SubirArchivoComponent implements OnInit {
           this.currentFile = undefined;
         },
       });
-    }
-  }
+    } 
+  }*/
 }
 

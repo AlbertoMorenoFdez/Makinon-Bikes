@@ -1,0 +1,11 @@
+.contenedor__google{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.contenedor__google-maps{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
