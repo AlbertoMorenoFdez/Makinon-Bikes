@@ -3,16 +3,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding-left: 50px;
+    padding-right: 30px;
     font-family: 'Port', sans-serif;
     font-size: 20px;
     color:$color3;
-
+    flex-direction: column;
 }
 p{
     font-size: 26px;
     font-family: 'Port', sans-serif;
     color:$color3;
+    filter: brightness(1.5);
 }
 @media (max-width: 1200px){
     p{

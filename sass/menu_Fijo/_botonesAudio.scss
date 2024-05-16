@@ -1,9 +1,13 @@
 #play {
-    font-size: 45px;
+    width: 30px;
+    height: 30px;
+    
 }
 
 #pause {
-    font-size: 45px;
+    width: 30px;
+    height: 30px;
+    
     display: none;
 
 }
@@ -11,10 +15,13 @@
 
 @media (max-width: 1200px) {
     #play {
+        
         font-size: 35px;
     }
 
     #pause {
+        width: 25px;
+        height: 25px;
         font-size: 35px;
         display: none;
 
@@ -34,6 +41,8 @@
 
     @media (max-width: 870px) {
         #play {
+            width: 25px;
+            height: 25px;
             font-size: 25px;
         }
 
@@ -45,4 +54,8 @@
 
       
     }
+}
+
+#pauseRes{
+    display: none;
 }

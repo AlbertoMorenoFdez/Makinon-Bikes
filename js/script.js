@@ -20,6 +20,7 @@ function playAudioRes() {
 }
 
 function pauseAudioRes() {
+ 
   document.getElementById('song').pause();
   document.getElementById('pauseRes').style.display = 'none';
   document.getElementById('playRes').style.display = 'inline-block';
@@ -28,6 +29,44 @@ function pauseAudioRes() {
 //----------------------------PLEGADO DE SVG PRIMERA PAGINA--------------------------------//
 
 
+// document.querySelector('#boton').addEventListener('click', function () {
+//   let poligono = document.getElementById('poligono');
+//   let puntos = poligono.getAttribute('points').split(' ').map(p => p.split(',').map(Number));
+//   let punto = { x: puntos[1][0], y: puntos[1][1] };
+
+//   let animacion = anime.timeline({
+//     easing: 'easeInOutSine',
+//     update: function () {
+//       puntos[1] = [punto.x, punto.y];
+//       poligono.setAttribute('points', puntos.map(p => p.join(',')).join(' '));
+//     }
+//   });
+
+//   if (window.innerWidth < 768) {
+//     animacion
+//       .add({
+//         targets: punto,
+//         x: 150, // Cambia los valores de destino según lo necesites
+//         y: 600, // Cambia los valores de destino según lo necesites
+//         round: 1,
+//         duration: 2000
+//       });
+//   } else {
+//     animacion
+//       .add({
+//         targets: punto,
+//         x: 550, // Cambia los valores de destino según lo necesites
+//         y: 600, // Cambia los valores de destino según lo necesites
+//         round: 1,
+//         duration: 2000
+//       });
+//   }
+  
+
+
+//   document.querySelector('#boton').style.opacity = '0';
+//   document.querySelector('#efectoAparecer').style.opacity = '1';
+// });
 document.querySelector('#boton').addEventListener('click', function () {
   let poligono = document.getElementById('poligono');
   let puntos = poligono.getAttribute('points').split(' ').map(p => p.split(',').map(Number));
@@ -38,6 +77,17 @@ document.querySelector('#boton').addEventListener('click', function () {
     update: function () {
       puntos[1] = [punto.x, punto.y];
       poligono.setAttribute('points', puntos.map(p => p.join(',')).join(' '));
+    },
+    complete: function () {
+      // Añadir un efecto de desvanecimiento más suave y visualmente interesante
+      anime({
+        targets: poligono,
+        opacity: 0,
+        scale: 0.5, // Reduce a la mitad el tamaño para un efecto de "desaparecer"
+        translateY: 50, // Mueve el polígono 50px hacia abajo
+        duration: 2000, // Duración más larga para un efecto más suave
+        easing: 'easeInOutQuad'
+      });
     }
   });
 
@@ -61,10 +111,11 @@ document.querySelector('#boton').addEventListener('click', function () {
       });
   }
 
-
   document.querySelector('#boton').style.opacity = '0';
   document.querySelector('#efectoAparecer').style.opacity = '1';
 });
+
+
 
 //----------------------------GRAFICA SVG--------------------------------//
 // Datos de ejemplo
@@ -175,12 +226,46 @@ canvasElement2.ctx = canvasElement2.canvas.getContext('2d');
 drawImageWithFilter(canvasElement1);
 changeText(canvasElement2);
 
+// function drawImageWithFilter(element) {
+//   const img = new Image();
+//   img.src = element.images[element.currentIndex];
+//   img.onload = function () {
+//     element.ctx.clearRect(0, 0, element.canvas.width, element.canvas.height);
+//     element.ctx.drawImage(img, 0, 0, element.canvas.width, element.canvas.height);
+//     setTimeout(() => {
+//       element.currentIndex = (element.currentIndex + 1) % element.images.length;
+//       drawImageWithFilter(element);
+//     }, 5000);
+//   };
+//   img.onerror = function () {
+//     element.currentIndex = (element.currentIndex + 1) % element.images.length;
+//     drawImageWithFilter(element);
+//   };
+// }
 function drawImageWithFilter(element) {
   const img = new Image();
   img.src = element.images[element.currentIndex];
   img.onload = function () {
     element.ctx.clearRect(0, 0, element.canvas.width, element.canvas.height);
-    element.ctx.drawImage(img, 0, 0, element.canvas.width, element.canvas.height);
+
+    // Calculate the scaling factor to cover the canvas without distortion
+    const canvasAspect = element.canvas.width / element.canvas.height;
+    const imgAspect = img.width / img.height;
+    let drawWidth, drawHeight;
+
+    if (canvasAspect > imgAspect) {
+      drawWidth = element.canvas.width;
+      drawHeight = drawWidth / imgAspect;
+    } else {
+      drawHeight = element.canvas.height;
+      drawWidth = drawHeight * imgAspect;
+    }
+
+    const offsetX = (element.canvas.width - drawWidth) / 2;
+    const offsetY = (element.canvas.height - drawHeight) / 2;
+
+    element.ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+
     setTimeout(() => {
       element.currentIndex = (element.currentIndex + 1) % element.images.length;
       drawImageWithFilter(element);

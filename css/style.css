@@ -7,6 +7,64 @@
   font-family: "Port";
   src: url("../multimedia/Port Condensed-normal-400-100.otf") format("opentype");
 }
+/* Ocultar el checkbox */
+.menu-toggle {
+  display: none;
+}
+
+/* Estilo básico del menú */
+.menu {
+  position: fixed;
+  z-index: 1;
+  left: -300px; /* Inicialmente fuera de la pantalla a la izquierda */
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition: left 0.5s ease; /* Transición suave para el deslizamiento */
+  /* Mostrar el menú cuando el checkbox está activado */
+}
+.menu-toggle:checked + .header__hamburguerMenu-container + .menu {
+  left: 0;
+}
+
+.menu-content {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+.menu-content .close {
+  color: #000000;
+  font-size: 28px;
+  font-weight: bold;
+  text-decoration: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.menu-content .close:hover,
+.menu-content .close:focus {
+  color: #f25c05;
+}
+.menu-content ul {
+  list-style: none;
+  padding: 0;
+}
+.menu-content ul li {
+  margin: 20px 0;
+}
+.menu-content ul li a {
+  text-decoration: none;
+  color: #333;
+}
+.menu-content ul li a:hover {
+  color: #f25c05;
+}
+
 .header {
   position: fixed;
   z-index: 3;
@@ -16,7 +74,7 @@
   padding: 10px;
   background: transparent;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #ffffff;
 }
 .header__hamburguerMenu-container {
@@ -93,9 +151,10 @@
 .header__navbar {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 .header__navbar a {
-  font-size: 32px;
+  font-size: 24px;
   color: #000000;
   text-decoration: none;
   font-weight: 500;
@@ -137,11 +196,13 @@
 }
 
 #play {
-  font-size: 45px;
+  width: 30px;
+  height: 30px;
 }
 
 #pause {
-  font-size: 45px;
+  width: 30px;
+  height: 30px;
   display: none;
 }
 
@@ -150,6 +211,8 @@
     font-size: 35px;
   }
   #pause {
+    width: 25px;
+    height: 25px;
     font-size: 35px;
     display: none;
   }
@@ -165,6 +228,8 @@
 }
 @media (max-width: 990px) and (max-width: 870px) {
   #play {
+    width: 25px;
+    height: 25px;
     font-size: 25px;
   }
   #pause {
@@ -172,6 +237,10 @@
     display: none;
   }
 }
+#pauseRes {
+  display: none;
+}
+
 .contenedorPrincipal {
   background-color: #ffffff;
   width: 100%;
@@ -309,8 +378,9 @@
 }
 @media screen and (max-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    margin-left: 25px;
   }
   .grid__item {
     width: 150px;
@@ -327,16 +397,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding-left: 50px;
+  padding-right: 30px;
   font-family: "Port", sans-serif;
   font-size: 20px;
   color: #707070;
+  flex-direction: column;
 }
 
 p {
   font-size: 26px;
   font-family: "Port", sans-serif;
   color: #707070;
+  filter: brightness(1.5);
 }
 
 @media (max-width: 1200px) {
@@ -639,7 +712,6 @@ p {
 @media screen and (max-width: 768px) {
   .formulario {
     width: 300px;
-    height: 473px;
   }
 }
 @media screen and (max-width: 450px) {
@@ -655,22 +727,49 @@ p {
 .campo__input, .campo__textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-radius: 5px;
+  background-color: white;
 }
-.campo__input:valid, .campo__textarea:valid {
-  border-color: green;
+.campo__input:focus, .campo__textarea:focus {
+  outline: none;
 }
-.campo__input:invalid, .campo__textarea:invalid {
-  border-color: red;
+.campo__input:invalid:not(:placeholder-shown), .campo__textarea:invalid:not(:placeholder-shown) {
+  border: 2px solid transparent;
 }
-.campo__input:focus:invalid + .campo__error, .campo__textarea:focus:invalid + .campo__error {
-  display: block;
+.campo__input:not(:placeholder-shown):invalid, .campo__textarea:not(:placeholder-shown):invalid {
+  border: 2px solid red;
+}
+.campo__input:valid:not(:placeholder-shown), .campo__textarea:valid:not(:placeholder-shown) {
+  border: 2px solid green;
+}
+.campo__input:focus:invalid:not(:placeholder-shown), .campo__textarea:focus:invalid:not(:placeholder-shown) {
+  border: 2px solid red;
+}
+.campo__textarea {
+  resize: vertical;
+  height: 100px;
 }
 .campo__error {
   display: none;
   color: red;
   font-size: 12px;
+}
+.campo__input:invalid:not(:focus):not(:placeholder-shown) + .campo__error, .campo__input-fecha:invalid:not(:focus):not(:placeholder-shown) + .campo__error, .campo__textarea:invalid:not(:focus):not(:placeholder-shown) + .campo__error {
+  display: block;
+}
+.campo__input-fecha {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: white;
+}
+.campo__input-fecha:focus {
+  outline: none;
+}
+.campo__input-fecha:valid:not(:placeholder-shown) {
+  border: 2px solid green;
 }
 
 .contenedorQuinario {

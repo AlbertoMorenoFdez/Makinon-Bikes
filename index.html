@@ -7,48 +7,85 @@
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <script defer type="text/javascript" src="js/script.js"></script>
     <title>Landing Page</title>
 </head>
 
 <body>
     <header class="header">
+       
+        <input type="checkbox" id="menuToggle" class="menu-toggle">
         <div class="header__hamburguerMenu-container">
-            <button class="header__hamburguerMenu-btn" onclick="toggleMenu()">
+            <label for="menuToggle" class="header__hamburguerMenu-btn">
                 <span class="header__hamburguerMenu-line"></span>
                 <span class="header__hamburguerMenu-line"></span>
                 <span class="header__hamburguerMenu-line"></span>
-            </button>
+            </label>
+        </div>
 
-            <div class="header__dropdown-menu">
+        <!-- Menú desplegable -->
+        <div class="menu">
+            
+            <div class="menu-content">
+                <label for="menuToggle" class="close">&times;</label>
                 <ul>
                     <li><a href="#section1">INICIO</a></li>
                     <li><a href="#section2">SPONSORS</a></li>
                     <li><a href="#section3">PASARELA</a></li>
                     <li><a href="#section4">REFERENCIAS</a></li>
                     <li><a href="#section5">CONTACTO</a></li>
-                    <li><a href="#" id="playRes" class="navbar__btn navbar__btn--light" onclick="playAudioRes(); return false;"><i
-                        class="bi bi-volume-mute-fill"></i></a>
-                    <a href="#" id="pauseRes" class="navbar__btn navbar__btn--light" onclick="pauseAudioRes(); return false;"><i
-                        class="bi bi-volume-up-fill"></i></a></li>
+                    <li>
+                        <a href="#" id="playRes" class="navbar__btn navbar__btn--light" onclick="playAudioRes(); return false;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-volume-mute-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0" />
+                            </svg>
+                        </a>
+                        <a href="#" id="pauseRes" class="navbar__btn navbar__btn--light" onclick="pauseAudioRes(); return false;" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-volume-up-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z" />
+                                <path
+                                    d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z" />
+                                <path
+                                    d="M8.707 11.182A4.5 4.5 0 0 0 10.025 8a4.5 4.5 0 0 0-1.318-3.182L8 5.525A3.5 3.5 0 0 1 9.025 8 3.5 3.5 0 0 1 8 10.475zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06" />
+                            </svg>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
+
         <div class="header__fondo">
             <img src="multimedia/logo.gif" alt="fondo_logo" class="header__logo-img">
         </div>
         <audio src="multimedia/megalovia.mp3" id="song" class="header__song"></audio>
         <nav class="header__navbar">
             <a href="#section1" class="navbar__link navbar__link--active">INICIO</a>
-            <a href="#section2" class="navbar__link" >SPONSORS</a>
+            <a href="#section2" class="navbar__link">SPONSORS</a>
             <a href="#section3" class="navbar__link">PASARELA</a>
             <a href="#section4" class="navbar__link">REFERENCIAS</a>
             <a href="#section5" class="navbar__link">CONTACTO</a>
-            <a href="#" id="play" class="navbar__btn navbar__btn--light" onclick="playAudio(); return false;"><i
-                    class="bi bi-volume-mute-fill"></i></a>
-            <a href="#" id="pause" class="navbar__btn navbar__btn--light" onclick="pauseAudio(); return false;"><i
-                    class="bi bi-volume-up-fill"></i></a>
+            <a href="#" id="play" class="navbar__btn navbar__btn--light" onclick="playAudio(); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-volume-mute-fill"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0" />
+                </svg>
+            </a>
+            <a href="#" id="pause" class="navbar__btn navbar__btn--light" onclick="pauseAudio(); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-volume-up-fill"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z" />
+                    <path
+                        d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z" />
+                    <path
+                        d="M8.707 11.182A4.5 4.5 0 0 0 10.025 8a4.5 4.5 0 0 0-1.318-3.182L8 5.525A3.5 3.5 0 0 1 9.025 8 3.5 3.5 0 0 1 8 10.475zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06" />
+                </svg>
+            </a>
         </nav>
 
     </header>
@@ -66,7 +103,8 @@
         </svg>
 
         <div id="boton" class="contenedorPrincipal__boton">
-            <image src="multimedia/logo.gif" width="100%" height="100%"><i class="contenedorPrincipal__boton-play bi bi-play-fill bi-2x"></i>            </image>
+            <image src="multimedia/logo.gif" width="100%" height="100%"><i
+                    class="contenedorPrincipal__boton-play bi bi-play-fill bi-2x"></i> </image>
         </div>
     </div>
 
@@ -102,6 +140,7 @@
             </div>
             <div class="split__right">
                 <!-- Contenido del contenedor derecho -->
+                <!-- <h2 >NUESTRAS BICICLETAS</h2> -->
                 <p>Nuestras bicicletas son más que simples medios de transporte; son la encarnación de la excelencia en
                     ingeniería y diseño.
                     Cada componente está meticulosamente seleccionado y ensamblado para ofrecer un rendimiento
@@ -114,117 +153,117 @@
     </div>
 
     <div class="contenedorTerciario parallax" id="section3">
-      <div class="contenedorTerciario__row">
-          <div class="contenedorTerciario__col">
-              <div class="contenedorTerciario__sub-column">
-                  <div class="contenedorTerciario__sub-col contenedorTerciario__margin" id="primerTexto">
-                      <h2 class="contenedorTerciario__title">EVOLUCIONADA</h2>
-                  </div>
-                  <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img">
-                      <div class="flip-card contenedorTerciario__flip-card">
-                          <div class="flip-card-inner">
-                              <div class="flip-card-front">
-                                  <img src="multimedia/primera.jpg" alt="Imagen 1" class="contenedorTerciario__img">
-                              </div>
-                              <div class="flip-card-back">
-                                  <!-- Aquí puedes agregar el video o cualquier otro contenido -->
-                                  <video controls class="contenedorTerciario__video">
-                                      <source src="multimedia/page1.mp4" type="video/mp4">
-                                      Tu navegador no admite el elemento de video.
-                                  </video>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="contenedorTerciario__col">
-              <div class="contenedorTerciario__sub-column">
-                  <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img contenedorTerciario__margin">
-                      <div class="flip-card contenedorTerciario__flip-card">
-                          <div class="flip-card-inner">
-                              <div class="flip-card-front">
-                                  <img src="multimedia/segunda.jpg" alt="Imagen 2" class="contenedorTerciario__img">
-                              </div>
-                              <div class="flip-card-back">
-                                  <!-- Aquí puedes agregar el video o cualquier otro contenido -->
-                                  <video controls class="contenedorTerciario__video">
-                                      <source src="video2.mp4" type="video/mp4">
-                                      Tu navegador no admite el elemento de video.
-                                  </video>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="contenedorTerciario__sub-col" id="segundoTexto">
-                      <h2 class="contenedorTerciario__title">LIGERA</h2>
-                  </div>
-              </div>
-          </div>
-          <div class="contenedorTerciario__col" id="conImgVideoRes">
-              <div class="contenedorTerciario__sub-column">
-                  <div class="contenedorTerciario__sub-col contenedorTerciario__margin" id="tercerTexto">
-                      <h2 class="contenedorTerciario__title">+ RÍGIDA</h2>
-                  </div>
-                  <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img">
-                      <div class="flip-card contenedorTerciario__flip-card">
-                          <div class="flip-card-inner">
-                              <div class="flip-card-front">
-                                  <img src="multimedia/tercera.jpg" alt="Imagen 3" class="contenedorTerciario__img">
-                              </div>
-                              <div class="flip-card-back">
-                                  <!-- Aquí puedes agregar el video o cualquier otro contenido -->
-                                  <video controls class="contenedorTerciario__video">
-                                      <source src="video3.mp4" type="video/mp4">
-                                      Tu navegador no admite el elemento de video.
-                                  </video>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="contenedorTerciario__col" id="conImgVideoRes">
-              <div class="contenedorTerciario__sub-column">
-                  <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img contenedorTerciario__margin">
-                      <div class="flip-card contenedorTerciario__flip-card">
-                          <div class="flip-card-inner">
-                              <div class="flip-card-front">
-                                  <img src="multimedia/cuarta.jpg" alt="Imagen 4" class="contenedorTerciario__img">
-                              </div>
-                              <div class="flip-card-back">
-                                  <!-- Aquí puedes agregar el video o cualquier otro contenido -->
-                                  <video controls class="contenedorTerciario__video">
-                                      <source src="video4.mp4" type="video/mp4">
-                                      Tu navegador no admite el elemento de video.
-                                  </video>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="contenedorTerciario__sub-col" id="cuartoTexto">
-                      <h2 class="contenedorTerciario__title">MÁXIMA EFICACIA DE PEDALEO</h2>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  
-      
-      <div class="contenedorCuaternario parallax" id="section4">
+        <div class="contenedorTerciario__row">
+            <div class="contenedorTerciario__col">
+                <div class="contenedorTerciario__sub-column">
+                    <div class="contenedorTerciario__sub-col contenedorTerciario__margin" id="primerTexto">
+                        <h2 class="contenedorTerciario__title">EVOLUCIONADA</h2>
+                    </div>
+                    <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img">
+                        <div class="flip-card contenedorTerciario__flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="multimedia/primera.jpg" alt="Imagen 1" class="contenedorTerciario__img">
+                                </div>
+                                <div class="flip-card-back">
+                                    <!-- Aquí puedes agregar el video o cualquier otro contenido -->
+                                    <video controls class="contenedorTerciario__video">
+                                        <source src="multimedia/page1.mp4" type="video/mp4">
+                                        Tu navegador no admite el elemento de video.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedorTerciario__col">
+                <div class="contenedorTerciario__sub-column">
+                    <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img contenedorTerciario__margin">
+                        <div class="flip-card contenedorTerciario__flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="multimedia/segunda.jpg" alt="Imagen 2" class="contenedorTerciario__img">
+                                </div>
+                                <div class="flip-card-back">
+                                    <!-- Aquí puedes agregar el video o cualquier otro contenido -->
+                                    <video controls class="contenedorTerciario__video">
+                                        <source src="video2.mp4" type="video/mp4">
+                                        Tu navegador no admite el elemento de video.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedorTerciario__sub-col" id="segundoTexto">
+                        <h2 class="contenedorTerciario__title">LIGERA</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedorTerciario__col" id="conImgVideoRes">
+                <div class="contenedorTerciario__sub-column">
+                    <div class="contenedorTerciario__sub-col contenedorTerciario__margin" id="tercerTexto">
+                        <h2 class="contenedorTerciario__title">+ RÍGIDA</h2>
+                    </div>
+                    <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img">
+                        <div class="flip-card contenedorTerciario__flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="multimedia/tercera.jpg" alt="Imagen 3" class="contenedorTerciario__img">
+                                </div>
+                                <div class="flip-card-back">
+                                    <!-- Aquí puedes agregar el video o cualquier otro contenido -->
+                                    <video controls class="contenedorTerciario__video">
+                                        <source src="video3.mp4" type="video/mp4">
+                                        Tu navegador no admite el elemento de video.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedorTerciario__col" id="conImgVideoRes">
+                <div class="contenedorTerciario__sub-column">
+                    <div class="contenedorTerciario__sub-col contenedorTerciario__sub-img contenedorTerciario__margin">
+                        <div class="flip-card contenedorTerciario__flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="multimedia/cuarta.jpg" alt="Imagen 4" class="contenedorTerciario__img">
+                                </div>
+                                <div class="flip-card-back">
+                                    <!-- Aquí puedes agregar el video o cualquier otro contenido -->
+                                    <video controls class="contenedorTerciario__video">
+                                        <source src="video4.mp4" type="video/mp4">
+                                        Tu navegador no admite el elemento de video.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedorTerciario__sub-col" id="cuartoTexto">
+                        <h2 class="contenedorTerciario__title">MÁXIMA EFICACIA DE PEDALEO</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="contenedorCuaternario parallax" id="section4">
         <div class="contenedorCuaternario__canvas">
-        <canvas id="canvas1" class="contenedorCuaternario__canvas-clientes" width="300" height="300"></canvas>
-        <canvas id="canvas2" class="contenedorCuaternario__canvas-texto" width="500" height="150"></canvas>
+            <canvas id="canvas1" class="contenedorCuaternario__canvas-clientes" width="300" height="300"></canvas>
+            <canvas id="canvas2" class="contenedorCuaternario__canvas-texto" width="500" height="150"></canvas>
         </div>
         <div class="contenedorCuaternario__seguidores">
-          <div class="contenedorCuaternario__seguidores-texto" >
-            <h2 class="contenedorCuaternario__title">SEGUIDORES</h2>
-          </div>
-          <svg id="graficaCanvas" class="contenedorCuaternario__seguidores-grafica" ></svg>
+            <div class="contenedorCuaternario__seguidores-texto">
+                <h2 class="contenedorCuaternario__title">SEGUIDORES</h2>
+            </div>
+            <svg id="graficaCanvas" class="contenedorCuaternario__seguidores-grafica"></svg>
         </div>
-       </div>
+    </div>
 
-       <div class="contenedorQuinario parallax" id="section5">
+    <div class="contenedorQuinario parallax" id="section5">
         <div class="contenedorQuinario__contacto">
             <div class="contenedorQuinario__contacto-contenedorLogo" id="efectoAparecer">
                 <div class="contenedorQuinario__contacto-contenedorTexto" id="efectoAparecer">
@@ -710,39 +749,44 @@
                 <form>
                     <div class="formulario__campo">
                         <label for="nombre" class="campo__label">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" class="campo__input" placeholder="Ingrese su nombre" required>
+                        <input type="text" id="nombre" name="nombre" class="campo__input"
+                            placeholder="Ingrese su nombre" required>
                         <div class="campo__error">Por favor ingrese su nombre.</div>
                     </div>
-                    
+
                     <div class="formulario__campo">
                         <label for="email" class="campo__label">Correo Electrónico:</label>
-                        <input type="email" id="email" name="email" class="campo__input" placeholder="Ingrese su correo electrónico" required>
+                        <input type="email" id="email" name="email" class="campo__input"
+                            placeholder="Ingrese su correo electrónico" required>
                         <div class="campo__error">Por favor ingrese un correo electrónico válido.</div>
                     </div>
-                    
+
                     <div class="formulario__campo">
                         <label for="fecha-nacimiento" class="campo__label">Fecha de Nacimiento:</label>
-                        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" class="campo__input" required>
-                        <div class="campo__error">Por favor seleccione su fecha de nacimiento.</div>
+                        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" class="campo__input-fecha"
+                            required>
+                        <!-- <div class="campo__error">Por favor seleccione su fecha de nacimiento.</div> -->
                     </div>
-                    
+
                     <div class="formulario__campo">
                         <label for="numero-favorito" class="campo__label">Número Teléfono:</label>
-                        <input type="number" id="numero-favorito" name="numero-favorito" class="campo__input" placeholder="Ingrese su número de teléfono" required>
+                        <input type="number" id="numero-favorito" name="numero-favorito" class="campo__input"
+                            placeholder="Ingrese su número de teléfono" required>
                         <div class="campo__error">Por favor ingrese un teléfono válido.</div>
                     </div>
-                    
+
                     <div class="formulario__campo">
                         <label for="comentario" class="campo__label">Comentario:</label>
-                        <textarea id="comentario" name="comentario" class="campo__textarea" placeholder="Ingrese su comentario"></textarea>
+                        <textarea id="comentario" name="comentario" class="campo__textarea"
+                            placeholder="Ingrese su comentario" required></textarea>
                     </div>
-                    
+
                     <button type="submit" class="formulario__boton">Enviar</button>
                 </form>
             </div>
-            
+
         </div>
-       </div>
+    </div>
 
 
 </body>
