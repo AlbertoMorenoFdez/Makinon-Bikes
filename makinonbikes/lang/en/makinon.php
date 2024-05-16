@@ -137,9 +137,10 @@ return [
     "misPed" => "My orders",
 
     // Workshop
-    "cita" => "Appointment",
+    "cita" => "Workshop appointments",
     "buscarCita" => "Search appointment",
     "misCitas" => "My appointments",
+    "gestCitas" => "Appointment Management",
     "listaCitas" => "Appointments List",
 
 ];

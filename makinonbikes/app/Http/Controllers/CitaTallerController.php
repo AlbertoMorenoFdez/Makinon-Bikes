@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CitaTaller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CitaTallerConfirmada;
+use App\Mail\CitaTallerModificada;
+
 
 
 class CitaTallerController extends Controller
@@ -70,6 +74,10 @@ class CitaTallerController extends Controller
         }
 
         $cita->save();
+
+        // Enviar correo de confirmación
+        Mail::to($user->email)->send(new CitaTallerConfirmada($cita));
+
         return response()->json($cita, 201);
     }
 
@@ -132,39 +140,61 @@ class CitaTallerController extends Controller
     }
 
     /** 
-     * Función que permite editar el esetado de varias citas del taller
+     * Función que permite editar el esetado de varias citas del taller desde Angular
      */
+    public function editarEstadoCita(Request $request)
+    {
+        // Asegúrate de que la solicitud es un array
+        if (!is_array($request->all())) {
+            return response()->json(['error' => 'Se esperaba un array de citas'], 400);
+        }
 
-     
-     public function editarEstadoCita(Request $request)
-     {
-         // Asegúrate de que la solicitud es un array
-         if (!is_array($request->all())) {
-             return response()->json(['error' => 'Se esperaba un array de citas'], 400);
-         }
-     
-         $usuarios = []; // Array para guardar los id de los usuarios
-     
-         // Itera sobre cada cita en el array
-         foreach ($request->all() as $citaData) {
-             // Busca la cita y actualiza sus datos
-             $cita = CitaTaller::find($citaData['id_cita_taller']);
-             if ($cita) {
-                 $cita->estado = $citaData['Estado'];
-                 $cita->save();
-     
-                 // Obtén el id_usuario a través de la relación con el usuario
-                 $id_usuario = $cita->usuario->id_usuario;
-     
-                 // Agrega el id_usuario al array de usuarios
-                 $usuarios[] = $id_usuario;
-             }
-         }
-     
-         // Devuelve una respuesta exitosa
-         return response()->json(['success' => 'Las citas se han actualizado correctamente', 'usuarios' => $usuarios]);
-     }
-     
+        $usuarios = []; // Array para guardar los id de los usuarios
+
+        // Itera sobre cada cita en el array
+        foreach ($request->all() as $citaData) {
+            // Busca la cita y actualiza sus datos
+            $cita = CitaTaller::find($citaData['id_cita_taller']);
+            if ($cita) {
+                $estadoOriginal = $cita->estado;
+                $cita->estado = $citaData['Estado'];
+                $cita->save();
+
+                $id_usuario = $cita->usuario->id_usuario;
+                $usuarios[] = $id_usuario;
+
+                // Comprueba si el estado ha cambiado
+                if ($estadoOriginal != $cita->estado) {
+                    // Enviamos un correo para avisar al usuario de la actualización
+                    Mail::to($cita->usuario->email)->send(new CitaTallerModificada($cita));
+                }
+            }
+        }
+
+        // Devuelve una respuesta exitosa
+        return response()->json(['success' => 'Las citas se han actualizado correctamente', 'usuarios' => $usuarios]);
+    }
+
+
+    /**
+     * Función que permite al administrador modificar el estado de una cita desde el listado de citas
+     */
+    public function modificarEstadoCita(Request $request, $id)
+    {
+        $cita = CitaTaller::find($id);
+        $estadoOriginal = $cita->estado;
+        $cita->estado = $request->estado;
+        $cita->save();
+
+        // Comprueba si el estado ha cambiado
+        if ($estadoOriginal != $cita->estado) {
+            // Enviamos un correo para avisar al usuario de la actualización
+            Mail::to($cita->usuario->email)->send(new CitaTallerModificada($cita));
+        }
+
+        return redirect()->route('listadoCitas')->with('success', 'Estado de la cita actualizado con éxito');
+    }
+
 
     /**
      * Función que permite eliminar una cita en el taller
@@ -193,22 +223,10 @@ class CitaTallerController extends Controller
      */
 
     public function listadoCitas()
-    {
-        $citas = CitaTaller::paginate(10);
-        return view('taller.listadoCitasTaller', ['citas' => $citas]);
-    }
-
-    /**
-     * Función que permite al adminitrador modificar el estado de una cita
-     */
-    public function modificarEstadoCita(Request $request, $id)
-    {
-        $cita = CitaTaller::find($id);
-        $cita->estado = $request->estado;
-        $cita->save();
-
-        return redirect()->route('listadoCitas')->with('success', 'Estado de la cita actualizado con éxito');
-    }
+{
+    $citas = CitaTaller::orderBy('fecha', 'asc')->paginate(10);
+    return view('taller.listadoCitasTaller', ['citas' => $citas]);
+}
 
     /**
      * Función que permite al usuario enviar una imagen de su bicicleta desde la aplicación de Angular

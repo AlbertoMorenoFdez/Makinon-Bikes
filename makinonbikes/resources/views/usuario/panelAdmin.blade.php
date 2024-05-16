@@ -1,14 +1,14 @@
 @extends ('layouts.app')
 
 @section('main')
-    <div class="card contenedorAdministracion">
+    <div class="card contenedorAdministracion w-4/5">
         <div class="card-header">
             <h2>@lang('makinon.panelAdmin')</h2>
         </div>
         <div class="card-body">
 
         </div>
-        <div class="columns-2 gap-8 he">
+        <div class="d-flex flex-row gap-2 slider">
             <div class="card">
                 <div class="card-header">
                     <h3>@lang('makinon.proveedores')</h3>
@@ -49,7 +49,17 @@
                     </x-makinon-primary-link-button>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>@lang('makinon.citas')</h3>
+                </div>
+                <div class="card-body">
+                    <p>Desde aquí podrás gestionar las citas del taller.</p>
+                    <x-makinon-primary-link-button href="{{ route('listadoCitasTaller') }}">@lang('makinon.gestCitas')
+                    </x-makinon-primary-link-button>
+                </div>
+            </div>
         </div>
-
     </div>
+    
 @endsection

@@ -22,6 +22,7 @@ class CitaTaller extends Model
         'opcion',
         'fecha',
         'hora',
+        'estado',
     ];
 
     /**

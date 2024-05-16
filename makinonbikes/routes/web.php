@@ -137,7 +137,7 @@ Route::get('/taller', function () {return view('taller');})->name('taller');
 Route::get('/citaTaller', [AngularController::class, 'connectToAngular'])->name('citaTaller')->middleware('auth');
 //Route::get('/traer_todas_citas', [CitaTallerController::class, 'calendarioCitas'])->name('traer_todas_citas')->middleware('auth');
 
-Route::get('/listadoCitasTaller', [CitaTallerController::class, 'listadoCitas'])->name('listadoCitas')->middleware('auth', 'rol:admin');
+Route::get('/listadoCitasTaller', [CitaTallerController::class, 'listadoCitas'])->name('listadoCitasTaller')->middleware('auth', 'rol:admin');
 Route::put('modificarEstadoCita/{id}', [CitaTallerController::class, 'modificarEstadoCita'])->name('modificarEstadoCita')->middleware('auth', 'rol:admin');
 
 

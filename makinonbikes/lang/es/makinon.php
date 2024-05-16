@@ -139,8 +139,9 @@ return [
     "misPed" => "Mis pedidos",
 
     // Taller
-    "citas" => "Citas",
+    "citas" => "Citas del taller",
     "buscarCita" => "Buscar cita",
     "misCitas" => "Mis citas",
+    "gestCitas" => "Gestión de citas",
     "listaCitas" => "Listado de citas",
 ];

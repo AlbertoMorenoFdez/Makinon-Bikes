@@ -160,25 +160,25 @@
                                     <div>
                                         <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
                                         <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
-                                            placeholder="0000 0000 0000 0000" />
+                                            placeholder="0000 0000 0000 0000" required/>
                                         {{-- <x-input-error :messages="$errors->get('numero_tarjeta')" class="mt-2" /> --}}
                                     </div>
 
                                     <div>
                                         <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
                                         <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
-                                            placeholder="MM/AA" />
+                                            placeholder="MM/AA" required/>
                                         {{-- <x-input-error :messages="$errors->get('fecha_vencimiento')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="cvv">CVV</x-input-label>
-                                        <x-text-input type="text" id="cvv" name="cvv" placeholder="000" />
+                                        <x-text-input type="text" id="cvv" name="cvv" placeholder="000" required/>
                                         {{-- <x-input-error :messages="$errors->get('cvv')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
                                         <x-text-input type="text" id="nombre_titular" name="nombre_titular"
-                                            placeholder="Nombre del titular" />
+                                            placeholder="Nombre del titular" required/>
                                         {{-- <x-input-error :messages="$errors->get('nombre_titular')" class="mt-2" /> --}}
                                     </div>
                                 </div>
