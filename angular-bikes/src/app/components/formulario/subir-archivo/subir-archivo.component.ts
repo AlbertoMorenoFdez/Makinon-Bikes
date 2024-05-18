@@ -19,22 +19,23 @@ export class SubirArchivoComponent implements OnInit {
   constructor(private subirServicio: SubirArchivoService) { }
   @Output() almacenarFichero = new EventEmitter<File>();
 
+  ngOnInit(): void {
+    //this.fileInfos = this.subirServicio.getFiles();
+  }
+
   enviarFichero(event: any) {
     const fichero = (event.target as HTMLInputElement).files?.[0];
   if (fichero) {
     this.almacenarFichero.emit(fichero);
   }
   }
-  ngOnInit(): void {
-    //this.fileInfos = this.subirServicio.getFiles();
-  }
+  
 
   selectFile(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
       this.currentFile = event.target.files.item(0);
       this.almacenarFichero.emit(this.currentFile);
       console.log(this.currentFile);
-      console.log(this.almacenarFichero);
     }
   }
 

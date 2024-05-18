@@ -37,10 +37,12 @@ export class BddService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     const formData: FormData = new FormData();
+    formData.append('opcion', formularioDatos.opcion);
     formData.append('fecha', formularioDatos.fecha);
     formData.append('hora', formularioDatos.hora);
+    formData.append('estado', formularioDatos.estado || 'pendiente');
     formData.append('comentario', formularioDatos.comentario);
-    formData.append('opcion', formularioDatos.opcion);
+   
 
     if (formularioDatos.imagen) {
       formData.append('imagen', formularioDatos.imagen, formularioDatos.imagen.name);

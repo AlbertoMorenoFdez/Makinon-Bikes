@@ -1,19 +1,18 @@
 <mat-card>
-<div *ngIf="cita">
+  <div *ngIf="cita">
     <h3>{{ cita.titulo }}</h3>
     <p><strong>Estado:</strong> {{ cita.estado }}</p>
     <p><strong>Comentarios:</strong> {{ cita.comentario }}</p>
     <p><strong>Fecha programada:</strong> {{ cita.fecha }}</p>
     <p><strong>Hora Programada:</strong> {{ cita.hora }}</p>
-    <p><strong>Imagen Subida:</strong> {{ cita.imagen }}</p>
-  
-   <button mat-icon-button (click)="eliminarCita(cita.id_cita_taller)">
-    <mat-icon>delete</mat-icon>
-  </button>
-  <!-- <button mat-icon-button [routerLink]="['/citaAnterior/editarCita', cita.id_cita_taller]">
-    <mat-icon>edit</mat-icon>
-  </button>
-    -->
-    <a [routerLink]="['/editarCita', (cita.id_cita_taller)]">asdfs</a>
+    <div *ngIf="cita.imagen_url">
+      <p><strong>Imagen Subida:</strong></p>
+      <p>{{ cita.imagen_url }}</p> <!-- Muestra la ruta de la imagen -->
+      <img [src]="cita.imagen_url" alt="Imagen de la cita" style="max-width: 200px; max-height: 200px;">
+    </div>
+    <button mat-icon-button (click)="eliminarCita(cita.id_cita_taller)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <a [routerLink]="['/editarCita', cita.id_cita_taller]">Editar</a>
   </div>
 </mat-card>

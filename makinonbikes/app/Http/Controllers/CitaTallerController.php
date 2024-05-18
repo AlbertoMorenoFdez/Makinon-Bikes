@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CitaTallerConfirmada;
 use App\Mail\CitaTallerModificada;
-
+use Illuminate\Support\Facades\Storage;
 
 
 class CitaTallerController extends Controller
@@ -46,6 +46,7 @@ class CitaTallerController extends Controller
 
     public function crearCita(Request $request)
     {
+        
         // Obtener el usuario autenticado
         $user = $request->user();
 
@@ -53,6 +54,17 @@ class CitaTallerController extends Controller
         if (!$user) {
             return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
         }
+
+        // Validar los datos de la solicitud
+
+        $request->validate([
+            'opcion' => 'required|string|max:100',
+            'fecha' => 'required|date',
+            'hora' => 'required|date_format:H:i:s',
+            'estado' => 'nullable|string',
+            'comentario' => 'nullable|string|max:1000',
+            'imagen' => 'nullable|file|image|max:2048', // 2MB Max
+        ]);
 
         Log::info('Datos recibidos:', ['request' => $request->all()]);
 
@@ -64,46 +76,27 @@ class CitaTallerController extends Controller
         $cita->estado = $request->estado == null ? 'pendiente' : $request->estado;
         $cita->comentario = $request->comentario;
 
+       
         // Manejar la subida de la imagen
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
-            $destino = public_path('/images/clientes_taller');
+            $destino = public_path('images/clientes_taller');
             $imagen->move($destino, $nombreImagen);
-            $cita->imagen = $nombreImagen;
+            $cita->imagen = 'images/clientes_taller/' . $nombreImagen;  // Guardar la ruta relativa de la imagen
         }
 
         $cita->save();
+
 
         // Enviar correo de confirmación
-        Mail::to($user->email)->send(new CitaTallerConfirmada($cita));
+        // Mail::to($user->email)->send(new CitaTallerConfirmada($cita));
 
         return response()->json($cita, 201);
+    
     }
 
-    /* public function crearCita(Request $request)
-    {
-        // Obtener el usuario autenticado
-        $user = $request->user();
-
-
-        // Asegúrate de que el usuario esté autenticado
-        if (!$user) {
-            return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
-        }
-
-        Log::info('Datos recibidos:', ['request' => $request->all()]);
-
-        $cita = new CitaTaller;
-        $cita->id_usuario = $user->id_usuario;
-        $cita->opcion = $request->opcion;
-        $cita->fecha = $request->fecha;
-        $cita->hora = $request->hora;
-        $cita->estado = $request->estado == null ? 'pendiente' : $request->estado;
-        $cita->comentario = $request->comentario;
-        $cita->save();
-        return response()->json($cita, 201);
-    } */
+ 
 
     /**
      * Función que permite obtener todas las citas del taller de un cliente
@@ -111,14 +104,22 @@ class CitaTallerController extends Controller
      * @return void
      */
 
+    
+
     public function obtenerCitas(Request $request)
     {
-
         // Obtener el usuario autenticado
         $user = $request->user();
 
         // Obtener todas las citas del usuario
         $citas = CitaTaller::where('id_usuario', $user->id_usuario)->get();
+
+        // Agregar la URL completa de la imagen a cada cita
+        foreach ($citas as $cita) {
+            if ($cita->imagen) {
+                $cita->imagen_url = asset( $cita->imagen); // Usar asset para generar la URL correctamente
+            }
+        }
 
         return response()->json($citas);
     }

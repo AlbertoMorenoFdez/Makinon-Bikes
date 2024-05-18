@@ -59,6 +59,7 @@ export class FormularioComponent {
     
   }
 
+
   actualizarFecha(fecha: Date) {
     // Formatear la fecha usando formatDate
     this.datosFormulario.fecha = formatDate(fecha, 'yyyy-MM-dd', 'en-US');
@@ -83,14 +84,7 @@ export class FormularioComponent {
     this.datosFormulario.imagen = imagen;
   }
 
-  // selectFile(event: any): void {
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     this.currentFile = event.target.files.item(0);
-  //     this.almacenarFichero.emit(this.currentFile);
-  //     console.log(this.currentFile);
-  //     console.log(this.almacenarFichero);
-  //   }
-  // }
+
 
   enviarFormulario() {
     console.log('Datos del formulario:', this.datosFormulario);

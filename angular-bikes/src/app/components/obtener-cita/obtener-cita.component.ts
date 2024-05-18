@@ -29,30 +29,27 @@ export class ObtenerCitaComponent implements OnInit {
   citas: any[] = [];
   citaSeleccionada: any = null;
   mostrarDetalles: boolean = false;
-  cargando: boolean = true; // Añade esta línea
+  cargando: boolean = true;
   dataSource = new MatTableDataSource<any>([]);
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private bddService: BddService, private http: HttpClient) {}
 
   ngOnInit() {
-    this.cargando = true; // Asegúrate de que el spinner se muestre al iniciar la carga
+    this.cargando = true;
     this.bddService.obtenerCitas().subscribe(data => {
       this.dataSource.data = data;
       this.citas = data;
-      this.cargando = false; // Oculta el spinner una vez que los datos están cargados
-      this.dataSource.paginator = this.paginator;
+      this.cargando = false;
     }, error => {
       console.error('Error al obtener citas', error);
-      this.cargando = false; // Oculta el spinner también en caso de error
+      this.cargando = false;
     });
   }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-  
+
   detalles(citaId: number) {
     this.citaSeleccionada = this.citas.find(cita => cita.id_cita_taller === citaId);
+    console.log('Cita seleccionada:', this.citaSeleccionada); // Muestra la cita seleccionada en la consola
+    console.log('Imagen URL:', this.citaSeleccionada?.imagen_url); // Muestra la URL de la imagen en la consola
     this.mostrarDetalles = true;
   }
 
@@ -60,4 +57,3 @@ export class ObtenerCitaComponent implements OnInit {
     this.mostrarDetalles = false;
   }
 }
-
