@@ -13,6 +13,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CalendarioComponent } from '../calendario/calendario.component';
 import { RouterOutlet } from '@angular/router';
 import { TokenComponent } from '../token/token.component';
+import { ValidacionFormularioService } from '../../core/services/validaciones-formulario/validaciones-formulario.service';
+import { ApiFestivoService } from '../../core/services/api-festivo/api-festivo.service';
+import { ErrorDialogoComponent } from '../error-dialogo/error-dialogo.component';
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-formulario',
@@ -27,7 +33,7 @@ import { TokenComponent } from '../token/token.component';
     ReactiveFormsModule,
     CalendarioComponent,
     RouterOutlet,
-    TokenComponent
+    TokenComponent,
     
   ],
   templateUrl: './formulario.component.html',
@@ -44,7 +50,11 @@ export class FormularioComponent {
   };
   firstFormGroup!: FormGroup ;
   secondFormGroup!: FormGroup;
-  constructor(private _formBuilder: FormBuilder, private bddService: BddService) { }
+  constructor(private _formBuilder: FormBuilder, 
+            private bddService: BddService, 
+            private validacionService: ValidacionFormularioService,
+            private apiFestivoService: ApiFestivoService,
+            private dialog: MatDialog) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -55,6 +65,19 @@ export class FormularioComponent {
       
       comentario: ['', Validators.required],
       opcion: ['', Validators.required]
+    });
+
+    
+     // Obtener los datos de festivos y configurarlos en el servicio de validación
+     this.apiFestivoService.getData().subscribe(data => {
+      const eventosFestivos = data
+        .filter((evento: any) => evento.counties === null || evento.counties.includes('ES-AN'))
+        .map((evento: any) => ({
+          title: evento.localName,
+          start: evento.date
+        }));
+      
+      this.validacionService.setEventosFestivos(eventosFestivos);
     });
     
   }
@@ -84,22 +107,25 @@ export class FormularioComponent {
     this.datosFormulario.imagen = imagen;
   }
 
-
-
   enviarFormulario() {
-    console.log('Datos del formulario:', this.datosFormulario);
-    if (!this.datosFormulario.fecha || !this.datosFormulario.hora || !this.datosFormulario.comentario || !this.datosFormulario.opcion) {
-      console.log('Por favor complete todos los campos requeridos.');
-      return;
+    if (this.validacionService.esFormularioValido(this.datosFormulario)) {
+      this.validacionService.verificarDisponibilidadCita(this.datosFormulario.fecha, this.datosFormulario.hora)
+        .subscribe(disponible => {
+          if (disponible) {
+            this.bddService.crearCita(this.datosFormulario).subscribe({
+              next: respuesta => console.log('Datos enviados con éxito', respuesta),
+              error: error => this.mostrarError('Error al enviar datos: ' + error.message)
+            });
+          }
+        });
+    } else {
+      this.mostrarError('Por favor complete todos los campos requeridos.');
     }
-    if (this.datosFormulario.comentario.length < 5 || this.datosFormulario.opcion.length < 5) {
-      console.log('El comentario y el titulo deben tener al menos 5 caracteres.');
-      return;
-    }
-    // console.log('Datos del formulario:', this.datosFormulario);
-    this.bddService.crearCita(this.datosFormulario).subscribe(
-      respuesta => console.log('Datos enviados con éxito', respuesta),
-      error => console.log('Error al enviar datos', error)
-    );
-  }
+  }
+
+mostrarError(mensaje: string) {
+  this.dialog.open(ErrorDialogoComponent, {
+    data: { message: mensaje }
+  });
+}
 }
