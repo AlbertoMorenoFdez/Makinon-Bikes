@@ -47,13 +47,19 @@ class PedidoController extends Controller
     }
 
 
+    /**
+     * Funcion que nos permite confirmar un pedido y finalizar la compra si los datos de la tarjeta de crédito son correctos
+     *
+     * @param Request $request
+     * @return void
+     */
     public function confirmarPedido(Request $request)
     {
         $productoColorTallaController = new ProductoColorTallaController;
-        //dd($request->session()->get('carrito'));
-        //dd($request->all());
         try {
-            // Crear un nuevo pedido
+            DB::beginTransaction(); // Iniciamos una nueva transacción
+
+            // Se crea el nuevo pedido
             $pedido = new Pedido;
             $pedido->id_usuario = Auth::id();
             $pedido->fecha = date('Y-m-d');
@@ -63,37 +69,32 @@ class PedidoController extends Controller
 
             $pedido->save();
 
-            // Recorrer los productos del carrito y crear una entrada en pedido_detalle para cada uno
-
+            // Recorremos los productos del carrito y creamos una entrada en pedido_detalle para cada producto
             foreach ($request->session()->get('carrito') as $producto) {
-
                 $detalle = new PedidoDetalle;
                 $detalle->id_pedido = $pedido->id_pedido;
                 $detalle->id_producto = $producto['id_producto'];
                 $detalle->cantidad = $producto['cantidad'];
                 $detalle->precio = $producto['precio'];
                 $detalle->save();
-                $color = $producto['color'];
-                $talla = $producto['talla'];
 
-                // Actualizar el stock del producto
+                // Actualizamos el stock del producto
                 $productoColorTallaController->actualizarStock($producto['id_producto'], $producto['id_color'], $producto['id_talla'], $producto['cantidad']);
             }
 
-            // Actualizar el total del pedido
+            // Actualizamos el total del pedido
             $pedido->total += $detalle->precio * $detalle->cantidad;
 
-            // Guardar el total del pedido
+            // Guardamos el total del pedido
             $pedido->save();
 
             // Si se han registrado tarjetas de credito
             if ($request->input('forma-pago') == 'tarjeta') {
-                // Si se han registrado tarjetas de credito
                 $tarjetaCreditoController = new TarjetaCreditoController;
                 $tarjetaCreditoController->registrarTarjeta($request);
             }
 
-            //Creamos la nueva factura
+            // Creamos la nueva factura
             $factura = new Factura;
             $factura->id_usuario = Auth::id();
             $factura->id_pedido = $pedido->id_pedido;
@@ -104,7 +105,9 @@ class PedidoController extends Controller
             // Eliminamos el carrito de la sesión
             $request->session()->forget('carrito');
 
-            //Envio de correo de confirmación
+            DB::commit(); // Confirmar la transacción si todo ha ido bien
+
+            // Envio de correo de confirmación del pedido
             $user = Auth::user();
             try {
                 Mail::to($user->email)->send(new PedidoConfirmado($pedido));
@@ -113,11 +116,13 @@ class PedidoController extends Controller
                 Log::error('Error al enviar correo de confirmación de pedido: ' . $e->getMessage());
             }
 
-            // Redirección al usuario a una página de confirmación
+            // Redireccionamos al usuario a la página de confirmación
             return redirect()->route('pedido-confirmado')->with('success', 'Pedido realizado con éxito');
         } catch (\Exception $e) {
+            DB::rollBack(); // Revierte la transacción si algo ha fallado
             Log::error('Error al crear el pedido: ' . $e->getMessage());
-            return redirect()->route('realizar-pedido')->with('error', 'Hubo un problema al realizar el pedido: ' . $e->getMessage());
+            return redirect()->route('realizar-pedido')
+                ->with('error', 'Hubo un problema al realizar el pedido: ' . $e->getMessage() . ' Por favor, inténtalo de nuevo o escoge otra forma de pago.');
         }
     }
 

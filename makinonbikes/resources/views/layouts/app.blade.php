@@ -33,7 +33,7 @@
     <link href="{{ asset('css/carrito.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pedido.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pedido-confirmado.css') }}" rel="stylesheet">
-    
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -53,6 +53,18 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bannerDownBtn = document.getElementById('bannerDownBtn');
+            const bannerDropdown = document.getElementById('bannerDropdown');
+
+            bannerDownBtn.addEventListener('click', () => {
+                bannerDropdown.style.display = 'flex';
+                bannerDownBtn.style.display = 'none';
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -66,7 +78,7 @@
 
                 <div class="content-div">
                     <a href="{{ route('carrito') }}">
-                        @if(session('carrito') && count(session('carrito')) > 0)
+                        @if (session('carrito') && count(session('carrito')) > 0)
                             <i class="fas fa-cart-shopping" style="color:rgb(251,98,0)"></i>
                         @else
                             <i class="fas fa-cart-shopping" style="color:grey"></i>
@@ -81,7 +93,7 @@
             </div>
 
             <div class="menubanner">
-                <div class="d-flex justify-center">
+                <div class="d-flex justify-center" id="logoContainer">
                     <a id="logo" href=" {{ route('home') }}">
                         <img src="{{ asset('images/logo_sin_fondo.gif') }}" alt="logo">
                     </a>
@@ -107,6 +119,21 @@
                     <div>
                         <a href="{{ route('taller') }}">@lang('makinon.taller')</a>
                     </div>
+
+                </div>
+
+
+            </div>
+            <div class="containerBanner" style="font-family:Coach, sans-serif">
+                <button id="bannerDownBtn" class="dropdown-btn">MENU <span class="material-symbols-outlined">
+                        keyboard_arrow_down
+                    </span></button>
+                <div id="bannerDropdown" class="dropdown-container">
+                    <a href="{{ route('productos.tipo', 'bicicleta') }}">@lang('makinon.bicicletas')</a>
+                    <a href="{{ route('componentes') }}">@lang('makinon.componentes')</a>
+                    <a href="{{ route('accesorios') }}">@lang('makinon.accesorios')</a>
+                    <a href="{{ route('alimentacion') }}">@lang('makinon.alimentacion')</a>
+                    <a href="{{ route('taller') }}">@lang('makinon.taller')</a>
                 </div>
             </div>
         </header>

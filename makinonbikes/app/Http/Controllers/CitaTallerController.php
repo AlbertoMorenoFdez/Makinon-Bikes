@@ -90,7 +90,7 @@ class CitaTallerController extends Controller
 
 
         // Enviar correo de confirmación
-        // Mail::to($user->email)->send(new CitaTallerConfirmada($cita));
+        Mail::to($user->email)->send(new CitaTallerConfirmada($cita));
 
         return response()->json($cita, 201);
     

@@ -53,6 +53,7 @@
 
 
 #menuLateral {
+    margin-left: 2.5rem;
     width: 20%;
     position: sticky;
     top: 0;

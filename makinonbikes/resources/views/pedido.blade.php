@@ -70,16 +70,20 @@
                                 <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
                             </div>
                         </div>
-                        <div class="d-flex justify-center">
+                        <div class="d-flex justify-center mb-10">
                             <x-makinon-primary-button class="paso--clickeable"
                                 style="width:60%">Continuar</x-makinon-primary-button>
                         </div>
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="contenedor-forma-pago">
                     <h2>FORMA DE PAGO</h2>
                     <div class="selector-forma-pago">
-
                         <div class="contenedor-tarjeta">
                             <div class="d-flex flex-row align-items-center">
                                 <x-makinon-radio-button id="elegida-tarjeta" name="forma-pago"
@@ -139,7 +143,6 @@
 
 
                 <div class="contenedor-confirmar-pedido">
-
                     <h2>COMPRUEBA TU PEDIDO</h2>
                     <div class="resumen-final">
 
@@ -147,38 +150,56 @@
                             <h3>FORMA DE PAGO</h3>
 
                             <div class="paypal-elegido">
-                                <p>Ha elegido pagar mediante Paypal</p>
+                                <div style="display:flex; flex-direction:row; align-items:center">
+                                    <p>Ha elegido pagar mediante Paypal</p>
+                                    <img src="{{ asset('images/paypal.png') }}" alt="Paypal"
+                                        style="width: 90px; height: 60px; margin-left:1em; margin-bottom:1rem" />
+                                </div>
                             </div>
 
                             <div class="transferencia-elegido">
-                                <p>Ha elegido pagar mediante Transferencia bancaria</p>
+                                <div style="display:flex; flex-direction:row; align-items:center">
+                                    <p>Ha elegido pagar mediante Transferencia bancaria</p>
+                                    <img src="{{ asset('images/banco.png') }}" alt="Banco"
+                                        style="width: 40px; height: 40px; margin-left:1em; margin-bottom:1rem" />
+                                </div>
                             </div>
 
                             <div class="tarjeta-elegido">
-                                <p>Ha elegido pagar mediante Tarjeta de crédito</p>
+                                <div style="display:flex; flex-direction:row; align-items:center">
+                                    <p>Ha elegido pagar mediante Tarjeta de crédito</p>
+                                    <img src="{{ asset('images/visa.png') }}" alt="Visa"
+                                        style="width: 50px; height: 50px; margin-left:1em; margin-bottom:1rem" />
+                                    <img src="{{ asset('images/mastercard.png') }}" alt="Mastercard"
+                                        style="width: 50px; height: 50px; margin-left:1em; margin-bottom:1rem" />
+                                    <img src="{{ asset('images/american-express.png') }}" alt="American Express"
+                                        style="width: 50px; height: 50px; margin-left:1em; margin-bottom:1rem" />
+                                </div>
+
                                 <div class="contenedor-tarjeta-input">
                                     <div>
                                         <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
                                         <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
-                                            placeholder="0000 0000 0000 0000" required/>
+                                            placeholder="0000 0000 0000 0000" required />
                                         {{-- <x-input-error :messages="$errors->get('numero_tarjeta')" class="mt-2" /> --}}
                                     </div>
 
                                     <div>
                                         <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
                                         <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
-                                            placeholder="MM/AA" required/>
+                                            placeholder="MM/AA" required />
                                         {{-- <x-input-error :messages="$errors->get('fecha_vencimiento')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="cvv">CVV</x-input-label>
-                                        <x-text-input type="text" id="cvv" name="cvv" placeholder="000" required/>
+                                        <x-text-input type="text" id="cvv" name="cvv" placeholder="000"
+                                            required />
                                         {{-- <x-input-error :messages="$errors->get('cvv')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
                                         <x-text-input type="text" id="nombre_titular" name="nombre_titular"
-                                            placeholder="Nombre del titular" required/>
+                                            placeholder="Nombre del titular" required />
                                         {{-- <x-input-error :messages="$errors->get('nombre_titular')" class="mt-2" /> --}}
                                     </div>
                                 </div>
@@ -288,10 +309,12 @@
                 var contenedorSlide = document.querySelector('.contenedor-slide');
                 if (index === 0) {
                     contenedorSlide.style.transform = 'translateX(' + (-33.33) + '%)';
-                    document.querySelector('.paso-clickeable-pago').style.backgroundColor = 'rgb(211,211,211)';
+                    document.querySelector('.paso-clickeable-pago').style.backgroundColor =
+                        'rgb(211,211,211)';
                 } else {
                     contenedorSlide.style.transform = 'translateX(' + (-66.66) + '%)';
-                    document.querySelector('.paso-clickeable-confirm').style.backgroundColor = 'rgb(211,211,211)';
+                    document.querySelector('.paso-clickeable-confirm').style.backgroundColor =
+                        'rgb(211,211,211)';
                 }
             });
         });
@@ -314,8 +337,6 @@
             });
         });
 
-
-
         document.querySelectorAll('input[name="forma-pago"]').forEach(function(radio) {
             radio.addEventListener('change', function() {
                 document.querySelector('.tarjeta').style.display = this.value === 'tarjeta' ?
@@ -333,6 +354,69 @@
                     'block' : 'none';
             });
         });
+
+
+        document.getElementById('numero_tarjeta').addEventListener('input', function(e) {
+            var input = e.target;
+            var value = input.value.replace(/\s/g, '');
+
+            if (value.length !== 16 || isNaN(value)) {
+                input.style.borderColor = 'rgb(255, 0, 0)';
+                input.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+            } else {
+                input.style.borderColor = 'green';
+                input.style.backgroundColor = '';
+            }
+        });
+
+        document.getElementById('fecha_vencimiento').addEventListener('input', function(e) {
+            var input = e.target;
+            var value = input.value;
+
+            if ((value.length !== 5 || !/^\d{2}\/\d{2}$/.test(value))) {
+                input.style.borderColor = 'red';
+            } else {
+                var fechaActual = new Date();
+                var mesActual = fechaActual.getMonth() + 1;
+                var añoActual = fechaActual.getFullYear().toString().substr(-2);
+
+                var [mes, año] = value.split('/');
+
+                if (año < añoActual || (año == añoActual && mes < mesActual)) {
+                    input.style.borderColor = 'rgb(255, 0, 0)';
+                    input.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                } else {
+                    input.style.borderColor = 'green';
+                    input.style.backgroundColor = '';
+                }
+            }
+        });
+
+        document.getElementById('nombre_titular').addEventListener('input', function(e) {
+            var input = e.target;
+            var value = input.value;
+
+            if (value.length < 5) {
+                input.style.borderColor = 'rgb(255, 0, 0)';
+                input.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+            } else {
+                input.style.borderColor = 'green';
+                input.style.backgroundColor = '';
+            }
+        });
+
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            var input = e.target;
+            var value = input.value;
+            if (value.length !== 3 || isNaN(value)) {
+                input.style.borderColor = 'rgb(255, 0, 0)';
+                input.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+            } else {
+                input.style.borderColor = 'green';
+                input.style.backgroundColor = '';
+            }
+        });
+
 
         window.addEventListener('keydown', function(e) {
             if (e.key === 'Tab') {
