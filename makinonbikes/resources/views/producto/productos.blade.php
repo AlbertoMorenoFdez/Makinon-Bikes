@@ -9,7 +9,7 @@
             @foreach ($productos as $producto)
                 <div class="card m-2 hover-card shadow-sm" style="flex: 0 0 auto; width: 22%; padding:20px">
                     <a style="color:black; text-decoration:none;"href="{{ route('vistaProducto', $producto->id_producto) }}">
-                        <h6 class="card-title" style="color:gray">{{ $producto->marca->nombre }}</h6>
+                        <h6 class="card-title" style="color:rgb(93, 93, 93)">{{ $producto->marca->nombre }}</h6>
                         <h5 class="card-title h-12">{{ $producto->tipo }} {{ $producto->nombre }}</h5>
                         <img src="{{ asset('images/productos/' . $producto->imagen) }}" class="card-img-top img-fluid"
                             style="height: 200px; object-fit: contain;" alt="{{ $producto->tipo }}">

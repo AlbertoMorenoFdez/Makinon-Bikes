@@ -1,0 +1,32 @@
+#panelAdminBody{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap:1rem;
+}
+
+
+
+@media (max-width: 900px) {
+    #panelAdminBody{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+#bienvAdmin{
+    display: none;
+}
+
+    #panelAdminBody{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 874px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+}

@@ -33,6 +33,8 @@
     <link href="{{ asset('css/carrito.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pedido.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pedido-confirmado.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/administracion.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/usuario.css') }}" rel="stylesheet">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -53,6 +55,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
 
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const bannerDownBtn = document.getElementById('bannerDownBtn');
@@ -71,13 +76,13 @@
     <div class="container-fluid" style="padding:0px">
         <header>
             <div class="top">
-
+                <h1 class="sr-only">Makinon Bikes, tienda de ciclismo</h1>
                 <div class="buscador">
                     @livewire('buscador-productos')
                 </div>
 
                 <div class="content-div">
-                    <a href="{{ route('carrito') }}">
+                    <a href="{{ route('carrito') }}" title="carrito">
                         @if (session('carrito') && count(session('carrito')) > 0)
                             <i class="fas fa-cart-shopping" style="color:rgb(251,98,0)"></i>
                         @else
@@ -95,7 +100,7 @@
             <div class="menubanner">
                 <div class="d-flex justify-center" id="logoContainer">
                     <a id="logo" href=" {{ route('home') }}">
-                        <img src="{{ asset('images/logo_sin_fondo.gif') }}" alt="logo">
+                        <img src="{{ asset('images/logo_sin_fondo.gif') }}" alt="logo de la página">
                     </a>
                 </div>
 

@@ -5,11 +5,12 @@
         <div class="card-header">
             <h2>@lang('makinon.panelAdmin')</h2>
         </div>
-        <div class="card-body">
-
-        </div>
-        <div class="d-flex flex-row gap-2 slider">
-            <div class="card">
+        <div class="card-body" id="panelAdminBody">
+            <div id="bienvAdmin">
+                <p>Bienvenido administrador. </p>
+                <p>En este panel tienes acceso para controlar y evaluar la administración de la tienda.</p>
+            </div>
+            <div class="card" >
                 <div class="card-header">
                     <h3>@lang('makinon.proveedores')</h3>
                 </div>
@@ -61,5 +62,4 @@
             </div>
         </div>
     </div>
-    
 @endsection
