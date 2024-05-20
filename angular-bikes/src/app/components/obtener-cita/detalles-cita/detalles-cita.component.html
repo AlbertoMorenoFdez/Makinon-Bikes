@@ -7,12 +7,15 @@
     <p><strong>Hora Programada:</strong> {{ cita.hora }}</p>
     <div *ngIf="cita.imagen_url">
       <p><strong>Imagen Subida:</strong></p>
-      <p>{{ cita.imagen_url }}</p> <!-- Muestra la ruta de la imagen -->
       <img [src]="cita.imagen_url" alt="Imagen de la cita" style="max-width: 200px; max-height: 200px;">
     </div>
     <button mat-icon-button (click)="eliminarCita(cita.id_cita_taller)">
       <mat-icon>delete</mat-icon>
     </button>
-    <a [routerLink]="['/editarCita', cita.id_cita_taller]">Editar</a>
+    <!-- <a [routerLink]="['/editarCita', cita.id_cita_taller]"> <mat-icon>edit</mat-icon></a> -->
+    <button mat-icon-button [routerLink]="['/editarCita', cita.id_cita_taller]" aria-label="Editar cita">
+      <mat-icon>edit</mat-icon>
+    </button>
+    
   </div>
 </mat-card>

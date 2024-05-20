@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { DatePickerComponent } from './components/formulario/date-picker/date-picker.component';
-import { TimepickerComponent } from './components/formulario/timepicker/timepicker.component';
+
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { SubirArchivoComponent } from './components/formulario/subir-archivo/subir-archivo.component';
 import { TraerNombreComponent } from './components/traer-nombre/traer-nombre.component';
@@ -35,14 +35,14 @@ export const routes: Routes = [
         path: 'citaAnterior',
         // canActivate: [AuthGuard],
         component: ObtenerCitaComponent,
-        // children: [
-        //     {
-        //         // path: 'token', component: TokenComponent,
-        //         path: 'editarCita/:id',
-        //         // canActivate: [AuthGuard],
-        //         component: EditarFormularioComponent
-        //     }
-        // ]
+        children: [
+            {
+                // path: 'token', component: TokenComponent,
+                path: 'editarCita/:id',
+                // canActivate: [AuthGuard],
+                component: EditarFormularioComponent
+            }
+        ]
     },
     {
         path: 'editarCita/:id',
