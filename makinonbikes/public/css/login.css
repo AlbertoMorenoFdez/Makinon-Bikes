@@ -1,9 +1,7 @@
 .portadaLogin {
     width: 100%;
-    height: 32vw;
-    overflow: hidden;
+    height: 60vh;
     z-index: 1;
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,6 +9,23 @@
     
 }
 
+.contenedorlogin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    border: solid 1px black;
+    box-shadow: 1px 1px 0px rgb(230, 230, 230),
+        2px 2px 0px rgb(200, 200, 200),
+        3px 3px 0px rgb(180, 180, 180),
+        4px 4px 0px rgb(160, 160, 160),
+        5px 5px 0px rgb(0, 0, 0),
+        8px 8px 20px rgb(0, 0, 0);
+}
 .contenedorImagenLogin {
     position: absolute;
     top: 0;
@@ -29,27 +44,9 @@
     opacity: 0.25;
 } 
 
-.contenedorlogin {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 500px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: solid 1px black;
-    box-shadow: 1px 1px 0px rgb(230, 230, 230),
-        2px 2px 0px rgb(200, 200, 200),
-        3px 3px 0px rgb(180, 180, 180),
-        4px 4px 0px rgb(160, 160, 160),
-        5px 5px 0px rgb(0, 0, 0),
-        8px 8px 20px rgb(0, 0, 0);
-}
+
 
 .contenedorizquierda {
-    width: 50%;
     height: 100%;
 }
 
@@ -59,7 +56,6 @@
 }
 
 .contenedorderecha {
-    width: 50%;
     height: 100%;
     padding:20px;
     display: flex;
@@ -141,4 +137,26 @@ button.ms-3{
 }
 .ms-3:hover {
     background-color: rgb(251, 98, 0) !important;
+}
+
+@media (max-width: 899px) {
+    .contenedorlogin {
+        width: 70%;
+        grid-template-columns: 1fr;
+    }
+    .contenedorizquierda {
+        display: none;
+    }
+    .contenedorderecha {
+        padding: 0;
+    }
+    .contenedorImagenLogin img {
+        width: 100%;
+    }
+    h2 {
+        font-size: 30px;
+    }
+    .boton-login {
+        width: 100%;
+    }
 }

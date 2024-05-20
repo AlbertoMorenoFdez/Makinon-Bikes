@@ -1,13 +1,13 @@
 <div class="resultadoBuscador">
     {{-- <x-text-input type="text" id="buscador" wire:model="search" placeholder="Buscar..." wire:keydown.enter="buscar"></x-text-input> --}}
 
-    <label for="Buscar" class="sr-only"> Search </label>
+    <label for="buscador" class="sr-only"> Search </label>
 
-    <input type="text" id="buscador" placeholder="Buscar..." wire:model="search" 
+    <input type="text" id="buscador" placeholder="Buscar..." wire:model="search" title="Buscar"
         class="w-full rounded-md border-orange-500 py-2.5 pe-10 shadow-sm sm:text-sm" />
 
     <span class="absolute inset-y-0 end-0 grid mt-1 mr-2 w-10 place-content-center" >
-        <button type="button" class="text-gray-600 hover:text-gray-700" wire:click="buscar"> 
+        <button type="button" class="text-gray-600 hover:text-gray-700" wire:click="buscar" title="Botón buscar"> 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="h-4 w-4">
                 <path stroke-linecap="round" stroke-linejoin="round"

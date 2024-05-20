@@ -18,11 +18,11 @@
                             {{ strtoupper($producto->nombre) }}</strong> </p>
 
                     <div class="ps-4 pe-4 mb-5">
-                        <p style="color:grey"> {{ $producto->descripcion_corta }}</p>
+                        <p style="color:rgb(93, 93, 93)"> {{ $producto->descripcion_corta }}</p>
                     </div>
                     <form method="POST" action="{{ route('añadirAlCarrito', $producto->id_producto) }}">
                         @csrf
-                        <p style="color:grey">@lang('makinon.colores')</p>
+                        <p style="color:rgb(93, 93, 93)">@lang('makinon.colores')</p>
                         <div class="border-bottom border-top d-flex align-items-center">
                             @if (isset($producto->producto_color_talla) && $producto->producto_color_talla)
                                 @foreach ($producto->producto_color_talla->unique('color.color') as $key => $productoColorTalla)
@@ -54,7 +54,7 @@
                             @endif
                         </div> --}}
                         <br>
-                        <p style="color:grey">@lang('makinon.tallas')</p>
+                        <p style="color:rgb(93, 93, 93)">@lang('makinon.tallas')</p>
                         <div class="border-bottom border-top d-flex align-items-center">
                             @if (isset($producto->producto_color_talla) && $producto->producto_color_talla)
                                 <select name="talla" id="talla" class="mt-2 mb-2 rounded w-40">
@@ -106,11 +106,12 @@
                         <input type="hidden" name="id_color" id="id_color">
                         <input type="hidden" name="id_talla" id="id_talla">
 
-                        <div class="d-flex align-items-center mt-4 mb-10" style="color:grey">
+                        <div class="d-flex align-items-center mt-4 mb-10" style="color:rgb(93, 93, 93)">
                             <p class="mb-0">@lang('makinon.cantidad')</p>
                             <div class="input-group input-group-sm justify-content-center">
                                 <span class="material-symbols-outlined cursor-pointer" onclick="decrementar()">
                                     indeterminate_check_box </span>
+                                    <label for="cantidad" class="sr-only">Cantidad</label>
                                 <input class="h-6 w-20 text-center" style="margin-left: 1rem; margin-right:1rem " type="text" name="cantidad" id="cantidad"
                                     value="1">
                                 <span class="material-symbols-outlined cursor-pointer" onclick="incrementar()"> add_box

@@ -180,26 +180,25 @@
                                     <div>
                                         <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
                                         <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
-                                            placeholder="0000 0000 0000 0000" required />
+                                            placeholder="0000 0000 0000 0000" />
                                         {{-- <x-input-error :messages="$errors->get('numero_tarjeta')" class="mt-2" /> --}}
                                     </div>
 
                                     <div>
                                         <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
                                         <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
-                                            placeholder="MM/AA" required />
+                                            placeholder="MM/AA" />
                                         {{-- <x-input-error :messages="$errors->get('fecha_vencimiento')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="cvv">CVV</x-input-label>
-                                        <x-text-input type="text" id="cvv" name="cvv" placeholder="000"
-                                            required />
+                                        <x-text-input type="text" id="cvv" name="cvv" placeholder="000" />
                                         {{-- <x-input-error :messages="$errors->get('cvv')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
                                         <x-text-input type="text" id="nombre_titular" name="nombre_titular"
-                                            placeholder="Nombre del titular" required />
+                                            placeholder="Nombre del titular" />
                                         {{-- <x-input-error :messages="$errors->get('nombre_titular')" class="mt-2" /> --}}
                                     </div>
                                 </div>
@@ -265,6 +264,7 @@
                             @endforeach
                         </div>
 
+
                         <div class="resumen-pago">
                             <div id="importe-gastos">
                                 <h3>RESUMEN DEL IMPORTE DEL PEDIDO</h3>
@@ -297,6 +297,10 @@
                                 Pedido</x-makinon-primary-button>
 
                         </div>
+                        {{-- <div class="addComentario">
+                            <label for="comentario">Añadir comentario</label>
+                            <textarea name="comentario" id="comentario" cols="30" rows="10"></textarea>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -354,7 +358,6 @@
                     'block' : 'none';
             });
         });
-
 
         document.getElementById('numero_tarjeta').addEventListener('input', function(e) {
             var input = e.target;

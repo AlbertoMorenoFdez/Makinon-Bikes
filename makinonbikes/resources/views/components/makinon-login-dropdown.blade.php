@@ -13,7 +13,7 @@
     @endif
 
     <div class="dropdown perfil">
-        <button class="dropbtn perfil">
+        <button class="dropbtn perfil" title="Perfil del usuario">
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
