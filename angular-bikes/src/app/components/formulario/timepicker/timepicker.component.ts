@@ -8,7 +8,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   standalone: true,
   imports: [IGX_TIME_PICKER_DIRECTIVES, FormsModule],
   templateUrl: './timepicker.component.html',
-  styleUrls: ['./timepicker.component.css']
+  styleUrl: './timepicker.component.css'
 })
 export class TimepickerComponent {
   public time: Date = new Date();  // Inicialización directa

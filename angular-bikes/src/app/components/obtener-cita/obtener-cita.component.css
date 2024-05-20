@@ -1,45 +1,81 @@
-/* Estilo para la lista de citas */
-
-.container{
+/* Estilo para centrar el contenido */
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
-.card
-{
+
+/* Estilo para el contenido principal */
+.content {
   display: flex;
   justify-content: space-between;
-
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5vh;
 }
+
+/* Estilo para la lista de citas */
+.citas-list {
+  flex: 1;
+  margin-right: 20px;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los elementos de la lista */
 ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 30px;
-  }
- 
-  
-  li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #da741b;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Añade transformación y transición */
-  }
-  li:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumenta la sombra para un efecto más profundo */
-    transform: translateX(15px); /* Mueve la card ligeramente hacia arriba */
-  }
-  button{
-    width: 10px;
-    height: 30px;
-  }
-  
-  strong {
-    color: #333;
-  }
-  
-  div {
-    margin-top: 5px;
-  }
-  
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color: #da741b;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+li:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateX(15px);
+}
+
+button {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+strong {
+  color: #333;
+}
+
+.cita-imagen {
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* Estilo para los detalles de la cita */
+.cita-detalles {
+  flex: 2;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 80vh;
+}

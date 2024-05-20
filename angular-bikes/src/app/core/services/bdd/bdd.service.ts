@@ -57,9 +57,16 @@ export class BddService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>('http://localhost:8000/api/cita_taller', { headers });
   }
+  // Obtiene una cita de la bbdd
+  obtenerCitaId(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`http://localhost:8000/api/obtenerCitaId/${id}`, { headers });
+  }
+
 
   // Edita una cita en la bbdd
-  editarCita(credentials: { id: number }): Observable<any> {
+  editarCita(credentials: { id: number,  }): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put<any>('http://localhost:8000/api/cita_taller', credentials, { headers });
