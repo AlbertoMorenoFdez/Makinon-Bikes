@@ -4,9 +4,9 @@
     <x-makinon-menu-lateral :marcas="$marcas"/>
 
     <div id="contenedorProductos" >
-        <div id="contenedorCards">
+        <div id="contenedorCardsTipos">
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo','barrita') }}">
                         <img src="{{ asset('images/alimentacion/barrita.jpg') }}" class="card-img-top img-fluid"
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo','gel') }}">
                         <img src="{{ asset('images/alimentacion/gel.webp') }}" class="card-img-top img-fluid"
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo','hidratacion') }}">
                         <img src="{{ asset('images/alimentacion/hidratacion.jpg') }}" class="card-img-top img-fluid"

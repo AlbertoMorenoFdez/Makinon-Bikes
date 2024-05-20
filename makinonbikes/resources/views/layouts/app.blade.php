@@ -35,6 +35,7 @@
     <link href="{{ asset('css/pedido-confirmado.css') }}" rel="stylesheet">
     <link href="{{ asset('css/administracion.css') }}" rel="stylesheet">
     <link href="{{ asset('css/usuario.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/otras_vistas.css') }}" rel="stylesheet">
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -152,9 +153,9 @@
         <footer>
             <div class="bottom">
                 <div id="columna1">
-                    <div>SOPORTE prueba</div>
-                    <li>Contacto</li>
-                    <li>Nuestra tienda</li>
+                    <div>SOPORTE</div>
+                    <li><a href="{{ route('sobre_nosotros') }}">Sobre nosotros</a></li>
+                    <li><a href="{{route('contacto')}}">Contacto</a></li>
                     <li>Mapa de la web</li>
                     <li>Envío y devoluciones</li>
                     <li>Formas de pago</li>

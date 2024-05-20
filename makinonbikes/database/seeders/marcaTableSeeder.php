@@ -50,7 +50,6 @@ class marcaTableSeeder extends Seeder
             /*33*/['nombre'=>'RockShox'],
             /*34*/['nombre'=>'SIS'],
             /*35*/['nombre'=>'Maurten'],
-            /*36*/['nombre'=>'SIS'],
         ]);
     }
 }

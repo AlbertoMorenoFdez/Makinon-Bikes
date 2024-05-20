@@ -308,6 +308,7 @@
     </div>
 
     <script>
+        // Función que nos permite el desplazamiento entre los diferentes pasos de la compra
         document.querySelectorAll('.paso--clickeable').forEach(function(paso, index) {
             paso.addEventListener('click', function() {
                 var contenedorSlide = document.querySelector('.contenedor-slide');
@@ -323,6 +324,7 @@
             });
         });
 
+        // Función que nos cambia el color de los pasos de la compra
         document.querySelectorAll('.paso-clickeable-datos').forEach(function(paso, index) {
             paso.addEventListener('click', function() {
                 var contenedorSlide = document.querySelector('.contenedor-slide');
@@ -332,6 +334,7 @@
             });
         });
 
+        // Función que nos cambia el color de los pasos de la compra
         document.querySelectorAll('.paso-clickeable-pago').forEach(function(paso, index) {
             paso.addEventListener('click', function() {
                 var contenedorSlide = document.querySelector('.contenedor-slide');
@@ -341,6 +344,7 @@
             });
         });
 
+        // Funcón que nos muestra el método de pago en el resumen de la compra según se haya elegido anteriormente
         document.querySelectorAll('input[name="forma-pago"]').forEach(function(radio) {
             radio.addEventListener('change', function() {
                 document.querySelector('.tarjeta').style.display = this.value === 'tarjeta' ?
@@ -359,6 +363,7 @@
             });
         });
 
+        // Funciónes que nos permiten validar los campos de la tarjeta de crédito
         document.getElementById('numero_tarjeta').addEventListener('input', function(e) {
             var input = e.target;
             var value = input.value.replace(/\s/g, '');
@@ -395,6 +400,7 @@
             }
         });
 
+        // Funciones con las que cambiamos el color de los campos de la tarjeta de crédito si no se cumplen las condiciones
         document.getElementById('nombre_titular').addEventListener('input', function(e) {
             var input = e.target;
             var value = input.value;
@@ -420,13 +426,14 @@
             }
         });
 
-
+        // Eliminamos en esta vista la posibilidad de usar el tabulador para navegar entre los elementos, asi obligamos a que no se salte ningún campo el usuario
         window.addEventListener('keydown', function(e) {
             if (e.key === 'Tab') {
                 e.preventDefault();
             }
         });
 
+        // Obligamos a que el usuario acepte las condiciones de compra para poder realizar el pedido, bloqueando hasta ese momento el boton de compra
         document.addEventListener('DOMContentLoaded', function() {
             var checkbox = document.getElementById('aceptarCondiciones');
             var boton = document.getElementById('realizarPedido');

@@ -4,9 +4,9 @@
     <x-makinon-menu-lateral :marcas="$marcas"/>
 
     <div id="contenedorProductos">
-        <div id="contenedorCards">
+        <div id="contenedorCardsTipos" class="d-grid">
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'mando,cambio,bielas,cadena,grupo') }}">
                         <img src="{{ asset('images/componentes/transmision.webp') }}" class="card-img-top img-fluid"
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'maneta,pinza,disco,kit de frenos') }}">
                         <img src="{{ asset('images/componentes/frenos.jpg') }}" class="card-img-top img-fluid"
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo','ruedas de montaña,ruedas de carretera,cubierta de montaña,cubierta de carretera') }}">
                         <img src="{{ asset('images/componentes/ruedas.webp') }}" class="card-img-top img-fluid"
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo','manillar de montaña,manillar de carretera') }}">
                         <img src="{{ asset('images/componentes/manillar.jpg') }}" class="card-img-top img-fluid"
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo','sillin,sillin antiprostatico,sillin urbano') }}">
                         <img src="{{ asset('images/componentes/sillin.jpg') }}" class="card-img-top img-fluid"
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo','tija,tija telescopica') }}">
                         <img src="{{ asset('images/componentes/tija.webp') }}" class="card-img-top img-fluid"

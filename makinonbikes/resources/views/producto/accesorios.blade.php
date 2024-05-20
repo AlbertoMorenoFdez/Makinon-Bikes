@@ -4,9 +4,9 @@
     <x-makinon-menu-lateral :marcas="$marcas"/>
 
     <div id="contenedorProductos">
-        <div id="contenedorCards">
+        <div id="contenedorCardsTipos">
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'gafas') }}">
                         <img src="{{ asset('images/accesorios/gafa.webp') }}" class="card-img-top img-fluid"
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'casco') }}">
                         <img src="{{ asset('images/accesorios/casco.webp') }}" class="card-img-top img-fluid"
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'zapatilla') }}">
                         <img src="{{ asset('images/accesorios/zapatilla.jpg') }}" class="card-img-top img-fluid"
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'maillot') }}">
                         <img src="{{ asset('images/accesorios/maillot.jpg') }}" class="card-img-top img-fluid"
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'culotte') }}">
                         <img src="{{ asset('images/accesorios/culotte.webp') }}" class="card-img-top img-fluid"
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="">
                 <div class="card m-5 hover-card shadow-sm">
                     <a style="color:black; text-decoration:none;" href="{{ route('productos.tipo', 'guantes') }}">
                         <img src="{{ asset('images/accesorios/guante.webp') }}" class="card-img-top img-fluid"

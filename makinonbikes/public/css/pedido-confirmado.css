@@ -1,7 +1,6 @@
 .container-pedido-confirmado{
   width: 90%;
   height: 500px;
-  margin-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;

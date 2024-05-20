@@ -22,35 +22,10 @@ class TarjetaCreditoController extends Controller
     }
 
     /**
-     * Función para registrar una tarjeta de crédito en la base de datos
+     * Función para validar los datos de la tarejat de crédito en el proceso de compra
      */
 
-    // public function registrarTarjeta(Request $request)
-    // {
-    //     $request->validate([
-    //         'numero_tarjeta' => 'required|numeric|digits:16',
-    //         'fecha_vencimiento' => 'required|regex:/^\d{2}\/\d{2}$/',
-    //         'nombre_titular' => 'required|string',
-    //         'cvv' => 'required|numeric|digits:3'
-    //     ]);
-
-    //     // Crear una nueva tarjeta de crédito
-    //     $tarjetaCredito = new TarjetaCredito;
-    //     $tarjetaCredito->id_usuario = Auth::id();
-    //     $tarjetaCredito->numero_tarjeta = $request->input('numero_tarjeta');
-    //     $tarjetaCredito->fecha_vencimiento = $request->input('fecha_vencimiento');
-    //     $tarjetaCredito->nombre_titular = $request->input('nombre_titular');
-    //     $tarjetaCredito->cvv = $request->input('cvv');
-
-    //     // Guardar la tarjeta de crédito
-    //     $tarjetaCredito->save();
-
-    //     // Redirigir al usuario a la página anterior con un mensaje de éxito
-    //     return redirect()->back()->with('success', 'Tarjeta de crédito registrada con éxito');
-    // }
-
-
-    public function registrarTarjeta(Request $request)
+    public function validarTarjeta(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'numero_tarjeta' => 'required|numeric|digits:16',
@@ -69,7 +44,7 @@ class TarjetaCreditoController extends Controller
                     }
                 },
             ],
-            'nombre_titular' => 'required|string',
+            'nombre_titular' => 'required|string|min:3|max:255',
             'cvv' => 'required|numeric|digits:3'
         ]);
 
@@ -77,18 +52,8 @@ class TarjetaCreditoController extends Controller
             throw new \Exception('Los datos de la tarjeta de crédito no son válidos');
         }
 
-        // Crear una nueva tarjeta de crédito
-        $tarjetaCredito = new TarjetaCredito;
-        $tarjetaCredito->id_usuario = Auth::id();
-        $tarjetaCredito->numero_tarjeta = $request->input('numero_tarjeta');
-        $tarjetaCredito->fecha_vencimiento = $request->input('fecha_vencimiento');
-        $tarjetaCredito->nombre_titular = $request->input('nombre_titular');
-        $tarjetaCredito->cvv = $request->input('cvv');
-
-        // Guardar la tarjeta de crédito
-        $tarjetaCredito->save();
-
-        return $tarjetaCredito;
+        // Los datos de la tarjeta de crédito son válidos
+        return response()->json(['message' => 'Los datos de la tarjeta de crédito son válidos'], 200);
     }
 
 

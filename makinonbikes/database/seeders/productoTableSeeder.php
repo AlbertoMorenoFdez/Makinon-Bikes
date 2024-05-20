@@ -2405,7 +2405,7 @@ class productoTableSeeder extends Seeder
                 ],[
                     'nombre' => 'GO Energy sabor plátano y caramelo 40 g',
                     'tipo' => 'Barrita',
-                    'id_marca' => '36',
+                    'id_marca' => '34',
                     'id_proveedor' => '3',
                     'precio' => '1.55',
                     'descripcion_corta' => 'El compañero perfecto para tus actividades deportivas, brindándote un impulso rápido y delicioso.',
@@ -2424,7 +2424,7 @@ class productoTableSeeder extends Seeder
                 ],[
                     'nombre' => 'GO Energy sabor plátano y caramelo 40 g',
                     'tipo' => 'Barrita',
-                    'id_marca' => '36',
+                    'id_marca' => '34',
                     'id_proveedor' => '3',
                     'precio' => '1.55',
                     'descripcion_corta' => 'El compañero perfecto para tus actividades deportivas, brindándote un impulso rápido y delicioso.',
@@ -2471,7 +2471,7 @@ class productoTableSeeder extends Seeder
                 ],[
                     'nombre' => 'Pack Go Isotonic Energy (7 unidades)',
                     'tipo' => 'Gel',
-                    'id_marca' => '36',
+                    'id_marca' => '34',
                     'id_proveedor' => '2',
                     'precio' => '12.49',
                     'descripcion_corta' => 'Con 7 unidades de geles isotónicos, obtendrás la energía necesaria para alcanzar tus metas en cada entrenamiento.',
@@ -2488,7 +2488,7 @@ class productoTableSeeder extends Seeder
                 ],[
                     'nombre' => 'Go Isotonic Energy sabor tropical 60 ml ',
                     'tipo' => 'Gel',
-                    'id_marca' => '36',
+                    'id_marca' => '34',
                     'id_proveedor' => '2',
                     'precio' => '2.39',
                     'descripcion_corta' => 'Con su fórmula isotónica de rápida absorción, te proporciona la energía necesaria para alcanzar tus metas. ',
@@ -2556,7 +2556,7 @@ class productoTableSeeder extends Seeder
                 ],[
                     'nombre' => 'Go Hydro Tablet sabor cola cafeína ',
                     'tipo' => 'Hidratación',
-                    'id_marca' => '36',
+                    'id_marca' => '34',
                     'id_proveedor' => '3',
                     'precio' => '7.95',
                     'descripcion_corta' => 'Pon una tableta Go Hydro Tablet en el bidón de agua para obtener una hidratación efectiva, sin calorías, antes y durante el ejercicio.',
@@ -2573,7 +2573,7 @@ class productoTableSeeder extends Seeder
                 ],[
                     'nombre' => 'Beta Fuel 80 82 g sabor fresa lima',
                     'tipo' => 'Hidratación',
-                    'id_marca' => '36',
+                    'id_marca' => '34',
                     'id_proveedor' => '3',
                     'precio' => '3.49',
                     'descripcion_corta' => 'Es la bebida energética de doble fuente proporciona 80 g de carbohidratos optimizados en una única y cómoda solución isotónica para repostar con un riesgo mínimo de malestar gastrointestinal que le permite mantener un rendimiento óptimo.',

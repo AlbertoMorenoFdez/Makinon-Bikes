@@ -91,7 +91,7 @@ class PedidoController extends Controller
             // Si se han registrado tarjetas de credito
             if ($request->input('forma-pago') == 'tarjeta') {
                 $tarjetaCreditoController = new TarjetaCreditoController;
-                $tarjetaCreditoController->registrarTarjeta($request);
+                $tarjetaCreditoController->validarTarjeta($request);
             }
 
             // Creamos la nueva factura

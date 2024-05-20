@@ -18,6 +18,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\AngularController;
 use App\Http\Controllers\CitaTallerController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ProductoColorTallaController;
 use App\Http\Controllers\FacturaController;
 
@@ -181,13 +182,25 @@ Route::get('/factura/descargar/{id_pedido}', [FacturaController::class, 'descarg
 Ruta para el enviar el email
 */
 Route::get('/sendMail', [MailController::class, 'sendMail'])->name('sendMail');
+Route::post('contacto', [ContactoController::class, 'send'])->name('contacto');
+
+/*
+Rutas para las otras páginas con información
+*/
+Route::get('sobre_nosotros', function () {
+    return view('otras_vistas.sobre_nosotros');
+})->name('sobre_nosotros');
+Route::get('/contacto', function(){
+    return view('otras_vistas.contacto');
+})->name('contacto');
 
 /*
 Ruta para la página en construcción
 */
 Route::get('/paginaEnConstruccion', function () {
-    return view('paginaEnConstruccion');
+    return view('otras_vistas.paginaEnConstruccion');
 })->name('paginaEnConstruccion');
+
 
 
 Route::get('/dashboard', function () {

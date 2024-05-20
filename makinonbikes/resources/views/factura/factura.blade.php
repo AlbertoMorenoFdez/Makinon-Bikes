@@ -191,8 +191,8 @@
             <div class="datos-empresa">
                 <p>Makinon Bikes S.L</p>
                 <p>CIF: B-12345678</p>
-                <p>C. Frederick Terman, 3, Campanillas, 29590 Málaga</p>
-                <p>Teléfono: 612 345 678</p>
+                <p>C. La Boheme, 8, 29006 Málaga</p>
+                <p>Teléfono: 952 33 95 58</p>
                 <p>Email: new.makinonbikes@gmail.com
             </div>
 

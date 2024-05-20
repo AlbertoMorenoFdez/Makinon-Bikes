@@ -147,8 +147,8 @@
             </h2>
             <div id="gafas" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p>Lente normal</p>
-                    <p>Lente polarizada</p>
+                    <p><a href="{{ route('productos.tipo', 'gafas') }}">Gafas</a> </p>
+                    
                 </div>
             </div>
         </div>
@@ -161,8 +161,7 @@
             </h2>
             <div id="cascos" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p>De carretera</p>
-                    <p>De montaña</p>
+                    <p><a href="{{ route('productos.tipo', 'casco') }}">Cascos</a> </p>
                 </div>
             </div>
         </div>
