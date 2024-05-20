@@ -36,4 +36,8 @@ export class RolesService {
   isAuthenticated(): boolean {
     return this.isLoggedIn.value;
   }
+   // Método para verificar si el usuario tiene un rol específico
+   userHasRole(role: string): boolean {
+    return this.currentUserRole.value === role;
+  }
 }

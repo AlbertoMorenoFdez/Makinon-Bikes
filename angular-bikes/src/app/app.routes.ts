@@ -13,12 +13,18 @@ import { AutenticacionGuard } from '../app/autenticacion.guard';
 import { DragDropComponent } from './components/drag-drop/drag-drop.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { GraficaComponent } from './components/grafica/grafica.component';
-
+import { LandingComponent } from './components/landing/landing.component';
 export const routes: Routes = [
   
    
     {
         path: 'citaTaller',
+        //  canActivate: [AutenticacionGuard],
+        component: LandingComponent, // Componente principal
+
+    },
+    {
+        path: 'pedirCita',
         //  canActivate: [AutenticacionGuard],
         component: FormularioComponent, // Componente principal
 
