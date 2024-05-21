@@ -336,6 +336,11 @@ main {
     margin-top: 5px;
 }
 
+#columna3 a{
+    color:grey;
+    text-decoration: none;
+}
+
 a {
     text-decoration: none;
     color: black;

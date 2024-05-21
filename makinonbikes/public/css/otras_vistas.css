@@ -29,3 +29,21 @@
     grid-template-columns: 1fr 1fr;
     column-gap: 2rem;
 }
+
+.contenedor-contacto label{
+    margin-top: 1rem;
+}
+
+.contenedor-info{
+    width: 80%;
+    display:flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.imgFormasPago{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 2rem;
+    align-items: center;
+}

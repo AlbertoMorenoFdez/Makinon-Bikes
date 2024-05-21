@@ -152,17 +152,16 @@
 
         <footer>
             <div class="bottom">
-                <div id="columna1">
+                <div id="columna1" class="mb-3">
                     <div>SOPORTE</div>
                     <li><a href="{{ route('sobre_nosotros') }}">Sobre nosotros</a></li>
-                    <li><a href="{{route('contacto')}}">Contacto</a></li>
-                    <li>Mapa de la web</li>
-                    <li>Envío y devoluciones</li>
-                    <li>Formas de pago</li>
-                    <li>Aviso legal</li>
-                    <li>Gestión de garantías</li>
-                    <li>Uso de cookies</li>
-                    <li>Términos y condiciones</li>
+                    <li><a href="{{ route('contacto') }}">Contacto</a></li>
+                    <li><a href={{ route('envios_devoluciones') }}>Envío y devoluciones</a></li>
+                    <li><a href="{{ route('formas_de_pago') }}">Formas de pago</a> </li>
+                    <li><a href="{{ route('aviso_legal') }}">Aviso legal</a></li>
+                    <li><a href="{{ route('gestion_garantias') }}">Gestión de garantías</a></li>
+                    <li><a href="{{ route('uso_cookies') }}">Uso de cookies</a></li>
+                    <li><a href="{{route('terminos_y_condiciones')}}">Términos y condiciones</a></li>
                 </div>
 
                 <div id="columna2">
@@ -176,17 +175,18 @@
                 </div>
                 <div id="columna3">
                     <div>SIGUENOS</div><br>
-                    <div>
-                        <i class="fa-brands fa-instagram"></i>
-                        Instagram
-                    </div><br>
+                    <div><i class="fab fa-instagram"></i>
+                        <a href="https://www.instagram.com/cdmakinonbikesmalaga/" target="_blanck">Instagram</a>
+                    </div>
+                    <br>
                     <div>
                         <i class="fa-brands fa-youtube"></i>
-                        Youtube
-                    </div><br>
+                        <a href="https://www.youtube.com/watch?v=aGE7yJcoNvs" target="_blanck">Youtube</a>
+                    </div>
+                    <br>
                     <div>
                         <i class="fa-brands fa-tiktok"></i>
-                        Tik Tok
+                        <a href="https://www.tiktok.com/@redbullbike" target="_blanck">Tik Tok</a>
                     </div>
                 </div>
             </div>

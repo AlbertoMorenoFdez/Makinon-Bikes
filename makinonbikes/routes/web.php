@@ -193,6 +193,24 @@ Route::get('sobre_nosotros', function () {
 Route::get('/contacto', function(){
     return view('otras_vistas.contacto');
 })->name('contacto');
+Route::get('envios_devoluciones', function () {
+    return view('otras_vistas.envios_devoluciones');
+})->name('envios_devoluciones');
+Route::get('formas_de_pago', function () {
+    return view('otras_vistas.formas_de_pago');
+})->name('formas_de_pago');
+Route::get('aviso_legal', function () {
+    return view('otras_vistas.aviso_legal');
+})->name('aviso_legal');
+Route::get('gestion_garantias', function () {
+    return view('otras_vistas.gestion_garantias');
+})->name('gestion_garantias');
+Route::get('uso_cookies', function () {
+    return view('otras_vistas.uso_cookies');
+})->name('uso_cookies');
+Route::get('terminos_y_condiciones', function () {
+    return view('otras_vistas.terminos_y_condiciones');
+})->name('terminos_y_condiciones');
 
 /*
 Ruta para la página en construcción
