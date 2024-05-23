@@ -3,7 +3,8 @@
 @section('main')
     <div class="row w-4/5">
         <div class="card-header text-center">
-            <h2 class="mb-3">Contacto</h2>
+            <h2 >Contacto</h2>
+            <hr class="mb-3">
         </div>
 
         <div class="contenedor-contacto">

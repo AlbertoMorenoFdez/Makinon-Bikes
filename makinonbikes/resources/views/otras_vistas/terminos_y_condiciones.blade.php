@@ -6,6 +6,7 @@
         <div class="contenedor-info">
             <div class="contacto-info">
                 <h2 class="mt-0">Términos y condiciones</h2>
+                <hr class="mb-3">
                 <p>En esta sección se recogen los términos y condiciones de uso de la página web. Por favor, lea atentamente
                     estos términos y condiciones antes de utilizar la página web. Al utilizar la página web, usted acepta
                     estos términos y condiciones de uso en su totalidad. Si no está de acuerdo con estos términos y

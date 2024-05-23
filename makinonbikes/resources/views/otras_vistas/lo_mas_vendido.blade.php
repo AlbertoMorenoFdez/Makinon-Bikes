@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('main')
-    <x-makinon-menu-lateral :marcas="$marcas" />
+    <div id="contenedorNuevosProductos">
 
-    <div id="contenedorProductos">
-        <div id="contenedorCards">
+        <h2 class="mt-0 mb-4">Lo mas vendido en Makinon Bikes</h2>
+
+        <div id="contenedorNuevasCards">
             @foreach ($productos as $producto)
                 <div class="card m-2 hover-card shadow-sm" style="flex: 0 0 auto; padding:20px">
                     <a style="color:black; text-decoration:none;"href="{{ route('vistaProducto', $producto->id_producto) }}">

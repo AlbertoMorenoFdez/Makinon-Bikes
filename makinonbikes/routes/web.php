@@ -103,6 +103,8 @@ Route::get('/alimentacion', function () {
     $marcas = Marca::all();
     return view('producto.alimentacion', ['marcas' => $marcas]);
 })->name('alimentacion');
+Route::get('nuevos_productos', [ProductoController::class, 'ultimosProductos'])->name('nuevos_productos');
+Route::get('lo_mas_vendido', [ProductoController::class, 'productosAleatorios'])->name('lo_mas_vendido');
 
 Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('listadoProductos', [ProductoController::class, 'listarProductos'])->name('listadoProductos');
@@ -120,6 +122,7 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
 Ruta para las Marcas
 */
 Route::post('nuevaMarca', [MarcaController::class, 'nuevaMarca'])->name('nuevaMarca');
+Route::get('marcas', [MarcaController::class,'listarMarcas'])->name('marcas');
 
 /*
 Ruta para los Colores
@@ -211,6 +214,18 @@ Route::get('uso_cookies', function () {
 Route::get('terminos_y_condiciones', function () {
     return view('otras_vistas.terminos_y_condiciones');
 })->name('terminos_y_condiciones');
+Route::get('promociones', function () {
+    return view('otras_vistas.promociones');
+})->name('promociones');
+Route::get('liquidacion', function () {
+    return view('otras_vistas.liquidacion');
+})->name('liquidacion');
+Route::get('segunda_mano', function () {
+    return view('otras_vistas.segunda_mano');
+})->name('segunda_mano');
+
+
+//Route::get('/productos/marca/{nombreMarca}', [ProductoController::class, 'vistasPorMarca'])->name('marca');
 
 /*
 Ruta para la página en construcción

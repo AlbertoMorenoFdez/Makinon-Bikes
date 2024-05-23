@@ -6,6 +6,7 @@
         <div class="contenedor-info">
             <div class="contacto-info">
                 <h2>Gestión de garantías</h2>
+                <hr class="mb-3">
                 <p>En Makinon Bikes queremos que nuestros clientes estén satisfechos con sus compras. Por ello, si tienes
                     algún
                     problema con tu producto, no dudes en ponerte en contacto con nosotros. Estaremos encantados de

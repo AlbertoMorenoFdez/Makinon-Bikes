@@ -166,12 +166,12 @@
 
                 <div id="columna2">
                     <div>LO MAS TOP</div>
-                    <li>Promociones especiales</li>
-                    <li>Nuevos productos</li>
-                    <li>¡Lo más vendido!</li>
-                    <li>Nuestras marcas</li>
-                    <li>Liquidación bicicletas</li>
-                    <li>Productos ocasión</li>
+                    <li><a href="{{route('promociones')}}">Promociones especiales</a></li>
+                    <li><a href="{{route('nuevos_productos')}}">Nuevos productos</a></li>
+                    <li><a href="{{route('lo_mas_vendido')}}">¡Lo más vendido!</a></li>
+                    <li><a href="{{route('marcas')}}">Nuestras marcas</a></li>
+                    <li><a href="{{route('liquidacion')}}">Liquidación</a></li>
+                    <li><a href="{{route('segunda_mano')}}">Segunda mano</a></li>
                 </div>
                 <div id="columna3">
                     <div>SIGUENOS</div><br>
