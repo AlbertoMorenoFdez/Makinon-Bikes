@@ -124,6 +124,32 @@ class CitaTallerController extends Controller
         return response()->json($citas);
     }
 
+
+    /**
+     * Función que permite obtener una cita por su ID
+     */
+    public function obtenerCitaId($id)
+    {
+        // Obtener el usuario autenticado
+        $user = auth()->user();
+
+        // Asegúrate de que el usuario esté autenticado
+        if (!$user) {
+            return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
+        }
+
+        // Buscar la cita por ID
+        $cita = CitaTaller::find($id);
+
+        // Si la cita no existe, devolver un error
+        if (!$cita) {
+            return response()->json(['error' => 'Cita no encontrada'], 404);
+        }
+
+        // Devolver la cita en formato JSON
+        return response()->json($cita);
+    }
+
     /**
      * Función que permite editar una cita en el taller
      */
