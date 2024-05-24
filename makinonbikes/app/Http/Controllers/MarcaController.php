@@ -16,4 +16,12 @@ class MarcaController extends Controller
         $marca->save();
         return redirect()->route('añadirProducto');
     }
+
+    /**
+     * Funcion para listar todas las marcas en la vista marcas.blade
+     */
+    public function listarMarcas(){
+        $marcas = Marca::orderBy('nombre', 'asc')->get();
+        return view('otras_vistas.marcas', ['marcas' => $marcas]);
+    }
 }

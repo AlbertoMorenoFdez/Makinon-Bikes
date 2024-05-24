@@ -6,6 +6,7 @@
         <div class="contenedor-info">
             <div class="contacto-info">
                 <h2>Envíos</h2>
+                <hr class="mb-3">
                 <p>Los envíos se realizan a través de la empresa de mensajería MRW. Los plazos de entrega son de 24-48 horas
                     para la Península y de 48-72 horas para Baleares. Para Canarias, Ceuta y Melilla, el plazo de entrega es
                     de 5-7 días laborables.</p>
@@ -23,6 +24,7 @@
             </div>
             <div>
                 <h2>Devoluciones</h2>
+                <hr class="mb-3">
                 <p>Si no estás satisfecho con tu compra, tienes un plazo de 14 días naturales para devolver el producto.
                     Para
                     ello, ponte en contacto con nosotros a través de nuestro <a href={{ route('contacto') }}

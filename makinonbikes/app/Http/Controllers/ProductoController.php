@@ -284,19 +284,36 @@ class ProductoController extends Controller
         return view('producto.añadirProducto', ['colores' => $colores]);
     }
 
-
     /**
-     * Función que nos devuelve las marcas de los productos
+     * Función que nos devuelve los 10 últimos productos añadidos a la tienda
      */
 
-    // public function listarMarcas(){
-    //     $marcas = Producto::select('marca')->distinct()->get();
-    //     return view('makinon-menu-lateral', ['marcas' => $marcas]);
-    // }
+    public function ultimosProductos()
+    {
+        $marcas = Marca::all();
+        $productos = Producto::orderBy('created_at', 'desc')->take(8)->get();
 
-    // public function filtrarPorMarca($marca)
-    // {
-    //     $productos = Producto::where('marca', 'like', '%' . $marca . '%')->get();
-    //     return view('producto.productos', ['productos' => $productos]);
-    // }
+        foreach ($productos as $producto) {
+            $producto->stockTotal = $producto->producto_color_talla->sum('stock');
+        }
+
+        return view('otras_vistas.nuevos_productos', ['productos' => $productos, 'marcas' => $marcas]);
+    }
+
+    /**
+     * Función que nos devuelve 10 productos aleatorios
+     */
+    public function productosAleatorios()
+{
+    $marcas = Marca::all();
+
+    $productos = Producto::inRandomOrder()->take(8)->get();
+
+
+    foreach ($productos as $producto) {
+        $producto->stockTotal = $producto->producto_color_talla->sum('stock');
+    }
+
+    return view('otras_vistas.lo_mas_vendido', ['productos' => $productos, 'marcas' => $marcas]);
+}
 }

@@ -6,6 +6,7 @@
         <div class="contenedor-info">
             <div class="contacto-info">
                 <h2>Uso de cookies</h2>
+                <hr class="mb-3">
                 <p>En Makinon Bikes utilizamos cookies para mejorar la experiencia de navegación de nuestros usuarios. Las
                     cookies son pequeños archivos de texto que se almacenan en el dispositivo del usuario y que permiten
                     recordar sus preferencias y mejorar la usabilidad de la web.</p>

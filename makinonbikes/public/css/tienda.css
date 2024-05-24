@@ -327,18 +327,17 @@ main {
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;
+}
 
+.bottom a{
+    color: grey;
+    text-decoration: none;
 }
 
 #columna1,
 #columna2,
 #columna3 {
     margin-top: 5px;
-}
-
-#columna3 a{
-    color:grey;
-    text-decoration: none;
 }
 
 a {

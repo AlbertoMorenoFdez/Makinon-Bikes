@@ -6,6 +6,7 @@
         <div class="contenedor-info">
             <div class="contacto-info">
                 <h2>Formas de pago</h2>
+                <hr class="mb-3">
                 <p>En nuestra tienda online puedes pagar de las siguientes formas:</p>
 
                 <div class="mb-2">
