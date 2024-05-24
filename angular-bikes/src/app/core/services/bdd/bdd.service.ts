@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { dragDrop } from '../../../interfaces/formulario.interface';
 //import { FormularioDatos } from '../../interfaces/formulario.interface';
@@ -32,7 +32,7 @@ export class BddService {
   // }
 
   crearCita(formularioDatos: any): Observable<any> {
-    console.log('Datos a enviar:', formularioDatos)
+    // console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -59,10 +59,11 @@ export class BddService {
   }
   // Obtiene una cita de la bbdd
   obtenerCitaId(id: number): Observable<any> {
+    console.log('ID de cita:', id);
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`http://localhost:8000/api/obtenerCitaId/${id}`, { headers });
-  }
+}
 
 
   // Edita una cita en la bbdd

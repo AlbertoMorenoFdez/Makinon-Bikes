@@ -1,25 +1,20 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { SubirArchivoComponent } from './subir-archivo/subir-archivo.component';
-import { FormsModule } from '@angular/forms';
+import { CalendarioComponent } from '../calendario/calendario.component';
+import { TokenComponent } from '../token/token.component';
+import { ErrorDialogoComponent } from '../error-dialogo/error-dialogo.component';
 import { FormularioDatos } from '../../interfaces/formulario.interface';
 import { BddService } from '../../core/services/bdd/bdd.service';
-import { formatDate } from '@angular/common';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatStepperModule} from '@angular/material/stepper';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'; 
-import { CalendarioComponent } from '../calendario/calendario.component';
-import { RouterOutlet } from '@angular/router';
-import { TokenComponent } from '../token/token.component';
 import { ValidacionFormularioService } from '../../core/services/validaciones-formulario/validaciones-formulario.service';
 import { ApiFestivoService } from '../../core/services/api-festivo/api-festivo.service';
-import { ErrorDialogoComponent } from '../error-dialogo/error-dialogo.component';
-import { MatDialog } from '@angular/material/dialog';
-
-
-
+import { formatDate } from '@angular/common';
+import { SatisfactorioDialogoComponent } from '../satisfactorio-dialogo/satisfactorio-dialogo.component';
 @Component({
   selector: 'app-formulario',
   standalone: true,
@@ -27,14 +22,13 @@ import { MatDialog } from '@angular/material/dialog';
     DatePickerComponent,
     TimepickerComponent,
     SubirArchivoComponent,
-    FormsModule,
-    MatGridListModule,
-    MatStepperModule,
     ReactiveFormsModule,
+    MatStepperModule,   
+    MatButtonModule,
+    MatDialogModule,
     CalendarioComponent,
-    RouterOutlet,
     TokenComponent,
-    
+    SatisfactorioDialogoComponent
   ],
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']  // Asegúrate de que sea styleUrls en lugar de styleUrl
@@ -86,13 +80,13 @@ export class FormularioComponent {
   actualizarFecha(fecha: Date) {
     // Formatear la fecha usando formatDate
     this.datosFormulario.fecha = formatDate(fecha, 'yyyy-MM-dd', 'en-US');
-    console.log('Fecha formateada y actualizada:', this.datosFormulario.fecha);
+    //  console.log('Fecha formateada y actualizada:', this.datosFormulario.fecha);
   }
 
   actualizarTiempo(tiempo: Date) {
     // Formatear la hora usando formatDate
     this.datosFormulario.hora = formatDate(tiempo, 'HH:mm:ss', 'en-US');
-    console.log('Hora formateada y actualizada:', this.datosFormulario.hora);
+    //  console.log('Hora formateada y actualizada:', this.datosFormulario.hora);
   }
 
   tituloCambiado(titulo: string) {
@@ -113,9 +107,11 @@ export class FormularioComponent {
         .subscribe(disponible => {
           if (disponible) {
             this.bddService.crearCita(this.datosFormulario).subscribe({
-              next: respuesta => console.log('Datos enviados con éxito', respuesta),
+              next: () => this.mostrarExito('Se ha creado la cita perfectamente. Recibirá un correo.'),
               error: error => this.mostrarError('Error al enviar datos: ' + error.message)
             });
+          } else {
+            this.mostrarError('La fecha y hora seleccionadas no están disponibles.');
           }
         });
     } else {
@@ -123,9 +119,15 @@ export class FormularioComponent {
     }
   }
 
-mostrarError(mensaje: string) {
-  this.dialog.open(ErrorDialogoComponent, {
-    data: { message: mensaje }
-  });
-}
+  mostrarExito(mensaje: string) {
+    this.dialog.open(SatisfactorioDialogoComponent, {
+      data: { message: mensaje }
+    });
+  }
+
+  mostrarError(mensaje: string) {
+    this.dialog.open(ErrorDialogoComponent, {
+      data: { message: mensaje }
+    });
+  }
 }

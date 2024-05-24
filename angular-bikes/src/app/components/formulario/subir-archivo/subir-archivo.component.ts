@@ -35,7 +35,7 @@ export class SubirArchivoComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       this.currentFile = event.target.files.item(0);
       this.almacenarFichero.emit(this.currentFile);
-      console.log(this.currentFile);
+      // console.log(this.currentFile);
     }
   }
 

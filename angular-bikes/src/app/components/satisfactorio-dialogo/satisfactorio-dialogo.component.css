@@ -1,0 +1,18 @@
+/* Estilo del título del diálogo */
+h1 {
+    font-weight: bold;
+    color: #4CAF50; /* Color verde para indicar éxito */
+    text-align: center;
+  }
+  
+  /* Estilo del contenido del diálogo */
+  div {
+    /* Color de texto más oscuro */
+    padding: 20px;
+    text-align: center;
+  }
+  p{
+    font-size: 18px;
+    color: #333;
+  }
+  

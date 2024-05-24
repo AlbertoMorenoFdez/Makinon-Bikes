@@ -16,7 +16,7 @@ export class TokenComponent implements OnInit {
     this.capturarTokenService.capturarToken();   
     this.capturarTokenService.getTokenObservable().subscribe(token => {
       this.existeToken = token !== null;
-      console.log("Token existe:", this.existeToken); // Debug: Muestra si existe el token
+      // console.log("Token existe:", this.existeToken); // Debug: Muestra si existe el token
     });
   }
 
