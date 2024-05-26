@@ -1,6 +1,6 @@
-
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, formatDate } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DatePickerComponent } from '../../formulario/date-picker/date-picker.component';
 import { TimePickerEditarComponent } from './time-picker-editar/time-picker-editar.component';
@@ -10,16 +10,20 @@ import { FormularioDatosEditar } from '../../../interfaces/formulario.interface'
 import { BddService } from '../../../core/services/bdd/bdd.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatStepperModule } from '@angular/material/stepper';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { CalendarioComponent } from '../../calendario/calendario.component';
 import { RouterOutlet } from '@angular/router';
 import { TokenComponent } from '../../token/token.component';
 import { ValidacionFormularioService } from '../../../core/services/validaciones-formulario/validaciones-formulario.service';
 import { ApiFestivoService } from '../../../core/services/api-festivo/api-festivo.service';
 import { ErrorDialogoComponent } from '../../error-dialogo/error-dialogo.component';
-import { MatDialog } from '@angular/material/dialog';
 import { SatisfactorioDialogoComponent } from '../../satisfactorio-dialogo/satisfactorio-dialogo.component';
+
 @Component({
   selector: 'app-editar-formulario',
   standalone: true,
@@ -32,11 +36,16 @@ import { SatisfactorioDialogoComponent } from '../../satisfactorio-dialogo/satis
     FormsModule,
     MatGridListModule,
     MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
     ReactiveFormsModule,
     CalendarioComponent,
     RouterOutlet,
     TokenComponent,
-    SatisfactorioDialogoComponent
+    SatisfactorioDialogoComponent,
+    MatIconModule
   ],
   templateUrl: './editar-formulario.component.html',
   styleUrls: ['./editar-formulario.component.css']
@@ -102,7 +111,6 @@ export class EditarFormularioComponent implements OnInit {
   obtenerCita(id: number) {
     this.bddService.obtenerCitaId(id).subscribe(
       cita => {
-        console.log('Datos de la cita obtenidos:', cita);
         this.datosFormulario = {
           id_cita_taller: cita.id_cita_taller,
           fecha: cita.fecha,
@@ -197,8 +205,12 @@ export class EditarFormularioComponent implements OnInit {
   
 
   mostrarExito(mensaje: string) {
-    this.dialog.open(SatisfactorioDialogoComponent, {
+    const dialogRef = this.dialog.open(SatisfactorioDialogoComponent, {
       data: { message: mensaje }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/citaAnterior']);
     });
   }
 

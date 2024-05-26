@@ -47,6 +47,10 @@
     <div class="form-group">
       <app-subir-archivo (almacenarFichero)="archivoSeleccionado($event)"></app-subir-archivo>
     </div>
+    <div class="form-group" *ngIf="imagenUrl">
+      <p><strong>Imagen Subida:</strong></p>
+      <img [src]="imagenUrl" alt="Vista previa de la imagen" class="preview-image">
+    </div>
     <div class="button-group">
       <button mat-button matStepperPrevious>Anterior</button>
       <button mat-button (click)="enviarFormulario()">Enviar Formulario</button>

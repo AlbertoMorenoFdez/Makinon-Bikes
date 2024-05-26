@@ -14,11 +14,18 @@ export class TimePickerEditarComponent {
   @Input() hora: string | null = null;
   @Output() almacenarHora = new EventEmitter<Date>();
 
-  onTimeChange(event: string) {
-    const timeParts = event.split(':');
-    const date = new Date();
-    date.setHours(parseInt(timeParts[0], 10));
-    date.setMinutes(parseInt(timeParts[1], 10));
-    this.almacenarHora.emit(date);
+  
+  onTimeChange(event: any) {
+    if (event instanceof Date) {
+      this.almacenarHora.emit(event);
+    } else if (typeof event === 'string') {
+      const [hours, minutes] = event.split(':').map(Number);
+      const date = new Date();
+      date.setHours(hours);
+      date.setMinutes(minutes);
+      this.almacenarHora.emit(date);
+    } else {
+      console.error('Formato de hora no válido:', event);
+    }
   }
 }

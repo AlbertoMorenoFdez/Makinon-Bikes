@@ -1,34 +1,43 @@
-<div *ngIf="isAdmin; else userWelcome">
-    <div class="welcome-container">
-      <p>Bienvenido Administrador</p>
-      <app-traer-nombre></app-traer-nombre>
-      <p>
-        ¡Bienvenidos al Panel de Administración de MakinoBikes!
-        
-        Estamos encantados de recibirte en nuestra plataforma de gestión dedicada a la optimización y mejora de nuestros servicios de ciclismo. Aquí podrás gestionar las operaciones del taller, supervisar el estado de las bicicletas, y coordinar el equipo para asegurar que todo funcione a la perfección.
-        
-        Como administrador, tienes acceso a herramientas avanzadas de mantenimiento, reparación, y personalización de bicicletas para mantener nuestro estándar de calidad. Tu experiencia y atención al detalle son cruciales para garantizar que cada bicicleta y cliente reciban el mejor servicio posible.
-        
-        Gracias por tu dedicación y liderazgo en MakinoBikes. ¡Juntos, seguiremos pedaleando hacia el éxito y la excelencia en cada proyecto!
-        
-        ¡Vamos a rodar juntos hacia nuevas metas y desafíos! 🚴‍♂️🚀
-      </p>
-    </div>
+<div  *ngIf="isAdmin; else userWelcome">
+  <div class="welcome-container">
+    <p>Bienvenido Administrador</p>
+    <app-traer-nombre></app-traer-nombre>
+    <p>
+      ¡Bienvenidos al Panel de Administración de MakinoBikes!
+
+      Estamos encantados de recibirte en nuestra plataforma de gestión dedicada a la optimización y mejora de nuestros
+      servicios de ciclismo. Aquí podrás gestionar las operaciones del taller, supervisar el estado de las bicicletas, y
+      coordinar el equipo para asegurar que todo funcione a la perfección.
+
+      Como administrador, tienes acceso a herramientas avanzadas de mantenimiento, reparación, y personalización de
+      bicicletas para mantener nuestro estándar de calidad. Tu experiencia y atención al detalle son cruciales para
+      garantizar que cada bicicleta y cliente reciban el mejor servicio posible.
+
+      Gracias por tu dedicación y liderazgo en MakinoBikes. ¡Juntos, seguiremos pedaleando hacia el éxito y la
+      excelencia en cada proyecto!
+
+      ¡Vamos a rodar juntos hacia nuevas metas y desafíos! 🚴‍♂️🚀
+    </p>
   </div>
-  
-  <ng-template #userWelcome>
-    <div class="welcome-container">
-      <p>Bienvenido</p>
-      <app-traer-nombre></app-traer-nombre>
-      <p>
-        ¡Bienvenidos al Taller de MakinoBikes!
-        
-        Estamos encantados de recibirlos en nuestro espacio dedicado a la pasión por el ciclismo. Aquí en MakinoBikes, ofrecemos servicios de mantenimiento, reparación y personalización para que tu bicicleta siempre esté en óptimas condiciones. Nuestro equipo de expertos está comprometido con la calidad y la atención al detalle para garantizar que cada bicicleta que pase por nuestras manos salga mejor que nunca.
-        
-        No importa si eres un ciclista profesional o un entusiasta del fin de semana, en MakinoBikes estamos aquí para ayudarte a disfrutar de cada pedaleo al máximo. ¡Gracias por confiar en nosotros y bienvenidos a nuestra comunidad ciclista!
-        
-        ¡Vamos a rodar juntos hacia nuevas aventuras! 🚴‍♂️✨
-      </p>
-    </div>
-  </ng-template>
-  
+</div>
+
+<ng-template #userWelcome>
+  <div class="welcome-container">
+    <p>Bienvenido</p>
+    <app-traer-nombre></app-traer-nombre>
+    <p>
+      ¡Bienvenidos al Taller de MakinoBikes!
+
+      Estamos encantados de recibirlos en nuestro espacio dedicado a la pasión por el ciclismo. Aquí en MakinoBikes,
+      ofrecemos servicios de mantenimiento, reparación y personalización para que tu bicicleta siempre esté en óptimas
+      condiciones. Nuestro equipo de expertos está comprometido con la calidad y la atención al detalle para garantizar
+      que cada bicicleta que pase por nuestras manos salga mejor que nunca.
+
+      No importa si eres un ciclista profesional o un entusiasta del fin de semana, en MakinoBikes estamos aquí para
+      ayudarte a disfrutar de cada pedaleo al máximo. ¡Gracias por confiar en nosotros y bienvenidos a nuestra comunidad
+      ciclista!
+
+      ¡Vamos a rodar juntos hacia nuevas aventuras! 🚴‍♂️✨
+    </p>
+  </div>
+</ng-template>
