@@ -1,5 +1,5 @@
-import { Component} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
@@ -15,6 +15,7 @@ import { ValidacionFormularioService } from '../../core/services/validaciones-fo
 import { ApiFestivoService } from '../../core/services/api-festivo/api-festivo.service';
 import { formatDate } from '@angular/common';
 import { SatisfactorioDialogoComponent } from '../satisfactorio-dialogo/satisfactorio-dialogo.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-formulario',
   standalone: true,
@@ -33,22 +34,24 @@ import { SatisfactorioDialogoComponent } from '../satisfactorio-dialogo/satisfac
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']  // Asegúrate de que sea styleUrls en lugar de styleUrl
 })
-export class FormularioComponent {
+export class FormularioComponent implements OnInit {
   datosFormulario: FormularioDatos = {
     fecha: '',
     hora: '',
-    
     comentario: '',
     imagen: null,
     opcion: ''
   };
-  firstFormGroup!: FormGroup ;
+  firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
-  constructor(private _formBuilder: FormBuilder, 
-            private bddService: BddService, 
-            private validacionService: ValidacionFormularioService,
-            private apiFestivoService: ApiFestivoService,
-            private dialog: MatDialog) { }
+
+  constructor(
+    private _formBuilder: FormBuilder, 
+    private bddService: BddService, 
+    private validacionService: ValidacionFormularioService,
+    private apiFestivoService: ApiFestivoService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -56,45 +59,28 @@ export class FormularioComponent {
       hora: ['d', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      
       comentario: ['', Validators.required],
       opcion: ['', Validators.required]
     });
 
-    
-     // Obtener los datos de festivos y configurarlos en el servicio de validación
-     this.apiFestivoService.getData().subscribe(data => {
+    // Obtener los datos de festivos y configurarlos en el servicio de validación
+    this.apiFestivoService.getData().subscribe(data => {
       const eventosFestivos = data
         .filter((evento: any) => evento.counties === null || evento.counties.includes('ES-AN'))
         .map((evento: any) => ({
           title: evento.localName,
           start: evento.date
         }));
-      
       this.validacionService.setEventosFestivos(eventosFestivos);
     });
-    
   }
 
-
   actualizarFecha(fecha: Date) {
-    // Formatear la fecha usando formatDate
     this.datosFormulario.fecha = formatDate(fecha, 'yyyy-MM-dd', 'en-US');
-    //  console.log('Fecha formateada y actualizada:', this.datosFormulario.fecha);
   }
 
   actualizarTiempo(tiempo: Date) {
-    // Formatear la hora usando formatDate
     this.datosFormulario.hora = formatDate(tiempo, 'HH:mm:ss', 'en-US');
-    //  console.log('Hora formateada y actualizada:', this.datosFormulario.hora);
-  }
-
-  tituloCambiado(titulo: string) {
-    this.datosFormulario.comentario = titulo;
-  }
-
-  textoCambiado(comentario: string) {
-    this.datosFormulario.comentario = comentario;
   }
 
   archivoSeleccionado(imagen: File) {
@@ -102,6 +88,7 @@ export class FormularioComponent {
   }
 
   enviarFormulario() {
+    console.log('Datos del formulario:', this.datosFormulario);
     if (this.validacionService.esFormularioValido(this.datosFormulario)) {
       this.validacionService.verificarDisponibilidadCita(this.datosFormulario.fecha, this.datosFormulario.hora)
         .subscribe(disponible => {

@@ -10,30 +10,37 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-detalles-cita',
   standalone: true,
-  imports: [CommonModule, 
-            MatCardModule,  
-            MatButtonModule, 
-            MatIconModule,
-            RouterLink
-            ],
+  imports: [
+    CommonModule, 
+    MatCardModule,  
+    MatButtonModule, 
+    MatIconModule,
+    RouterLink
+  ],
   templateUrl: './detalles-cita.component.html',
-  styleUrl: './detalles-cita.component.css'
+  styleUrls: ['./detalles-cita.component.css']
 })
 export class DetallesCitaComponent {
   @Input() cita: any;
+
   constructor(private bddService: BddService, private router: Router) {}
 
   eliminarCita(idCita: number) {
     this.bddService.eliminarCita(idCita).subscribe(data => {
       console.log('Cita eliminada', data);
+      // Aquí puedes agregar la lógica para refrescar la lista de citas
     }, error => {
       console.error('Error al eliminar cita', error);
     });
     console.log('Eliminar cita', this.cita);
   }
+
   editarCita(citaId: number) {
-    // Suponiendo que deseas pasar el id como parámetro a la ruta hija
-    this.router.navigate(['citaAnterior','editarCita', citaId ]); // Ajusta la ruta según tu necesidad
+    this.router.navigate(['citaAnterior','editarCita', citaId]); // Ajusta la ruta según tu necesidad
     console.log('Editar cita', citaId);
+  }
+
+  puedeEditar(): boolean {
+    return this.cita && this.cita.estado === 'pendiente';
   }
 }

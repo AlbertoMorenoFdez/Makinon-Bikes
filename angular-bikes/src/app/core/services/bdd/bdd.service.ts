@@ -67,10 +67,11 @@ export class BddService {
 
 
   // Edita una cita en la bbdd
-  editarCita(credentials: { id: number,  }): Observable<any> {
+  editarCitaUsuario(formularioDatos: any): Observable<any> {
+    console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<any>('http://localhost:8000/api/cita_taller', credentials, { headers });
+    return this.http.post<any>('http://localhost:8000/api/editarCitaUsuario', formularioDatos, { headers });
   }
 
   // Elimina una cita de la bbdd

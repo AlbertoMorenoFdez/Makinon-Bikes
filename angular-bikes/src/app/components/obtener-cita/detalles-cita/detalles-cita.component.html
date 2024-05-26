@@ -12,10 +12,8 @@
     <button mat-icon-button (click)="eliminarCita(cita.id_cita_taller)">
       <mat-icon>delete</mat-icon>
     </button>
-    <!-- <a [routerLink]="['/editarCita', cita.id_cita_taller]"> <mat-icon>edit</mat-icon></a> -->
-    <button mat-icon-button [routerLink]="['/editarCita', cita.id_cita_taller]" aria-label="Editar cita">
+    <button *ngIf="puedeEditar()" mat-icon-button [routerLink]="['/editarCita', cita.id_cita_taller]" aria-label="Editar cita">
       <mat-icon>edit</mat-icon>
     </button>
-    
   </div>
 </mat-card>
