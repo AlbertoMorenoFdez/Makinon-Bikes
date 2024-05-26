@@ -26,6 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->get('/traerDatos', [CitaTallerController::class, 'traerDatosUsuario']);
 Route::middleware('auth:sanctum')->post('/cita_taller', [CitaTallerController::class, 'crearCita']);
 Route::middleware('auth:sanctum')->get('/cita_taller', [CitaTallerController::class, 'obtenerCitas']);
+Route::middleware('auth:sanctum')->get('/obtenerCitaId/{id_cita_taller}', [CitaTallerController::class, 'obtenerCitaId']);
 Route::middleware('auth:sanctum')->put('/cita_taller', [CitaTallerController::class, 'editarCita']);
 Route::middleware('auth:sanctum')->put('/citaPendiente', [CitaTallerController::class, 'editarEstadoCita']);
 Route::middleware('auth:sanctum')->delete('/cita_taller', [CitaTallerController::class, 'eliminarCita']);

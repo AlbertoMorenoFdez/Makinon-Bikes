@@ -80,10 +80,12 @@ class PedidoController extends Controller
 
                 // Actualizamos el stock del producto
                 $productoColorTallaController->actualizarStock($producto['id_producto'], $producto['id_color'], $producto['id_talla'], $producto['cantidad']);
+
+                // Actualizamos el total del pedido
+                $pedido->total += $detalle->precio * $detalle->cantidad;
             }
 
-            // Actualizamos el total del pedido
-            $pedido->total += $detalle->precio * $detalle->cantidad;
+
 
             // Guardamos el total del pedido
             $pedido->save();

@@ -138,6 +138,27 @@ class CitaTallerController extends Controller
             return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
         }
 
+        // Buscar la cita por id_cita_taller
+        $cita = CitaTaller::where('id_cita_taller', $id)->first();
+
+        // Si la cita no existe, devolver un error
+        if (!$cita) {
+            return response()->json(['error' => 'Cita no encontrada'], 404);
+        }
+
+        // Devolver la cita en formato JSON
+        return response()->json($cita);
+    }
+    /*public function obtenerCitaId($id)
+     {
+        // Obtener el usuario autenticado
+        $user = auth()->user();
+
+        // Asegúrate de que el usuario esté autenticado
+        if (!$user) {
+            return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
+        }
+
         // Buscar la cita por ID
         $cita = CitaTaller::find($id);
 
@@ -148,7 +169,7 @@ class CitaTallerController extends Controller
 
         // Devolver la cita en formato JSON
         return response()->json($cita);
-    }
+    } */
 
     /**
      * Función que permite editar una cita en el taller
@@ -272,4 +293,6 @@ class CitaTallerController extends Controller
             return response()->json(['message' => 'No se proporcionó ninguna imagen'], 400);
         }
     }
+
+    
 }

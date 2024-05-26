@@ -39,20 +39,7 @@
                                 <p class="mt-2 mb-2">Color no especificado</p>
                             @endif
                         </div>
-                        {{-- <div class="border-bottom border-top d-flex align-items-center">
-                            @if (isset($producto->producto_color_talla) && $producto->producto_color_talla)
-                                @foreach ($producto->producto_color_talla->unique('color.color') as $productoColorTalla)
-                                    <button type="button" class="mt-2 mb-2 me-2 color-button"
-                                        style="width: 30px; height: 30px; background-color: {{ trim($productoColorTalla->color->color) }}; border: 1px solid black; border-radius: 50%;"
-                                        title="{{ trim($productoColorTalla->color->color) }}"
-                                        data-color="{{ trim($productoColorTalla->color->color) }}">
-                                    </button>
-                                @endforeach
-                                <input type="hidden" name="color" id="color">
-                            @else
-                                <p class="mt-2 mb-2">Color no especificado</p>
-                            @endif
-                        </div> --}}
+                        
                         <br>
                         <p style="color:rgb(93, 93, 93)">@lang('makinon.tallas')</p>
                         <div class="border-bottom border-top d-flex align-items-center">
@@ -77,26 +64,7 @@
                                 <p class="mt-2 mb-2">Talla no especificada</p>
                             @endif
                         </div>
-                        {{-- <div class="border-bottom border-top d-flex align-items-center">
-                            @if (isset($producto->producto_color_talla) && $producto->producto_color_talla)
-                                <select name="talla" id="talla" class="mt-2 mb-2 rounded w-40">
-                                    @foreach ($producto->producto_color_talla as $productoColorTalla)
-                                        <option value="{{ trim($productoColorTalla->talla->talla) }}">
-                                            {{ trim($productoColorTalla->talla->talla) }} - @if ($productoColorTalla->stock >= 2)
-                                                <p style="color:rgb(21, 219, 31)">@lang('makinon.disponible')</p>
-                                            @elseif ($productoColorTalla->stock >= 1)
-                                                <p style="color:rgb(255, 145, 0)">@lang('makinon.ultUnid')</p>
-                                            @else
-                                                <p style="color:red">@lang('makinon.sinStock')</p>
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
-                            @else
-                                <p class="mt-2 mb-2">Talla no especificada</p>
-                            @endif
-                        </div> --}}
-
+                        
                         <input type="hidden" name="id_producto" value="{{ $producto->id_producto }}">
                         <input type="hidden" name="marca" value="{{ $producto->marca->nombre }}">
                         <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
@@ -118,15 +86,7 @@
                                 </span>
                             </div>
                         </div>
-                        {{-- <div>
-                            @if ($productoColorTalla->stock >= 2)
-                                <p style="color:rgb(21, 219, 31)">@lang('makinon.disponible')</p>
-                            @elseif ($productoColorTalla->stock >= 1)
-                                <p style="color:rgb(255, 145, 0)">@lang('makinon.ultUnid')</p>
-                            @else
-                                <p style="color:red">@lang('makinon.sinStock')</p>
-                            @endif
-                        </div> --}}
+                        
                         <br>
                         <p class="fs-4">P.V.P. {{ $producto->precio }} €</p>
                         <div class="d-flex justify-center">

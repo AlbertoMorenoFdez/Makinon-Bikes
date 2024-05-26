@@ -69,23 +69,6 @@
                 </ul>
                 
             </div>
-
-            {{-- <div class="perfilbotones">
-                <x-makinon-primary-link-button href="{{ route('mis-pedidos') }}"
-                    style="width:100%" title="Mis pedidos">@lang('makinon.misPed')</x-makinon-primary-link-button>
-                <x-makinon-primary-link-button href="{{ route('usuario.modificarUsuario') }}"
-                    style="width:100%" title="Modificar perfil" >@lang('makinon.modifPerfil')</x-makinon-primary-link-button>
-                <form method="POST" action="{{ route('deleteUsuario') }}" style="width:100%">
-                    @csrf
-                    @method('DELETE')
-                    <x-makinon-primary-button type="submit"
-                        style="width:100%" title="Eliminar mi cuenta">@lang('makinon.elimPerfil')</x-makinon-primary-button>
-                </form>
-                <x-makinon-primary-link-button href="{{ route('cambiarPassword') }}"
-                    style="width:100%" title="Cambiar contraseña">@lang('makinon.cambioContra')</x-makinon-primary-link-button>
-                <x-makinon-primary-link-button href="{{ route('home') }}"
-                    style="width:100%" title="Salir">@lang('makinon.salir')</x-makinon-primary-link-button>
-            </div> --}}
         </div>
     </div>
     <script>
