@@ -1,0 +1,49 @@
+.contenedorSixnario{
+    &__contacto-contenedorLogo {
+        width: 220px;
+        height: 220px;
+        position: absolute;
+        z-index: 2;
+        top: 430%;
+        left: 170px;
+        transform: translateY(-50%);
+    }
+
+    &__contacto-containerBielas {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+    }
+
+    &__contacto-contenedorTexto {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        position: absolute;
+    }
+
+    @media (max-width: 1300px) {
+        &__contacto-contenedorLogo {
+            position: static;
+            
+        }
+    }
+    @media screen and (max-width: 768px) {
+        &__contacto-contenedorLogo {
+            margin-top: 58px;
+            width: 100px;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        &__contacto-contenedorLogo {
+            margin-top: 109px;
+          
+        }
+    }
+}

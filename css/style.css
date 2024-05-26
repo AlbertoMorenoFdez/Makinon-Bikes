@@ -67,7 +67,7 @@
 
 .header {
   position: fixed;
-  z-index: 3;
+  z-index: 4;
   top: 0;
   left: 0;
   width: 100%;
@@ -158,7 +158,7 @@
   color: #000000;
   text-decoration: none;
   font-weight: 500;
-  margin-left: 45px;
+  margin-left: 25px;
   border: 1px solid #fff;
 }
 .header__navbar a:hover {
@@ -250,12 +250,26 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
+}
+.contenedorPrincipal__video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenedorPrincipal__video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .contenedorPrincipal__plegable {
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   bottom: 0;
   left: 0;
@@ -263,10 +277,10 @@
   transition: transform 2s;
 }
 .contenedorPrincipal__boton {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -287,6 +301,47 @@
   border-radius: 50%;
   color: #f25c05;
   opacity: 0.8;
+}
+.contenedorPrincipal__texto {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+}
+.contenedorPrincipal__texto-img {
+  width: 350px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.contenedorPrincipal__texto h2 {
+  margin: 0;
+  text-align: left;
+}
+@media (max-width: 768px) {
+  .contenedorPrincipal__boton {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .contenedorPrincipal__texto {
+    bottom: 10px;
+    left: 10px;
+    align-items: center;
+    text-align: center;
+  }
+  .contenedorPrincipal__texto-img {
+    width: 150px;
+    height: auto;
+  }
+  .contenedorPrincipal__texto h2 {
+    font-size: 17px;
+  }
 }
 
 .contenedorSecundario {
@@ -682,6 +737,126 @@ p {
   }
 }
 
+.contenedorQuinario {
+  width: 100%;
+  height: 99vh;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  z-index: 2;
+}
+.contenedorQuinario__bici-button {
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+.contenedorQuinario__bici-audio {
+  background-color: #000000;
+  /* Black */
+  border: 2px solid #D4AF37;
+  /* Gold */
+  color: #D4AF37;
+  /* Gold */
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border-radius: 25px;
+  /* Rounded corners */
+}
+.contenedorQuinario__bici-audio:hover {
+  background-color: #D4AF37;
+  /* Gold */
+  color: #000000;
+  /* Black */
+}
+.contenedorQuinario img {
+  width: 200px;
+  height: 100px;
+}
+
+#myThreeJsCanvas {
+  top: 100px;
+  width: 100px;
+  height: 100px;
+  display: block; /* Asegúrate de que el canvas no tenga márgenes */
+}
+
+#info1 {
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4em;
+  z-index: 1;
+  color: gold;
+  text-shadow: 6px 6px 4px rgba(255, 255, 255, 0.5);
+  /* Asegúrate de que el div está encima del canvas */
+}
+
+#info2 {
+  width: 240px;
+  top: 80%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2em;
+  z-index: 1;
+  opacity: 0;
+  text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.5);
+  /* Asegúrate de que el div está encima del canvas */
+}
+
+#info3 {
+  width: 980px;
+  top: 90%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2em;
+  z-index: 1;
+  opacity: 0;
+  text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.5);
+  /* Asegúrate de que el div está encima del canvas */
+}
+
+#info4 {
+  top: 77%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2em;
+  z-index: 1;
+  opacity: 0;
+  text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.5);
+  /* Asegúrate de que el div está encima del canvas */
+}
+
+#info5 {
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  font-size: 2em;
+  z-index: 1;
+  opacity: 0;
+  text-shadow: 3px 3px 2px rgba(255, 255, 255, 0.5);
+  /* Asegúrate de que el div está encima del canvas */
+}
+
+#contenedor p {
+  width: 100%;
+  /* Ajusta el tamaño del párrafo a la anchura de su contenedor */
+  font-size: 1em;
+  /* Ajusta el tamaño de la fuente en relación con el tamaño del div */
+}
+
 .formulario {
   width: 400px;
   margin: 0 auto;
@@ -771,7 +946,7 @@ p {
   border: 2px solid green;
 }
 
-.contenedorQuinario {
+.contenedorSixnario {
   width: 100%;
   height: 99vh;
   margin: 0;
@@ -780,16 +955,16 @@ p {
   align-items: center;
   overflow: hidden;
 }
-.contenedorQuinario__contacto {
+.contenedorSixnario__contacto {
   width: 90%;
-  height: 72vh;
+  height: 80vh;
   margin-top: 130px;
   display: flex;
   align-items: center;
   overflow: hidden;
 }
 @media screen and (max-width: 768px) {
-  .contenedorQuinario__contacto {
+  .contenedorSixnario__contacto {
     flex-direction: column;
     margin-top: 15px;
     height: 75vh;
@@ -797,12 +972,12 @@ p {
   }
 }
 @media screen and (max-width: 450px) {
-  .contenedorQuinario__contacto {
+  .contenedorSixnario__contacto {
     height: 87vh;
   }
 }
 
-.contenedorQuinario__contacto-contenedorLogo {
+.contenedorSixnario__contacto-contenedorLogo {
   width: 220px;
   height: 220px;
   position: absolute;
@@ -811,7 +986,7 @@ p {
   left: 170px;
   transform: translateY(-50%);
 }
-.contenedorQuinario__contacto-containerBielas {
+.contenedorSixnario__contacto-containerBielas {
   width: 100%;
   height: 100%;
   display: flex;
@@ -819,7 +994,7 @@ p {
   align-items: center;
   position: absolute;
 }
-.contenedorQuinario__contacto-contenedorTexto {
+.contenedorSixnario__contacto-contenedorTexto {
   width: 100%;
   height: 100%;
   display: flex;
@@ -829,18 +1004,18 @@ p {
   position: absolute;
 }
 @media (max-width: 1300px) {
-  .contenedorQuinario__contacto-contenedorLogo {
+  .contenedorSixnario__contacto-contenedorLogo {
     position: static;
   }
 }
 @media screen and (max-width: 768px) {
-  .contenedorQuinario__contacto-contenedorLogo {
+  .contenedorSixnario__contacto-contenedorLogo {
     margin-top: 58px;
     width: 100px;
   }
 }
 @media screen and (max-width: 450px) {
-  .contenedorQuinario__contacto-contenedorLogo {
+  .contenedorSixnario__contacto-contenedorLogo {
     margin-top: 109px;
   }
 }
@@ -859,7 +1034,7 @@ body {
   background-image: url("../multimedia/fondobici2.jpeg");
 }
 
-#section5 {
+#section6 {
   background-image: url("../multimedia/fondoCiente.jpg");
 }
 
