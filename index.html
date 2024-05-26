@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="./multimedia/favicon.png" type="image/png">
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script defer type="text/javascript" src="js/script.js"></script>
+    <script defer type="module" src="js/threejs.js"></script>
     <title>Landing Page</title>
 </head>
 
@@ -33,7 +35,8 @@
                     <li><a href="#section2">SPONSORS</a></li>
                     <li><a href="#section3">PASARELA</a></li>
                     <li><a href="#section4">REFERENCIAS</a></li>
-                    <li><a href="#section5">CONTACTO</a></li>
+                    <li><a href="#section5">3D</a></li>
+                    <li><a href="#section6">CONTACTO</a></li>
                     <li>
                         <a href="#" id="playRes" class="navbar__btn navbar__btn--light" onclick="playAudioRes(); return false;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -67,7 +70,9 @@
             <a href="#section2" class="navbar__link">SPONSORS</a>
             <a href="#section3" class="navbar__link">PASARELA</a>
             <a href="#section4" class="navbar__link">REFERENCIAS</a>
-            <a href="#section5" class="navbar__link">CONTACTO</a>
+            <a href="#section5" class="navbar__link">3D</a>
+            <a href="#section6" class="navbar__link">CONTACTO</a>
+           
             <a href="#" id="play" class="navbar__btn navbar__btn--light" onclick="playAudio(); return false;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-volume-mute-fill"
                     viewBox="0 0 16 16">
@@ -101,12 +106,16 @@
         <svg id="plegable" class="contenedorPrincipal__plegable">
             <polygon id="poligono" points="0,0 2520,0 2520,1080 0,1980 0,0" style="fill: gray" />
         </svg>
-
+        <!--  -->
         <div id="boton" class="contenedorPrincipal__boton">
             <image src="multimedia/logo.gif" width="100%" height="100%"><svg xmlns="http://www.w3.org/2000/svg" class="contenedorPrincipal__boton-play" width="75" height="75" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
-              </svg></image>
+              </svg> </image>
         </div>
+        <div class="contenedorPrincipal__texto">
+            <img class="contenedorPrincipal__texto-img" src="./multimedia/logo.gif">
+            <h2>Tu pasión por el ciclismo, nuestra dedicación por la excelencia</h2>
+          </div>
     </div>
 
     <div class="contenedorSecundario parallax" id="section2">
@@ -169,7 +178,7 @@
                                 <div class="flip-card-back">
                                     <!-- Aquí puedes agregar el video o cualquier otro contenido -->
                                     <video controls class="contenedorTerciario__video">
-                                        <source src="multimedia/page1.mp4" type="video/mp4">
+                                        <source src="multimedia/Video5.mp4" type="video/mp4">
                                         Tu navegador no admite el elemento de video.
                                     </video>
                                 </div>
@@ -189,7 +198,7 @@
                                 <div class="flip-card-back">
                                     <!-- Aquí puedes agregar el video o cualquier otro contenido -->
                                     <video controls class="contenedorTerciario__video">
-                                        <source src="video2.mp4" type="video/mp4">
+                                        <source src="multimedia/Video12.mp4" type="video/mp4">
                                         Tu navegador no admite el elemento de video.
                                     </video>
                                 </div>
@@ -215,7 +224,7 @@
                                 <div class="flip-card-back">
                                     <!-- Aquí puedes agregar el video o cualquier otro contenido -->
                                     <video controls class="contenedorTerciario__video">
-                                        <source src="video3.mp4" type="video/mp4">
+                                        <source src="multimedia/Video1.mp4" type="video/mp4">
                                         Tu navegador no admite el elemento de video.
                                     </video>
                                 </div>
@@ -235,7 +244,7 @@
                                 <div class="flip-card-back">
                                     <!-- Aquí puedes agregar el video o cualquier otro contenido -->
                                     <video controls class="contenedorTerciario__video">
-                                        <source src="video4.mp4" type="video/mp4">
+                                        <source src="multimedia/Video13.mp4" type="video/mp4">
                                         Tu navegador no admite el elemento de video.
                                     </video>
                                 </div>
@@ -263,11 +272,40 @@
             <svg id="graficaCanvas" class="contenedorCuaternario__seguidores-grafica"></svg>
         </div>
     </div>
-
     <div class="contenedorQuinario parallax" id="section5">
-        <div class="contenedorQuinario__contacto">
-            <div class="contenedorQuinario__contacto-contenedorLogo" id="efectoAparecer">
-                <div class="contenedorQuinario__contacto-contenedorTexto" id="efectoAparecer">
+        <div class="contenedorQuinario__bici">
+            <audio class="contenedorQuinario__bici-audio" src="Paint _it_black.mp3" autoplay loop></audio>
+            <button class="contenedorQuinario__bici-button" onclick="audio()">Song</button>
+            <div id="contenedorQuinario__canvas">
+                <div id="myCanvasContainer">
+                    <canvas id="myThreeJsCanvas"></canvas>
+                </div>
+                
+                <div id="info1">
+                    <img src="../landing - copia/multimedia/logo_white.jpg">
+                    <!-- <p id="texto1">Jellwery Luxury</p> -->
+                </div>
+                <div id="info2">
+                    <p>Impulsa tu rendimiento con nuestras bicicletas de alta competición</p>
+        
+                </div>
+                <div id="info3">
+                    <p>Equípate con lo mejor para alcanzar tus metas</p>
+                </div>
+                <div id="info4">
+                    <p id="texto2">Rinde al máximo con nuestra tecnología avanzada en ciclismo</p>
+                </div>
+                <div id="info5">
+                    <p id="texto2">Tu pasión por el ciclismo, nuestra dedicación por la excelencia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedorSixnario parallax" id="section6">
+        <div class="contenedorSixnario__contacto">
+            <div class="contenedorSixnario__contacto-contenedorLogo" id="efectoAparecer">
+                <div class="contenedorSixnario__contacto-contenedorTexto" id="efectoAparecer">
                     <svg width="200px" height="200px" viewBox="0 0 225.46545 267.85883" version="1.1" id="textoLogo"
                         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
                         xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -430,7 +468,7 @@
                     </svg>
                 </div>
 
-                <div class="contenedorQuinario__contacto-containerBielas" id="efectoAparecer">
+                <div class="contenedorSixnario__contacto-containerBielas" id="efectoAparecer">
                     <svg width="200px" height="200px" viewBox="-20 0 300 150" version="1.1" id="bielas"
                         inkscape:export-filename="bielasLogo.svg" inkscape:export-xdpi="96" inkscape:export-ydpi="96"
                         xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -745,7 +783,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="contenedorQuinario__contacto-formulario formulario">
+            <div class="contenedorSixnario__contacto-formulario formulario">
                 <h2 class="formulario__titulo">Contáctanos</h2>
                 <form>
                     <div class="formulario__campo">

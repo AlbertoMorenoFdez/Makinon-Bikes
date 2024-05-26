@@ -16,7 +16,7 @@
     <pagination-controls (pageChange)="page = $event"></pagination-controls>
   </div>
   <div class="cita-detalles" *ngIf="mostrarDetalles">
-    <app-detalles-cita [cita]="citaSeleccionada" (cerrar)="ocultarDetalles()"></app-detalles-cita>
+    <app-detalles-cita [cita]="citaSeleccionada" (cerrar)="ocultarDetalles()" (citaEliminada)="onCitaEliminada()"></app-detalles-cita>
   </div>
   <ng-template #noCitas>
     <p>No hay citas disponibles.</p>

@@ -99,9 +99,9 @@ export class DragDropComponent {
     // console.log('Estado actual de Confirmadas:', this.confirmada);
     // console.log('Estado actual de Canceladas:', this.cancelada);
     let citas = this.pendiente.concat(this.confirmada, this.cancelada);
-    console.log('Citas:', citas);
+    // console.log('Citas:', citas);
     this.bddService.editarEstadoCita(citas).subscribe((data: any) => {
-      console.log('Cita actualizada:', data);
+      // console.log('Cita actualizada:', data);
     });
   }
 

@@ -1,0 +1,18 @@
+/* error-dialog.component.css */
+.dialog-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .dialog-title {
+    font-size: 44px;
+    font-weight: bold;
+    color: #d32f2f;
+    margin-bottom: 20px;
+  }
+  
+  .dialog-content {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  

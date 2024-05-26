@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
   salir(): void {
     this.capturarTokenService.limpiarToken();
     this.rolesService.logout();
-    this.router.navigate(['localhost:8000']);
+    window.location.href = 'http://localhost:8000';
   }
 
 }

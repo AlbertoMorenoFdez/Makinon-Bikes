@@ -1,5 +1,8 @@
 <mat-card>
-  <div *ngIf="cita">
+  <div *ngIf="cita" class="cita-detalles">
+    <button mat-icon-button class="cerrar-detalles-button" (click)="cerrarDetalles()" aria-label="Cerrar detalles">
+      <mat-icon>close</mat-icon>
+    </button>
     <h3>{{ cita.titulo }}</h3>
     <p><strong>Estado:</strong> {{ cita.estado }}</p>
     <p><strong>Comentarios:</strong> {{ cita.comentario }}</p>
@@ -9,13 +12,13 @@
       <p><strong>Imagen Subida:</strong></p>
       <img [src]="cita.imagen_url" alt="Imagen de la cita" style="max-width: 200px; max-height: 200px;">
     </div>
-    <button mat-icon-button (click)="eliminarCita(cita.id_cita_taller)">
-      <mat-icon>delete</mat-icon>
-    </button>
-    <!-- <a [routerLink]="['/editarCita', cita.id_cita_taller]"> <mat-icon>edit</mat-icon></a> -->
-    <button mat-icon-button [routerLink]="['/editarCita', cita.id_cita_taller]" aria-label="Editar cita">
-      <mat-icon>edit</mat-icon>
-    </button>
-    
+    <div class="button-row">
+      <button mat-icon-button (click)="eliminarCita(cita.id_cita_taller)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button *ngIf="puedeEditar()" mat-icon-button [routerLink]="['/editarCita', cita.id_cita_taller]" aria-label="Editar cita">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
   </div>
 </mat-card>

@@ -59,7 +59,7 @@ export class ValidacionFormularioService {
 
   private esHoraValida(hora: string): boolean {
     const [hours, minutes] = hora.split(':').map(Number);
-
+    // console.log(hours, minutes);
     if (
       (hours >= 10 && hours < 14) ||
       (hours >= 16 && hours < 20)

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { dragDrop } from '../../../interfaces/formulario.interface';
 //import { FormularioDatos } from '../../interfaces/formulario.interface';
@@ -32,7 +32,7 @@ export class BddService {
   // }
 
   crearCita(formularioDatos: any): Observable<any> {
-    console.log('Datos a enviar:', formularioDatos)
+    // console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -59,17 +59,19 @@ export class BddService {
   }
   // Obtiene una cita de la bbdd
   obtenerCitaId(id: number): Observable<any> {
+    // console.log('ID de cita:', id);
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`http://localhost:8000/api/obtenerCitaId/${id}`, { headers });
-  }
+}
 
 
   // Edita una cita en la bbdd
-  editarCita(credentials: { id: number,  }): Observable<any> {
+  editarCitaUsuario(formularioDatos: any): Observable<any> {
+    // console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<any>('http://localhost:8000/api/cita_taller', credentials, { headers });
+    return this.http.post<any>('http://localhost:8000/api/editarCitaUsuario', formularioDatos, { headers });
   }
 
   // Elimina una cita de la bbdd
@@ -86,8 +88,6 @@ export class BddService {
 
   // Edita el estado de las citas cuando usamos el Drag & Drop
   editarEstadoCita(citas: dragDrop[]): Observable<any> {
-    console.log('No array', citas)
-
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
@@ -95,8 +95,7 @@ export class BddService {
       console.error('Se esperaba un array de citas, pero se recibió:', citas);
       return new Observable<any>();
     }
-
-    console.log('Array de citas:', citas);
+    // console.log('Array de citas:', citas);
 
     return this.http.put<any>('http://localhost:8000/api/citaPendiente', citas, { headers });
   }

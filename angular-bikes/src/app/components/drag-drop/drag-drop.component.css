@@ -1,4 +1,5 @@
 /* Contenedor principal */
+
 .example-container {
   width: 400px;
   max-width: 100%;
@@ -72,6 +73,7 @@ button {
   border-radius: 20px;
   padding: 10px 20px;
   cursor: pointer;
+  margin-bottom:20px; 
   transition: background-color 0.3s, transform 0.3s;
 }
 

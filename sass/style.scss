@@ -9,9 +9,11 @@
 @use './section3/cardsFlip';
 @use './section4/canvas';
 @use './section4/grafica';
-@use './section5/contacto';
-@use './section5/section5';
-@use './section5/svg';
+@use './section5/threejs';
+@use './section6/contacto';
+@use './section6/section6';
+@use './section6/svg';
+
 
 @import "./recursos/variables";
 body {
@@ -26,7 +28,7 @@ body {
 #section3{
   background-image: url("../multimedia/fondobici2.jpeg");
 }
-#section5{
+#section6{
   background-image: url("../multimedia/fondoCiente.jpg");
  
 }

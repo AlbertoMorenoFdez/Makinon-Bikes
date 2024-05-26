@@ -1,0 +1,107 @@
+@import "../recursos/variables";
+
+.formulario {
+  width: 400px;
+  margin: 0 auto;
+  padding: 55px;
+  border: 1px solid $color2;
+  border-radius: 5px;
+  background-color: $color4;
+
+  &__titulo {
+    text-align: center;
+  }
+
+  &__campo {
+    margin-bottom: 20px;
+  }
+  
+  &__boton {
+    width: 100%;
+    padding: 10px;
+    background-color: $color1;
+    color: $color4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+  }
+  @media screen and (max-width: 450px) {
+    width: 250px;
+  }
+}
+.campo {
+  &__label {
+    display: block;
+    font-weight: bold;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: white;
+
+    &:focus {
+      outline: none; // Remueve el outline predeterminado.
+    }
+
+    &:invalid:not(:placeholder-shown) {
+      border: 2px solid transparent; // Evita cambio visual antes de la interacción.
+    }
+
+    &:not(:placeholder-shown):invalid {
+      border: 2px solid red; // Solo se aplica el borde rojo si el placeholder ya no se muestra y es inválido.
+    }
+
+    &:valid:not(:placeholder-shown) {
+      border: 2px solid green; // Solo muestra verde si es válido y el placeholder no se muestra.
+    }
+
+    &:focus:invalid:not(:placeholder-shown) {
+      border: 2px solid red; // Refuerza el borde rojo al enfocar si es inválido y el placeholder no se muestra.
+    }
+  }
+
+  &__textarea {
+    resize: vertical; // Permite redimensionar solo verticalmente.
+    height: 100px; // Altura inicial.
+  }
+
+  &__error {
+    display: none;
+    color: red;
+    font-size: 12px;
+  }
+
+  &__input:invalid:not(:focus):not(:placeholder-shown) + .campo__error,
+  &__input-fecha:invalid:not(:focus):not(:placeholder-shown) + .campo__error,
+  &__textarea:invalid:not(:focus):not(:placeholder-shown) + .campo__error {
+    display: block; // Muestra el mensaje de error si el campo es inválido, no está en foco y el placeholder no se muestra.
+  }
+
+  &__input-fecha {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    background-color: white;
+
+    &:focus {
+      outline: none; // Remueve el outline predeterminado.
+    }
+
+    &:valid:not(:placeholder-shown) {
+      border: 2px solid green; // Solo muestra verde si es válido y el placeholder no se muestra.
+    }
+  }
+}

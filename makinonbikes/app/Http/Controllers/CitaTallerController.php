@@ -96,6 +96,67 @@ class CitaTallerController extends Controller
     
     }
 
+    /**
+     * Función que permite editar una cita de la bdd
+     *
+     * @return void
+     */
+    public function editarCitaUsuario(Request $request)
+    {
+        Log::info('Solicitud recibida para editar cita', ['request' => $request->all()]);
+    
+        $user = $request->user();
+    
+        if (!$user) {
+            return response()->json(['error' => 'No se pudo autenticar al usuario'], 401);
+        }
+    
+        $request->validate([
+            'id_cita_taller' => 'required|integer|exists:cita_taller,id_cita_taller',
+            'fecha' => 'required|date',
+            'hora' => 'required|date_format:H:i',
+            'comentario' => 'nullable|string|max:1000',
+            'imagen' => 'nullable|file|image|max:2048', // 2MB Max
+            'opcion' => 'required|string',
+        ]);
+    
+        $cita = CitaTaller::find($request->id_cita_taller);
+    
+        if (!$cita) {
+            return response()->json(['error' => 'Cita no encontrada'], 404);
+        }
+    
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->comentario = $request->comentario;
+        $cita->opcion = $request->opcion;
+    
+        if ($request->hasFile('imagen')) {
+            Log::info('Imagen detectada en la solicitud', ['file' => $request->file('imagen')->getClientOriginalName()]);
+    
+            $imagen = $request->file('imagen');
+            $nombreImagen = time() . '.' . $imagen->getClientOriginalExtension();
+            $destino = public_path('images/clientes_taller');
+    
+            if (!file_exists($destino)) {
+                mkdir($destino, 0777, true);
+                Log::info('Directorio de destino creado: ' . $destino);
+            }
+    
+            $imagen->move($destino, $nombreImagen);
+            $cita->imagen = 'images/clientes_taller/' . $nombreImagen;
+    
+            Log::info('Imagen movida y ruta asignada: ' . $cita->imagen);
+        }
+    
+        $cita->save();
+    
+        Log::info('Cita guardada con éxito: ' . $cita);
+    
+        return response()->json($cita, 200);
+    }
+    
+
  
 
     /**

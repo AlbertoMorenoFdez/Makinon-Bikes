@@ -1,34 +1,64 @@
-<mat-horizontal-stepper linear #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Paso 1: Selecciona fecha y hora</ng-template>
-        <app-date-picker (almacenarFecha)="actualizarFecha($event)"></app-date-picker>
-        <app-timepicker (almacenarHora)="actualizarTiempo($event)"></app-timepicker>
+<mat-horizontal-stepper linear #stepper class="stepper">
+  <!-- Step 1: Selecciona fecha y hora -->
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Paso 1: Selecciona fecha y hora</ng-template>
+      <div class="form-group">
+        <app-date-picker [fecha]="datosFormulario.fecha" (almacenarFecha)="actualizarFecha($event)"></app-date-picker>
+      </div>
+      <div class="form-group">
+        <app-time-picker-editar [hora]="datosFormulario.hora"
+        (almacenarHora)="actualizarTiempo($event)"></app-time-picker-editar>
+      </div>
+      <div class="button-group">
         <button mat-button matStepperNext>Siguiente</button>
-      </form>
-    </mat-step>
-    
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Paso 2: Detalles de la cita</ng-template>
-        <select [(ngModel)]="datosFormulario.opcion" formControlName="opcion" required>
-          <option value="">Selecciona una opción</option>
-          <option value="Revision bicicleta">Revisión de bicicleta</option>
-          <option value="Reparar pinchazo">Reparar pinchazo</option>
-          <option value="Montar componente">Montar componente</option>
-          <option value="Revision suspensiones">Revisión de las suspensiones</option>
-          <option value="Lavado y engrase">Lavado y engrase</option>
-        </select>
-        <textarea  [(ngModel)]="datosFormulario.comentario" formControlName="comentario" placeholder="Escriba sus anotaciones"></textarea>
+      </div>
+    </form>
+  </mat-step>
+  
+  <!-- Step 2: Detalles de la cita -->
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Paso 2: Detalles de la cita</ng-template>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Seleccione una opción</mat-label>
+          <mat-select [(ngModel)]="datosFormulario.opcion" formControlName="opcion" required>
+            <mat-option value="">Seleccione una opción</mat-option>
+            <mat-option value="Revision bicicleta">Revisión de bicicleta</mat-option>
+            <mat-option value="Reparar pinchazo">Reparar pinchazo</mat-option>
+            <mat-option value="Montar componente">Montar componente</mat-option>
+            <mat-option value="Revision suspensiones">Revisión de las suspensiones</mat-option>
+            <mat-option value="Lavado y engrase">Lavado y engrase</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Escriba sus anotaciones</mat-label>
+          <textarea matInput [(ngModel)]="datosFormulario.comentario" formControlName="comentario" placeholder="Escriba sus anotaciones"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="button-group">
         <button mat-button matStepperPrevious>Anterior</button>
         <button mat-button matStepperNext>Siguiente</button>
-      </form>
-    </mat-step>
-    
-    <mat-step>
-      <ng-template matStepLabel>Paso 3: Subir archivo</ng-template>
-      <app-subir-archivo (almacenarFichero)="archivoSeleccionado($event)"></app-subir-archivo>
+      </div>
+    </form>
+  </mat-step>
+  
+  <!-- Step 3: Subir archivo -->
+  <mat-step>
+    <ng-template matStepLabel>Paso 3: Subir archivo</ng-template>
+    <div class="form-group">
+      <app-subir-archivo (almacenarFichero)="archivoSeleccionado($event)" [archivoSeleccionado]="datosFormulario.imagen"></app-subir-archivo>
+    </div>
+    <div class="form-group" *ngIf="imagenUrl">
+      <p><strong>Imagen Subida:</strong></p>
+      <img [src]="imagenUrl" alt="Vista previa de la imagen" class="preview-image">
+    </div>
+    <div class="button-group">
       <button mat-button matStepperPrevious>Anterior</button>
       <button mat-button (click)="enviarFormulario()">Enviar Formulario</button>
-    </mat-step>
-  </mat-horizontal-stepper>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
