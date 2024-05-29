@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Port+Condensed&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Coach&display=swap');
+@font-face {
+    font-family: 'Coach';
+    src: url('/assets/fonts/Coach-normal-400-100.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Port Condensed';
+    src: url('/assets/fonts/Port Condensed-normal-400-100.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html, body {
     height: 100%; /* Importante para que el footer se quede en la parte inferior */
