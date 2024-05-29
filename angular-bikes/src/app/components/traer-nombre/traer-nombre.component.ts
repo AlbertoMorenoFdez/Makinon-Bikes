@@ -11,6 +11,7 @@ import { RolesService } from '../../core/services/roles/roles.service';
   templateUrl: './traer-nombre.component.html',
   styleUrls: ['./traer-nombre.component.css']
 })
+//Es un componente que se encarga de traer los datos del usuario logueado
 export class TraerNombreComponent implements OnInit {
   id: number = 0;
   nombre: string = '';
@@ -29,7 +30,7 @@ export class TraerNombreComponent implements OnInit {
       
     }
   }
-
+  //Metodo que se encarga de traer los datos del usuario
   traerNombre(): void {
     this.bddService.traerDatosUsuario().subscribe(
       response => {

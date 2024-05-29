@@ -35,11 +35,10 @@ export class DatePickerComponent {
     const date = new Date(event.target.value); // Convierte la cadena a Date
     this.almacenarFecha.emit(date);
   }
+  // Método que se ejecuta al cambiar la fecha seleccionada
   onDateChange(event: MatDatepickerInputEvent<Date>) {
     this.selected = event.value;
     if (this.selected) {
-      // console.log(this.selected);  // Imprime la fecha seleccionada en la consola
-      // console.log(this.selected.toDateString());  // Imprime la fecha seleccionada en la consola
       localStorage.setItem('cita', this.selected.toDateString());  // Almacena la fecha seleccionada en el localStorage
     }
   }

@@ -5,7 +5,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { CommonModule } from '@angular/common';
 import { ApiFestivoService } from '../../core/services/api-festivo/api-festivo.service';
 import { BddService } from '../../core/services/bdd/bdd.service';
-import { co } from '@fullcalendar/core/internal-common';
 import { RolesService } from '../../core/services/roles/roles.service';
 import { EditarFormularioComponent } from '../obtener-cita/editar-formulario/editar-formulario.component';
 
@@ -19,7 +18,7 @@ import { EditarFormularioComponent } from '../obtener-cita/editar-formulario/edi
 
 })
 
-
+// Componente que se encarga de mostrar el calendario
 export class CalendarioComponent implements OnInit {
   data: any[] = [];
   eventosFestivos: any[] = []; // Declara un array para almacenar los eventos festivos
@@ -34,7 +33,7 @@ export class CalendarioComponent implements OnInit {
   }
 
 
-
+  // Método que se encarga de llenar los datos del calendario con los eventos festivos y las citas de la bdd
   llenarDatos() {
     this.apiFestivoService.getData().subscribe(data => {
       this.data = data;
@@ -57,7 +56,6 @@ export class CalendarioComponent implements OnInit {
     this.bddService.obtenerTodasCitas().subscribe((data: any[]) => {
       this.data = data;
       this.data.forEach((evento: any) => {
-        // console.log(`Fecha: ${evento.fecha}, Hora: ${evento.hora}`);
         if (this.rol === 'user') {
           this.eventosFestivos.push({
             title: "Ocupado",
@@ -76,6 +74,7 @@ export class CalendarioComponent implements OnInit {
     });
   }
 
+  // Método que se encarga de asignar los eventos festivos al calendario
   festivosEventosCalendario() {
     // Asignar los eventos festivos a la propiedad events de calendarOptions
     this.calendarOptions.events = [...this.eventosFestivos];

@@ -1,5 +1,6 @@
 /* Estilo del título del diálogo */
 h1 {
+  font-family: 'Coach', sans-serif;
     font-weight: bold;
     color: #4CAF50; /* Color verde para indicar éxito */
     text-align: center;
@@ -12,6 +13,7 @@ h1 {
     text-align: center;
   }
   p{
+    font-family: 'Port Condensed', sans-serif;
     font-size: 18px;
     color: #333;
   }

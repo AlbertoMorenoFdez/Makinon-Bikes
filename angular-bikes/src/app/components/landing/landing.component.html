@@ -1,6 +1,6 @@
 <div  *ngIf="isAdmin; else userWelcome">
   <div class="welcome-container">
-    <p>Bienvenido Administrador</p>
+    <h2>Bienvenido Administrador</h2>
     <app-traer-nombre></app-traer-nombre>
     <p>
       ¡Bienvenidos al Panel de Administración de MakinoBikes!
@@ -23,7 +23,7 @@
 
 <ng-template #userWelcome>
   <div class="welcome-container">
-    <p>Bienvenido</p>
+    <h2>Bienvenido</h2>
     <app-traer-nombre></app-traer-nombre>
     <p>
       ¡Bienvenidos al Taller de MakinoBikes!

@@ -14,6 +14,7 @@
   .welcome-container p {
     margin: 20px 0;
     font-size: 1.1rem;
+    font-family: 'Port Condensed', sans-serif;
     color: #333;
     line-height: 1.6;
   }
@@ -23,7 +24,7 @@
   }
   
   .welcome-container h2 {
-    font-size: 1.5rem;
+    font-family: 'Coach', sans-serif;
     color: #f25c05;
     margin-bottom: 20px;
   }
@@ -33,4 +34,3 @@
     color: #f25c05;
     font-weight: bold;
   }
-  

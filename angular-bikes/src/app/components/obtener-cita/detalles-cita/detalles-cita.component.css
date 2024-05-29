@@ -3,23 +3,35 @@
 mat-card {
   margin: 30px;
   padding: 20px;
-  background-color: yellowgreen;
+  background-color:#989895;
   box-shadow: 0 4px 8px rgba(181, 18, 18, 0.1);
   transition: 0.3s;
   position: relative;
 }
 
 mat-card:hover {
-  box-shadow: 0 8px 16px rgba(11, 16, 144, 0.2);
+  box-shadow: 0 8px 16px rgba(242, 92, 5, 1);
+}
+strong {
+  color: #000000; /* Mantiene el color de texto fuerte en un tono oscuro */
 }
 
 h3 {
-  color: #3F51B5; /* Un color que combine con el tema indigo-pink */
+  color: white; /* Un color que combine con el tema indigo-pink */
   margin-bottom: 10px;
 }
 
 p {
+  font-family: 'Port Condensed', sans-serif;
   margin-bottom: 5px;
+  color: #ffffff;
+}
+img{
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 10px;
+  border-radius: 5px;
+
 }
 
 .button-row {

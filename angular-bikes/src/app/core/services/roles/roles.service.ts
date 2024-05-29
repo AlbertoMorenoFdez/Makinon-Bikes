@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+// Servicio para gestionar los roles de usuario. Si el usuario está autenticado y su rol.
 export class RolesService {
   private currentUserRole = new BehaviorSubject<string>('user'); // Valor predeterminado como string
   private isLoggedIn = new BehaviorSubject<boolean>(false);

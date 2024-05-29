@@ -3,46 +3,40 @@ import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { dragDrop } from '../../../interfaces/formulario.interface';
-//import { FormularioDatos } from '../../interfaces/formulario.interface';
 
 @Injectable({
   providedIn: 'root'
 })
+
+// Servicio para gestionar la base de datos conectandose a la API rest de laravel
 export class BddService {
 
   constructor(private http: HttpClient) { }
 
+  // Obtiene los datos de un usuario de la bbdd
   traerDatosUsuario(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>('http://localhost:8000/api/traerDatos', { headers });
   }
 
+  // Obtiene todas las citas de la bbdd
   obtenerTodasCitas(): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>('http://localhost:8000/api/calendario', { headers });
   }
 
-  // crearCita(formularioDatos: any): Observable<any> {
-  //   console.log('Datos a enviar:', formularioDatos)
-  //   const token = localStorage.getItem('token');
-  //   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  //   return this.http.post<any>('http://localhost:8000/api/cita_taller', formularioDatos, { headers });
-  // }
-
+  // Crea una cita en la bbdd
   crearCita(formularioDatos: any): Observable<any> {
-    // console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
     const formData: FormData = new FormData();
     formData.append('opcion', formularioDatos.opcion);
     formData.append('fecha', formularioDatos.fecha);
     formData.append('hora', formularioDatos.hora);
     formData.append('estado', formularioDatos.estado || 'pendiente');
     formData.append('comentario', formularioDatos.comentario);
-   
 
     if (formularioDatos.imagen) {
       formData.append('imagen', formularioDatos.imagen, formularioDatos.imagen.name);
@@ -57,18 +51,17 @@ export class BddService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>('http://localhost:8000/api/cita_taller', { headers });
   }
-  // Obtiene una cita de la bbdd
+
+  // Obtiene una cita en especifica del usuario logueado de la bbdd
   obtenerCitaId(id: number): Observable<any> {
-    // console.log('ID de cita:', id);
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`http://localhost:8000/api/obtenerCitaId/${id}`, { headers });
-}
+  }
 
 
   // Edita una cita en la bbdd
   editarCitaUsuario(formularioDatos: any): Observable<any> {
-    // console.log('Datos a enviar:', formularioDatos)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<any>('http://localhost:8000/api/editarCitaUsuario', formularioDatos, { headers });
@@ -81,8 +74,8 @@ export class BddService {
     return this.http.delete<any>('http://localhost:8000/api/cita_taller', { headers, params: { id_cita_taller: id } });
   }
 
+  // Envia los datos de la bbdd
   enviarDatos(datos: any): Observable<any> {
-    console.log('Datos a enviar:', datos)
     return this.http.post<any>('http://localhost:8000/api/datos', datos);
   }
 
@@ -95,7 +88,6 @@ export class BddService {
       console.error('Se esperaba un array de citas, pero se recibió:', citas);
       return new Observable<any>();
     }
-    // console.log('Array de citas:', citas);
 
     return this.http.put<any>('http://localhost:8000/api/citaPendiente', citas, { headers });
   }
