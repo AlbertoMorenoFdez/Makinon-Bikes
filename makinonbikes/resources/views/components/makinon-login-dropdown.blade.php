@@ -1,5 +1,5 @@
 <div class="content-div" id="login">
-    @if ($usuarioAutenticado)
+    @if (Auth::check())
         <div style="display:flex; aling-items:center; ">
             <a href="{{ route('usuario.perfil') }}"
                 style="margin: 0 10px 0 5px; color:#fb6200; text-decoration: none">{{ Auth::user()->nombre }}</a>

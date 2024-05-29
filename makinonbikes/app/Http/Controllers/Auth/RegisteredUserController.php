@@ -55,6 +55,10 @@ class RegisteredUserController extends Controller
 
         ]);
 
+        //Generamos el token de acceso por si el usuario quiere acceder a la API de Angular y lo almacenamos en la sesion
+        $token = $user->createToken('api-token');
+        $request->session()->put('api_token', $token->plainTextToken);
+
         // Enviamos el correo de bienvenida
         Mail::to($user->email)->send(new WelcomeMail($user));
 
