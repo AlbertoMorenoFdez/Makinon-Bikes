@@ -11,6 +11,8 @@ import { SubirArchivoService } from '../../../core/services/subir-archivo/subir-
   templateUrl: './subir-archivo.component.html',
   styleUrls: ['./subir-archivo.component.css']
 })
+
+// Funcion que se encarga de gestionar el componente de subida de archivos
 export class SubirArchivoComponent implements OnInit {
   currentFile?: File;
   message = '';
@@ -25,6 +27,7 @@ export class SubirArchivoComponent implements OnInit {
     // this.fileInfos = this.subirServicio.getFiles();
   }
 
+  //Metodo que se encarga de almacenar el archivo seleccionado
   selectFile(event: any): void {
     const fichero = (event.target as HTMLInputElement).files?.[0];
     if (fichero) {

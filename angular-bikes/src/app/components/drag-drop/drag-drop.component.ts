@@ -10,6 +10,8 @@ import { BddService } from '../../core/services/bdd/bdd.service';
   templateUrl: './drag-drop.component.html',
   styleUrl: './drag-drop.component.css'
 })
+
+// Componente que se encarga de mostrar un drag and drop de las citas
 export class DragDropComponent {
   dragDrop: dragDrop = {
     Fecha: '',
@@ -30,7 +32,8 @@ export class DragDropComponent {
     this.traerCitas();
   }
 
-
+  /* Método que se encarga de traer las citas de la bdd y la clasifica en pendientes, confirmadas y canceladas
+  y las muestra al usuario solo la hora y fecha y al admin el titulo de la cita fecha y hora*/
   traerCitas() {
     this.bddService.obtenerTodasCitas().subscribe((data: any[]) => {
       data.forEach((evento: any) => {
@@ -64,6 +67,8 @@ export class DragDropComponent {
 
     });
   }
+
+  // Método que se encarga de mover los elementos de un array a otro
   drop(event: CdkDragDrop<dragDrop[], any>) {
     // Accede al objeto dragDrop que se está moviendo
     let movedItem: dragDrop = event.previousContainer.data[event.previousIndex];
@@ -81,10 +86,9 @@ export class DragDropComponent {
     // Convierte el objeto a un string
     let movedItemString = 'Fecha: ${ movedItem.Fecha }, Hora: ${ movedItem.Hora }, Estado: ${ movedItem.Estado }, Opcion: ${ movedItem.Opcion }';
 
-    // Muestra el string
-    // console.log(movedItemString);
   }
 
+  // Método que se encarga de actualizar el estado de las citas
   actualizar(): void {
     this.pendiente.forEach((cita: dragDrop) => {
       cita.Estado = 'pendiente';
@@ -95,13 +99,8 @@ export class DragDropComponent {
     this.cancelada.forEach((cita: dragDrop) => {
       cita.Estado = 'cancelada';
     });
-    // console.log('Estado actual de Pendientes:', this.pendiente);
-    // console.log('Estado actual de Confirmadas:', this.confirmada);
-    // console.log('Estado actual de Canceladas:', this.cancelada);
     let citas = this.pendiente.concat(this.confirmada, this.cancelada);
-    // console.log('Citas:', citas);
     this.bddService.editarEstadoCita(citas).subscribe((data: any) => {
-      // console.log('Cita actualizada:', data);
     });
   }
 

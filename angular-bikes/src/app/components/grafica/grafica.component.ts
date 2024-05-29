@@ -10,6 +10,8 @@ import { BddService } from '../../core/services/bdd/bdd.service';
   templateUrl: './grafica.component.html',
   styleUrl: './grafica.component.css'
 })
+
+// Componente que se encarga de mostrar las  gráficas
 export class GraficaComponent  {
 
   pendiente: any[] = [];
@@ -38,7 +40,7 @@ export class GraficaComponent  {
   chartOpcion!: Chart;
 
   constructor(private bddService: BddService) {
-    Chart.register(...registerables);  // Register the necessary Chart.js components
+    Chart.register(...registerables); 
   }
 
   ngOnInit(): void {
@@ -47,11 +49,9 @@ export class GraficaComponent  {
     this.traerCitasOpcion();
   }
  
-
+  // Método que se encarga de traer las citas de la bdd y la clasifica en pendientes, confirmadas y canceladas
   traerCitasOpcion() {
     this.bddService.obtenerTodasCitas().subscribe((data: any[]) => {
-    
-
       data.forEach((evento: any) => {
         switch (evento.opcion) {
           case 'Revision bicicleta':
@@ -81,6 +81,8 @@ export class GraficaComponent  {
     });
   }
 
+
+  // Método que se encarga de actualizar la gráfica de radar y las clasificas por opciones
   actualizarGraficaRadar(revisionBicicleta: any[], repararPinchazo: any[], montarComponente: any[], revisionSuspensiones: any[], lavadoEngrase: any[]) {
     const config: ChartConfiguration = {
       type: 'radar',
@@ -129,11 +131,7 @@ export class GraficaComponent  {
   }
 
 
-
-
-
-
-
+  // Método que se encarga de traer las citas de la bdd y la clasifica en pendientes, confirmadas y canceladas
   traerCitasEstado() {
     this.bddService.obtenerTodasCitas().subscribe((data: any[]) => {
       data.forEach((evento: any) => {
@@ -153,7 +151,7 @@ export class GraficaComponent  {
 
   
 
-  
+  // Método que se encarga de traer las citas de la bdd y la clasifica por fechas
   traerCitasFecha() {
     const hoy = new Date();
     const mesActual = hoy.getMonth();
@@ -184,6 +182,7 @@ export class GraficaComponent  {
     });
   }
 
+  // Método que se encarga de actualizar la gráfica de líneas
   actualizarGraficaDeLineas() {
     const meses = ['Mes Anterior', 'Mes Actual', 'Mes Siguiente'];
     const conteoCitas = [
@@ -218,7 +217,7 @@ export class GraficaComponent  {
     });
   }
       
-
+  // Método que se encarga de actualizar la gráfica de barras
   actualizarGrafica() {
     if (this.chartEstado) {
       this.chartEstado.destroy(); // Destruye la gráfica existente antes de crear una nueva

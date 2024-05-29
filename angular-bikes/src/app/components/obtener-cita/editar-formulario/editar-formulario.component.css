@@ -8,7 +8,6 @@
     margin-top: 110px;
   }
   mat-form-field{
-
     width: 800px;
   }
   
@@ -37,6 +36,7 @@
   }
   
   select, textarea {
+    font-family: 'Port Condensed', sans-serif;
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -46,6 +46,7 @@
   }
   
   textarea {
+    font-family: 'Port Condensed', sans-serif;
     resize: vertical;
     min-height: 100px;
   }
@@ -71,6 +72,7 @@
   
   /* Specific Styles for Components */
   app-date-picker, app-timepicker, app-subir-archivo {
+ 
     margin: 10px 0;
   }
   
@@ -78,6 +80,7 @@
   @media (max-width: 768px) {
     .stepper {
       padding: 10px;
+      margin-bottom: 50px;
     }
   
     mat-step {

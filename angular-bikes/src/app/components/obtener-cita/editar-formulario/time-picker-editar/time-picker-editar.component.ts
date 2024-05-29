@@ -10,11 +10,13 @@ import { IGX_TIME_PICKER_DIRECTIVES } from 'igniteui-angular';
   templateUrl: './time-picker-editar.component.html',
   styleUrl: './time-picker-editar.component.css'
 })
+
+// Componente que se encarga de mostrar el time picker para editar la hora de una cita
 export class TimePickerEditarComponent {
   @Input() hora: string | null = null;
   @Output() almacenarHora = new EventEmitter<Date>();
 
-  
+  // Método que se encarga de almacenar la hora seleccionada
   onTimeChange(event: any) {
     if (event instanceof Date) {
       this.almacenarHora.emit(event);

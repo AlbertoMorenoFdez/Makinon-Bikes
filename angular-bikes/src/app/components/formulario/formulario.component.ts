@@ -35,7 +35,12 @@ import { SatisfactorioDialogoComponent } from '../satisfactorio-dialogo/satisfac
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
+
+
+// Componente que se encarga de mostrar el formulario de creación de citas 
 export class FormularioComponent implements OnInit {
+
+  // Inicialización de los datos del formulario
   datosFormulario: FormularioDatos = {
     fecha: '',
     hora: '',
@@ -57,6 +62,7 @@ export class FormularioComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+     // Creación de los grupos de formularios con validaciones
     this.firstFormGroup = this._formBuilder.group({
       fecha: ['d', Validators.required],
       hora: ['d', Validators.required]
@@ -66,7 +72,7 @@ export class FormularioComponent implements OnInit {
       opcion: ['', Validators.required]
     });
 
-    // Obtener los datos de festivos y configurarlos en el servicio de validación
+   // Obtener los datos de festivos y configurarlos en el servicio de validación
     this.apiFestivoService.getData().subscribe(data => {
       const eventosFestivos = data
         .filter((evento: any) => evento.counties === null || evento.counties.includes('ES-AN'))
@@ -78,20 +84,23 @@ export class FormularioComponent implements OnInit {
     });
   }
 
+   // Actualiza la fecha en los datos del formulario
   actualizarFecha(fecha: Date) {
     this.datosFormulario.fecha = formatDate(fecha, 'yyyy-MM-dd', 'en-US');
   }
 
+  // Actualiza la hora en los datos del formulario
   actualizarTiempo(tiempo: Date) {
     this.datosFormulario.hora = formatDate(tiempo, 'HH:mm:ss', 'en-US');
   }
 
+   // Asigna el archivo seleccionado a los datos del formulario
   archivoSeleccionado(imagen: File) {
     this.datosFormulario.imagen = imagen;
     this.imagenCambiada = true;
     this.updateImagePreview(imagen);
   }
-
+ // Actualiza la vista previa de la imagen seleccionada
   updateImagePreview(file: File) {
     const reader = new FileReader();
     reader.onload = () => {
@@ -100,8 +109,8 @@ export class FormularioComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+   // Enviar los datos del formulario
   enviarFormulario() {
-    // console.log('Datos del formulario:', this.datosFormulario);
     if (this.validacionService.esFormularioValido(this.datosFormulario)) {
       this.validacionService.verificarDisponibilidadCita(this.datosFormulario.fecha, this.datosFormulario.hora)
         .subscribe(disponible => {
@@ -119,6 +128,7 @@ export class FormularioComponent implements OnInit {
     }
   }
 
+   // Muestra un diálogo de éxito
   mostrarExito(mensaje: string) {
     const dialogRef = this.dialog.open(SatisfactorioDialogoComponent, {
       data: { message: mensaje }
@@ -129,6 +139,7 @@ export class FormularioComponent implements OnInit {
     });
   }
 
+  // Muestra un diálogo de error
   mostrarError(mensaje: string) {
     this.dialog.open(ErrorDialogoComponent, {
       data: { message: mensaje }

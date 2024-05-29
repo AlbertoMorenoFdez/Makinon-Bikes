@@ -12,8 +12,10 @@
   }
   a{
     font-size: large;
+    font-family: 'Coach', sans-serif;
   }
   app-traer-nombre{
+    
     font-size: large;
     color:gray;
     margin-bottom: 10px;

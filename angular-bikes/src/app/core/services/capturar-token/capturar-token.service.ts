@@ -51,11 +51,11 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+// Servicio para capturar el token de la URL y guardarlo en el almacenamiento local
 export class CapturarTokenService {
 
   private token = new BehaviorSubject<string | null>(null);
-  // private tokenExpirationTime = 60 * 60 * 1000; // Tiempo de expiración en milisegundos (por ejemplo, 1 hora)
-  private tokenExpirationTime = 10000;
+  private tokenExpirationTime = 60 * 60 * 1000; // Tiempo de expiración en milisegundos (por ejemplo, 1 hora)
   constructor(private route: ActivatedRoute,
               private router: Router) {}
 

@@ -1,6 +1,8 @@
 
 /* calendario.component.css */
 .fc {
+    color : #f25c05;
+    font-family: 'Coach', sans-serif;
     max-width: 1450px; /* Limita el ancho máximo del calendario */
     margin: 0 auto; /* Centra el calendario horizontalmente */
     padding: 20px;
@@ -12,6 +14,7 @@
 }
 
 .fc .fc-button {
+    font-family: 'Coach', sans-serif;/* Color de fondo de los botones */
     padding: 5px 10px; /* Ajusta el padding de los botones para que sean más pequeños */
     font-size: 0.8em; /* Tamaño de la fuente para los botones */
 }

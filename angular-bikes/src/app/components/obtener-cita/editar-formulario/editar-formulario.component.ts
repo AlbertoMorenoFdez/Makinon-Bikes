@@ -50,7 +50,10 @@ import { SatisfactorioDialogoComponent } from '../../satisfactorio-dialogo/satis
   templateUrl: './editar-formulario.component.html',
   styleUrls: ['./editar-formulario.component.css']
 })
+
+// Componente que se encarga de mostrar el formulario de edición de citas
 export class EditarFormularioComponent implements OnInit {
+  // Inicialización de los datos del formulario
   id: number | null = null;
   datosFormulario: FormularioDatosEditar = {
     id_cita_taller: 0,
@@ -75,6 +78,7 @@ export class EditarFormularioComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+  // Método que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
@@ -108,6 +112,7 @@ export class EditarFormularioComponent implements OnInit {
     });
   }
 
+  // Método para obtener los datos de la cita
   obtenerCita(id: number) {
     this.bddService.obtenerCitaId(id).subscribe(
       cita => {
@@ -142,11 +147,13 @@ export class EditarFormularioComponent implements OnInit {
     );
   }
 
+  // Método para actualizar la fecha en los datos del formulario
   actualizarFecha(fecha: Date) {
     this.datosFormulario.fecha = fecha.toISOString().split('T')[0];
     this.firstFormGroup.patchValue({ fecha: this.datosFormulario.fecha });
   }
 
+  // Método para actualizar la hora en los datos del formulario
   actualizarTiempo(hora: Date) {
     if (hora instanceof Date) {
       const horas = hora.getHours().toString().padStart(2, '0');
@@ -158,12 +165,14 @@ export class EditarFormularioComponent implements OnInit {
     }
   }
 
+  // Método para asignar el archivo seleccionado a los datos del formulario
   archivoSeleccionado(imagen: File) {
     this.datosFormulario.imagen = imagen;
     this.imagenCambiada = true;
     this.updateImagePreview(imagen);
   }
 
+  // Método para actualizar la vista previa de la imagen seleccionada
   updateImagePreview(file: File) {
     const reader = new FileReader();
     reader.onload = () => {
@@ -172,6 +181,7 @@ export class EditarFormularioComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+  // Método para enviar los datos del formulario
   enviarFormulario() {
     if (!this.imagenCambiada) {
       this.datosFormulario.imagen = null;
@@ -204,6 +214,7 @@ export class EditarFormularioComponent implements OnInit {
   }
   
 
+  // Método para mostrar un diálogo de éxito
   mostrarExito(mensaje: string) {
     const dialogRef = this.dialog.open(SatisfactorioDialogoComponent, {
       data: { message: mensaje }
@@ -214,6 +225,7 @@ export class EditarFormularioComponent implements OnInit {
     });
   }
 
+  // Método para mostrar un diálogo de error
   mostrarError(mensaje: string) {
     this.dialog.open(ErrorDialogoComponent, {
       data: { message: mensaje }

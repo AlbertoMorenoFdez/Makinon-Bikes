@@ -1,44 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Port+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coach&display=swap');
 
 html, body {
     height: 100%; /* Importante para que el footer se quede en la parte inferior */
     margin: 0;
-  }
-body { 
- 
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+    font-family: 'Port Condensed', sans-serif;
     display: flex;
     flex-direction: column;
     /* background-image: url("./assets/taller.jpg") ; */
-    
 }
+
 main {
-  flex: 1 0 auto; /* Hace que el contenido empuje el footer hacia abajo */
+    flex: 1 0 auto; /* Hace que el contenido empuje el footer hacia abajo */
 }
+
 footer {
-  flex-shrink: 0;
-  background-color: #343a40; /* Un tono oscuro */
-  color: #ffffff;
+    font-family: 'Port Condensed', sans-serif;
+    flex-shrink: 0;
+    background-color: #343a40; /* Un tono oscuro */
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 footer a.text-white {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 footer a.text-white:hover {
-  color: #cccccc; /* Cambio sutil para el hover */
+    color: #cccccc; /* Cambio sutil para el hover */
 }
 
 footer h5 {
-  margin-bottom: 15px;
+    font-family: 'Coach', sans-serif;
+    margin-bottom: 15px;
 }
 
 footer ul {
-  padding-left: 0;
-  list-style: none;
+    padding-left: 0;
+    list-style: none;
 }
+
 
 .footer-icon {
-  font-size: 1.5em; /* Tamaño de los íconos de redes sociales */
+    font-size: 1.5em; /* Tamaño de los íconos de redes sociales */
 }
 
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer h5 {
+        margin-bottom: 10px;
+    }
+
+    footer ul {
+        padding-left: 0;
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-icon {
+        font-size: 1.5em; /* Tamaño de los íconos de redes sociales */
+    }
+
+    footer > * {
+        margin-bottom: 15px;
+    }
+}

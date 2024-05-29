@@ -42,11 +42,12 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+  //Funcion que se ejecuta al iniciar la aplicacion
 export class AppComponent implements OnInit {
   isAdmin: boolean = false;
   isUser: boolean = false;
   nombreDesdeHijo: string='';
-  // isAuthenticated = false;
 
   constructor(private rolesService: RolesService,
               private capturarTokenService: CapturarTokenService,
@@ -57,16 +58,15 @@ export class AppComponent implements OnInit {
     this.rolesService.getUserRole().subscribe((role:string) => {      
       this.isAdmin = role === 'admin';
       this.isUser = role === 'user';
-  
-      // Agregar código de depuración
-      // console.log('isAdmin:', this.isAdmin);
-      // console.log('isUser:', this.isUser);
     });
   }
 
+  //Metodo que recibe el nombre del hijo
   recibirNombre(nombre: string): void {
     this.nombreDesdeHijo = nombre;
   }
+
+  //Metodo que se ejecuta al salir de la aplicacion
   salir(): void {
     this.capturarTokenService.limpiarToken();
     this.rolesService.logout();

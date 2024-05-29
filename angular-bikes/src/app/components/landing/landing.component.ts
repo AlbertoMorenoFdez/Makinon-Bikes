@@ -10,6 +10,8 @@ import { RolesService } from '../../core/services/roles/roles.service';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.css']
 })
+
+// Componente que se encarga de mostrar la pagina principal
 export class LandingComponent implements OnInit {
   isAdmin: boolean = false;
 

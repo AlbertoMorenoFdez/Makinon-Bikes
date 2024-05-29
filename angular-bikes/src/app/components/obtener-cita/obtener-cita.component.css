@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  background-color: #ffffff; /* Utiliza blanco como fondo del contenedor */
 }
 
 /* Estilo para el contenido principal */
@@ -14,6 +14,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 5vh;
+  color: #000000;  /* Utiliza un borde gris (#707070) para el contorno del contenido */
+  background-color: #ffffff; 
 }
 
 /* Estilo para la lista de citas */
@@ -23,10 +25,9 @@
   overflow-y: auto;
   max-height: 80vh;
   padding: 20px;
-  background: #f7f7f7;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Estilo para los elementos de la lista */
 ul {
@@ -36,16 +37,18 @@ ul {
 }
 
 li {
+  font-family: 'Port Condensed', sans-serif;
   margin-bottom: 10px;
   padding: 15px;
-  background-color: #da741b;
-  border: 1px solid #ddd;
+  color: #ffffff;
+  background-color: #989895; /* Cambia el fondo de cada elemento de la lista al color #989895 */
+  border: 1px solid #707070; /* Usa gris (#707070) para el borde */
   border-radius: 4px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 li:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(242, 92, 5, 1);
   transform: translateX(15px);
 }
 
@@ -59,7 +62,7 @@ button {
 }
 
 strong {
-  color: #333;
+  color: #333; /* Mantiene el color de texto fuerte en un tono oscuro */
 }
 
 .cita-imagen {
@@ -71,11 +74,23 @@ strong {
 
 /* Estilo para los detalles de la cita */
 .cita-detalles {
+
   flex: 2;
   padding: 20px;
-  background: #fff;
+  background-color: #ffffff; /* Mantiene el fondo blanco para los detalles de la cita */
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   max-height: 80vh;
+}
+
+@media (max-width: 768px) {
+ .content {
+    flex-direction: column;
+  }
+
+ .citas-list {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
 }

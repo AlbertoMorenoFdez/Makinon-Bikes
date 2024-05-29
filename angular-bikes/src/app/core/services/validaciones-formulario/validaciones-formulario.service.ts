@@ -9,15 +9,21 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
+
+/*Este servicio se encarga de validar los datos de un formulario, incluyendo la fecha, hora y otras entradas,
+ además de verificar la disponibilidad de citas y gestionar los eventos festivos. */
 export class ValidacionFormularioService {
   private eventosFestivos: { title: string; start: string }[] = [];
 
   constructor(private dialog: MatDialog, private bddService: BddService) {}
+  
+  //Configura la lista de eventos festivos.
 
   setEventosFestivos(eventos: { title: string; start: string }[]) {
     this.eventosFestivos = eventos;
   }
 
+  //Valida los datos de un formulario, incluyendo la fecha, hora y otras entradas.
   esFormularioValido(datosFormulario: FormularioDatos): boolean {
     const fechaValida = this.esFechaValida(datosFormulario.fecha);
     const horaValida = this.esHoraValida(datosFormulario.hora);
@@ -27,6 +33,7 @@ export class ValidacionFormularioService {
     return fechaValida && horaValida && comentarioValido && opcionValida;
   }
 
+  //Valida si la fecha es válida.
   private esFechaValida(fecha: string): boolean {
     const hoy = new Date();
     const fechaSeleccionada = new Date(fecha);
@@ -57,6 +64,7 @@ export class ValidacionFormularioService {
     return true;
   }
 
+  //Valida si la hora es válida.
   private esHoraValida(hora: string): boolean {
     const [hours, minutes] = hora.split(':').map(Number);
     // console.log(hours, minutes);
@@ -71,6 +79,7 @@ export class ValidacionFormularioService {
     return false;
   }
 
+  //Verifica la disponibilidad de una cita.
   verificarDisponibilidadCita(fecha: string, hora: string): Observable<boolean> {
     return this.bddService.obtenerTodasCitas().pipe(
       map((citas: any[]) => {
@@ -89,12 +98,14 @@ export class ValidacionFormularioService {
     );
   }
 
+  //Verifica si dos fechas están dentro de una hora de diferencia.
   private estaEnRangoDeUnaHora(fechaHora1: Date, fechaHora2: Date): boolean {
     const diferenciaMilisegundos = Math.abs(fechaHora1.getTime() - fechaHora2.getTime());
     const unaHoraEnMilisegundos = 60 * 60 * 1000;
     return diferenciaMilisegundos < unaHoraEnMilisegundos;
   }
 
+  //Muestra un mensaje de error.
   private mostrarError(mensaje: string) {
     this.dialog.open(ErrorDialogoComponent, {
       data: { message: mensaje }

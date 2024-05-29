@@ -9,10 +9,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
   templateUrl: './google-maps.component.html',
   styleUrl: './google-maps.component.css'
 })
-export class GoogleMapsComponent  {
 
-  center: google.maps.LatLngLiteral = { lat: 36.7129, lng: -4.4315 };  // Coordenadas de la Estación de Autobuses de Málaga
+// Componente que se encarga de mostrar un mapa de Google Maps
+export class GoogleMapsComponent  {
+ 
+  center: google.maps.LatLngLiteral = { lat: 36.710604, lng: -4.468783 };  // Coordenadas de la Estación de Autobuses de Málaga
   zoom = 15;
   markerOptions: google.maps.MarkerOptions = { draggable: false };  // Opciones del marcador
-  markerPosition: google.maps.LatLngLiteral = { lat: 36.7129, lng: -4.4315 };
+  markerPosition: google.maps.LatLngLiteral = { lat: 36.710604, lng: -4.468783 };
 } 
