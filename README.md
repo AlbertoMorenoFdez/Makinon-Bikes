@@ -2,10 +2,12 @@
 
 Makinon Bikes es una aplicación web de comercio electrónico desarrollada en Laravel. La aplicación está diseñada para proporcionar una plataforma donde los usuarios pueden explorar y comprar una variedad de productos relacionados con bicicletas y accesorios pra el ciclista. La aplicación se ha desarrollado con un enfoque en la facilidad de uso, la eficiencia y la escalabilidad.
 Esto en cuanto al usuario final, pero en cuanto al enfoque hacia el administrador de la página nos permite un control total sobre proveedores, productos y los propios usuarios. 
+Además, se ha integrado un sistema de gestión de citas para un taller de bicicletas. El sistema permite a los usuarios gestionar citas mientras proporciona a los administradores herramientas para supervisar y analizar las actividades del taller
 
 <br>
 
 ## Makinon en imágenes
+### Tienda
 Cuando el usuario accede a nuestra página podrá, de manera intuitiva, acceder a todos los apartados disponibles para él, pero también podrá decidir si logearse o crear su cuenta rellenando los campos del formulario de registro, el cual cuenta con un sistema de control de errores para todos los campos.
 Una vez registrado el usuario recibe en su correo electrónico un mail confirmando el registro.
 
@@ -35,6 +37,43 @@ Hemos implementado ademas un sistema de citas para el taller, en el cual, el cli
 
 <br>
 
+### Taller
+Cuando accede tanto el usuario o el admin se le visualizará una presentación de bienvenida
+
+![alt text](imagenesReadMe/taller_bienvenida.png)
+
+En el lado usuario se puede solicitar una cita al taller pasando por un formulario por pasos
+
+![alt text](imagenesReadMe/taller_formulario.png)
+
+También se visualizará un calendario con las fechas y horas disponibles pero con restricciones de título. En este caso se le mostrará un título de ocupado. Además, se visualiza los festivos en España y en Andalucia en el calendario
+
+![alt text](imagenesReadMe/taller_calendario-user.png)
+
+Otro sección, es la visualización de todas las citas del usuario logueado y su descripción completa. Además tiene la posibilidad de modificar una cita programada si aún está en estado pendiente.
+
+![alt text](imagenesReadMe/taller_citasAnteriores.png)
+
+Acabando en el lado usuario, tenemos otra sección en que muestra la dirección de google maps del taller.
+
+![alt text](imagenesReadMe/taller_dirección.png)
+
+En el lado administrador se muestra el mismo calendario que el usuario pero con la posibilidad de ver el título de la cita sin las restricciones ya mencionadas
+
+![alt text](imagenesReadMe/taller_calendario-admin.png)
+
+El administrador tiene la particularidad de modificar los estado de las citas
+
+![alt text](imagenesReadMe/taller_dragDrop.png)
+
+Por último, se puede mostrar varias gráficas para visualizar que estados hay más en el taller, cuando hay más citas y que tipo de opciones son las más demandadas para tener un control más exhaustivo de la demanda de los usuarios
+
+<div style="display: flex; flex-direction: row; justify-content: center;">
+    <img src="/imagenesReadMe/taller_grafica1.png" width="200">
+    <img src="/imagenesReadMe/taller_grafica1.png" width="200">
+    <img src="/imagenesReadMe/taller_grafica1.png" width="200">    
+</div>
+
 ## Tecnologías utilizadas
 </br>
 <div style="display: flex; flex-direction: row; justify-content: center;">
@@ -45,6 +84,8 @@ Hemos implementado ademas un sistema de citas para el taller, en el cual, el cli
     <img src="/imagenesReadMe/tailwindlogo.png" width="100">
     <img src="/imagenesReadMe/vitelogo.jpeg" width="100">
     <img src="/imagenesReadMe/githublogo.png" width="100">
+    <img src="/imagenesReadMe/netlifylogo.png" width="100">
+    <img src="/imagenesReadMe/awslogo.png" width="100">
 </div>
 </br>
 
@@ -62,6 +103,9 @@ Hemos implementado ademas un sistema de citas para el taller, en el cual, el cli
 
 - **Git**: Git se utiliza para el control de versiones. Ayudando a rastrear los cambios en el código a lo largo del tiempo y facilita la colaboración entre los posibles desarrolladores.
 
+- **Netlify**: es una plataforma de desarrollo web que facilita la publicación de sitios web. Ofrece servicios de alojamiento y backend sin servidor para aplicaciones web estáticas y dinámicas
+
+- **aws**: es una plataforma de servicios de computación en la nube que ofrece una amplia gama de recursos y soluciones para empresas, desarrolladores e instituciones
 </br>
 
 ## Futuras implementaciones.
