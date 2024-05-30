@@ -40,38 +40,54 @@ Hemos implementado ademas un sistema de citas para el taller, en el cual, el cli
 ### Taller
 Cuando accede tanto el usuario o el admin se le visualizará una presentación de bienvenida
 
-![alt text](imagenesReadMe/taller_bienvenida.png)
+<p align="center">
+  <img src="imagenesReadMe/taller_bienvenida.png" alt="Bienvenida" width="300"/>
+</p>
 
 En el lado usuario se puede solicitar una cita al taller pasando por un formulario por pasos
 
-![alt text](imagenesReadMe/taller_formulario.png)
+<p align="center">
+  <img src="imagenesReadMe/taller_formulario.png" alt="Formulario" width="300"/>
+</p>
 
 También se visualizará un calendario con las fechas y horas disponibles pero con restricciones de título. En este caso se le mostrará un título de ocupado. Además, se visualiza los festivos en España y en Andalucia en el calendario
 
-![alt text](imagenesReadMe/taller_calendario-user.png)
+<p align="center">
+  <img src="imagenesReadMe/taller_calendario-user.png" alt="Calendario usuario" width="300"/>
+</p>
 
 Otro sección, es la visualización de todas las citas del usuario logueado y su descripción completa. Además tiene la posibilidad de modificar una cita programada si aún está en estado pendiente.
 
-![alt text](imagenesReadMe/taller_citasAnteriores.png)
+<p align="center">
+  <img src="imagenesReadMe/taller_citasAnteriores.png" alt="Citas anteriores" width="300"/>
+</p>
 
 Acabando en el lado usuario, tenemos otra sección en que muestra la dirección de google maps del taller.
 
-![alt text](imagenesReadMe/taller_dirección.png)
+<p align="center">
+  <img src="imagenesReadMe/taller_dirección.png" alt="Dirección del taller" width="300"/>
+</p>
 
 En el lado administrador se muestra el mismo calendario que el usuario pero con la posibilidad de ver el título de la cita sin las restricciones ya mencionadas
 
-![alt text](imagenesReadMe/taller_calendario-admin.png)
+
+<p align="center">
+  <img src="imagenesReadMe/taller_calendario-admin.png" alt="Calendario administrador" width="300"/>
+</p>
 
 El administrador tiene la particularidad de modificar los estado de las citas
 
-![alt text](imagenesReadMe/taller_dragDrop.png)
+
+<p align="center">
+  <img src="imagenesReadMe/taller_dragDrop.png" alt="Modificar citas" width="300"/>
+</p>
 
 Por último, se puede mostrar varias gráficas para visualizar que estados hay más en el taller, cuando hay más citas y que tipo de opciones son las más demandadas para tener un control más exhaustivo de la demanda de los usuarios
 
 <div style="display: flex; flex-direction: row; justify-content: center;">
     <img src="/imagenesReadMe/taller_grafica1.png" width="200">
-    <img src="/imagenesReadMe/taller_grafica1.png" width="200">
-    <img src="/imagenesReadMe/taller_grafica1.png" width="200">    
+    <img src="/imagenesReadMe/taller_grafica2.png" width="200">
+    <img src="/imagenesReadMe/taller_grafica3.png" width="200">    
 </div>
 
 ## Tecnologías utilizadas
