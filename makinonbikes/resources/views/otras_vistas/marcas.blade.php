@@ -26,7 +26,8 @@
                             @endphp
                         @endif
 
-                        <p class="fs-5 ml-3"><a href="{{ route('productos.marca', $marca->nombre) }}">{{ $marca->nombre }}</a></p>
+                        <p class="fs-5 ml-3"><a href="{{ route('productos.marca', $marca->nombre) }}">{{ $marca->nombre }}</a>
+                        </p>
                     @endforeach
                 </div>
             </div>

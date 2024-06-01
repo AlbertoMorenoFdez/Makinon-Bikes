@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Muestra para el administrador todos los productos distribuidos por un proveedor -->
     <div class="row w-4/5 h-full">
         <div class="card-header text-center">
             <h1>Lista de artículos del proveedor {{ $proveedor->nombre }}</h1>
@@ -76,7 +77,8 @@
             </div>
             <div class="d-flex justify-content-center">
 
-                <x-makinon-primary-link-button href="{{ route('añadirProducto') }}" style="margin-right: 10px">@lang('makinon.añadirProd')
+                <x-makinon-primary-link-button href="{{ route('añadirProducto') }}"
+                    style="margin-right: 10px">@lang('makinon.añadirProd')
                 </x-makinon-primary-link-button>
 
                 <x-makinon-primary-link-button

@@ -40,12 +40,12 @@
                                 @endif
                             </td>
                             <td style="text-align:center">
-                                <a href="{{ route('fichaProveedor', $proveedor->id_proveedor) }}" aria-label="Ficha del proveedor"><i
-                                        class="fa-regular fa-file"></i></a>
+                                <a href="{{ route('fichaProveedor', $proveedor->id_proveedor) }}"
+                                    aria-label="Ficha del proveedor"><i class="fa-regular fa-file"></i></a>
                             </td>
                             <td style="text-align:center">
-                                <a href="{{ route('modificarProveedor', $proveedor->id_proveedor) }}" aria-label="Editar proveedor"><i
-                                        class="fa-regular fa-pen-to-square"></i></a>
+                                <a href="{{ route('modificarProveedor', $proveedor->id_proveedor) }}"
+                                    aria-label="Editar proveedor"><i class="fa-regular fa-pen-to-square"></i></a>
                             </td>
                             <td style="text-align:center">
                                 <form method="POST" action="{{ route('eliminarProveedor', $proveedor->id_proveedor) }}"
@@ -63,6 +63,7 @@
         </div>
         {{ $proveedores->links() }}
     </div>
+
     <div class="d-flex justify-content-center mt-5">
         <x-makinon-primary-link-button href="{{ route('añadirProveedor') }}"
             style="margin-right: 10px">@lang('makinon.añadirProv')
@@ -70,4 +71,5 @@
         <x-makinon-primary-link-button
             href="{{ route('usuario.panelAdmin') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
     </div>
+    
 </div>

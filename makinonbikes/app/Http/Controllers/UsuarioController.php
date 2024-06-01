@@ -12,24 +12,25 @@ use App\Models\TarjetaCredito;
 class UsuarioController extends Controller
 {
     /**
-     * Funcion que nos devuelve todos los datos del usuario en la vista perfil
+     * Función que nos devuelve todos los datos del usuario en la vista perfil si el usuario esta autentificado, si no lo está
+     * nos redirige a la página de login
+     * @return view Vista perfil o login
      */
-
     public function usuarioAutentificado()
     {
         $user = Auth::user();
 
         if ($user) {
-            //return response()->json(['usuario' => $user], 200);
             return view('usuario.perfil', ['usuario' => $user]);
         } else {
-
             return redirect()->route('login');
         }
     }
 
     /**
-     * Funcion que nos devuelve el perfil del usuario
+     * Función que nos devuelve el perfil del usuario
+     * @param Request id_usuario
+     * @return view perfil
      */
     public function perfil(Request $request, $id)
     {
@@ -40,6 +41,8 @@ class UsuarioController extends Controller
 
     /**
      * Función que nos devuelve la vista de la ficha de un usuario para el adminsitrador
+     * @param int $id_usuario
+     * @return view fichaUsuarioAdmin
      */
     public function fichaUsuario($id){
         $usuario = Usuario::find($id);
@@ -47,7 +50,8 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista para editar el perfil del usuario
+     * Función que nos devuelve la vista para editar el perfil del usuario
+     * @return view modificarUsuario
      */
     public function editarUsuario()
     {
@@ -56,7 +60,8 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Funcion para eliminar la cuenta del usuario
+     * Función para eliminar la cuenta del usuario que esta autentificado
+     * @return view home
      */
     public function deleteUsuario()
     {
@@ -68,19 +73,20 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista para cambiar la contraseña del usuario
+     * Función que nos devuelve la vista para cambiar la contraseña del usuario
+     * @return view cambiarPassword
      */
-
     public function cambiarPassword(){
         return view('usuario.cambiarPassword');
     }
 
     /**
-     * Funcion que nos permite cambiar la contraseña del usuario
+     * Función que nos permite cambiar la contraseña del usuario
+     * @param Request current_password, new_password, new_password_confirmation
+     * @return view perfil
      */
     public function actualizarPassword(Request $request){
 
-        //dd($request->all());
         $request->validate([
             'current_password' => 'required|string|min:8',
             'new_password' => 'required|string|min:8|confirmed',
@@ -100,7 +106,9 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Funcion que nos permite actualizar el perfil del usuario
+     * Función que nos permite actualizar el perfil del usuario
+     * @param Request nombre, apellidos, email, nif, telefono, direccion, cp, ciudad
+     * @return view perfil
      */
     public function updateUsuario(Request $request)
     {
@@ -134,37 +142,16 @@ class UsuarioController extends Controller
         } else {
             return redirect()->route('login');
         }
-
-        /**
-         * Otra forma de hacerlo
-         */
-        /* if ($user) {
-            $user->nombre = $request->nombre;
-            $user->apellidos = $request->apellidos;
-            $user->email = $request->email;
-            $user->nif = $request->nif;
-            $user->telefono = $request->telefono;
-            $user->direccion = $request->direccion;
-            $user->cp = $request->cp;
-            $user->ciudad = $request->ciudad;
-    
-            $user->save();
-    
-            return redirect()->route('usuario.perfil');
-        } else {
-            return redirect()->route('login');
-        } */
     }
 
     /**
-     * Funcion que nos devuelve la vista del panel de administrador
+     * Función que nos devuelve la vista del panel de administrador si el usuario autentificado es un administrador
+     * @return view panelAdmin
      */
     public function panelAdmin()
     {
-
         $user = Auth::user();
         Log::info('Usuario autenticado en panelAdmin:', ['user' => $user]);
-
 
         if ($user && $user->rol == 'admin') {
 
@@ -176,9 +163,8 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista de la lista de usuarios
+     * Función que nos devuelve la vista de la lista de usuarios para el administrador
      */
-
     public function listarUsuarios()
     {
         $usuarios = Usuario::paginate(10);
@@ -186,7 +172,8 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista para añadir un usuario por parte de la Administración
+     * Función que nos devuelve la vista para añadir un usuario por parte de la Administración
+     * @return view añadirUsuario
      */
     public function nuevoUsuarioAdmin()
     {
@@ -194,7 +181,9 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Funcion que nos permite añadir un usuario por parte de la Administración
+     * Función que nos permite añadir un usuario por parte de la Administración
+     * @param Request nombre, apellidos, email, nif, telefono, direccion, cp, ciudad, password, rol
+     * @return view listadoUsuarios
      */
     public function agregarUsuarioAdmin(Request $request)
     {
@@ -210,8 +199,6 @@ class UsuarioController extends Controller
             'password' => 'required|string|min:8',
             'rol' => 'required'
         ]);
-
-        // dd($request->all());
 
         $usuario = new Usuario;
         $usuario->nombre = $request->nombre;
@@ -232,6 +219,8 @@ class UsuarioController extends Controller
 
     /**
      * Función que nos permite buscar un usuario por su nombre
+     * @param Request busqueda
+     * @return view listadoUsuarios con ese nombre
      */
 
     public function buscarUsuario(Request $request)
@@ -242,6 +231,8 @@ class UsuarioController extends Controller
 
     /**
      * Función que nos devuelve la vista para editar los datos del usuario por parte de la Administración
+     * @param int $id_usuario
+     * @return view modificarUsuarioAdmin
      */
     public function editarUsuarioAdmin($id)
     {
@@ -251,6 +242,8 @@ class UsuarioController extends Controller
 
     /**
      * Función que nos permite pasar los datos de un usuario a la vista para poder modficarlos
+     * @param Request id_usuario
+     * @return view modificarUsuarioAdmin
      */
     public function modificarUsuarioAdmin($id)
     {
@@ -260,6 +253,8 @@ class UsuarioController extends Controller
 
     /**
      * Función que nos permite actualizar los datos de un usuario desde el panel de Administración.
+     * @param Request nombre, apellidos, email, nif, telefono, direccion, cp, ciudad, password, rol
+     * @return view listadoUsuarios
      */
     public function updateUsuarioAdmin(Request $request)
     {
@@ -294,6 +289,8 @@ class UsuarioController extends Controller
 
     /**
      * Función que nos permite eliminar un usuario por parte de la administración
+     * @param int $id_usuario
+     * @return view listadoUsuarios
      */
     public function eliminarUsuario($id)
     {
@@ -305,7 +302,6 @@ class UsuarioController extends Controller
     /**
      * Funcion que nos relaciona el usuario con la tarjeta de crédito
      */
-
     public function tarjetaCredito(){
         return $this->hasOne(TarjetaCredito::class, 'id_tarjeta');
     }

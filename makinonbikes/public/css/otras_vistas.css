@@ -1,9 +1,11 @@
-#columna1 a{
-    color:gray;
+/* Estilo para otras vistas de la página (nosotros, contacto, etc) */
+
+#columna1 a {
+    color: gray;
     text-decoration: none;
 }
 
-.contenedor-nosotros{
+.contenedor-nosotros {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -24,37 +26,37 @@
 }
 
 
-.contenedor-contacto{
-    display:grid;
+.contenedor-contacto {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 2rem;
 }
 
-.contenedor-contacto label{
+.contenedor-contacto label {
     margin-top: 1rem;
 }
 
-.contenedor-info{
+.contenedor-info {
     width: 80%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     row-gap: 2rem;
 }
 
-.imgFormasPago{
-    display:grid;
+.imgFormasPago {
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
     column-gap: 2rem;
     align-items: center;
 }
 
-.imgPromociones{
-    display:flex;
-   justify-content: center;
+.imgPromociones {
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.imgPromociones img{
+.imgPromociones img {
     width: 80%;
     height: 80%;
 }
@@ -68,8 +70,8 @@
 }
 
 #contenedorNuevasCards {
-    width:80%;
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }

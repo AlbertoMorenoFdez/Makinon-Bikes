@@ -14,9 +14,10 @@ class PedidoDetalle extends Model
     protected $fillable = ['id_pedido', 'id_producto', 'cantidad', 'precio'];
 
     /**
-     * Funcion que nos relaciona el detalle del pedido con los productos
+     * Función que nos relaciona el detalle del pedido con los productos
      */
-    public function producto(){
+    public function producto()
+    {
         return $this->belongsTo(Producto::class, 'id_producto');
     }
 }

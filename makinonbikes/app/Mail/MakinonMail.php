@@ -16,7 +16,9 @@ class MakinonMail extends Mailable
     public $mailData;
 
     /**
-     * Create a new message instance.
+     * Crea una nueva instancia del mensaje.
+     *
+     * @param [type] $mailData
      */
     public function __construct($mailData)
     {
@@ -24,7 +26,9 @@ class MakinonMail extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * Función que crea un nuevo objeto Envelope con el asunto del correo electrónico establecido en 'Makinon Mail'.
+     *
+     * @return Envelope
      */
     public function envelope(): Envelope
     {
@@ -34,7 +38,9 @@ class MakinonMail extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Construcción del correo electrónico de Makinon
+     *
+     * @return Content
      */
     public function content(): Content
     {
@@ -44,7 +50,7 @@ class MakinonMail extends Mailable
     }
 
     /**
-     * Get the attachments for the message.
+     * Función que permite adjuntar archivos
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */

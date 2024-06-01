@@ -11,6 +11,11 @@ class Talla extends Model
 
     protected $table = 'talla';
 
+    /**
+     * Función que nos relaciona las tallas con los productos, muchos a muchos
+     *
+     * @return void
+     */
     public function productos()
     {
         return $this->belongsToMany(Producto::class, 'producto_color_talla', 'id_talla', 'id_producto');

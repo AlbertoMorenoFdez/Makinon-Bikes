@@ -13,18 +13,18 @@ use DateTime;
 class TarjetaCreditoController extends Controller
 {
     /**
-     * Definimos la relacion con los usuarios
+     * Definimos la relación con los usuarios, un usuario puede tener varias tarjetas de crédito
      */
-
     public function usuarioTitular()
     {
         return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
     /**
-     * Función para validar los datos de la tarejat de crédito en el proceso de compra
+     * Función para validar los datos de la tarejta de crédito en el proceso de compra
+     * @param Request Datos de la tarjeta de crédito
+     * @return void
      */
-
     public function validarTarjeta(Request $request)
     {
         $validator = Validator::make($request->all(), [

@@ -122,7 +122,7 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
 Ruta para las Marcas
 */
 Route::post('nuevaMarca', [MarcaController::class, 'nuevaMarca'])->name('nuevaMarca');
-Route::get('marcas', [MarcaController::class,'listarMarcas'])->name('marcas');
+Route::get('marcas', [MarcaController::class, 'listarMarcas'])->name('marcas');
 
 /*
 Ruta para los Colores
@@ -137,10 +137,10 @@ Route::post('nuevaTalla', [TallaController::class, 'nuevaTalla'])->name('nuevaTa
 /*
 Rutas para la página del taller
 */
-Route::get('/taller', function () {return view('taller');})->name('taller');
+Route::get('taller', function () {
+    return view('taller.taller');
+})->name('taller');
 Route::get('/citaTaller', [AngularController::class, 'connectToAngular'])->name('citaTaller')->middleware('auth');
-//Route::get('/traer_todas_citas', [CitaTallerController::class, 'calendarioCitas'])->name('traer_todas_citas')->middleware('auth');
-
 Route::get('/listadoCitasTaller', [CitaTallerController::class, 'listadoCitas'])->name('listadoCitasTaller')->middleware('auth', 'rol:admin');
 Route::put('modificarEstadoCita/{id}', [CitaTallerController::class, 'modificarEstadoCita'])->name('modificarEstadoCita')->middleware('auth', 'rol:admin');
 
@@ -193,7 +193,7 @@ Rutas para las otras páginas con información
 Route::get('sobre_nosotros', function () {
     return view('otras_vistas.sobre_nosotros');
 })->name('sobre_nosotros');
-Route::get('/contacto', function(){
+Route::get('/contacto', function () {
     return view('otras_vistas.contacto');
 })->name('contacto');
 Route::get('envios_devoluciones', function () {

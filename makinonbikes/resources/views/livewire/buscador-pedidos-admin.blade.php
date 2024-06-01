@@ -1,12 +1,11 @@
 <div class="col-md-14">
     <div class="mt-4">
         <div class="d-flex align-items-center gap-3">
-<label for="busqueda" class="sr-only">@lang('makinon.buscarPed')</label>
+            <label for="busqueda" class="sr-only">@lang('makinon.buscarPed')</label>
             <input type="text" class="rounded h-10 " wire:model='search' placeholder="@lang('makinon.buscarPed')"
                 name="busqueda"></input>
             <x-makinon-secondary-button wire:click="buscar">@lang('makinon.buscar')</x-makinon-secondary-button>
             <x-makinon-secondary-button wire:click="limpiar">@lang('makinon.mostrar')</x-makinon-secondary-button>
-
         </div>
     </div>
 
@@ -61,8 +60,8 @@
                                 @endif
                             </td>
                             <td style="text-align:center">
-                                <a href="{{ route('pedido-detalle', $pedido->id_pedido) }}" aria-label="Detalle del pedido"><i
-                                        class="fa-regular fa-file"></i></a>
+                                <a href="{{ route('pedido-detalle', $pedido->id_pedido) }}"
+                                    aria-label="Detalle del pedido"><i class="fa-regular fa-file"></i></a>
                             </td>
                         </tr>
                     @endforeach

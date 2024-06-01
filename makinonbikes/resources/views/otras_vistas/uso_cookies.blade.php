@@ -45,4 +45,5 @@
                     Cookies en su navegador, consulte el menú «Ayuda» del mismo. </p>
             </div>
         </div>
+    </div>
     @endsection

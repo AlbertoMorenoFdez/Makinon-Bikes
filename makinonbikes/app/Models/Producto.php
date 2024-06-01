@@ -28,19 +28,18 @@ class Producto extends Model
         'descripcion_larga',
         'imagen',
     ];
-    
+
     /**
-     * Funcion que devuelve el proveedor al que pertenece el producto
+     * Función que devuelve el proveedor al que pertenece el producto
      * @return \App\Models\Proveedor
      */
-
     public function proveedor()
     {
         return $this->belongsTo(Proveedor::class, 'id_proveedor');
     }
 
     /**
-     * Funcion que devuelve la marca a la que pertenece el producto
+     * Función que devuelve la marca a la que pertenece el producto
      */
     public function marca()
     {
@@ -48,24 +47,24 @@ class Producto extends Model
     }
 
     /**
-     * Funcion que devuelve los colores y las tallas del producto
+     * Función que devuelve los colores y las tallas del producto
      */
-    public function producto_color_talla(){
+    public function producto_color_talla()
+    {
         return $this->hasMany(ProductoColorTalla::class, 'id_producto', 'id_producto');
     }
 
     /**
      * Accesor que nos permite recuperar el stock total de un producto
      */
-
-    public function getStockTotalAttribute(){
+    public function getStockTotalAttribute()
+    {
         return $this->producto_color_talla->sum('stock');
     }
 
     /**
      * Accesor que nos permite una descripción mas corta del producto
      */
-
     public function getShortDescriptionAttribute()
     {
         return substr($this->descripcion_corta, 0, 100) . '...';
@@ -74,7 +73,6 @@ class Producto extends Model
     /**
      * Accesor que nos permite una descripción mas larga del producto
      */
-
     public function getLongDescriptionAttribute()
     {
         return substr($this->descripcion_larga, 0, 300) . '...';

@@ -1,3 +1,5 @@
+/* Estilos para la vista del perfil dell usuario */
+
 .cardBodyPerfil {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -17,7 +19,7 @@
     background-color: black;
 }
 
-.perfilbotonesUser i{
+.perfilbotonesUser i {
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
@@ -27,8 +29,6 @@
 .perfilbotonesUser.open {
     right: 0;
 }
-
-
 
 .menu-links {
     height: 80%;
@@ -58,4 +58,3 @@
     transform: rotate(180deg);
     /* Gira el botón de alternar 180 grados cuando el menú está abierto */
 }
-

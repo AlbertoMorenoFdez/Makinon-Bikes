@@ -1,6 +1,7 @@
 @extends ('layouts.app')
 
 @section('main')
+    <!-- Muestra el panel de administración con las opciones de gestión de la tienda -->
     <div class="card contenedorAdministracion w-4/5">
         <div class="card-header">
             <h2>@lang('makinon.panelAdmin')</h2>
@@ -10,7 +11,7 @@
                 <p>Bienvenido administrador. </p>
                 <p>En este panel tienes acceso para controlar y evaluar la administración de la tienda.</p>
             </div>
-            <div class="card" >
+            <div class="card">
                 <div class="card-header">
                     <h3>@lang('makinon.proveedores')</h3>
                 </div>

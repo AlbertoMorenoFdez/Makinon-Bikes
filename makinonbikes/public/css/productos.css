@@ -1,3 +1,5 @@
+/* Estilo para la vista de todos los productos */
+
 .card {
     padding: 5px;
     text-align: justify;
@@ -39,7 +41,6 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
-    /* Muestra hasta 3 líneas de texto */
     -webkit-box-orient: vertical;
 }
 
@@ -47,9 +48,8 @@
     bottom: 5px;
 }
 
-
 #menuLateral {
-    
+
     width: 20%;
     position: sticky;
     top: 0;

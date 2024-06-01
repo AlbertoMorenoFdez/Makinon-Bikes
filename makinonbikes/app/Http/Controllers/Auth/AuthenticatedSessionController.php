@@ -22,24 +22,11 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Funcion para hacer el login, crear el toke y redirigir a la página de inicio
+     * Función para hacer el login, crear el token y redirigir a la página de inicio
+     *
+     * @param LoginRequest $request
+     * @return RedirectResponse
      */
-    /* public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        // Generar un token de acceso personal para el usuario autenticado
-        $token = $request->user()->createToken('api-token');
-        //dd($token->plainTextToken);
-
-        // Almacenar el token en la sesión para que pueda ser recuperado después
-        $request->session()->put('api_token', $token->plainTextToken);
-
-        return redirect()->intended(RouteServiceProvider::HOME);
-    } */
-
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();

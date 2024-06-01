@@ -205,8 +205,6 @@
         <p>Email: new.makinonbikes@gmail.com </p>
     </footer>
 
-
-
 </body>
 
 </html>

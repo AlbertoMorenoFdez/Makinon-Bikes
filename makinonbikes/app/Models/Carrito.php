@@ -9,18 +9,13 @@ class Carrito extends Model
 {
     use HasFactory;
 
-    /**
-     * The table associated with the model.
-     * 
-     * @var string
-     */
-
     protected $table = 'carrito';
 
     /**
      * Hace un get del producto que se encuentra en el carrito
      */
-    public function producto(){
+    public function producto()
+    {
         return $this->belongsTo(Producto::class, 'id_producto');
     }
 }

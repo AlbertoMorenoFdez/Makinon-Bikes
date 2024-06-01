@@ -20,6 +20,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 
+    <!-- CSS de la web -->
     <link href="{{ asset('css/tienda.css') }}" rel="stylesheet">
     <link href="{{ asset('css/registro.css') }}" rel="stylesheet">
     <link href="{{ asset('css/productos.css') }}" rel="stylesheet">
@@ -36,6 +37,11 @@
     <link href="{{ asset('css/administracion.css') }}" rel="stylesheet">
     <link href="{{ asset('css/usuario.css') }}" rel="stylesheet">
     <link href="{{ asset('css/otras_vistas.css') }}" rel="stylesheet">
+
+    <!-- Scripts de la web -->
+    <script src="{{ asset('js/tallerAdmin.js') }}"></script>
+    <script src="{{ asset('js/pedidoConfirmado.js') }}"></script>
+    <script src="{{ asset('js/añadirProducto.js') }}"></script>
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -59,6 +65,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
+    <!-- Script para el dropdown del banner cuando la pantalla sea pequeña -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const bannerDownBtn = document.getElementById('bannerDownBtn');
@@ -70,7 +77,6 @@
             });
         });
     </script>
-
 </head>
 
 <body>
@@ -92,8 +98,8 @@
                     </a>
                 </div>
 
+                <!-- Dropdown de login e idioma -->
                 <x-makinon-login-dropdown />
-
                 <x-makinon-idioma-dropdown />
 
             </div>
@@ -127,9 +133,9 @@
                     </div>
 
                 </div>
-
-
             </div>
+
+            <!-- Banner que se muestra cuando la pantalla sea mas pequeña -->
             <div class="containerBanner" style="font-family:Coach, sans-serif">
                 <button id="bannerDownBtn" class="dropdown-btn">MENU <span class="material-symbols-outlined">
                         keyboard_arrow_down
@@ -161,17 +167,17 @@
                     <li><a href="{{ route('aviso_legal') }}">Aviso legal</a></li>
                     <li><a href="{{ route('gestion_garantias') }}">Gestión de garantías</a></li>
                     <li><a href="{{ route('uso_cookies') }}">Uso de cookies</a></li>
-                    <li><a href="{{route('terminos_y_condiciones')}}">Términos y condiciones</a></li>
+                    <li><a href="{{ route('terminos_y_condiciones') }}">Términos y condiciones</a></li>
                 </div>
 
                 <div id="columna2">
                     <div>LO MAS TOP</div>
-                    <li><a href="{{route('promociones')}}">Promociones especiales</a></li>
-                    <li><a href="{{route('nuevos_productos')}}">Nuevos productos</a></li>
-                    <li><a href="{{route('lo_mas_vendido')}}">¡Lo más vendido!</a></li>
-                    <li><a href="{{route('marcas')}}">Nuestras marcas</a></li>
-                    <li><a href="{{route('liquidacion')}}">Liquidación</a></li>
-                    <li><a href="{{route('segunda_mano')}}">Segunda mano</a></li>
+                    <li><a href="{{ route('promociones') }}">Promociones especiales</a></li>
+                    <li><a href="{{ route('nuevos_productos') }}">Nuevos productos</a></li>
+                    <li><a href="{{ route('lo_mas_vendido') }}">¡Lo más vendido!</a></li>
+                    <li><a href="{{ route('marcas') }}">Nuestras marcas</a></li>
+                    <li><a href="{{ route('liquidacion') }}">Liquidación</a></li>
+                    <li><a href="{{ route('segunda_mano') }}">Segunda mano</a></li>
                 </div>
                 <div id="columna3">
                     <div>SIGUENOS</div><br>
@@ -191,6 +197,7 @@
                 </div>
             </div>
         </footer>
+
     </div>
 </body>
 

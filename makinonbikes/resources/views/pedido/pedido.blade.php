@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Muestra la vista de la compra de los productos y el proceso -->
     <div class="compra">
         <form method="POST" action="{{ route('confirmar-pedido') }}">
             @csrf
@@ -109,8 +110,7 @@
                             </div>
                             <div class="paypal">
                                 <p>Al seleccionar esta opción le redirigiremos a la página de Paypal para que pueda realizar
-                                    el
-                                    pago.
+                                    el pago.
                                 </p>
                                 <div class="d-flex align-items-end ">
                                     <x-makinon-primary-button class="paso--clickeable"
@@ -181,25 +181,21 @@
                                         <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
                                         <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
                                             placeholder="0000 0000 0000 0000" />
-                                        {{-- <x-input-error :messages="$errors->get('numero_tarjeta')" class="mt-2" /> --}}
                                     </div>
 
                                     <div>
                                         <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
                                         <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
                                             placeholder="MM/AA" />
-                                        {{-- <x-input-error :messages="$errors->get('fecha_vencimiento')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="cvv">CVV</x-input-label>
                                         <x-text-input type="text" id="cvv" name="cvv" placeholder="000" />
-                                        {{-- <x-input-error :messages="$errors->get('cvv')" class="mt-2" /> --}}
                                     </div>
                                     <div>
                                         <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
                                         <x-text-input type="text" id="nombre_titular" name="nombre_titular"
                                             placeholder="Nombre del titular" />
-                                        {{-- <x-input-error :messages="$errors->get('nombre_titular')" class="mt-2" /> --}}
                                     </div>
                                 </div>
 
@@ -256,9 +252,6 @@
                                         @if (isset($item['id_producto']))
                                             <input type="hidden" name="id_producto" value="{{ $item['id_producto'] }}">
                                         @endif
-                                        {{-- <button type="submit"><span class="material-symbols-outlined">
-                                            delete
-                                        </span></button> --}}
                                     </form>
                                 </div>
                             @endforeach

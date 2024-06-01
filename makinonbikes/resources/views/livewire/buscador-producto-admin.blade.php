@@ -1,14 +1,14 @@
 <div class="col-md-14">
     <div class="mt-4">
         <div class="d-flex align-items-center gap-3">
-<label for="busqueda" class="sr-only">@lang('makinon.buscarProd')</label>
+            <label for="busqueda" class="sr-only">@lang('makinon.buscarProd')</label>
             <input type="text" class="rounded h-10 " wire:model='search' placeholder="@lang('makinon.buscarProd')"
                 name="busqueda"></input>
             <x-makinon-secondary-button wire:click="buscar">@lang('makinon.buscar')</x-makinon-secondary-button>
             <x-makinon-secondary-button wire:click="limpiar">@lang('makinon.mostrar')</x-makinon-secondary-button>
-
         </div>
     </div>
+
     <div class="mt-4">
         <div class="table-responsive">
             <table class="table table-bordered">
@@ -38,12 +38,12 @@
                             <td>{{ $producto->precio }}</td>
                             <td>{{ $producto->short_description }}</td>
                             <td style="text-align:center">
-                                <a href="{{ route('fichaProducto', $producto->id_producto) }}" aria-label="Ficha del producto"><i
-                                        class="fa-regular fa-file"></i></a>
+                                <a href="{{ route('fichaProducto', $producto->id_producto) }}"
+                                    aria-label="Ficha del producto"><i class="fa-regular fa-file"></i></a>
                             </td>
                             <td style="text-align:center">
-                                <a href="{{ route('modificarProducto', $producto->id_producto) }}" aria-label="Modificar producto"><i
-                                        class="fa-regular fa-edit"></i></a>
+                                <a href="{{ route('modificarProducto', $producto->id_producto) }}"
+                                    aria-label="Modificar producto"><i class="fa-regular fa-edit"></i></a>
                             </td>
                             <td style="text-align:center">
                                 <form method="POST" action="{{ route('eliminarProducto', $producto->id_producto) }}">
@@ -60,12 +60,13 @@
         </div>
         {{ $productos->links() }}
     </div>
-    <div class="d-flex justify-content-center mt-5">
 
+    <div class="d-flex justify-content-center mt-5">
         <x-makinon-primary-link-button href="{{ route('añadirProducto') }}"
             style="margin-right: 10px">@lang('makinon.añadirProd')
         </x-makinon-primary-link-button>
         <x-makinon-primary-link-button
             href="{{ route('usuario.panelAdmin') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
     </div>
+    
 </div>

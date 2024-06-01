@@ -20,8 +20,8 @@
 
                 <p>Si recibes un envío en estado dañado, entonces rechaza - si es posible - la aceptación del envío y
                     contacta con nuestro equipo. ¡Entonces encontraremos una solución juntos!</p>
-
             </div>
+
             <div>
                 <h2>Devoluciones</h2>
                 <hr class="mb-3">
@@ -40,6 +40,7 @@
                     pedido.
                 </p>
             </div>
+
         </div>
 
     </div>

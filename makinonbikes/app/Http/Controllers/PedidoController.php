@@ -16,6 +16,12 @@ use App\Models\Factura;
 
 class PedidoController extends Controller
 {
+    /**
+     * Función que nos permite realizar un pedido antes de confirmarlo
+     *
+     * @param Request $request
+     * @return void
+     */
     public function realizarPedido(Request $request)
     {
         if (Auth::check()) {
@@ -39,7 +45,7 @@ class PedidoController extends Controller
             // Obtenemos el usuario autentificado
             $usuario = Auth::user();
 
-            return view('pedido', ['carrito' => $carrito, 'total' => $total, 'gastosEnvio' => $gastosEnvio, 'usuario' => $usuario]);
+            return view('pedido.pedido', ['carrito' => $carrito, 'total' => $total, 'gastosEnvio' => $gastosEnvio, 'usuario' => $usuario]);
         } else {
             // Usuario no autentificado y redirige al login
             return redirect()->route('login');
@@ -56,6 +62,7 @@ class PedidoController extends Controller
     public function confirmarPedido(Request $request)
     {
         $productoColorTallaController = new ProductoColorTallaController;
+
         try {
             DB::beginTransaction(); // Iniciamos una nueva transacción
 
@@ -84,8 +91,6 @@ class PedidoController extends Controller
                 // Actualizamos el total del pedido
                 $pedido->total += $detalle->precio * $detalle->cantidad;
             }
-
-
 
             // Guardamos el total del pedido
             $pedido->save();
@@ -131,6 +136,7 @@ class PedidoController extends Controller
     /**
      * Función que nos devuelve la vista de la confirmación de un pedido
      */
+
     public function pedidoConfirmado()
     {
         return view('pedido.pedido-confirmado');
@@ -141,6 +147,7 @@ class PedidoController extends Controller
      *
      * @return void
      */
+
     public function misPedidos()
     {
         $pedidos = Pedido::where('id_usuario', Auth::id())->get();
@@ -149,7 +156,10 @@ class PedidoController extends Controller
 
     /**
      * Función que nos devuelve la vista del detalle de un pedido
+     * @param int $id del pedido
+     * @return void vista del detalle del pedido
      */
+
     public function pedidoDetalle($id)
     {
         $pedido = Pedido::find($id);
@@ -160,6 +170,7 @@ class PedidoController extends Controller
     /**
      * Función que nos devuelve la vista del listado de todos los pedidos
      */
+
     public function listarPedidos()
     {
         $pedidos = Pedido::all();
@@ -168,6 +179,8 @@ class PedidoController extends Controller
 
     /**
      * Función que nos permite modificar el estado de un pedido por parte de la Administración
+     * @param Request Estado del pedido e id_pedido
+     * @return void Nos mantiene en la vista y nos muestra un mensaje de éxito
      */
 
     public function modificarEstadoPedido(Request $request, $id)

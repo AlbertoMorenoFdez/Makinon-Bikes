@@ -12,7 +12,7 @@ class CitaTaller extends Model
     protected $table = 'cita_taller';
 
     protected $primaryKey = 'id_cita_taller';
-    
+
 
     /**
      * The attributes that are mass assignable.

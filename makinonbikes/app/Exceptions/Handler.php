@@ -29,12 +29,25 @@ class Handler extends ExceptionHandler
         });
     }
 
+    /**
+     * Renderiza una excepción en una respuesta HTTP.
+     *
+     * Esta función maneja la excepción PostTooLargeException para redirigir al usuario
+     * a la página 'listadoProductos' con un mensaje de error. Para todas las demás excepciones,
+     * llama a la función render del padre.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Exception
+     */
     public function render($request, Throwable $exception)
-{
-    if ($exception instanceof PostTooLargeException) {
-        return redirect('listadoProductos')->with('error', 'La imagen es demasiado grande. Por favor, sube una imagen de menos de 2MB.');
-    }
+    {
+        if ($exception instanceof PostTooLargeException) {
+            return redirect('listadoProductos')->with('error', 'La imagen es demasiado grande. Por favor, sube una imagen de menos de 2MB.');
+        }
 
-    return parent::render($request, $exception);
-}
+        return parent::render($request, $exception);
+    }
 }

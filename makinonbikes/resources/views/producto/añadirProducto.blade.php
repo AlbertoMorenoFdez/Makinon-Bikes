@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Vista para añadir productos por parte de la administración -->
+
     <form method="POST" action="{{ route('agregarProducto') }}" enctype="multipart/form-data">
         @csrf
         <div class="row d-flex justify-center">
@@ -155,7 +157,8 @@
             </div>
 
             <div class="d-flex justify-content-center mt-5">
-                <x-makinon-primary-button type="submit" style="margin-right: 10px">@lang('makinon.añadirProd')</x-makinon-primary-button>
+                <x-makinon-primary-button type="submit"
+                    style="margin-right: 10px">@lang('makinon.añadirProd')</x-makinon-primary-button>
                 <x-makinon-primary-link-button
                     href="{{ route('listadoProductos') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
             </div>
@@ -222,52 +225,5 @@
             </div>
         </form>
     </div>
-
-
-    <script>
-        function checkForNewMarca(select) {
-            if (select.value == "new") {
-                var modal = document.getElementById("miModal");
-                modal.style.display = "block";
-            }
-        }
-
-        function checkForNewColor(select) {
-            if (select.value == "new") {
-                var modal = document.getElementById("miModalColor");
-                modal.style.display = "block";
-            }
-        }
-
-        function checkForNewTalla(select) {
-            if (select.value == "new") {
-                var modal = document.getElementById("miModalTalla");
-                modal.style.display = "block";
-            }
-        }
-
-        // Cerrar el modal
-        var spans = document.getElementsByClassName("close");
-        for (var i = 0; i < spans.length; i++) {
-            spans[i].onclick = function() {
-                var modals = document.getElementsByClassName("modal");
-                for (var j = 0; j < modals.length; j++) {
-                    modals[j].style.display = "none";
-                }
-            }
-        }
-
-        window.onclick = function(event) {
-            var modal = document.getElementById("miModal");
-            var modalColor = document.getElementById("miModalColor");
-            var modalTalla = document.getElementById("miModalTalla");
-            if (event.target == modal || event.target == modalColor || event.target == modalTalla) {
-                modal.style.display = "none";
-                modalColor.style.display = "none";
-                modalTalla.style.display = "none";
-            }
-        }
-    </script>
-
 
 @endsection

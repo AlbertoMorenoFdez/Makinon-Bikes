@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+<!-- Vista que nos muestra el formulario con los datos de un producto que queremos modificar -->
     <div class="card w-50">
         <div class="card-header">
             <h2>Modificar datos del producto.</h2>
@@ -113,55 +114,53 @@
                         </div>
                     </div>
 
-                        <div class="col-md-6">
-                            <div class="mt-4">
-                                <label for="talla">@lang('makinon.talla'):</label>
-                                <select class="form-control" id="talla" name="talla">
-                                    @foreach ($tallas as $talla)
-                                        <option value="{{ $talla->id_talla }}">{{ $talla->talla }}</option>
-                                    @endforeach
-                                </select>
-                                <x-input-error :messages="$errors->get('talla')" class="mt-2" />
-                            </div>
+                    <div class="col-md-6">
+                        <div class="mt-4">
+                            <label for="talla">@lang('makinon.talla'):</label>
+                            <select class="form-control" id="talla" name="talla">
+                                @foreach ($tallas as $talla)
+                                    <option value="{{ $talla->id_talla }}">{{ $talla->talla }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('talla')" class="mt-2" />
+                        </div>
 
-                            <div class="mt-4">
-                                <label for="precio" class="form-label">@lang('makinon.precio')</label>
-                                <input type="text" class="form-control" id="precio" name="precio"
-                                    value="{{ $producto->precio }}">
-                            </div>
+                        <div class="mt-4">
+                            <label for="precio" class="form-label">@lang('makinon.precio')</label>
+                            <input type="text" class="form-control" id="precio" name="precio"
+                                value="{{ $producto->precio }}">
+                        </div>
 
-                            <div class="mt-4">
-                                <label for="descripcion_corta" class="form-label">@lang('makinon.descripCorta')</label>
-                                <textarea class="form-control" style="height:132px" id="descripcion_corta" name="descripcion_corta">{{ $producto->descripcion_corta }}</textarea>
-                            </div>
+                        <div class="mt-4">
+                            <label for="descripcion_corta" class="form-label">@lang('makinon.descripCorta')</label>
+                            <textarea class="form-control" style="height:132px" id="descripcion_corta" name="descripcion_corta">{{ $producto->descripcion_corta }}</textarea>
+                        </div>
 
-                            <div class="mt-4">
-                                <label for="descripcion_larga" class="form-label">@lang('makinon.descripLarga')</label>
-                                <textarea class="form-control" style="height:132px" id="descripcion_larga" name="descripcion_larga">{{ $producto->descripcion_larga }}</textarea>
-                            </div>
+                        <div class="mt-4">
+                            <label for="descripcion_larga" class="form-label">@lang('makinon.descripLarga')</label>
+                            <textarea class="form-control" style="height:132px" id="descripcion_larga" name="descripcion_larga">{{ $producto->descripcion_larga }}</textarea>
+                        </div>
 
-                            <div class="mt-4">
-                                <label for="imagen">@lang('makinon.imagen'):</label>
-                                <input type="file" class="form-control " id="imagen" name="imagen">
-                                <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
-                            </div>
+                        <div class="mt-4">
+                            <label for="imagen">@lang('makinon.imagen'):</label>
+                            <input type="file" class="form-control " id="imagen" name="imagen">
+                            <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
                         </div>
                     </div>
                 </div>
-                <div class="mt-2">
-                    <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.guardar')</x-makinon-primary-button>
-                </div>
+            </div>
+            <div class="mt-2">
+                <x-makinon-primary-button type="submit"
+                    style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.guardar')</x-makinon-primary-button>
+            </div>
         </form>
 
         <form method="POST" action="{{ route('eliminarProducto', $producto->id_producto) }}">
             @csrf
             @method('DELETE')
-            <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.elimProd')</x-makinon-primary-button>
+            <x-makinon-primary-button type="submit"
+                style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.elimProd')</x-makinon-primary-button>
         </form>
-
-        {{-- <div>
-            <a href="{{ route('listadoProductos') }}" class="btn btn-primary">Volver</a>
-        </div> --}}
 
         <div>
             <x-makinon-primary-link-button href="{{ route('listadoProductos') }}" style="margin-left:16px; width:25%">

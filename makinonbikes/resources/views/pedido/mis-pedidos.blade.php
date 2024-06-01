@@ -9,6 +9,7 @@
             <div class="mt-4">
                 <div class="table-responsive">
                     <table class="table table-bordered">
+
                         <thead>
                             <tr>
                                 <th scope="col">Número de pedido</th>
@@ -55,13 +56,16 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        
                     </table>
                 </div>
             </div>
+
             <div class="d-flex justify-content-center mt-5">
                 <x-makinon-primary-link-button
                     href="{{ route('usuario.perfil') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
             </div>
+
         </div>
 
     </div>

@@ -15,7 +15,7 @@ class CitaTallerModificada extends Mailable
     private $cita;
 
     /**
-     * Create a new message instance.
+     * Creación de una nueva instancia del mensaje.
      *
      * @return void
      */
@@ -25,7 +25,9 @@ class CitaTallerModificada extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * Esta función crea un nuevo objeto Envelope con el asunto del correo electrónico establecido en 'Cita en el taller modificada'.
+     *
+     * @return Envelope Devuelve un objeto Envelope con el asunto del correo electrónico.
      */
     public function envelope(): Envelope
     {
@@ -35,20 +37,20 @@ class CitaTallerModificada extends Mailable
     }
 
     /**
-     * Build the message.
+     * Construcción del correo electrónico de la cita del taller
      *
      * @return $this
      */
     public function build()
     {
         return $this->view('emails.emailCitaModificada')
-                    ->with([
-                        'fecha' => $this->cita->fecha,
-                        'hora' => $this->cita->hora,
-                        'name' => $this->cita->usuario->nombre,
-                        'opcion' => $this->cita->opcion,
-                        'estado' => $this->cita->estado,
-                    ])
-                    ->subject('Cita en el taller modificada');
+            ->with([
+                'fecha' => $this->cita->fecha,
+                'hora' => $this->cita->hora,
+                'name' => $this->cita->usuario->nombre,
+                'opcion' => $this->cita->opcion,
+                'estado' => $this->cita->estado,
+            ])
+            ->subject('Cita en el taller modificada');
     }
 }

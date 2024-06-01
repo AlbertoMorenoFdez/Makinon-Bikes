@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Muestra la vista del formulario para modificar un usuario por la administración junto con sus datos -->
     <div class="card w-50">
         <div class="card-header">
             <h2>Modificar perfil del usuario por la administración.</h2>
@@ -79,18 +80,20 @@
                 </div>
             </div>
             <div class="mt-2">
-                <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.guardar')</x-makinon-primary-button>
+                <x-makinon-primary-button type="submit"
+                    style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.guardar')</x-makinon-primary-button>
             </div>
         </form>
 
         <form method="POST" action="{{ route('eliminarUsuario', $usuario->id_usuario) }}">
             @csrf
             @method('DELETE')
-            <x-makinon-primary-button type="submit" style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.elimUsu')</x-makinon-primary-button>
-
+            <x-makinon-primary-button type="submit"
+                style="margin-left:16px; margin-bottom:10px; width:25%">@lang('makinon.elimUsu')</x-makinon-primary-button>
         </form>
         <div>
-            <x-makinon-primary-link-button href="{{ route('listadoUsuarios') }}" style="margin-left:16px; width:25%">@lang('makinon.volver')</x-makinon-primary-link-button>
+            <x-makinon-primary-link-button href="{{ route('listadoUsuarios') }}"
+                style="margin-left:16px; width:25%">@lang('makinon.volver')</x-makinon-primary-link-button>
         </div>
 
     </div>

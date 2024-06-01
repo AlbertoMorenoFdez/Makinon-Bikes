@@ -8,14 +8,15 @@ use App\Models\ProductoColorTalla;
 class ProductoColorTallaController extends Controller
 {
     /**
-     * Función que actualiza el stock de un producto
+     * Función que actualiza el stock de un producto despues de realizar un pedido
      *
      * @param [type] $id_producto
      * @param [type] $id_color
      * @param [type] $id_talla
      * @param [type] $cantidad
-     * @return void
+     * @return void Mensaje de éxito o error en la actualización
      */
+
     public function actualizarStock($id_producto, $id_color, $id_talla, $cantidad)
     {
         $productoColorTalla = ProductoColorTalla::where('id_producto', $id_producto)
@@ -33,7 +34,8 @@ class ProductoColorTallaController extends Controller
     }
 
     /**
-     * Función que comprueba si hay stock suficiente antes de añadir al carrito 
+     * Función que comprueba si hay stock suficiente antes de añadir al carrito si hay stock suficiente se permite añadir dicha 
+     * cantidad al carrito, sino se muestra un mensaje de error y no se permite añadir al carrito
      *
      * @param [type] $id_producto
      * @param [type] $id_color
@@ -41,6 +43,7 @@ class ProductoColorTallaController extends Controller
      * @param [type] $cantidad
      * @return void
      */
+
     public function comprobarStock($id_producto, $id_color, $id_talla, $cantidad)
     {
         $productoColorTalla = ProductoColorTalla::where('id_producto', $id_producto)

@@ -1,3 +1,5 @@
+/* Estilos para el formulario de registro de proveedores */
+
 .centro {
     display: flex;
     flex-direction: row;
@@ -31,7 +33,7 @@ h2 {
     font-size: 16px;
 }
 
-#botones{
+#botones {
     width: 300px;
     height: 150px;
     display: flex;
@@ -42,7 +44,6 @@ h2 {
 }
 
 .boton {
-    
     height: 50px;
     background-color: black;
     padding: 10px 20px;
@@ -61,4 +62,3 @@ h2 {
 #registro {
     cursor: pointer;
 }
-

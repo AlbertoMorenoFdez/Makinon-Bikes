@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Muestra la vista del formulario para añadir un nuevo proveedor -->
     <form action="{{ route('agregarProveedor') }}" method="POST">
         @csrf
         <div class="row d-flex justify-center">
@@ -8,7 +9,6 @@
                 <h1>@lang('makinon.añadirProv')</h1>
             </div>
             <div class="col-md-5">
-
                 <div class="mt-4">
                     <label for="nombre">@lang('makinon.nombre'):</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -25,6 +25,7 @@
                     <x-input-error :messages="$errors->get('direccion')" class="mt-2" />
                 </div>
             </div>
+
             <div class="col-md-5">
                 <div class="mt-4">
                     <label for="telefono">@lang('makinon.telefono'):</label>
@@ -36,19 +37,18 @@
                     <input type="email" class="form-control" id="email" name="email" required>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
-
                 <div class="mt-4">
                     <label for="comentario">@lang('makinon.comentarios'):</label>
                     <input type="text" class="form-control" id="comentario" name="comentario">
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-5">
 
-                <x-makinon-primary-button type="submit" style="margin-right: 10px">@lang('makinon.añadirProv')</x-makinon-primary-button>
+            <div class="d-flex justify-content-center mt-5">
+                <x-makinon-primary-button type="submit"
+                    style="margin-right: 10px">@lang('makinon.añadirProv')</x-makinon-primary-button>
                 <x-makinon-primary-link-button
                     href="{{ route('listadoProveedores') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
             </div>
-
 
         </div>
     </form>

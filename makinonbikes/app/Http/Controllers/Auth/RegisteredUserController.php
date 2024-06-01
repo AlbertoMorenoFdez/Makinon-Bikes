@@ -26,7 +26,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
+     * función para crear un usuario, enviarle un correo de bienvenida y loguearlo
      *
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.Usuario::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Usuario::class],
             'nif' => ['required', 'string', 'max:9', 'unique:'.Usuario::class, 'regex:/^[0-9]{8}[A-Za-z]$/'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'telefono' => ['required', 'numeric','digits:9'],
@@ -64,6 +64,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        // Logueamos al usuario
         Auth::login($user);
 
         return redirect((RouteServiceProvider::HOME));

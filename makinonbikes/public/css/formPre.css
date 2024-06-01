@@ -1,3 +1,4 @@
+/* Estilos para el formulario */
 
 .contenedorformularioPre {
     top: 50%;
@@ -27,11 +28,10 @@
 .contenedorizquierdaformPre img {
     width: 100%;
     height: 400px;
-    
     object-fit: cover;
 }
 
-#imgContenedorizquierdaformPre{
+#imgContenedorizquierdaformPre {
     width: 100%;
     height: 498px;
     object-fit: cover;
@@ -48,7 +48,6 @@
 }
 
 h2 {
-
     font-size: 50px;
     color: black;
     text-align: center;
@@ -75,5 +74,3 @@ a.boton-acceso {
 .boton-acceso:hover {
     background-color: rgb(251, 98, 0);
 }
-
-

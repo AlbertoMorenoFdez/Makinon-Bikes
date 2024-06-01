@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Muestra la vista del formulario para modificar un usuario junto con sus datos -->
     <div class="d-flex flex-column">
         <h2>Modificar perfil del usuario</h2>
 
@@ -36,7 +37,6 @@
                 </div>
 
                 <div class="col-md-6">
-
                     <div class="mt-4">
                         <label for="telefono" class="form-label">@lang('makinon.telefono')</label>
                         <input type="text" class="form-control" id="telefono" name="telefono"
@@ -72,6 +72,7 @@
                         </ul>
                     </div>
                 @endif
+
                 <div class="d-flex justify-content-center mt-5 gap-10">
                     <x-makinon-primary-button type="submit"
                         style="margin-right:10px">@lang('makinon.guardar')</x-makinon-primary-button>

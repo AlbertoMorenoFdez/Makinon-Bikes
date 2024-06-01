@@ -26,7 +26,7 @@
                 <p><strong>Ciudad:</strong> {{ $usuario->ciudad }}</p>
                 <p><strong>Fecha de alta:</strong> {{ $usuario->created_at }}</p>
             </div>
-            
+
             <div class=perfilbotonesUser>
                 <div id="chevron">
                     <i class='bx bx-chevron-left bx-lg toggle'></i>
@@ -67,13 +67,13 @@
                         </a>
                     </li>
                 </ul>
-                
+
             </div>
         </div>
     </div>
     <script>
         document.querySelector('.toggle').addEventListener('click', function() {
-    document.querySelector('.perfilbotonesUser').classList.toggle('open');
-});
+            document.querySelector('.perfilbotonesUser').classList.toggle('open');
+        });
     </script>
 @endsection

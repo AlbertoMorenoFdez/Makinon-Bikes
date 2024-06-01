@@ -9,9 +9,9 @@ class ProveedorController extends Controller
 {
 
     /**
-     * Funcion que nos devuelve todos los datos de los proveedor.
+     * Función que nos devuelve todos los proveedores.
+     * @return view
      */
-
     public function datosProveedores()
     {
         $proveedores = Proveedor::paginate(10);
@@ -19,9 +19,10 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve todos los datos de un proveedor en concreto
+     * Función que nos devuelve todos los datos de un proveedor en concreto
+     * @param int $id_proveedor
+     * @return view
      */
-
     public function datosProveedor($id)
     {
         $proveedor = Proveedor::find($id);
@@ -30,6 +31,8 @@ class ProveedorController extends Controller
 
     /**
      * Función que nos devuelve la vista de la ficha de un proveedor para el administrador
+     * @param int $id_proveedor
+     * @return view
      */
     public function fichaProveedor($id)
     {
@@ -38,7 +41,8 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista para añadir un nuevo proveedor
+     * Función que nos devuelve la vista para añadir un nuevo proveedor
+     * @return view Formulario para añadir un nuevo proveedor
      */
     public function nuevoProveedor()
     {
@@ -46,7 +50,9 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Funcion para añadir un nuevo proveedor
+     * Función para añadir un nuevo proveedor
+     * @param Request Datos del formulario
+     * @return view Redirige a la vista de listado de proveedores
      */
     public function agregarProveedor(Request $request)
     {
@@ -59,8 +65,6 @@ class ProveedorController extends Controller
             'comentario' => 'string|max:1000',
         ]);
 
-        //dd($request->all());
-
         $proveedor = new Proveedor;
         $proveedor->nombre = $request->nombre;
         $proveedor->cif = $request->cif;
@@ -71,15 +75,15 @@ class ProveedorController extends Controller
 
         $proveedor->save();
 
-
         // Redirigir a la página principal con un mensaje de éxito
         return redirect('/listadoProveedores')->with('success', 'Proveedor añadido con éxito');
     }
 
     /**
-     * Funcion que nos devuelve la vista para editar los datos del proveedor
+     * Función que nos devuelve la vista para editar los datos del proveedor
+     * @param int $id_proveedor
+     * @return view Formulario para editar los datos del proveedor
      */
-
     public function editarProveedor($id)
     {
         $proveedor = Proveedor::find($id);
@@ -87,7 +91,9 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Funcion que nos permite pasar los datos del proveedor a la vista para poder modificarlos
+     * Función que nos permite pasar los datos del proveedor a la vista para poder modificarlos
+     * @param Request Id_proveedor
+     * @return [type] Datos del proveedor
      */
     public function modificarProveedor($id)
     {
@@ -96,7 +102,9 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Funcion que nos permite actualizar los datos del proveedor
+     * Función que nos permite actualizar los datos del proveedor
+     * @param Request Datos del formulario
+     * @return view Redirige a la vista de listado de proveedores
      */
 
     public function updateProveedor(Request $request)
@@ -107,7 +115,6 @@ class ProveedorController extends Controller
             'direccion' => 'required|string|max:500',
             'telefono' => 'required|string|min:9|max:9',
             'email' => 'required|string|email|max:200',
-
         ]);
 
         $proveedor = Proveedor::find($request->id);
@@ -124,7 +131,9 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Funcion que nos permite eliminar un proveedor
+     * Función que nos permite eliminar un proveedor
+     * @param int $id_proveedor
+     * @return view Redirige a la vista de listado de proveedores
      */
     public function eliminarProveedor($id)
     {
@@ -134,7 +143,9 @@ class ProveedorController extends Controller
     }
 
     /**
-     * Funcion que nos permite buscar un proveedor
+     * Función que nos permite buscar un proveedor en base al nombre
+     * @param Request Nombre del proveedor
+     * @return view Listado de proveedores
      */
     public function buscarProveedor(Request $request)
     {

@@ -1,3 +1,5 @@
+/* Estilos para la gran parte de vistas de la web */
+
 @font-face {
     font-family: 'Coach';
     src: local('Coach'), local('Coach-Regular'), url("../fonts/Coach-normal-400-100.otf") format('opentype');
@@ -31,7 +33,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .top {
@@ -73,7 +74,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
 }
 
 .dropbtn#idioma {
@@ -160,15 +160,6 @@ body {
 }
 
 .menubanner {
-    /* margin-left: 20px;
-    margin-right: 20px;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    z-index: 2;
-    position: relative; */
     display: grid;
     grid-template-columns: 1fr 3fr;
 }
@@ -207,7 +198,6 @@ body {
     gap: 10px;
     margin-left: 10px;
 }
-
 
 
 /* Links dentro del banner */
@@ -254,7 +244,6 @@ body {
 
 }
 
-
 .dropdown:hover .dropdown-content {
     display: block;
     position: absolute;
@@ -276,7 +265,6 @@ main {
 
 .imagenportada {
     width: 100%;
-    /* height: 60vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -367,7 +355,7 @@ a {
 
 }
 
-/* Estilos para pantallas de tamaño mediano */
+/* Media queries */
 @media (max-width: 1199px) and (min-width: 1000px) {
         #logo {
         width:auto;
@@ -390,11 +378,20 @@ a {
     .banner{
         justify-items: center;
     }
+
+    #contenedorCards{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #contenedorCardsTipos{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-@media only screen and (max-width: 899px) {
+@media(max-width: 899px) {
 
-    /* Estilos para pantallas más pequeñas */
     .top {
         grid-auto-flow: column;
         justify-items: center;
@@ -413,7 +410,23 @@ a {
         display: block;
     }
     
-    
-
 }
 
+@media(max-width: 675px) {
+    #contenedorCards{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    #contenedorCards{
+        display:grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    #contenedorCardsTipos{
+        display:grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

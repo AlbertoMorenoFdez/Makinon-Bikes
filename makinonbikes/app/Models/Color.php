@@ -16,4 +16,3 @@ class Color extends Model
         return $this->belongsToMany(Producto::class, 'producto_color_talla', 'id_color', 'id_producto');
     }
 }
-?>

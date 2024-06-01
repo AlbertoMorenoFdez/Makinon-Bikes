@@ -1,3 +1,5 @@
+/* Estilos para la vista del login */
+
 .portadaLogin {
     width: 100%;
     height: 60vh;
@@ -6,7 +8,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
 
 .contenedorlogin {
@@ -17,7 +18,7 @@
     width: 40%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    
+
     border: solid 1px black;
     box-shadow: 1px 1px 0px rgb(230, 230, 230),
         2px 2px 0px rgb(200, 200, 200),
@@ -26,6 +27,7 @@
         5px 5px 0px rgb(0, 0, 0),
         8px 8px 20px rgb(0, 0, 0);
 }
+
 .contenedorImagenLogin {
     position: absolute;
     top: 0;
@@ -36,15 +38,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
 }
+
 .contenedorImagenLogin img {
     width: 90%;
     height: auto;
     opacity: 0.25;
-} 
-
-
+}
 
 .contenedorizquierda {
     height: 100%;
@@ -57,7 +57,7 @@
 
 .contenedorderecha {
     height: 100%;
-    padding:20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,13 +66,12 @@
 }
 
 h2 {
-
     font-size: 50px;
     color: black;
     display: inline-block;
 }
 
-.loginForm{
+.loginForm {
     width: 100%;
     height: 100%;
     display: flex;
@@ -80,6 +79,7 @@ h2 {
     align-items: center;
     justify-content: space-evenly;
 }
+
 .email {
     display: flex;
     flex-direction: column;
@@ -105,14 +105,13 @@ h2 {
     width: 100%;
     padding: 5px;
     font-size: 16px;
-    
 }
 
-.registro{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-around;
+.registro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .boton-login {
@@ -120,42 +119,49 @@ h2 {
     height: 50px;
     background-color: black;
     color: white;
-    font-size:15px;
+    font-size: 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
 }
 
 .boton-login:hover {
     background-color: rgb(251, 98, 0);
 }
 
-button.ms-3{
+button.ms-3 {
     background-color: black !important;
 }
+
 .ms-3:hover {
     background-color: rgb(251, 98, 0) !important;
 }
+
+/* Media query */
 
 @media (max-width: 899px) {
     .contenedorlogin {
         width: 70%;
         grid-template-columns: 1fr;
     }
+
     .contenedorizquierda {
         display: none;
     }
+
     .contenedorderecha {
         padding: 0;
     }
+
     .contenedorImagenLogin img {
         width: 100%;
     }
+
     h2 {
         font-size: 30px;
     }
+
     .boton-login {
         width: 100%;
     }

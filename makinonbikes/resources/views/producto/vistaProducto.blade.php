@@ -39,7 +39,7 @@
                                 <p class="mt-2 mb-2">Color no especificado</p>
                             @endif
                         </div>
-                        
+
                         <br>
                         <p style="color:rgb(93, 93, 93)">@lang('makinon.tallas')</p>
                         <div class="border-bottom border-top d-flex align-items-center">
@@ -64,7 +64,7 @@
                                 <p class="mt-2 mb-2">Talla no especificada</p>
                             @endif
                         </div>
-                        
+
                         <input type="hidden" name="id_producto" value="{{ $producto->id_producto }}">
                         <input type="hidden" name="marca" value="{{ $producto->marca->nombre }}">
                         <input type="hidden" name="nombre" value="{{ $producto->nombre }}">
@@ -79,14 +79,14 @@
                             <div class="input-group input-group-sm justify-content-center">
                                 <span class="material-symbols-outlined cursor-pointer" onclick="decrementar()">
                                     indeterminate_check_box </span>
-                                    <label for="cantidad" class="sr-only">Cantidad</label>
-                                <input class="h-6 w-20 text-center" style="margin-left: 1rem; margin-right:1rem " type="text" name="cantidad" id="cantidad"
-                                    value="1">
+                                <label for="cantidad" class="sr-only">Cantidad</label>
+                                <input class="h-6 w-20 text-center" style="margin-left: 1rem; margin-right:1rem "
+                                    type="text" name="cantidad" id="cantidad" value="1">
                                 <span class="material-symbols-outlined cursor-pointer" onclick="incrementar()"> add_box
                                 </span>
                             </div>
                         </div>
-                        
+
                         <br>
                         <p class="fs-4">P.V.P. {{ $producto->precio }} €</p>
                         <div class="d-flex justify-center">

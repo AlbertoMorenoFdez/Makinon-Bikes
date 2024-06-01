@@ -7,13 +7,11 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class MakinonIdiomaDropdown extends Component
-
-
 {
     public $idiomaSeleccionado;
 
     /**
-     * Create a new component instance.
+     * Creción de una nueva instancia del componente.
      */
     public function __construct()
     {
@@ -21,13 +19,16 @@ class MakinonIdiomaDropdown extends Component
     }
 
     /**
-     * Get the view / contents that represent the component.
+     * Renderiza el componente.
      */
     public function render(): View|Closure|string
     {
         return view('components.makinon-idioma-dropdown');
     }
 
+    /**
+     * Obtiene el idioma seleccionado.
+     */
     public function obtenerIdiomaSeleccionado()
     {
         return request()->cookie('idioma', 'es');

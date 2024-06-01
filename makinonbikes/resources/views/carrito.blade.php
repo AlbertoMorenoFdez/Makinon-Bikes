@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Muestra el carrito de la compra con los productos añadidos -->
     <div class="contenedor-carrito">
         <div class="productos-carrito">
             <h2>TU CESTA DE LA COMPRA</h2>

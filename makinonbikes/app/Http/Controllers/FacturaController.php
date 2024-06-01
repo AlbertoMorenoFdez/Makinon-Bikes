@@ -15,12 +15,11 @@ use Barryvdh\DomPDF\PDF;
 class FacturaController extends Controller
 {
     /**
-     * Función que renderiza la vista de la factura
+     * Función que genera la factura de un pedido en base a la id de la factura
      * 
+     * @param int $id_factura
+     * @return void
      */
-    /* public function muestraFactura(){
-        return view('factura.factura');
-    } */
 
     public function generarFactura($id_factura)
     {
@@ -73,6 +72,12 @@ class FacturaController extends Controller
         ]);
     }
 
+    /**
+     * Función que genera la factura de un pedido en base al id del pedido
+     * 
+     * @param int $id_pedido
+     * @return void
+     */
     public function generarFacturaPorPedido($id_pedido)
     {
         $pedido = Pedido::where('id_pedido', $id_pedido)->first();
@@ -110,7 +115,7 @@ class FacturaController extends Controller
             ];
         }
 
-        //Establecemos los gsatos de envio
+        //Establecemos los gastos de envio
         $gastosEnvio = $totalpedido >= 50 ? 0 : 20;
 
         // Obtenemos el número de la factura y los datos del usuario
@@ -132,9 +137,12 @@ class FacturaController extends Controller
     }
 
     /**
-     * Función para descargar la factura como pdf
+     * Función que descarga la factura en formato PDF
      * 
+     * @param int $id_factura
+     * @return void
      */
+
     public function descargarFactura($id_factura)
     {
         $factura = Factura::findOrFail($id_factura);
@@ -143,30 +151,37 @@ class FacturaController extends Controller
     }
 
 
+    /**
+     * Función que descarga la factura en formato PDF en base al id del pedido
+     * 
+     * @param int $id_pedido
+     * @return void
+     */
+
     public function descargarFacturaPorPedido($id_pedido)
     {
         $pedido = Pedido::where('id_pedido', $id_pedido)->first();
-    
+
         if (!$pedido) {
             abort(404, 'El pedido no existe.');
         }
-    
+
         $factura = $pedido->factura;
         if (!$factura) {
             abort(404, 'La factura no existe.');
         }
-    
+
         $pedido = $factura->pedido;
         $totalpedido = $pedido->total;
         $usuario = $factura->usuario;
         $detalles = PedidoDetalle::where('id_pedido', $pedido->id_pedido)->get();
         $datosFactura = [];
-    
+
         // Comprobamos si el usuario autenticado es el que hizo el pedido o si es un administrador
         if (Auth::id() !== $pedido->id_usuario) {
             abort(403, 'No tienes permiso para ver esta factura.');
         }
-    
+
         foreach ($detalles as $detalle) {
             $datosFactura[] = [
                 'tipo_producto' => $detalle->producto->tipo,
@@ -177,16 +192,16 @@ class FacturaController extends Controller
                 'precio_total' => $detalle->cantidad * $detalle->precio,
             ];
         }
-    
+
         //Establecemos los gastos de envio
         $gastosEnvio = $totalpedido >= 50 ? 0 : 20;
-    
+
         // Obtenemos el número de la factura y los datos del usuario
         $numeroFactura = $factura->id_factura;
         $id_pedido = $pedido->id_pedido;
         $fechaFactura = $factura->fecha;
         $totalFactura = $factura->total;
-    
+
         // Pasamos los datos a la vista
         $dompdf = new Dompdf();
         $dompdf->loadHtml(view('factura.factura_descargable', [
@@ -201,8 +216,5 @@ class FacturaController extends Controller
 
         $dompdf->render();
         return $dompdf->stream('factura.pdf');
-
     }
-
-    
 }

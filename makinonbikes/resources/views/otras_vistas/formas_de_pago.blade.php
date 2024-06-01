@@ -15,14 +15,12 @@
                     <li>Transferencia bancaria</li>
                 </div>
 
-
                 <p>Si eliges la opción de transferencia bancaria, te enviaremos un correo con los datos necesarios para
                     realizar
                     la transferencia. Una vez recibido el pago, procederemos a enviar tu pedido.</p>
                 <p>Si tienes alguna duda sobre las formas de pago, no dudes en ponerte en contacto con nosotros a través de
                     nuestro <a href={{ route('contacto') }} label="contacto"><strong>formulario de contacto</strong></a> o en
-                    el
-                    teléfono 952 33 95 58.</p>
+                    el teléfono 952 33 95 58.</p>
             </div>
             <div class="imgFormasPago">
                 <img src="{{ asset('images/visa.png') }}" alt="visa">

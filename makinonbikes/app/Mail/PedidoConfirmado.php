@@ -17,16 +17,20 @@ class PedidoConfirmado extends Mailable
     private $pedido;
 
     /**
-     * Create a new message instance.
+     * Creación de una nueva instancia del mensaje con el pedido realizado.
+     *
+     * @param Pedido $pedido
      */
     public function __construct(Pedido $pedido)
     {
         $this->pedido = $pedido;
     }
 
-    /**
-     * Get the message envelope.
-     */
+    /*
+    * Esta función crea un nuevo objeto Envelope con el asunto del correo electrónico establecido en 'Pedido Confirmado'.
+    *
+    * @return Envelope Devuelve un objeto Envelope con el asunto del correo electrónico.
+    */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -35,21 +39,24 @@ class PedidoConfirmado extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * Crea el contenido del correo electrónico del pedido confirmado.
+     *
+     * @return Content
      */
     public function content(): Content
     {
         return new Content(
             view: 'emails.emailPedidoConfirmado',
             with: [
-            'pedido' => $this->pedido,
-            'numeroPedido' => $this->pedido->id_pedido,
-            'name' => $this->pedido->usuario->nombre],
+                'pedido' => $this->pedido,
+                'numeroPedido' => $this->pedido->id_pedido,
+                'name' => $this->pedido->usuario->nombre
+            ],
         );
     }
 
     /**
-     * Get the attachments for the message.
+     * Función que nos permite adjuntar archivos.
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */

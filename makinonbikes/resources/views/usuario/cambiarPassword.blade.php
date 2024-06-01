@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-
+    <!-- Muestra el formulario para cambiar la contraseña del usuario -->
     <div class="card w-1/3">
         <div class="card-header">
             <h2>@lang('makinon.cambioContra')</h2>
@@ -31,13 +31,15 @@
                     <label for="new_password_confirmation">@lang('makinon.repiteContra')</label>
                     <input type="password" class="form-control" id="new_password_confirmation"
                         name="new_password_confirmation" required>
-                        <x-input-error :messages="$errors->get('new_password_confirmation')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('new_password_confirmation')" class="mt-2" />
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-center">
-                <x-makinon-primary-button type="submit" style="margin-right:10px">@lang('makinon.cambioContra')</x-makinon-primary-button>
-                <x-makinon-primary-link-button href="{{ route('usuario.perfil') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
-                
+                <x-makinon-primary-button type="submit"
+                    style="margin-right:10px">@lang('makinon.cambioContra')</x-makinon-primary-button>
+                <x-makinon-primary-link-button
+                    href="{{ route('usuario.perfil') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
+
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -48,10 +50,6 @@
                     </ul>
                 </div>
             @endif
-
         </form>
     </div>
-
-
-
 @endsection

@@ -46,7 +46,9 @@
                     páginas visitadas y número de visitas. Toda esta información se utiliza para analizar tendencias,
                     administrar la página web, rastrear el movimiento del usuario en la página web y recopilar información
                     demográfica.</p>
-                <p>Si no esta de acuerdo con estos terminos y condiciones le rgamos no hagan uso de la web.</p>
+                <p>Si no está de acuerdo con estos terminos y condiciones le rogamos no hagan uso de la web.</p>
             </div>
+
         </div>
-    @endsection
+    </div>
+@endsection

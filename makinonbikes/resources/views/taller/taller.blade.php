@@ -21,7 +21,8 @@
                 aseguramos que la dejaremos como nueva. </p>
             <br>
             <p> No lo dudes, si necesitas cualquier cosa relacionada con tu bicicleta, puedes concertar una cita pinchando
-                <a href="{{route('citaTaller')}}">AQUI</a> .</p>
+                <a href="{{ route('citaTaller') }}">AQUI</a> .
+            </p>
         </div>
     </div>
 @endsection

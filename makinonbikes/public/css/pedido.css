@@ -1,5 +1,6 @@
+/* Estilos para la vista de la compra */
 
-.compra{
+.compra {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -7,7 +8,7 @@
     overflow-x: hidden;
 }
 
-.progreso-compra{
+.progreso-compra {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-around;
@@ -16,24 +17,29 @@
     margin-bottom: 20px;
 }
 
-.paso-clickeable-datos, .paso-clickeable-confirm, .paso-clickeable-pago{
-    border: solid 1px black;display: flex;
+.paso-clickeable-datos,
+.paso-clickeable-confirm,
+.paso-clickeable-pago {
+    border: solid 1px black;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.paso-clickeable-datos{
-    background-color: rgb(211,211,211);
+.paso-clickeable-datos {
+    background-color: rgb(211, 211, 211);
 }
-.contenedor-slide{
+
+.contenedor-slide {
     width: 300%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 0;
     padding: 0;
 }
+
 .contenedor-pedido {
-    grid-column: 1 ;
+    grid-column: 1;
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -47,23 +53,23 @@
     column-gap: 20px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(6, 15%);
-    grid-template-areas: 
+    grid-template-areas:
         'datos datos'
         'email telefono'
-        'envio envio' 
-        'nombre apellidos' 
-        'direccion direccion' 
+        'envio envio'
+        'nombre apellidos'
+        'direccion direccion'
         'cp ciudad';
 }
 
-.datospersonales label{
+.datospersonales label {
     font-size: 1em;
-    color:grey;
+    color: grey;
 }
 
-.datospersonales p{
+.datospersonales p {
     font-size: 1.1em;
-    border:solid 1px lightgrey;
+    border: solid 1px lightgrey;
     padding-left: 5px;
 }
 
@@ -85,7 +91,7 @@
     grid-area: telefono;
 }
 
-.direccion-envio{
+.direccion-envio {
     grid-area: envio;
     font-size: 1.2em;
     font-weight: bold;
@@ -119,70 +125,73 @@
     grid-column: 2;
     display: flex;
     flex-direction: column;
-    padding: 15px;    
+    padding: 15px;
     background-color: rgb(248, 249, 249);
 }
 
-.contenedor-forma-pago{
+.contenedor-forma-pago {
     width: 100%;
     padding: 20PX;
     height: 60%;
 }
 
-.selector-forma-pago{
-    display:flex;
+.selector-forma-pago {
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     row-gap: 20px;
 }
 
-.contenedor-tarjeta, .contenedor-paypal, .contenedor-transferencia{
+.contenedor-tarjeta,
+.contenedor-paypal,
+.contenedor-transferencia {
     border: solid 1px lightgrey;
     padding: 10px;
 }
 
-.tarjeta, .paypal,
+.tarjeta,
+.paypal,
 .transferencia {
     display: none;
-    margin-top:10px;
+    margin-top: 10px;
     margin-left: 35px;
 }
 
-.contenedor-tarjeta-input{
-    display:grid;
+.contenedor-tarjeta-input {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "a b c" "d e f";
     grid-row-gap: 10px;
 }
 
-.tarjeta.mostrar{
+.tarjeta.mostrar {
     display: flex;
     flex-direction: row;
     align-items: baseline;
 }
 
-.paypal.mostrar{
+.paypal.mostrar {
     display: flex;
     flex-direction: row;
     align-items: baseline;
 }
 
-.transferencia.mostrar{
+.transferencia.mostrar {
     display: flex;
     flex-direction: row;
     align-items: baseline;
 }
 
-.paypal p{
+.paypal p {
     margin-right: 20px;
 }
 
-.transferencia p{
+.transferencia p {
     margin-right: 20px;
 }
 
-.tarjeta p{
+.tarjeta p {
     margin-right: 20px;
 }
 
@@ -191,41 +200,41 @@
     color: white !important;
 }
 
-.contenedor-confirmar-pedido{
+.contenedor-confirmar-pedido {
     width: 100%;
-    grid-column:3;
+    grid-column: 3;
     padding: 20px;
 }
 
-.paypal-elegido{
+.paypal-elegido {
     display: none;
 }
 
-.transferencia-elegido{
+.transferencia-elegido {
     display: none;
 }
 
-.tarjeta-elegido{
+.tarjeta-elegido {
     display: none;
 }
 
-.resumen-final{
-    display:grid;
+.resumen-final {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-area: 10px;
 }
 
-.direccion-entrega p{
+.direccion-entrega p {
     display: flex;
     align-items: center;
 }
 
-.direccion-entrega span{
+.direccion-entrega span {
     margin-right: 10px;
 }
 
-#lineas-productos-pedido{
+#lineas-productos-pedido {
     margin-top: 12px;
-    display:grid;
-    grid-template-columns: repeat(4, 1fr) ;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }

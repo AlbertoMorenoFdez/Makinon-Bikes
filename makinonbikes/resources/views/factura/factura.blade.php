@@ -60,11 +60,13 @@
                 @endforeach
             </div>
         </div>
+
         <div class="total-factura">
-            <p >Gastos de envío: {{ number_format($gastosEnvio * 0.79, 2) }} €</p>
-            <p >IVA: {{ number_format($totalFactura * 0.21, 2) }} €</p>
-            <p >TOTAL: {{ $totalFactura }} €</p>
+            <p>Gastos de envío: {{ number_format($gastosEnvio * 0.79, 2) }} €</p>
+            <p>IVA: {{ number_format($totalFactura * 0.21, 2) }} €</p>
+            <p>TOTAL: {{ $totalFactura }} €</p>
         </div>
+
         <div class="pie-factura">
             <div class="datos-empresa">
                 <p>Makinon Bikes S.L</p>
@@ -73,8 +75,8 @@
                 <p>Teléfono: 952 33 95 58</p>
                 <p>Email: new.makinonbikes@gmail.com
             </div>
-
         </div>
+    </div>
 </body>
 
 </html>

@@ -18,14 +18,16 @@ class Pedido extends Model
     /**
      * Funcion que nos relaciona el pedido con los usuarios
      */
-    public function usuario(){
+    public function usuario()
+    {
         return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
     /**
      * Método que relaciona el pedido con una factura
      */
-    public function factura(){
+    public function factura()
+    {
         return $this->hasOne(Factura::class, 'id_pedido');
     }
 }

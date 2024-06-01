@@ -8,9 +8,14 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactoController extends Controller
 {
+    /**
+     * Función que envía un correo a la administración desde el formulario de contacto
+     *
+     * @param Request Todos los parámetros del formulario de contacto
+     * @return void Respuesta al usuario
+     */
     public function send(Request $request)
     {
-        //dd($request->all());
         $contacto = $request->all();
 
         Mail::to('new.makinonbikes@gmail.com')->send(new ContactoMail($contacto));

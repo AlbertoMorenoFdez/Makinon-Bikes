@@ -11,21 +11,24 @@ use Illuminate\Support\Facades\Log;
 
 class CarritoController extends Controller
 {
+
     /**
      * Función que muestra el contenido del carrito
+     *
+     * @param Request $request
+     * @return void
      */
-
     public function mostrarCarrito(Request $request)
     {
         $carrito = $request->session()->get('carrito', []);
 
-        //Calculo del total de todos los productos del carrito
+        // Cálculo del total de todos los productos del carrito
         $total = 0;
         foreach ($carrito as $producto) {
             $total += $producto['precio_total'];
         }
 
-        // Calculo de los gastos de envío
+        // Cálculo de los gastos de envío
         $gastosEnvio = $total < 100 ? 20 : 0;
 
         return view('carrito', ['carrito' => $carrito, 'total' => $total, 'gastosEnvio' => $gastosEnvio]);
@@ -94,9 +97,11 @@ class CarritoController extends Controller
     }
 
 
-
     /**
      * Función que elimina un producto del carrito en función del id_producto, color y talla
+     *
+     * @param Request $request
+     * @return void
      */
     public function eliminarDelCarrito(Request $request)
     {

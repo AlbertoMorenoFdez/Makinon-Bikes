@@ -7,10 +7,12 @@ use App\Models\Marca;
 
 class MarcaController extends Controller
 {
-  /**
-   * Funcion para añadir una marca
-   */
-    public function nuevaMarca(Request $request){
+    /**
+     * Función para añadir una marca
+     * @param Request Datos de la marca
+     */
+    public function nuevaMarca(Request $request)
+    {
         $marca = new Marca();
         $marca->nombre = $request->nombre;
         $marca->save();
@@ -18,9 +20,10 @@ class MarcaController extends Controller
     }
 
     /**
-     * Funcion para listar todas las marcas en la vista marcas.blade
+     * Función para listar todas las marcas en la vista marcas.blade
      */
-    public function listarMarcas(){
+    public function listarMarcas()
+    {
         $marcas = Marca::orderBy('nombre', 'asc')->get();
         return view('otras_vistas.marcas', ['marcas' => $marcas]);
     }

@@ -10,7 +10,7 @@ class MakinonMenuLateral extends Component
 {
     public $marcas;
     /**
-     * Create a new component instance.
+     * Crea una nueva instancia del componente.
      */
     public function __construct($marcas)
     {
@@ -18,7 +18,7 @@ class MakinonMenuLateral extends Component
     }
 
     /**
-     * Get the view / contents that represent the component.
+     * Renderiza el componente.
      */
     public function render(): View|Closure|string
     {

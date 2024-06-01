@@ -4,8 +4,9 @@
     <div id="contenedorNuevosProductos">
 
         <h2 class="mt-0 mb-4 text-left">Productos de segunda mano</h2>
-        <p>En esta sección podrá encontrar productos de nuestros clientes que han sido revisados por nosotros y puestos a la venta con la garantía de Makinon Bikes.</p>
-<hr>
+        <p>En esta sección podrá encontrar productos de nuestros clientes que han sido revisados por nosotros y puestos a la
+            venta con la garantía de Makinon Bikes.</p>
+        <hr>
         <div id="contenedorNuevasCards">
             @for ($i = 0; $i < 4; $i++)
                 <div class="card m-2 hover-card shadow-sm" style="flex: 0 0 auto; padding:20px">

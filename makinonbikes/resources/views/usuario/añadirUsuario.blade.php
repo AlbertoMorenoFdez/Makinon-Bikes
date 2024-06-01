@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
+    <!-- Muestra el formulario para añadir un usuario por parte de un administrador -->
     <form method="POST" action="{{ route('agregarUsuarioAdmin') }}">
         @csrf
         <div class="row d-flex justify-center">
@@ -56,7 +57,6 @@
 
 
             <div class="col-md-5">
-
                 <!-- NIF -->
                 <div class="mt-4">
                     <x-input-label for="nif" :value="__('NIF')" />
@@ -99,9 +99,10 @@
             </div>
 
             <div class="d-flex justify-content-center mt-5">
-                <x-makinon-primary-button type="submit" style="margin-right: 10px">@lang('makinon.añadirUsu')</x-makinon-primary-button>
-                <x-makinon-primary-link-button href="{{ route('listadoUsuarios') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
-                
+                <x-makinon-primary-button type="submit"
+                    style="margin-right: 10px">@lang('makinon.añadirUsu')</x-makinon-primary-button>
+                <x-makinon-primary-link-button
+                    href="{{ route('listadoUsuarios') }}">@lang('makinon.volver')</x-makinon-primary-link-button>
             </div>
         </div>
     </form>

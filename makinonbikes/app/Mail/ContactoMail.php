@@ -24,7 +24,9 @@ class ContactoMail extends Mailable
     }
 
     /**
-     * Build the message.
+     * Esta función crea un nuevo objeto Envelope con el asunto del correo electrónico establecido en 'Contacto'.
+     *
+     * @return Envelope Devuelve un objeto Envelope con el asunto del correo electrónico.
      */
     public function build()
     {

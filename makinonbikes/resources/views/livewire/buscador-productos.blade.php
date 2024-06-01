@@ -1,6 +1,4 @@
 <div class="resultadoBuscador">
-    {{-- <x-text-input type="text" id="buscador" wire:model="search" placeholder="Buscar..." wire:keydown.enter="buscar"></x-text-input> --}}
-
     <label for="buscador" class="sr-only"> Search </label>
 
     <input type="text" id="buscador" placeholder="Buscar..." wire:model="search" title="Buscar"

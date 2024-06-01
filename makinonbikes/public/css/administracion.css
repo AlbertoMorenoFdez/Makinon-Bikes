@@ -1,25 +1,26 @@
-#panelAdminBody{
-    display:grid;
+/* Reglas de estilo para la vista del panel de Administración */
+
+#panelAdminBody {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap:1rem;
+    gap: 1rem;
 }
 
-
-
+/* Media queries para adaptar el panel de administración a distintos tamaños de pantalla */
 @media (max-width: 900px) {
-    #panelAdminBody{
+    #panelAdminBody {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
     }
 }
 
 @media (max-width: 600px) {
-#bienvAdmin{
-    display: none;
-}
+    #bienvAdmin {
+        display: none;
+    }
 
-    #panelAdminBody{
+    #panelAdminBody {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
     }

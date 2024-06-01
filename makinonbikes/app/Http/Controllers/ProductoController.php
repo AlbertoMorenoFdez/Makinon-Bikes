@@ -15,8 +15,9 @@ class ProductoController extends Controller
 {
     /**
      * Funcion que nos devuelve todos los datos de los productos para generar las cards.
+     * @param [type] $tipo de producto
+     * @return void Vista con los productos
      */
-
     public function vistasAllProductos($tipo)
     {
         $marcas = Marca::all();
@@ -37,7 +38,9 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve los productos filtrados por marca
+     * Función que nos devuelve los productos filtrados por marca
+     * @param [type] $nombreMarca
+     * @return void Vista con los productos de esa marca
      */
     public function vistasPorMarca($nombreMarca)
     {
@@ -50,7 +53,8 @@ class ProductoController extends Controller
 
 
     /**
-     * Funcion que nos devuelve un listado de todos los productos
+     * Función que nos devuelve un listado de todos los productos
+     * @return void Vista con todos los productos
      */
     public function listarProductos()
     {
@@ -65,6 +69,8 @@ class ProductoController extends Controller
 
     /**
      * Función que nos permite hacer la busqueda de un producto en el panel de administración
+     * @param Request Nombre del producto
+     * @return void Vista con el listado de los productos encontrados
      */
     public function buscarProducto(Request $request)
     {
@@ -74,7 +80,9 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve los datos de un producto en concreto para el administrador
+     * Función que nos devuelve los datos de un producto en concreto para el administrador
+     * @param [type] $id_producto
+     * @return void Vista con los datos del producto
      */
     public function fichaProducto($id)
     {
@@ -83,7 +91,9 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista del producto para el usuario
+     * Función que nos devuelve la vista del producto para el usuario
+     * @param [type] $id_producto
+     * @return void Vista con los datos del producto
      */
     public function vistaProducto($id)
     {
@@ -93,7 +103,8 @@ class ProductoController extends Controller
 
 
     /**
-     * Funcion que nos devuelve la vista para añadir un nuevo producto
+     * Función que nos devuelve la vista con el formulario para añadir un nuevo producto
+     * @return void Vista con el formulario para añadir un nuevo producto
      */
     public function nuevoProducto()
     {
@@ -105,7 +116,9 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion para añadir un nuevo producto
+     * Función para añadir un nuevo producto
+     * @param Request Datos del producto
+     * @return void Mensaje de éxito o error en la inserción
      */
     public function agregarProducto(Request $request)
     {
@@ -157,10 +170,10 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista para editar los datos del producto
+     * Función que nos devuelve la vista para editar los datos del producto
      *
-     * @param [type] $id
-     * @return void
+     * @param [type] $id_producto
+     * @return void Vista con los datos del producto para modificar
      */
     public function editarProducto($id)
     {
@@ -173,7 +186,9 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion que nos permite pasar los datos del producto a la vista para poder modificarlos
+     * Función que nos permite pasar los datos del producto a la vista para poder modificarlos
+     * @param [type] $id_producto
+     * @return void Datos del producto para modificar
      */
     public function modificarProducto($id)
     {
@@ -183,8 +198,9 @@ class ProductoController extends Controller
 
     /**
      * Funcion que nos permite actualizar los datos del producto
+     * @param Request Datos del producto modificado
+     * @return void Mensaje de éxito o error en la modificación
      */
-
     public function updateProducto(Request $request)
     {
         try {
@@ -246,7 +262,9 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion que nos permite eliminar un producto
+     * Función que nos permite eliminar un producto
+     * @param [type] $id_producto
+     * @return void Mensaje de éxito o error en la eliminación
      */
     public function eliminarProducto($id)
     {
@@ -264,9 +282,10 @@ class ProductoController extends Controller
     }
 
     /**
-     * Función que nos devuelve un listado de los productos de un proveedoru
+     * Función que nos devuelve un listado de los productos de un proveedor
+     * @param [type] $id_proveedor
+     * @return void Vista con los productos del proveedor
      */
-
     public function listarProductosProveedor($id)
     {
         $proveedor = Proveedor::find($id);
@@ -275,9 +294,9 @@ class ProductoController extends Controller
     }
 
     /**
-     * Funcion que nos permite extraer los colores disponibles de la tabla Color
+     * Función que nos permite extraer los colores disponibles de la tabla Color
+     * @return void Vista con los colores
      */
-
     public function listarColores()
     {
         $colores = Color::all();
@@ -286,8 +305,8 @@ class ProductoController extends Controller
 
     /**
      * Función que nos devuelve los 10 últimos productos añadidos a la tienda
+     * @return void Vista con los últimos productos de la BBDD
      */
-
     public function ultimosProductos()
     {
         $marcas = Marca::all();
@@ -302,18 +321,19 @@ class ProductoController extends Controller
 
     /**
      * Función que nos devuelve 10 productos aleatorios
+     * @return void Vista con productos aleatorios
      */
     public function productosAleatorios()
-{
-    $marcas = Marca::all();
+    {
+        $marcas = Marca::all();
 
-    $productos = Producto::inRandomOrder()->take(8)->get();
+        $productos = Producto::inRandomOrder()->take(8)->get();
 
 
-    foreach ($productos as $producto) {
-        $producto->stockTotal = $producto->producto_color_talla->sum('stock');
+        foreach ($productos as $producto) {
+            $producto->stockTotal = $producto->producto_color_talla->sum('stock');
+        }
+
+        return view('otras_vistas.lo_mas_vendido', ['productos' => $productos, 'marcas' => $marcas]);
     }
-
-    return view('otras_vistas.lo_mas_vendido', ['productos' => $productos, 'marcas' => $marcas]);
-}
 }
