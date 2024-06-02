@@ -54,7 +54,7 @@ class PedidoController extends Controller
 
 
     /**
-     * Funcion que nos permite confirmar un pedido y finalizar la compra si los datos de la tarjeta de crédito son correctos
+     * Función que nos permite confirmar un pedido y finalizar la compra si los datos de la tarjeta de crédito son correctos
      *
      * @param Request $request
      * @return void
@@ -90,6 +90,12 @@ class PedidoController extends Controller
 
                 // Actualizamos el total del pedido
                 $pedido->total += $detalle->precio * $detalle->cantidad;
+
+                // Calculamos los gastos de envío
+                $gastosEnvio = $pedido->total >= 50 ? 0 : 20;
+
+                // Actualizamos el total del pedido con los gastos de envío
+                $pedido->total += $gastosEnvio;
             }
 
             // Guardamos el total del pedido

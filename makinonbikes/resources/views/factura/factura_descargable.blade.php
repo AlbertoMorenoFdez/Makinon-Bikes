@@ -178,18 +178,18 @@
                     <td>{{ $producto['tipo_producto'] }} {{ $producto['marca'] }} {{ $producto['nombre_producto'] }}
                     </td>
                     <td id="numeros">{{ $producto['cantidad'] }}</td>
-                    <td id="numeros">{{ number_format($producto['precio_unitario'] * 0.79, 2) }} €</td>
-                    <td id="numeros">{{ number_format($producto['precio_total'] * 0.79, 2) }} €</td>
+                    <td id="numeros">{{ number_format($producto['precio_unitario'] / 1.21, 2) }} €</td>
+                    <td id="numeros">{{ number_format($producto['precio_total'] / 1.21, 2) }} €</td>
                 </tr>
             @endforeach
 
             <tr>
                 <td colspan="3" id="numeros">Gastos de envío:</td>
-                <td id="numeros">{{ number_format($gastosEnvio * 0.79, 2) }} €</td>
+                <td id="numeros">{{ number_format($gastosEnvio / 1.21, 2) }} €</td>
             </tr>
             <tr>
                 <td colspan="3" id="numeros">21% IVA:</td>
-                <td id="numeros">{{ number_format($totalFactura * 0.21, 2) }} €</td>
+                <td id="numeros">{{ number_format($totalFactura - $totalFactura / 1.21, 2) }} €</td>
             <tr>
                 <td colspan="3" id="numeros">TOTAL:</td>
                 <td id="numeros">{{ $totalFactura }} €</td>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-<!-- Muestra las cards de los productos de alimentación -->
+    <!-- Muestra las cards de los productos de alimentación -->
     <x-makinon-menu-lateral :marcas="$marcas" />
 
     <div id="contenedorProductos">

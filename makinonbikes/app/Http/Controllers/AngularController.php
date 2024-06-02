@@ -15,7 +15,7 @@ class AngularController extends Controller
     {
         $token = session()->get('api_token'); // Obtenemos el token de la sesión
 
-        // Genermosr el enlace a la aplicación Angular con el token incluido
+        // Generamos el enlace a la aplicación Angular con el token incluido
         $angularAppUrl = 'http://localhost:4200/citaTaller';
         $angularAppLink = $angularAppUrl . '?token=' . $token;
 
