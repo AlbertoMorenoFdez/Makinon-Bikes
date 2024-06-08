@@ -24,14 +24,20 @@
   // Estilos de la columna dentro de la fila del contenedor terciario
   &__col {
     flex: 1;
+    &:nth-child(even){
+      margin-top: 1%;
+    }
   }
+
+  
 
   // Estilos de la subcolumna dentro de la columna del contenedor terciario
   &__sub-column {
-    height: 600px;
+    height: 573px;
     display: flex;
     flex-direction: column;
     align-items: center;
+   
   }
 
   // Estilos de la subcolumna dentro de la columna del contenedor terciario
@@ -49,8 +55,8 @@
 
   // Estilos de la imagen dentro de la subcolumna del contenedor terciario
   &__sub-img {
-    width: 150px;
-    height: 420px;
+    width: 120px;
+    height: 380px;
     transform: skew(-15deg);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -95,8 +101,8 @@
   // Estilos para la tarjeta de volteo
   .flip-card {
     background-color: transparent;
-    width: 150px;
-    height: 420px;
+    width: 120px;
+    height: 380px;
     perspective: 1000px;
 
     &-inner {
@@ -148,16 +154,6 @@
       }
     }
 
-    &__sub-img {
-      width: 120px;
-      height: 400px;
-
-    }
-
-    .flip-card {
-      width: 120px;
-      height: 400px;
-    }
   }
 
   @media (max-width: 1000px) {
@@ -201,7 +197,8 @@
 
     &__row {
       width: 95%;
-      height: 75%;
+      height: 85%;
+      margin-bottom: 20%;
     }
 
     .flip-card {
@@ -217,6 +214,21 @@
   @media screen and (max-width: 450px) {
     &__row{
       height: 60%;
+      margin-bottom: 0%;
+    }
+    &__col {
+      flex: 1;
+      &:nth-child(1){
+        margin-left: 5%;
+      }
+      &:nth-child(2){
+        margin-right: 30%;
+      }
+    }
+    &__sub-col {
+      h2 {
+        font-size: 20px;
+      }
     }
     &__sub-img{
       width: 96px;

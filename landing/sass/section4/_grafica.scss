@@ -6,11 +6,11 @@
     margin-top: 150px;
   
     // Estilos específicos para el texto dentro del contenedor de seguidores
-    &__seguidores-textos {
-      visibility: hidden;
-      display: flex;
-      // Agrega aquí los estilos específicos si es necesario
-    }
+    // &__seguidores-texto {
+    //   visibility: hidden;
+    //   display: flex;
+    //   // Agrega aquí los estilos específicos si es necesario
+    // }
   
     // Estilos específicos para el título del contenedor de seguidores
     h2 {
@@ -43,15 +43,16 @@
     }
       @media screen and (max-width: 768px){
         margin-top: 80px;
+        
         svg{
          width: 430px;
          height: 288px;
          margin-bottom: 0;
        }
-      
-       h2{
+
+        h2{
           font-size: 1.4rem;
-       }
+       }       
     }
   }
 }

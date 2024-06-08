@@ -9,6 +9,7 @@
   overflow: hidden;
 
   &__split {
+    padding-left: 3%;
     display: flex;
     align-items: center;
   }
@@ -34,7 +35,7 @@
       box-shadow: 0 60px 60px -60px rgba(0, 30, 255, 0.5);
       border-radius: 4px;
       object-fit: cover;
-      width: 100%;
+      width: 90%;
     }
 
     img:last-child {
@@ -67,7 +68,7 @@
       position: absolute;
       bottom: 0;
       height: 100%;
-      width: 100%;
+      width: 90%;
       background-color: rgba(229, 111, 7, 0.653);
       background-image: linear-gradient(to bottom, transparent 10%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.95));
       opacity: 0;
