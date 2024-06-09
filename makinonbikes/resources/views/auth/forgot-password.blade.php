@@ -3,7 +3,7 @@
 @section('main')
     <div class="portadaLogin">
         <div class="contenedorImagenLogin">
-            <img src="./images/kmt_portada.jpg" alt="KTM">
+            <img src="{{asset('images/ktm_portada.jpg')}}" alt="KTM">
         </div>
 
         <div class="contenedorlogin">

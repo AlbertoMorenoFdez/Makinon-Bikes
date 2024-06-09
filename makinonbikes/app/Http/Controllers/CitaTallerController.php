@@ -10,14 +10,108 @@ use App\Mail\CitaTallerConfirmada;
 use App\Mail\CitaTallerModificada;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @OA\Info(
+ *     title="API de Makinon Bikes",
+ *     version="1.0.0",
+ *     description="Esta es la API para gestionar las citas en el taller de Makinon Bikes",
+ *     @OA\Contact(
+ *         email="new.makinonbikes@gmail.com"
+ *     ),
+ * )
+ * @OA\SecurityScheme(
+ *   securityScheme="BearerAuth",
+ *   type="http",
+ *   scheme="bearer",
+ *   bearerFormat="JWT",
+ * )
+ */
+
 
 class CitaTallerController extends Controller
 {
 
+    /************************ Funciones para Laravel ************************/
+
     /**
-     * Función que permite obtener los datos del usuario autenticado
+     * Función que permite al administrador modificar el estado de una cita desde el listado de citas
+     * @param Request Estado original de cl cita y su id
+     * @return mixed Redirección a la vista de listado de citas y mail para el usuario
+     */
+    public function modificarEstadoCita(Request $request, $id)
+    {
+        $cita = CitaTaller::find($id);
+        $estadoOriginal = $cita->estado;
+        $cita->estado = $request->estado;
+        $cita->save();
+
+        // Comprueba si el estado ha cambiado
+        if ($estadoOriginal != $cita->estado) {
+            // Enviamos un correo para avisar al usuario de la actualización
+            Mail::to($cita->usuario->email)->send(new CitaTallerModificada($cita));
+        }
+
+        return redirect()->route('listadoCitas')->with('success', 'Estado de la cita actualizado con éxito');
+    }
+
+    /**
+     * Función que permite editar una cita en el taller
+     *
+     * @param Request La solicitud que contiene los datos de la cita
+     * @return void Devuelve una respuesta Json
      */
 
+    public function editarCita(Request $request)
+    {
+        $cita = CitaTaller::find($request->id_cita);
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->estado = $request->estado;
+        $cita->comentario = $request->comentario;
+        $cita->save();
+
+        return response()->json($cita, 200);
+    }
+
+    /**
+     * Función que permite al administrador recuperar el listado de citas para Laravel
+     * @return void Devuelve una vista con el listado de citas
+     */
+
+    public function listadoCitas()
+    {
+        $citas = CitaTaller::orderBy('fecha', 'asc')->paginate(10);
+        return view('taller.listadoCitasTaller', ['citas' => $citas]);
+    }
+
+    /************************ Funciones para Angular ************************/
+
+    /**
+     * @OA\Get(
+     *     path="/api/traerDatos",
+     *     summary="Obtener los datos del usuario autenticado",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Datos del usuario",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="nombre", type="string"),
+     *             @OA\Property(property="email", type="string"),
+     *             @OA\Property(property="id_usuario", type="integer"),
+     *             @OA\Property(property="rol", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No se pudo autenticar al usuario",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string"),
+     *         )
+     *     ),
+     *     security={{"BearerAuth":{}}}
+     * )
+     */
     public function traerDatosUsuario(Request $request)
     {
         // Obtener el usuario autenticado
@@ -38,10 +132,45 @@ class CitaTallerController extends Controller
 
 
     /**
-     * Función que permite crear una cita en el taller a través de la API
-     *
-     * @param Request $request
-     * @return void
+     * @OA\Post(
+     *     path="/api/cita_taller",
+     *     summary="Crea una nueva cita en el taller",
+     *     @OA\RequestBody(
+     *         description="Datos necesarios para crear una cita",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="opcion", type="string", description="La opción de la cita"),
+     *             @OA\Property(property="fecha", type="string", format="date", description="La fecha de la cita"),
+     *             @OA\Property(property="hora", type="string", format="time", description="La hora de la cita"),
+     *             @OA\Property(property="estado", type="string", description="El estado de la cita"),
+     *             @OA\Property(property="comentario", type="string", description="El comentario de la cita"),
+     *             @OA\Property(property="imagen", type="string", format="binary", description="La imagen de la cita")
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Cita creada exitosamente",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id", type="integer", description="El ID de la cita"),
+     *             @OA\Property(property="opcion", type="string", description="La opción de la cita"),
+     *             @OA\Property(property="fecha", type="string", format="date", description="La fecha de la cita"),
+     *             @OA\Property(property="hora", type="string", format="time", description="La hora de la cita"),
+     *             @OA\Property(property="estado", type="string", description="El estado de la cita"),
+     *             @OA\Property(property="comentario", type="string", description="El comentario de la cita"),
+     *             @OA\Property(property="imagen", type="string", description="La imagen de la cita")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No se pudo autenticar al usuario",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string", description="Mensaje de error")
+     *         )
+     *     ),
+     * security={{"BearerAuth":{}}}
+     * )
      */
 
     public function crearCita(Request $request)
@@ -93,12 +222,56 @@ class CitaTallerController extends Controller
         return response()->json($cita, 201);
     }
 
-    /**
-     * Función que permite editar una cita de la bdd
-     *
-     * @return void
-     */
 
+    /**
+     * @OA\Post(
+     *     path="/api/editarCitaUsuario",
+     *     summary="Editar una cita de la bdd",
+     *     @OA\RequestBody(
+     *         description="Datos necesarios para editar una cita",
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id_cita_taller", type="integer"),
+     *             @OA\Property(property="fecha", type="string", format="date"),
+     *             @OA\Property(property="hora", type="string", format="time"),
+     *             @OA\Property(property="comentario", type="string"),
+     *             @OA\Property(property="imagen", type="string", format="binary"),
+     *             @OA\Property(property="opcion", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cita editada con éxito",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id_cita_taller", type="integer"),
+     *             @OA\Property(property="fecha", type="string", format="date"),
+     *             @OA\Property(property="hora", type="string", format="time"),
+     *             @OA\Property(property="comentario", type="string"),
+     *             @OA\Property(property="imagen", type="string"),
+     *             @OA\Property(property="opcion", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No se pudo autenticar al usuario",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cita no encontrada",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string"),
+     *         )
+     *     ),
+     * security={{"BearerAuth":{}}}
+     * )
+     */
     public function editarCitaUsuario(Request $request)
     {
         Log::info('Solicitud recibida para editar cita', ['request' => $request->all()]);
@@ -154,10 +327,38 @@ class CitaTallerController extends Controller
         return response()->json($cita, 200);
     }
 
+
     /**
-     * Función que permite obtener todas las citas del taller de un cliente
-     *
-     * @return void
+     * @OA\Get(
+     *     path="/api/cita_taller",
+     *     summary="Obtener todas las citas del taller de un cliente",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Citas obtenidas con éxito",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id_cita_taller", type="integer"),
+     *                 @OA\Property(property="fecha", type="string", format="date"),
+     *                 @OA\Property(property="hora", type="string", format="time"),
+     *                 @OA\Property(property="comentario", type="string"),
+     *                 @OA\Property(property="imagen", type="string"),
+     *                 @OA\Property(property="opcion", type="string"),
+     *                 @OA\Property(property="imagen_url", type="string"),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No se pudo autenticar al usuario",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string"),
+     *         )
+     *     ),
+     *     security={{"BearerAuth":{}}}
+     * )
      */
 
     public function obtenerCitas(Request $request)
@@ -178,13 +379,52 @@ class CitaTallerController extends Controller
         return response()->json($citas);
     }
 
-    /**
-     * Función que permite obtener una cita por su ID
-     *
-     * @param [type] $id_cita
-     * @return void Devuelve una respuesta Json
-     */
 
+    /**
+     * @OA\Get(
+     *     path="/api/obtenerCitaId/{id_cita_taller}",
+     *     summary="Obtener una cita por su ID",
+     *     @OA\Parameter(
+     *         name="id_cita_taller",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cita encontrada",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id_cita_taller", type="integer"),
+     *             @OA\Property(property="fecha", type="string", format="date"),
+     *             @OA\Property(property="hora", type="string", format="time"),
+     *             @OA\Property(property="comentario", type="string"),
+     *             @OA\Property(property="imagen", type="string"),
+     *             @OA\Property(property="opcion", type="string"),
+     *             @OA\Property(property="imagen_url", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="No se pudo autenticar al usuario",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cita no encontrada",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string"),
+     *         )
+     *     ),
+     *     security={{"BearerAuth":{}}}
+     * )
+     */
     public function obtenerCitaId($id)
     {
         // Obtenemos el usuario autenticado
@@ -207,27 +447,41 @@ class CitaTallerController extends Controller
         return response()->json($cita);
     }
 
+
     /**
-     * Función que permite editar una cita en el taller
-     *
-     * @param Request La solicitud que contiene los datos de la cita
-     * @return void Devuelve una respuesta Json
-     */
-
-    public function editarCita(Request $request)
-    {
-        $cita = CitaTaller::find($request->id_cita);
-        $cita->fecha = $request->fecha;
-        $cita->hora = $request->hora;
-        $cita->estado = $request->estado;
-        $cita->comentario = $request->comentario;
-        $cita->save();
-
-        return response()->json($cita, 200);
-    }
-
-    /** 
-     * Función que permite editar el esetado de varias citas del taller desde Angular
+     * @OA\Put(
+     *     path="/api/citaPendiente",
+     *     summary="Edita el estado de varias citas del taller desde el panel del adminitrador de Angular",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id_cita_taller", type="integer", description="El ID de la cita del taller"),
+     *                 @OA\Property(property="Estado", type="string", description="El nuevo estado de la cita")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Las citas se han actualizado correctamente",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="string", description="Mensaje de éxito"),
+     *             @OA\Property(property="usuarios", type="array", @OA\Items(type="integer"), description="Array de los ID de los usuarios cuyas citas se han actualizado")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Se esperaba un array de citas",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string", description="Mensaje de error")
+     *         )
+     *     ),
+     *     security={{"BearerAuth":{}}}
+     * )
      */
     public function editarEstadoCita(Request $request)
     {
@@ -264,33 +518,31 @@ class CitaTallerController extends Controller
 
 
     /**
-     * Función que permite al administrador modificar el estado de una cita desde el listado de citas
-     * @param Request Estado original de cl cita y su id
-     * @return mixed Redirección a la vista de listado de citas y mail para el usuario
+     * @OA\Delete(
+     *     path="/api/cita_taller",
+     *     summary="Elimina una cita del taller",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="id_cita_taller", type="integer", description="El ID de la cita del taller")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Cita eliminada con éxito"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cita no encontrada",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="error", type="string", description="Mensaje de error")
+     *         )
+     *     ),
+     *     security={{"BearerAuth":{}}}
+     * )
      */
-    public function modificarEstadoCita(Request $request, $id)
-    {
-        $cita = CitaTaller::find($id);
-        $estadoOriginal = $cita->estado;
-        $cita->estado = $request->estado;
-        $cita->save();
-
-        // Comprueba si el estado ha cambiado
-        if ($estadoOriginal != $cita->estado) {
-            // Enviamos un correo para avisar al usuario de la actualización
-            Mail::to($cita->usuario->email)->send(new CitaTallerModificada($cita));
-        }
-
-        return redirect()->route('listadoCitas')->with('success', 'Estado de la cita actualizado con éxito');
-    }
-
-
-    /**
-     * Función que permite eliminar una cita en el taller
-     * @param Request La solicitud que contiene el id de la cita
-     * @return void Devuelve una respuesta Json
-     */
-
     public function eliminarCita(Request $request)
     {
         $cita = CitaTaller::find($request->id_cita_taller);
@@ -299,35 +551,94 @@ class CitaTallerController extends Controller
         return response()->json(null, 204);
     }
 
-    /**
-     * Función que permite al administrador recuperar todas las citas de la tabla cita_taller en Angular
-     * @return void Devuelve una respuesta Json
-     */
 
+    /**
+     * @OA\Get(
+     *     path="/api/calendario",
+     *     summary="Obtiene todas las citas del taller",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Operación exitosa",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id_cita_taller", type="integer"),
+     *                 @OA\Property(property="fecha", type="string", format="date"),
+     *                 @OA\Property(property="hora", type="string", format="time"),
+     *                 @OA\Property(property="comentario", type="string"),
+     *                 @OA\Property(property="imagen", type="string"),
+     *                 @OA\Property(property="opcion", type="string"),
+     *                 @OA\Property(property="imagen_url", type="string"),
+     *             )
+     *         )
+     *     ),
+     *     security={{"BearerAuth":{}}}
+     * )
+     */
     public function calendarioCitas()
     {
         $citas = CitaTaller::all();
         return response()->json($citas);
     }
 
-    /**
-     * Función que permite al administrador recuperar el listado de citas para Laravel
-     * @return void Devuelve una vista con el listado de citas
-     */
-
-    public function listadoCitas()
-    {
-        $citas = CitaTaller::orderBy('fecha', 'asc')->paginate(10);
-        return view('taller.listadoCitasTaller', ['citas' => $citas]);
-    }
 
     /**
-     * Función que permite al usuario enviar una imagen de su bicicleta desde la aplicación de Angular
-     * @param Request La solicitud que contiene la imagen
-     * @return void Devuelve una respuesta Json si la imagen se ha subido correctamente o no
+     * @OA\Put(
+     *     path="/api/subir_imagen",
+     *     summary="Sube una imagen para una cita del taller",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="imagen",
+     *                     description="La imagen a subir",
+     *                     type="string",
+     *                     format="binary"
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Imagen subida exitosamente",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", description="Mensaje de éxito"),
+     *             @OA\Property(property="nombre_imagen", type="string", description="Nombre de la imagen subida")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="No se proporcionó ninguna imagen",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string", description="Mensaje de error")
+     *         )
+     *     ),
+     *     security={{"BearerAuth":{}}}
+     * )
      */
 
     public function subirImagen(Request $request)
+    {
+        $imagen = $request->getContent();
+
+        if ($imagen) {
+            $nombreImagen = time() . '.png'; // Asegúrate de usar el formato de archivo correcto
+            $destinoPath = public_path('/images/clientes_taller');
+            file_put_contents($destinoPath . '/' . $nombreImagen, $imagen);
+
+            return response()->json(['message' => 'Imagen subida exitosamente', 'nombre_imagen' => $nombreImagen], 200);
+        } else {
+            return response()->json(['message' => 'No se proporcionó ninguna imagen, pero la solicitud se procesó correctamente'], 200);
+        }
+    }
+
+    /* public function subirImagen(Request $request)
     {
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
@@ -339,5 +650,5 @@ class CitaTallerController extends Controller
         } else {
             return response()->json(['message' => 'No se proporcionó ninguna imagen'], 400);
         }
-    }
+    } */
 }

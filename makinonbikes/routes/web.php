@@ -73,7 +73,6 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
 /*
 Rutas para los proveedores
 */
-
 Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::get('/listadoProveedores', [ProveedorController::class, 'datosProveedores'])->name('listadoProveedores');
     Route::get('/fichaProveedor/{id}', [ProveedorController::class, 'fichaProveedor'])->name('fichaProveedor');

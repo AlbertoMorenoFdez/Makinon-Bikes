@@ -1,0 +1,683 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Makinon Bikes",
+        "description": "Esta es la API para gestionar las citas en el taller de Makinon Bikes",
+        "contact": {
+            "email": "new.makinonbikes@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/traerDatos": {
+            "get": {
+                "summary": "Obtener los datos del usuario autenticado",
+                "operationId": "095767369441c0bc2868b803ce20a4ae",
+                "responses": {
+                    "200": {
+                        "description": "Datos del usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "nombre": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "id_usuario": {
+                                            "type": "integer"
+                                        },
+                                        "rol": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No se pudo autenticar al usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/cita_taller": {
+            "get": {
+                "summary": "Obtener todas las citas del taller de un cliente",
+                "operationId": "00b8629bd81a58e02262545d1ff68253",
+                "responses": {
+                    "200": {
+                        "description": "Citas obtenidas con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id_cita_taller": {
+                                                "type": "integer"
+                                            },
+                                            "fecha": {
+                                                "type": "string",
+                                                "format": "date"
+                                            },
+                                            "hora": {
+                                                "type": "string",
+                                                "format": "time"
+                                            },
+                                            "comentario": {
+                                                "type": "string"
+                                            },
+                                            "imagen": {
+                                                "type": "string"
+                                            },
+                                            "opcion": {
+                                                "type": "string"
+                                            },
+                                            "imagen_url": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No se pudo autenticar al usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Crea una nueva cita en el taller",
+                "operationId": "52253e3c5ce6108b7e3d29e0f1389a4c",
+                "requestBody": {
+                    "description": "Datos necesarios para crear una cita",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "opcion": {
+                                        "description": "La opción de la cita",
+                                        "type": "string"
+                                    },
+                                    "fecha": {
+                                        "description": "La fecha de la cita",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "hora": {
+                                        "description": "La hora de la cita",
+                                        "type": "string",
+                                        "format": "time"
+                                    },
+                                    "estado": {
+                                        "description": "El estado de la cita",
+                                        "type": "string"
+                                    },
+                                    "comentario": {
+                                        "description": "El comentario de la cita",
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "description": "La imagen de la cita",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Cita creada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "El ID de la cita",
+                                            "type": "integer"
+                                        },
+                                        "opcion": {
+                                            "description": "La opción de la cita",
+                                            "type": "string"
+                                        },
+                                        "fecha": {
+                                            "description": "La fecha de la cita",
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "hora": {
+                                            "description": "La hora de la cita",
+                                            "type": "string",
+                                            "format": "time"
+                                        },
+                                        "estado": {
+                                            "description": "El estado de la cita",
+                                            "type": "string"
+                                        },
+                                        "comentario": {
+                                            "description": "El comentario de la cita",
+                                            "type": "string"
+                                        },
+                                        "imagen": {
+                                            "description": "La imagen de la cita",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No se pudo autenticar al usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Elimina una cita del taller",
+                "operationId": "e1aabab92df145830694258b95a57161",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_cita_taller": {
+                                        "description": "El ID de la cita del taller",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Cita eliminada con éxito"
+                    },
+                    "404": {
+                        "description": "Cita no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/editarCitaUsuario": {
+            "post": {
+                "summary": "Editar una cita de la bdd",
+                "operationId": "18130be5519f439a1de3f8f8b4339f70",
+                "requestBody": {
+                    "description": "Datos necesarios para editar una cita",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_cita_taller": {
+                                        "type": "integer"
+                                    },
+                                    "fecha": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "hora": {
+                                        "type": "string",
+                                        "format": "time"
+                                    },
+                                    "comentario": {
+                                        "type": "string"
+                                    },
+                                    "imagen": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "opcion": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Cita editada con éxito",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id_cita_taller": {
+                                            "type": "integer"
+                                        },
+                                        "fecha": {
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "hora": {
+                                            "type": "string",
+                                            "format": "time"
+                                        },
+                                        "comentario": {
+                                            "type": "string"
+                                        },
+                                        "imagen": {
+                                            "type": "string"
+                                        },
+                                        "opcion": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No se pudo autenticar al usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cita no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/obtenerCitaId/{id_cita_taller}": {
+            "get": {
+                "summary": "Obtener una cita por su ID",
+                "operationId": "6bb187eec08e882d29aa0bc359472866",
+                "parameters": [
+                    {
+                        "name": "id_cita_taller",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cita encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id_cita_taller": {
+                                            "type": "integer"
+                                        },
+                                        "fecha": {
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "hora": {
+                                            "type": "string",
+                                            "format": "time"
+                                        },
+                                        "comentario": {
+                                            "type": "string"
+                                        },
+                                        "imagen": {
+                                            "type": "string"
+                                        },
+                                        "opcion": {
+                                            "type": "string"
+                                        },
+                                        "imagen_url": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No se pudo autenticar al usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cita no encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/citaPendiente": {
+            "put": {
+                "summary": "Edita el estado de varias citas del taller desde el panel del adminitrador de Angular",
+                "operationId": "db2c4638f833e9cf77398b0e5cb608e4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id_cita_taller": {
+                                            "description": "El ID de la cita del taller",
+                                            "type": "integer"
+                                        },
+                                        "Estado": {
+                                            "description": "El nuevo estado de la cita",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Las citas se han actualizado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "description": "Mensaje de éxito",
+                                            "type": "string"
+                                        },
+                                        "usuarios": {
+                                            "description": "Array de los ID de los usuarios cuyas citas se han actualizado",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Se esperaba un array de citas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "Mensaje de error",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/calendario": {
+            "get": {
+                "summary": "Obtiene todas las citas del taller",
+                "operationId": "ac2e27f27db5bdf59bc2b7aca9007a93",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id_cita_taller": {
+                                                "type": "integer"
+                                            },
+                                            "fecha": {
+                                                "type": "string",
+                                                "format": "date"
+                                            },
+                                            "hora": {
+                                                "type": "string",
+                                                "format": "time"
+                                            },
+                                            "comentario": {
+                                                "type": "string"
+                                            },
+                                            "imagen": {
+                                                "type": "string"
+                                            },
+                                            "opcion": {
+                                                "type": "string"
+                                            },
+                                            "imagen_url": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/subir_imagen": {
+            "put": {
+                "summary": "Sube una imagen para una cita del taller",
+                "operationId": "8a365b0b8092cdd0e95caf9b51104826",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "imagen": {
+                                        "description": "La imagen a subir",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Imagen subida exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Mensaje de éxito",
+                                            "type": "string"
+                                        },
+                                        "nombre_imagen": {
+                                            "description": "Nombre de la imagen subida",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No se proporcionó ninguna imagen",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Mensaje de error",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

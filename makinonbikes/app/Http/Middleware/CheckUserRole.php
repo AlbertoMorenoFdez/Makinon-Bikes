@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;    
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 use Illuminate\Support\Facades\Log;
@@ -19,7 +19,7 @@ class CheckUserRole
      * @param string $rol
      */
     public function handle(Request $request, Closure $next, $rol): Response
-   {
+    {
         Log::info('Middleware CheckUserRole ejecutado');
 
         if (!Auth::check()) {
