@@ -117,7 +117,26 @@ export class GraficaComponent  {
               display: false
             },
             suggestedMin: 0,
-            suggestedMax: 10
+            suggestedMax: 10,
+            ticks: {
+              font: {
+                size: 15
+              }
+            },
+            pointLabels: {
+              font: {
+                size: 15
+              }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              font: {
+                size: 20
+              }
+            }
           }
         }
       }
@@ -210,7 +229,28 @@ export class GraficaComponent  {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            ticks: {
+              font: {
+                size: 15
+              }
+            },
+          },
+          x: {
+            ticks: {
+              font: {
+                size: 15
+              }
+            }
+          },
+        },
+        plugins: {
+          legend: {
+            labels: {
+              font: {
+                size: 20 // Cambia este valor al tamaño de fuente que prefieras
+              }
+            }
           }
         }
       }
@@ -253,11 +293,31 @@ export class GraficaComponent  {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            ticks: {
+              font: {
+                size: 15
+              }
+            },
+          },
+          x: {
+            ticks: {
+              font: {
+                size: 15
+              }
+            }
+          },
+        },
+        plugins: {
+          legend: {
+            labels: {
+              font: {
+                size: 20 // Cambia este valor al tamaño de fuente que prefieras
+              }
+            }
           }
         }
-      }
-    });
-  }
+      }
+    });
+  }
 }
-

@@ -1,7 +1,9 @@
 canvas {
-    width: 80% !important;
-    height: auto !important;
-  }
+  margin-top: 2rem;
+  width: 60% !important;
+  height: auto !important;
+}
+
  div{
     display: flex;
     justify-content: center;
