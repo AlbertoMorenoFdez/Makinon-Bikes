@@ -4,13 +4,13 @@
     <!-- Muestra el carrito de la compra con los productos añadidos -->
     <div class="contenedor-carrito">
         <div class="productos-carrito">
-            <h2>TU CESTA DE LA COMPRA</h2>
+            <h2>{{ strtoupper(__('carrito.tuCestaCompra')) }}</h2>
             <div id="cabecera-resumen">
-                <p>PRODUCTO</p>
+                <p>{{ strtoupper(__('carrito.producto')) }}</p>
                 <p></p>
-                <p>CANTIDAD</p>
-                <p>PRECIO UNITARIO</p>
-                <p>PRECIO TOTAL</p>
+                <p>{{ strtoupper(__('carrito.cantidad')) }}</p>
+                <p>{{ strtoupper(__('carrito.precioUD')) }}</p>
+                <p>{{ strtoupper(__('carrito.precioTotal')) }}</p>
                 <p></p>
             </div>
             @foreach ($carrito as $item)
@@ -53,38 +53,35 @@
 
 
         <div class="resumen-pago">
-            <h2 id="titulo-resumen">RESUMEN DEL PEDIDO</h2>
+            <h2 id="titulo-resumen">{{ strtoupper(__('carrito.resumenPedido')) }}</h2>
             <div id="importe-gastos">
                 <div class="d-flex justify-content-between">
-                    <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
+                    <p class="text-secondary mb-0">{{ strtoupper(__('carrito.valorT')) }}</p>
                     <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
                 </div>
                 <div class="d-flex justify-content-between tex">
-                    <p class="text-secondary mb-0">Gastos de envío</p>
+                    <p class="text-secondary mb-0">{{ strtoupper(__('carrito.gastosEnv')) }}</p>
                     <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
                 </div>
             </div>
             <div id="total">
                 <div class="d-flex justify-content-between mt-3">
-                    <p class="text-secondary mb-0">Total del pedido</p>
+                    <p class="text-secondary mb-0">{{ strtoupper(__('carrito.totalPedido')) }}</p>
                     <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
                 </div>
             </div>
 
             <div class="botones-pago">
-                <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%; margin-bottom:10px">Seguir
-                    comprando</x-makinon-primary-link-button>
+                <x-makinon-primary-link-button href="{{ url()->previous() }}" style="width:60%; margin-bottom:10px">@lang('carrito.continuarComprando')</x-makinon-primary-link-button>
                 <form action="{{ route('realizar-pedido') }}" method="POST"
                     style="width:100%; display:flex; justify-content:center">
                     @csrf
 
                     @if (count($carrito) > 0)
-                        <x-makinon-primary-button type="submit" style="width:60%">Realizar
-                            Pedido</x-makinon-primary-button>
+                        <x-makinon-primary-button type="submit" style="width:60%">@lang('carrito.realizarPedido')</x-makinon-primary-button>
                     @else
                         <x-makinon-primary-button type="submit" style="width:60%; background-color:lightgrey"
-                            disabled>Realizar
-                            Pedido</x-makinon-primary-button>
+                            disabled>@lang('carrito.realizarPedido')</x-makinon-primary-button>
                     @endif
                 </form>
             </div>

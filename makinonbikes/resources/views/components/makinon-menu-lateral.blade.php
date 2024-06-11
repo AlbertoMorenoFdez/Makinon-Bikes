@@ -5,15 +5,15 @@
             <h2 class="accordion-header d-flex " id="headingBicicletas">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#bicicletas">
-                    BICICLETAS
+                    {{ strtoupper(__('makinon.bicicletas')) }}
                 </button>
             </h2>
             <div id="bicicletas" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'bicicleta de montaña') }}">Montaña</a></p>
-                    <p><a href="{{ route('productos.tipo', 'bicicleta de carretera') }}">Carretera</a></p>
-                    <p><a href="{{ route('productos.tipo', 'bicicleta de gravel') }}">Gravel</a></p>
-                    <p><a href="{{ route('productos.tipo', 'bicicleta electrica') }}">E-Bikes</a></p>
+                    <p><a href="{{ route('productos.tipo', 'bicicleta de montaña') }}">@lang('productos.montaña')</a></p>
+                    <p><a href="{{ route('productos.tipo', 'bicicleta de carretera') }}">@lang('productos.carretera') </a></p>
+                    <p><a href="{{ route('productos.tipo', 'bicicleta de gravel') }}">@lang('productos.grevel')</a></p>
+                    <p><a href="{{ route('productos.tipo', 'bicicleta electrica') }}">@lang('productos.ebikes')</a></p>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <h2 class="accordion-header d-flex" id="headingComponentes">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#componentes">
-                    COMPONENTES
+                    {{ strtoupper(__('makinon.componentes')) }}
                 </button>
             </h2>
             <div id="componentes" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
@@ -31,16 +31,16 @@
                         <div>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#transmisionComponentes">
-                                Transmision
+                                @lang('productos.transmision')
                             </button>
                             <div id="transmisionComponentes" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionTransmision">
                                 <div class="accordion-body">
-                                    <p><a href="{{ route('productos.tipo', 'mando') }}">Mandos</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'cambio') }}">Cambios</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'bielas') }}">Bielas</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'cadena') }}">Cadenas</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'grupo') }}">Grupos completos</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'mando') }}">@lang('productos.mandos')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'cambio') }}">@lang('productos.cambios')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'bielas') }}">@lang('productos.bielas')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'cadena') }}">@lang('productos.cadenas')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'grupo') }}">@lang('productos.gruposcompletos')</a> </p>
                                 </div>
                             </div>
                         </div>
@@ -49,15 +49,15 @@
                         <div>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#frenosComponentes">
-                                Frenos
+                                @lang('productos.frenos')
                             </button>
                             <div id="frenosComponentes" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionFrenos">
                                 <div class="accordion-body">
-                                    <p><a href="{{ route('productos.tipo', 'maneta') }}">Palancas de freno</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'pinza') }}">Pinzas de freno</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'disco') }}">Discos de freno</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'kit de frenos') }}">Kits de frenos</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'maneta') }}">@lang('productos.palancas')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'pinza') }}">@lang('productos.pinzas')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'disco') }}">@lang('productos.discos')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'kit de frenos') }}">@lang('productos.kitsfrenos')</a> </p>
                                 </div>
                             </div>
                         </div>
@@ -66,19 +66,15 @@
                         <div>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#ruedasComponentes">
-                                Ruedas
+                                @lang('productos.ruedas')
                             </button>
                             <div id="ruedasComponentes" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionRuedas">
                                 <div class="accordion-body">
-                                    <p><a href="{{ route('productos.tipo', 'ruedas de montaña') }}">Ruedas de
-                                            montaña</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'ruedas de carretera') }}">Ruedas de
-                                            carretera</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'cubierta de montaña') }}">Cubiertas de
-                                            montaña</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'cubierta de carretera') }}">Cubiertas de
-                                            carretera</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'ruedas de montaña') }}">@lang('productos.ruedasM')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'ruedas de carretera') }}">@lang('productos.ruedasC')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'cubierta de montaña') }}">@lang('productos.cubiertasM')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'cubierta de carretera') }}">@lang('productos.cubiertasC')</a> </p>
                                 </div>
                             </div>
                         </div>
@@ -87,15 +83,13 @@
                         <div>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#manillaresComponentes">
-                                Manillares
+                                @lang('productos.manillares')
                             </button>
                             <div id="manillaresComponentes" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionManillares">
                                 <div class="accordion-body">
-                                    <p><a href="{{ route('productos.tipo', 'manillar de montaña') }}">Manillares de
-                                            montaña</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'manillar de carretera') }}">Manillares de
-                                            carretera</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'manillar de montaña') }}">@lang('productos.manillaresM')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'manillar de carretera') }}">@lang('productos.manillaresC')</a> </p>
                                 </div>
                             </div>
                         </div>
@@ -104,15 +98,13 @@
                         <div>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#sillinesComponentes">
-                                Sillines
-                            </button>
+                                @lang('productos.sillines')                            </button>
                             <div id="sillinesComponentes" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionSillines">
                                 <div class="accordion-body">
-                                    <p><a href="{{ route('productos.tipo', 'sillin') }}">Sillines</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'sillin antiprostatico') }}">Sillines
-                                            antipróstaticos</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'sillin urbano') }}">Sillines de paseo</a>
+                                    <p><a href="{{ route('productos.tipo', 'sillin') }}">@lang('productos.sillines')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'sillin antiprostatico') }}">@lang('productos.sillinesAP')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'sillin urbano') }}">@lang('productos.sillinesP')</a>
                                     </p>
                                 </div>
                             </div>
@@ -122,14 +114,13 @@
                         <div>
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#tijasComponentes">
-                                Tijas
+                                @lang('productos.tijas')
                             </button>
                             <div id="tijasComponentes" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionTijas">
                                 <div class="accordion-body">
-                                    <p><a href="{{ route('productos.tipo', 'tija') }}">Tijas</a> </p>
-                                    <p><a href="{{ route('productos.tipo', 'tija telescopica') }}">Tijas
-                                            telescópicas</a></p>
+                                    <p><a href="{{ route('productos.tipo', 'tija') }}">@lang('productos.tijas')</a> </p>
+                                    <p><a href="{{ route('productos.tipo', 'tija telescopica') }}">@lang('productos.tijasT')</a></p>
                                 </div>
                             </div>
                         </div>
@@ -142,12 +133,12 @@
             <h2 class="accordion-header d-flex" id="headingGafas">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#gafas">
-                    GAFAS
+                    {{ strtoupper(__('makinon.gafas')) }}
                 </button>
             </h2>
             <div id="gafas" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'gafas') }}">Gafas</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'gafas') }}">@lang('productos.gafas')</a> </p>
                     
                 </div>
             </div>
@@ -156,12 +147,12 @@
             <h2 class="accordion-header d-flex" id="headingCascos">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#cascos">
-                    CASCOS
+                    {{ strtoupper(__('makinon.cascos')) }}
                 </button>
             </h2>
             <div id="cascos" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'casco') }}">Cascos</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'casco') }}">@lang('productos.cascos')</a> </p>
                 </div>
             </div>
         </div>
@@ -169,13 +160,13 @@
             <h2 class="accordion-header d-flex" id="headingZapatillas">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#zapatillas">
-                    ZAPATILLAS
+                    {{ strtoupper(__('makinon.zapatillas')) }}
                 </button>
             </h2>
             <div id="zapatillas" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'zapatillas de carretera') }}">De carretera</a> </p>
-                    <p><a href="{{ route('productos.tipo', 'zapatillas de montaña') }}">De montaña</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'zapatillas de carretera') }}">@lang('productos.zapatillasM')</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'zapatillas de montaña') }}">@lang('productos.zapatillasC')</a> </p>
                 </div>
             </div>
         </div>
@@ -183,13 +174,13 @@
             <h2 class="accordion-header d-flex" id="headingMaillots">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#maillots">
-                    MAILLOTS
+                    {{ strtoupper(__('makinon.maillots')) }}
                 </button>
             </h2>
             <div id="maillots" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'maillot corto') }}">De manga corta</a></p>
-                    <p><a href="{{ route('productos.tipo', 'maillot largo') }}">De manga larga</a></p>
+                    <p><a href="{{ route('productos.tipo', 'maillot corto') }}">@lang('productos.maillotsMC')</a></p>
+                    <p><a href="{{ route('productos.tipo', 'maillot largo') }}">@lang('productos.maillotsML')</a></p>
                 </div>
             </div>
         </div>
@@ -197,13 +188,13 @@
             <h2 class="accordion-header d-flex" id="headingCulottes">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#culottes">
-                    CULOTTES
+                    {{ strtoupper(__('makinon.culottes')) }}
                 </button>
             </h2>
             <div id="culottes" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'culotte corto') }}">Cortos</a></p>
-                    <p><a href="{{ route('productos.tipo', 'culotte largo') }}">Largos</a></p>
+                    <p><a href="{{ route('productos.tipo', 'culotte corto') }}">@lang('productos.culotC')</a></p>
+                    <p><a href="{{ route('productos.tipo', 'culotte largo') }}">@lang('productos.culotL')</a></p>
                 </div>
             </div>
         </div>
@@ -211,13 +202,13 @@
             <h2 class="accordion-header d-flex" id="headingGuantes">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#guantes">
-                    GUANTES
+                    {{ strtoupper(__('productos.guantes')) }}
                 </button>
             </h2>
             <div id="guantes" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'guantes cortos') }}">Cortos</a></p>
-                    <p><a href="{{ route('productos.tipo', 'guantes largo') }}">Largos</a></p>
+                    <p><a href="{{ route('productos.tipo', 'guantes cortos') }}">@lang('productos.guantesC')</a></p>
+                    <p><a href="{{ route('productos.tipo', 'guantes largo') }}">@lang('productos.guantesL')</a></p>
                 </div>
             </div>
         </div>
@@ -226,14 +217,14 @@
             <h2 class="accordion-header d-flex" id="headingAlimentacion">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#alimentacion">
-                    ALIMENTACIÓN
+                    {{ strtoupper(__('makinon.alimentacion')) }}
                 </button>
             </h2>
             <div id="alimentacion" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{ route('productos.tipo', 'barrita') }}">Barritas</a></p>
-                    <p><a href="{{ route('productos.tipo', 'gel') }}">Geles</a> </p>
-                    <p><a href="{{ route('productos.tipo', 'hidratacion') }}">Hidratación</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'barrita') }}">@lang('productos.barritas')</a></p>
+                    <p><a href="{{ route('productos.tipo', 'gel') }}">@lang('productos.geles')</a> </p>
+                    <p><a href="{{ route('productos.tipo', 'hidratacion') }}">@lang('productos.hidratac')</a> </p>
                 </div>
             </div>
         </div>
@@ -241,13 +232,13 @@
             <h2 class="accordion-header d-flex" id="headingTaller">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#taller">
-                    TALLER
+                    {{ strtoupper(__('makinon.taller')) }}
                 </button>
             </h2>
             <div id="taller" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body">
-                    <p><a href="{{route('taller')}}">Nuestro taller</a></p>
-                    <p><a href="{{route('citaTaller')}}">Pide cita</a></p>
+                    <p><a href="{{route('taller')}}">@lang('productos.nuestroTaller')</a></p>
+                    <p><a href="{{route('citaTaller')}}">@lang('productos.pideCita')</a></p>
                 </div>
             </div>
         </div>
@@ -255,7 +246,7 @@
             <h2 class="accordion-header d-flex" id="headingMarcas">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#marcas">
-                    MARCAS
+                    {{ strtoupper(__('productos.marcas')) }}
                 </button>
             </h2>
             <div id="marcas" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">

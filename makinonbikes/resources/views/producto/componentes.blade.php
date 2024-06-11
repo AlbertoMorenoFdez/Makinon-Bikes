@@ -14,7 +14,7 @@
                         <img src="{{ asset('images/componentes/transmision.webp') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="componentes transmisión">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">TRANSMISIÓN</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.transmision')) }}</h5>
                         </div>
                     </a>
                 </div>
@@ -27,7 +27,7 @@
                         <img src="{{ asset('images/componentes/frenos.jpg') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="frenos">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">FRENOS</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.frenos')) }}</h5>
                         </div>
                     </a>
                 </div>
@@ -40,7 +40,7 @@
                         <img src="{{ asset('images/componentes/ruedas.webp') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="ruedas y cubiertas">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">RUEDAS</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.ruedas')) }}</h5>
                         </div>
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                         <img src="{{ asset('images/componentes/manillar.jpg') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="manillares">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">MANILLARES</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.manillares')) }}</h5>
                         </div>
                     </a>
                 </div>
@@ -66,7 +66,7 @@
                         <img src="{{ asset('images/componentes/sillin.jpg') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="sillines">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">SILLINES</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.sillines')) }}</h5>
                         </div>
                     </a>
                 </div>
@@ -79,7 +79,7 @@
                         <img src="{{ asset('images/componentes/tija.webp') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="tijas de sillín">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">TIJAS</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.tijas')) }}</h5>
                         </div>
                     </a>
                 </div>

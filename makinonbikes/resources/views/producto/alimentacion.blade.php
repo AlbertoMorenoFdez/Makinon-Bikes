@@ -13,7 +13,7 @@
                         <img src="{{ asset('images/alimentacion/barrita.jpg') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="barritas energéticas">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">BARRITAS</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.barritas')) }}</h5>
                         </div>
                     </a>
                 </div>
@@ -25,7 +25,7 @@
                         <img src="{{ asset('images/alimentacion/gel.webp') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="geles energéticos">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">GELES</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.geles')) }}</h5>
                         </div>
                     </a>
                 </div>
@@ -37,7 +37,7 @@
                         <img src="{{ asset('images/alimentacion/hidratacion.jpg') }}" class="card-img-top img-fluid"
                             style="height: 200px;" alt="hidratacion">
                         <div class="card-body" style="padding:0; margin-top:10px; text-align:center">
-                            <h5 class="card-title">HIDRATACIÓN</h5>
+                            <h5 class="card-title">{{ strtoupper(__('productos.hidratac')) }}</h5>
                         </div>
                     </a>
                 </div>

@@ -59,11 +59,11 @@ class CarritoController extends Controller
                     // Si no hay suficiente stock, revertimos la última adición y mostramos un mensaje de error
                     $item['cantidad'] -= $request->cantidad;
                     $item['precio_total'] = $item['cantidad'] * $item['precio'];
-                    return redirect()->back()->with('error', 'No puedes añadir más unidades de este producto. No hay suficiente stock.');
+                    return redirect()->back()->with('error', __('carrito.errorStock'));
                 }
 
                 $request->session()->put('carrito', $carrito);
-                return redirect()->back()->with('success', 'Producto añadido al carrito correctamente!');
+                return redirect()->back()->with('success', __('carrito.anadidoCarrito'));
             }
         }
 
@@ -72,7 +72,7 @@ class CarritoController extends Controller
         $stockDisponible = $productoColorTallaController->comprobarStock($request->id_producto, $request->id_color, $request->id_talla, $request->cantidad);
 
         if ($request->cantidad > $stockDisponible) {
-            return redirect()->back()->with('error', 'No puedes añadir más unidades de este producto. No hay suficiente stock.');
+            return redirect()->back()->with('error', __('carrito.errorStock'));
         }
 
         $producto = [
@@ -93,7 +93,7 @@ class CarritoController extends Controller
 
         $request->session()->put('carrito', $carrito);
 
-        return redirect()->back()->with('success', 'Producto añadido al carrito correctamente');
+        return redirect()->back()->with('success', __('carrito.anadidoCarrito'));
     }
 
 
@@ -117,6 +117,6 @@ class CarritoController extends Controller
 
         $request->session()->put('carrito', $carrito);
 
-        return redirect()->back()->with('success', 'Producto eliminado correctamente');
+        return redirect()->back()->with('success', __('carrito.eliminarProductoCarrito'));
     }
 }

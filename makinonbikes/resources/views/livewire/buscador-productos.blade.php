@@ -1,7 +1,7 @@
 <div class="resultadoBuscador">
     <label for="buscador" class="sr-only"> Search </label>
 
-    <input type="text" id="buscador" placeholder="Buscar..." wire:model="search" title="Buscar"
+    <input type="text" id="buscador" placeholder="@lang('makinon.buscar')..." wire:model="search" title="Buscar"
         class="w-full rounded-md border-orange-500 py-2.5 pe-10 shadow-sm sm:text-sm" />
 
     <span class="absolute inset-y-0 end-0 grid mt-1 mr-2 w-10 place-content-center" >

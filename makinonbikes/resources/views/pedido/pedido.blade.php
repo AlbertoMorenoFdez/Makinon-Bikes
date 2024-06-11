@@ -7,73 +7,73 @@
             @csrf
             <div class="progreso-compra">
                 <div class="paso-clickeable-datos">
-                    <span>Mis Datos</span>
+                    <span>@lang('pedido.misDatos')</span>
                 </div>
                 <div class="paso-clickeable-pago">
-                    <span>Forma de Pago</span>
+                    <span>@lang('pedido.formaPago')</span>
                 </div>
                 <div class="paso-clickeable-confirm" disabled>
-                    <span>Confirmar Datos</span>
+                    <span>@lang('pedido.confirmarDatos')</span>
                 </div>
             </div>
 
             <div class="contenedor-slide">
                 <div class="contenedor-pedido">
                     <div class="datospersonales">
-                        <div class="titulo-datos-personales">DATOS PERSONALES</div>
+                        <div class="titulo-datos-personales">{{ strtoupper(__('pedido.datosP')) }}</div>
                         <div class="emailpedido">
-                            <label>Email</label>
+                            <label>@lang('pedido.email')</label>
                             <p>{{ $usuario->email }}</p>
                         </div>
                         <div class="telefonopedido">
-                            <label>Teléfono</label>
+                            <label>@lang('pedido.tlfno')</label>
                             <p>{{ $usuario->telefono }}</p>
                         </div>
-                        <div class="direccion-envio">DIRECCION DE ENVIO</div>
+                        <div class="direccion-envio">{{ strtoupper(__('pedido.direccEnv')) }}</div>
                         <div class="nombrepedido">
-                            <label>Nombre</label>
+                            <label>@lang('pedido.nombre')</label>
                             <p>{{ $usuario->nombre }}</p>
                         </div>
                         <div class="apellidospedido">
-                            <label>Apellidos</label>
+                            <label>@lang('pedido.apellidos')</label>
                             <p>{{ $usuario->apellidos }}</p>
                         </div>
                         <div class="direccionpedido">
-                            <label>Dirección</label>
+                            <label>@lang('pedido.direccion')</label>
                             <p>{{ $usuario->direccion }}</p>
                         </div>
                         <div class="cp-ciudad">
-                            <label>Código Postal</label>
+                            <label>@lang('pedido.cp')</label>
                             <p>{{ $usuario->cp }}</p>
                         </div>
                         <div class="ciudadpedido">
-                            <label>Ciudad</label>
+                            <label>@lang('pedido.ciudad')</label>
                             <p>{{ $usuario->ciudad }}</p>
                         </div>
 
                     </div>
 
                     <div class="resumen-pedido ">
-                        <h2 id="titulo-resumen">TU PEDIDO</h2>
+                        <h2 id="titulo-resumen">{{ strtoupper(__('pedido.tuPedido')) }}</h2>
                         <div id="importe-gastos">
                             <div class="d-flex justify-content-between">
-                                <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
+                                <p class="text-secondary mb-0">@lang('carrito.valorT')</p>
                                 <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
                             </div>
                             <div class="d-flex justify-content-between tex">
-                                <p class="text-secondary mb-0">Gastos de envío</p>
+                                <p class="text-secondary mb-0">@lang('carrito.gastosEnv')</p>
                                 <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
                             </div>
                         </div>
                         <div id="total">
                             <div class="d-flex justify-content-between mt-3 mb-10">
-                                <p class="text-secondary mb-0">Total del pedido</p>
+                                <p class="text-secondary mb-0">@lang('carrito.totalPedido')</p>
                                 <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
                             </div>
                         </div>
                         <div class="d-flex justify-center mb-10">
                             <x-makinon-primary-button class="paso--clickeable"
-                                style="width:60%">Continuar</x-makinon-primary-button>
+                                style="width:60%">@lang('pedido.cont')</x-makinon-primary-button>
                         </div>
                         @if (session('error'))
                             <div class="alert alert-danger">
@@ -83,21 +83,19 @@
                     </div>
                 </div>
                 <div class="contenedor-forma-pago">
-                    <h2>FORMA DE PAGO</h2>
+                    <h2>{{ strtoupper(__('pedido.formaPago')) }}</h2>
                     <div class="selector-forma-pago">
                         <div class="contenedor-tarjeta">
                             <div class="d-flex flex-row align-items-center">
                                 <x-makinon-radio-button id="elegida-tarjeta" name="forma-pago"
                                     value="tarjeta"></x-makinon-radio-button>
-                                <label class="mb-0 ml-5">Tarjeta de crédito</label>
+                                <label class="mb-0 ml-5">@lang('pedido.tarjetaCredito')</label>
                             </div>
                             <div class="tarjeta">
-                                <p>Si seleccionas esta opción en el siguiente paso te pediremos los datos de tu tarjeta de
-                                    crédito, asi que tenlos a mano.
-                                </p>
+                                <p>@lang('pedido.seleccTarjeta')</p>
                                 <div class="d-flex align-items-end ">
                                     <x-makinon-primary-button class="paso--clickeable"
-                                        style="margin-left:0;">Continuar</x-makinon-primary-button>
+                                        style="margin-left:0;">@lang('pedido.cont')</x-makinon-primary-button>
                                 </div>
                             </div>
                         </div>
@@ -106,15 +104,14 @@
                             <div class="d-flex flex-row align-items-center">
                                 <x-makinon-radio-button id="elegido-paypal" name="forma-pago"
                                     value="paypal"></x-makinon-radio-button>
-                                <label class="mb-0 ml-5">Paypal</label>
+                                <label class="mb-0 ml-5">@lang('pedido.paypal')</label>
                             </div>
                             <div class="paypal">
-                                <p>Al seleccionar esta opción le redirigiremos a la página de Paypal para que pueda realizar
-                                    el pago.
+                                <p>@lang('pedido.seleccPaypal')
                                 </p>
                                 <div class="d-flex align-items-end ">
                                     <x-makinon-primary-button class="paso--clickeable"
-                                        style="margin-left:0;">Continuar</x-makinon-primary-button>
+                                        style="margin-left:0;">@lang('pedido.cont')</x-makinon-primary-button>
                                 </div>
                             </div>
                         </div>
@@ -124,16 +121,14 @@
                             <div class="d-flex flex-row align-items-center">
                                 <x-makinon-radio-button id="elegida-transferencia" name="forma-pago"
                                     value="transferencia"></x-makinon-radio-button>
-                                <label class="mb-0 ml-5">Transferencia bancaria</label>
+                                <label class="mb-0 ml-5">@lang('pedido.transfBanc')</label>
                             </div>
                             <div class="transferencia">
-                                <p>Al seleccionar esta opción le enviaremos los datos bancarios donde debe
-                                    realizar la
-                                    transferencia.
+                                <p>@lang('pedido.seleccTransf')
                                 </p>
                                 <div class="d-flex align-items-end ">
                                     <x-makinon-primary-button class="paso--clickeable"
-                                        style="margin-left:0;">Continuar</x-makinon-primary-button>
+                                        style="margin-left:0;">@lang('pedido.cont')</x-makinon-primary-button>
                                 </div>
                             </div>
                         </div>
@@ -143,15 +138,15 @@
 
 
                 <div class="contenedor-confirmar-pedido">
-                    <h2>COMPRUEBA TU PEDIDO</h2>
+                    <h2>{{ strtoupper(__('pedido.compruebaPedido')) }}</h2>
                     <div class="resumen-final">
 
                         <div class="metodo-pago">
-                            <h3>FORMA DE PAGO</h3>
+                            <h3>{{ strtoupper(__('pedido.formaPago')) }}</h3>
 
                             <div class="paypal-elegido">
                                 <div style="display:flex; flex-direction:row; align-items:center">
-                                    <p>Ha elegido pagar mediante Paypal</p>
+                                    <p>@lang('pedido.msjSeleccPaypal')</p>
                                     <img src="{{ asset('images/paypal.png') }}" alt="Paypal"
                                         style="width: 90px; height: 60px; margin-left:1em; margin-bottom:1rem" />
                                 </div>
@@ -159,7 +154,7 @@
 
                             <div class="transferencia-elegido">
                                 <div style="display:flex; flex-direction:row; align-items:center">
-                                    <p>Ha elegido pagar mediante Transferencia bancaria</p>
+                                    <p>@lang('pedido.msjSeleccTransf')</p>
                                     <img src="{{ asset('images/banco.png') }}" alt="Banco"
                                         style="width: 40px; height: 40px; margin-left:1em; margin-bottom:1rem" />
                                 </div>
@@ -167,7 +162,7 @@
 
                             <div class="tarjeta-elegido">
                                 <div style="display:flex; flex-direction:row; align-items:center">
-                                    <p>Ha elegido pagar mediante Tarjeta de crédito</p>
+                                    <p>@lang('pedido.msjSeleccTarjeta')</p>
                                     <img src="{{ asset('images/visa.png') }}" alt="Visa"
                                         style="width: 50px; height: 50px; margin-left:1em; margin-bottom:1rem" />
                                     <img src="{{ asset('images/mastercard.png') }}" alt="Mastercard"
@@ -178,13 +173,13 @@
 
                                 <div class="contenedor-tarjeta-input">
                                     <div>
-                                        <x-input-label for="numero-tarjeta">Número de tarjeta</x-input-label>
+                                        <x-input-label for="numero-tarjeta">@lang('pedido.numTarjeta')</x-input-label>
                                         <x-text-input type="text" id="numero_tarjeta" name="numero_tarjeta"
                                             placeholder="0000 0000 0000 0000" />
                                     </div>
 
                                     <div>
-                                        <x-input-label for="fecha-vencimiento">Fecha de caducidad</x-input-label>
+                                        <x-input-label for="fecha-vencimiento">@lang('pedido.fechaCad')</x-input-label>
                                         <x-text-input type="text" id="fecha_vencimiento" name="fecha_vencimiento"
                                             placeholder="MM/AA" />
                                     </div>
@@ -193,7 +188,7 @@
                                         <x-text-input type="text" id="cvv" name="cvv" placeholder="000" />
                                     </div>
                                     <div>
-                                        <x-input-label for="nombre-titular">Nombre del titular</x-input-label>
+                                        <x-input-label for="nombre-titular">@lang('pedido.nombreTitular')</x-input-label>
                                         <x-text-input type="text" id="nombre_titular" name="nombre_titular"
                                             placeholder="Nombre del titular" />
                                     </div>
@@ -203,7 +198,7 @@
                         </div>
 
                         <div class="direccion-entrega">
-                            <h3>DIRECCIÓN DE ENTREGA</h3>
+                            <h3>{{ strtoupper(__('pedido.direccEnv')) }}</h3>
                             <div class="ml-5">
                                 <p><span class="material-symbols-outlined">
                                         account_circle
@@ -224,27 +219,27 @@
                         </div>
 
                         <div class="resumen-cesta">
-                            <h3>RESUMEN DE LA CESTA</h3>
+                            <h3>{{ strtoupper(__('pedido.resumenCesta')) }}</h3>
                             @foreach ($carrito as $item)
                                 <div id="lineas-productos-pedido">
                                     <div class="d-flex flex-col">
                                         <p class="mb-2">{{ $item['marca'] }} {{ $item['nombre'] }}
                                         <p class="mb-2">
                                             @if ($item['talla'] != '' && $item['talla'] != 'Sin talla')
-                                                Talla: {{ $item['talla'] }}
+                                            @lang('pedido.talla'): {{ $item['talla'] }}
                                             @endif
                                         </p>
                                         <p>
                                             @if (isset($item['color']) && $item['color'] != '' && $item['color'] != 'Sin color')
-                                                Color: {{ $item['color'] }}
+                                            @lang('pedido.color'): {{ $item['color'] }}
                                             @endif
                                         </p>
 
                                         </p>
                                     </div>
-                                    <p>Cantidad {{ $item['cantidad'] }}</p>
-                                    <p>Precio unitario: {{ $item['precio'] }} €</p>
-                                    <p>Precio total: {{ $item['cantidad'] * $item['precio'] }} €</p>
+                                    <p>@lang('carrito.cantidad'): {{ $item['cantidad'] }}</p>
+                                    <p>@lang('carrito.precioUD'): {{ $item['precio'] }} €</p>
+                                    <p>@lang('carrito.precioTotal'): {{ $item['cantidad'] * $item['precio'] }} €</p>
 
                                     <form method="POST" action="{{ route('eliminarDelCarrito') }}">
                                         @csrf
@@ -260,20 +255,20 @@
 
                         <div class="resumen-pago">
                             <div id="importe-gastos">
-                                <h3>RESUMEN DEL IMPORTE DEL PEDIDO</h3>
+                                <h3>{{ strtoupper(__('pedido.resumenImporte')) }}</h3>
                                 <div class="d-flex justify-content-between ml-5">
-                                    <p class="text-secondary mb-0">Valor total de los productos IVA incluido</p>
+                                    <p class="text-secondary mb-0">@lang('carrito.valorT')</p>
                                     <p class="text-end mb-2">{{ number_format($total, 2) }} €</p>
                                 </div>
                                 <div class="d-flex justify-content-between ml-5">
-                                    <p class="text-secondary mb-0">Gastos de envío</p>
+                                    <p class="text-secondary mb-0">@lang('carrito.gastosEnv')</p>
                                     <p class="text-end mb-2">{{ number_format($gastosEnvio, 2) }} €</p>
                                 </div>
                             </div>
 
                             <div id="total">
                                 <div class="d-flex justify-content-between mt-3 mb-10 ml-5">
-                                    <p class="text-secondary mb-0">Total del pedido</p>
+                                    <p class="text-secondary mb-0">@lang('carrito.totalPedido')</p>
                                     <p class="text-end mb-2">{{ number_format($total + $gastosEnvio, 2) }} €</p>
                                 </div>
                             </div>
@@ -282,12 +277,11 @@
                                 <x-makinon-checkbox id="aceptarCondiciones" name="aceptarCondiciones"
                                     class="form-check-input"></x-makinon-checkbox>
                                 <label class="form-check-label" for="aceptarCondiciones">
-                                    He leído y acepto los términos y condiciones de compra.
+                                    @lang('pedido.terminosCondiciones')
                                 </label>
                             </div>
 
-                            <x-makinon-primary-button id="realizarPedido" type="submit" style="width:50%">Realizar
-                                Pedido</x-makinon-primary-button>
+                            <x-makinon-primary-button id="realizarPedido" type="submit" style="width:50%">@lang('pedido.realizarPedido')</x-makinon-primary-button>
 
                         </div>
                         {{-- <div class="addComentario">

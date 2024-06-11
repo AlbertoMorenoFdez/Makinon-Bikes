@@ -159,28 +159,28 @@
         <footer>
             <div class="bottom">
                 <div id="columna1" class="mb-3">
-                    <div>SOPORTE</div>
-                    <li><a href="{{ route('sobre_nosotros') }}">Sobre nosotros</a></li>
-                    <li><a href="{{ route('contacto') }}">Contacto</a></li>
-                    <li><a href={{ route('envios_devoluciones') }}>Envío y devoluciones</a></li>
-                    <li><a href="{{ route('formas_de_pago') }}">Formas de pago</a> </li>
-                    <li><a href="{{ route('aviso_legal') }}">Aviso legal</a></li>
-                    <li><a href="{{ route('gestion_garantias') }}">Gestión de garantías</a></li>
-                    <li><a href="{{ route('uso_cookies') }}">Uso de cookies</a></li>
-                    <li><a href="{{ route('terminos_y_condiciones') }}">Términos y condiciones</a></li>
+                    <div>{{ strtoupper(__('footer.soporte')) }}</div>
+                    <li><a href="{{ route('sobre_nosotros') }}">@lang('footer.sobreNosotros')</a></li>
+                    <li><a href="{{ route('contacto') }}">@lang('footer.contacto')</a></li>
+                    <li><a href="{{ route('envios_devoluciones') }}">@lang('footer.enviosDevoluciones')</a></li>
+                    <li><a href="{{ route('formas_de_pago') }}">@lang('footer.formasPago')</a> </li>
+                    <li><a href="{{ route('aviso_legal') }}">@lang('footer.avisoLegal')</a></li>
+                    <li><a href="{{ route('gestion_garantias') }}">@lang('footer.gestionGarantias')</a></li>
+                    <li><a href="{{ route('uso_cookies') }}">@lang('footer.usoCookies')</a></li>
+                    <li><a href="{{ route('terminos_y_condiciones') }}">@lang('footer.terminosCondiciones')</a></li>
                 </div>
 
                 <div id="columna2">
-                    <div>LO MAS TOP</div>
-                    <li><a href="{{ route('promociones') }}">Promociones especiales</a></li>
-                    <li><a href="{{ route('nuevos_productos') }}">Nuevos productos</a></li>
-                    <li><a href="{{ route('lo_mas_vendido') }}">¡Lo más vendido!</a></li>
-                    <li><a href="{{ route('marcas') }}">Nuestras marcas</a></li>
-                    <li><a href="{{ route('liquidacion') }}">Liquidación</a></li>
-                    <li><a href="{{ route('segunda_mano') }}">Segunda mano</a></li>
+                    <div>{{ strtoupper(__('footer.loMasTop')) }}</div>
+                    <li><a href="{{ route('promociones') }}">@lang('footer.promos')</a></li>
+                    <li><a href="{{ route('nuevos_productos') }}">@lang('footer.nuevos')</a></li>
+                    <li><a href="{{ route('lo_mas_vendido') }}">@lang('footer.lomasVendido')</a></li>
+                    <li><a href="{{ route('marcas') }}">@lang('footer.nuestrasM')</a></li>
+                    <li><a href="{{ route('liquidacion') }}">@lang('footer.liquidacion')</a></li>
+                    <li><a href="{{ route('segunda_mano') }}">@lang('footer.segundaM')</a></li>
                 </div>
                 <div id="columna3">
-                    <div>SIGUENOS</div><br>
+                    <div>{{ strtoupper(__('footer.siguenos')) }}</div><br>
                     <div><i class="fab fa-instagram"></i>
                         <a href="https://www.instagram.com/cdmakinonbikesmalaga/" target="_blanck">Instagram</a>
                     </div>

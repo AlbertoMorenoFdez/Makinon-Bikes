@@ -94,8 +94,11 @@ return [
     "descrip" => "Description",
     "imagen" => "Image route",
 
+    // Price
+    "pvprec"=>"Recommended price",
+
     // Product view
-    "colores" => "Available olors",
+    "colores" => "Available colors",
     "tallas" => "Available sizes",
     "cantidad" => "Quantity",
     "anadirCarro" => "Add to cart",

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
  * @OA\Info(
  *     title="API de Makinon Bikes",
  *     version="1.0.0",
- *     description="Esta es la API para gestionar las citas en el taller de Makinon Bikes",
+ *     description="Mediante esta API podemos gestionar las citas en el taller de Makinon Bikes desde la aplicación de Angular",
  *     @OA\Contact(
  *         email="new.makinonbikes@gmail.com"
  *     ),
@@ -90,6 +90,7 @@ class CitaTallerController extends Controller
      * @OA\Get(
      *     path="/api/traerDatos",
      *     summary="Obtener los datos del usuario autenticado",
+     *     tags={"Usuarios"},
      *     @OA\Response(
      *         response=200,
      *         description="Datos del usuario",
@@ -135,6 +136,7 @@ class CitaTallerController extends Controller
      * @OA\Post(
      *     path="/api/cita_taller",
      *     summary="Crea una nueva cita en el taller",
+     *     tags={"Usuarios"},
      *     @OA\RequestBody(
      *         description="Datos necesarios para crear una cita",
      *         @OA\JsonContent(
@@ -227,6 +229,7 @@ class CitaTallerController extends Controller
      * @OA\Post(
      *     path="/api/editarCitaUsuario",
      *     summary="Editar una cita de la bdd",
+     *     tags={"Usuarios"},
      *     @OA\RequestBody(
      *         description="Datos necesarios para editar una cita",
      *         required=true,
@@ -332,6 +335,7 @@ class CitaTallerController extends Controller
      * @OA\Get(
      *     path="/api/cita_taller",
      *     summary="Obtener todas las citas del taller de un cliente",
+     *     tags={"Usuarios"},
      *     @OA\Response(
      *         response=200,
      *         description="Citas obtenidas con éxito",
@@ -384,6 +388,7 @@ class CitaTallerController extends Controller
      * @OA\Get(
      *     path="/api/obtenerCitaId/{id_cita_taller}",
      *     summary="Obtener una cita por su ID",
+     *     tags={"Usuarios"},
      *     @OA\Parameter(
      *         name="id_cita_taller",
      *         in="path",
@@ -452,6 +457,7 @@ class CitaTallerController extends Controller
      * @OA\Put(
      *     path="/api/citaPendiente",
      *     summary="Edita el estado de varias citas del taller desde el panel del adminitrador de Angular",
+     *    tags={"Administrador"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -521,6 +527,7 @@ class CitaTallerController extends Controller
      * @OA\Delete(
      *     path="/api/cita_taller",
      *     summary="Elimina una cita del taller",
+     *     tags={"Administrador"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -556,6 +563,7 @@ class CitaTallerController extends Controller
      * @OA\Get(
      *     path="/api/calendario",
      *     summary="Obtiene todas las citas del taller",
+     *     tags={"Administrador"},
      *     @OA\Response(
      *         response=200,
      *         description="Operación exitosa",
@@ -587,6 +595,7 @@ class CitaTallerController extends Controller
      * @OA\Put(
      *     path="/api/subir_imagen",
      *     summary="Sube una imagen para una cita del taller",
+     *     tags={"Usuarios"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\MediaType(

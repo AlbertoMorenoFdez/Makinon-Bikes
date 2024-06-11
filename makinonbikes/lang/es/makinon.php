@@ -144,4 +144,7 @@ return [
     "misCitas" => "Mis citas",
     "gestCitas" => "Gestión de citas",
     "listaCitas" => "Listado de citas",
+
+    // Buscador
+    "buscar" => "Buscar",
 ];
