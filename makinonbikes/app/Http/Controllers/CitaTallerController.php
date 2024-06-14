@@ -51,7 +51,7 @@ class CitaTallerController extends Controller
             Mail::to($cita->usuario->email)->send(new CitaTallerModificada($cita));
         }
 
-        return redirect()->route('listadoCitas')->with('success', 'Estado de la cita actualizado con éxito');
+        return redirect()->route('listadoCitasTaller')->with('success', 'Estado de la cita actualizado con éxito');
     }
 
     /**

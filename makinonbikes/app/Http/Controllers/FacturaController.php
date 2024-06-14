@@ -100,7 +100,7 @@ class FacturaController extends Controller
         $datosFactura = [];
 
         // Comprobamos si el usuario autenticado es el que hizo el pedido o si es un administrador
-        if (Auth::id() !== $pedido->id_usuario) {
+        if (Auth::id() !== $pedido->id_usuario && Auth::user()->rol !== 'admin') {
             abort(403, 'No tienes permiso para ver esta factura.');
         }
 
@@ -178,7 +178,7 @@ class FacturaController extends Controller
         $datosFactura = [];
 
         // Comprobamos si el usuario autenticado es el que hizo el pedido o si es un administrador
-        if (Auth::id() !== $pedido->id_usuario) {
+        if (Auth::id() !== $pedido->id_usuario && Auth::user()->rol !== 'admin') {
             abort(403, 'No tienes permiso para ver esta factura.');
         }
 

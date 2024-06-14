@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proveedor;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Redirect;
 
 class ProveedorController extends Controller
 {
@@ -73,10 +75,16 @@ class ProveedorController extends Controller
         $proveedor->email = $request->email;
         $proveedor->comentario = $request->comentario;
 
-        $proveedor->save();
-
-        // Redirigir a la página principal con un mensaje de éxito
-        return redirect('/listadoProveedores')->with('success', 'Proveedor añadido con éxito');
+        try {
+            $proveedor->save();
+            return redirect('/listadoProveedores')->with('success', 'Proveedor añadido con éxito');
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == 1062){
+                // Aquí manejas el error específico, por ejemplo, un CIF duplicado
+                return Redirect::back()->withInput()->withErrors(['cif' => 'El CIF proporcionado ya está registrado.']);
+            }
+        }
     }
 
     /**
