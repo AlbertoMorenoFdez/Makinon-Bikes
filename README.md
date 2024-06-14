@@ -133,6 +133,7 @@ Por último, se puede mostrar varias gráficas para visualizar que estados hay m
 
 ## Vídeos
 -[Pre-proyecto](https://youtu.be/8cHSNUbqt6M)
+-[Proyecto FCT Makinon Bikes](https://youtu.be/x7kCHsrtQvM)
 
 ## Recursos adicionales
 - [Página de Notion del proyecto](https://messy-sovereign-e65.notion.site/Anteproyecto-Makinon-Bikes-11a74f6f479342049f4cd17ddec853e3?pvs=4)
