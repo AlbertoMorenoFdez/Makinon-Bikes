@@ -54,4 +54,10 @@ return [
 
     'realizarPedido'=>'Realizar Pedido',
 
+    'pedidoConf'=> 'Pedido confirmado',
+    'graciasPedido' => 'Gracias por confiar en nosotros.',
+    'msjPedido' => 'Tu pedido ha sido confirmado. En breve recibirás un email con los detalles de tu pedido.',
+    'msjConsultar'=>'También puedes consultarlo desde tu área de cliente.',
+    'inicioBtn' => 'Inicio',
+
 ];

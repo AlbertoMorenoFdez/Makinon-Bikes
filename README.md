@@ -6,6 +6,11 @@ Además, se ha integrado un sistema de gestión de citas para un taller de bicic
 
 <br>
 
+## Direcciones web
+Makinon Bikes - https://www.makinonbikes.duckdns.org
+Sistema de citas de taller Makinon Bikes - https://tallermakinonbikes.netlify.app
+Landing page - https://www.makinonbikes-landing.duckdns.org
+
 ## Makinon en imágenes
 ### Tienda
 Cuando el usuario accede a nuestra página podrá, de manera intuitiva, acceder a todos los apartados disponibles para él, pero también podrá decidir si logearse o crear su cuenta rellenando los campos del formulario de registro, el cual cuenta con un sistema de control de errores para todos los campos.
