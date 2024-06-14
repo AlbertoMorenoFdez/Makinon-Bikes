@@ -132,7 +132,7 @@ Por último, se puede mostrar varias gráficas para visualizar que estados hay m
 - [Alberto Moreno Fernandez](https://github.com/AlbertoMorenoFdez)
 
 ## Vídeos
--[Pre-proyecto](https://youtu.be/8cHSNUbqt6M)
+-[Pre-proyecto](https://youtu.be/8cHSNUbqt6M) <br>
 -[Proyecto FCT Makinon Bikes](https://youtu.be/x7kCHsrtQvM)
 
 ## Recursos adicionales
