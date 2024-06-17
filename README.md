@@ -131,6 +131,8 @@ Por último, se puede mostrar varias gráficas para visualizar que estados hay m
 - **Netlify**: es una plataforma de desarrollo web que facilita la publicación de sitios web. Ofrece servicios de alojamiento y backend sin servidor para aplicaciones web estáticas y dinámicas
 
 - **aws**: es una plataforma de servicios de computación en la nube que ofrece una amplia gama de recursos y soluciones para empresas, desarrolladores e instituciones
+
+- **Sass y html**: en la landing se ha implementado uso de sass, html y  js para control de código. Además de uso de metodología BEM
 </br>
 
 ## Futuras implementaciones.
